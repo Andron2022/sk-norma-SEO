@@ -1,0 +1,218 @@
+a:4:{s:8:"col_info";a:35:{i:0;O:8:"stdClass":13:{s:4:"name";s:2:"id";s:7:"orgname";s:2:"id";s:5:"table";s:1:"c";s:8:"orgtable";s:6:"categs";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:2;s:6:"length";i:11;s:9:"charsetnr";i:63;s:5:"flags";i:49667;s:4:"type";i:3;s:8:"decimals";i:0;}i:1;O:8:"stdClass":13:{s:4:"name";s:5:"title";s:7:"orgname";s:5:"title";s:5:"table";s:1:"c";s:8:"orgtable";s:6:"categs";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:25;s:6:"length";i:196605;s:9:"charsetnr";i:33;s:5:"flags";i:20505;s:4:"type";i:252;s:8:"decimals";i:0;}i:2;O:8:"stdClass":13:{s:4:"name";s:9:"id_parent";s:7:"orgname";s:9:"id_parent";s:5:"table";s:1:"c";s:8:"orgtable";s:6:"categs";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:1;s:6:"length";i:11;s:9:"charsetnr";i:63;s:5:"flags";i:49161;s:4:"type";i:3;s:8:"decimals";i:0;}i:3;O:8:"stdClass":13:{s:4:"name";s:12:"parent_title";s:7:"orgname";s:5:"title";s:5:"table";s:2:"c2";s:8:"orgtable";s:6:"categs";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:0;s:6:"length";i:196605;s:9:"charsetnr";i:33;s:5:"flags";i:20504;s:4:"type";i:252;s:8:"decimals";i:0;}i:4;O:8:"stdClass":13:{s:4:"name";s:12:"parent_alias";s:7:"orgname";s:5:"alias";s:5:"table";s:2:"c2";s:8:"orgtable";s:6:"categs";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:0;s:6:"length";i:765;s:9:"charsetnr";i:33;s:5:"flags";i:16392;s:4:"type";i:253;s:8:"decimals";i:0;}i:5;O:8:"stdClass":13:{s:4:"name";s:10:"id_parent2";s:7:"orgname";s:9:"id_parent";s:5:"table";s:2:"c2";s:8:"orgtable";s:6:"categs";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:0;s:6:"length";i:11;s:9:"charsetnr";i:63;s:5:"flags";i:49160;s:4:"type";i:3;s:8:"decimals";i:0;}i:6;O:8:"stdClass":13:{s:4:"name";s:13:"parent2_title";s:7:"orgname";s:5:"title";s:5:"table";s:2:"c3";s:8:"orgtable";s:6:"categs";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:0;s:6:"length";i:196605;s:9:"charsetnr";i:33;s:5:"flags";i:20504;s:4:"type";i:252;s:8:"decimals";i:0;}i:7;O:8:"stdClass":13:{s:4:"name";s:13:"parent2_alias";s:7:"orgname";s:5:"alias";s:5:"table";s:2:"c3";s:8:"orgtable";s:6:"categs";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:0;s:6:"length";i:765;s:9:"charsetnr";i:33;s:5:"flags";i:16392;s:4:"type";i:253;s:8:"decimals";i:0;}i:8;O:8:"stdClass":13:{s:4:"name";s:4:"page";s:7:"orgname";s:8:"multitpl";s:5:"table";s:1:"c";s:8:"orgtable";s:6:"categs";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:13;s:6:"length";i:300;s:9:"charsetnr";i:33;s:5:"flags";i:4097;s:4:"type";i:253;s:8:"decimals";i:0;}i:9;O:8:"stdClass":13:{s:4:"name";s:11:"description";s:7:"orgname";s:16:"meta_description";s:5:"table";s:1:"c";s:8:"orgtable";s:6:"categs";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:458;s:6:"length";i:50331645;s:9:"charsetnr";i:33;s:5:"flags";i:4113;s:4:"type";i:252;s:8:"decimals";i:0;}i:10;O:8:"stdClass":13:{s:4:"name";s:8:"keywords";s:7:"orgname";s:13:"meta_keywords";s:5:"table";s:1:"c";s:8:"orgtable";s:6:"categs";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:1;s:6:"length";i:50331645;s:9:"charsetnr";i:33;s:5:"flags";i:4113;s:4:"type";i:252;s:8:"decimals";i:0;}i:11;O:8:"stdClass":13:{s:4:"name";s:9:"metatitle";s:7:"orgname";s:10:"meta_title";s:5:"table";s:1:"c";s:8:"orgtable";s:6:"categs";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:105;s:6:"length";i:50331645;s:9:"charsetnr";i:33;s:5:"flags";i:4113;s:4:"type";i:252;s:8:"decimals";i:0;}i:12;O:8:"stdClass":13:{s:4:"name";s:5:"alias";s:7:"orgname";s:5:"alias";s:5:"table";s:1:"c";s:8:"orgtable";s:6:"categs";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:13;s:6:"length";i:765;s:9:"charsetnr";i:33;s:5:"flags";i:16393;s:4:"type";i:253;s:8:"decimals";i:0;}i:13;O:8:"stdClass":13:{s:4:"name";s:7:"content";s:7:"orgname";s:4:"memo";s:5:"table";s:1:"c";s:8:"orgtable";s:6:"categs";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:17369;s:6:"length";i:50331645;s:9:"charsetnr";i:33;s:5:"flags";i:20497;s:4:"type";i:252;s:8:"decimals";i:0;}i:14;O:8:"stdClass":13:{s:4:"name";s:5:"intro";s:7:"orgname";s:10:"memo_short";s:5:"table";s:1:"c";s:8:"orgtable";s:6:"categs";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:0;s:6:"length";i:50331645;s:9:"charsetnr";i:33;s:5:"flags";i:4113;s:4:"type";i:252;s:8:"decimals";i:0;}i:15;O:8:"stdClass":13:{s:4:"name";s:6:"active";s:7:"orgname";s:6:"active";s:5:"table";s:1:"c";s:8:"orgtable";s:6:"categs";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:1;s:6:"length";i:3;s:9:"charsetnr";i:33;s:5:"flags";i:257;s:4:"type";i:254;s:8:"decimals";i:0;}i:16;O:8:"stdClass":13:{s:4:"name";s:4:"sort";s:7:"orgname";s:4:"sort";s:5:"table";s:1:"c";s:8:"orgtable";s:6:"categs";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:1;s:6:"length";i:11;s:9:"charsetnr";i:63;s:5:"flags";i:32769;s:4:"type";i:3;s:8:"decimals";i:0;}i:17;O:8:"stdClass":13:{s:4:"name";s:6:"sortby";s:7:"orgname";s:6:"sortby";s:5:"table";s:1:"c";s:8:"orgtable";s:6:"categs";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:16;s:6:"length";i:90;s:9:"charsetnr";i:33;s:5:"flags";i:4097;s:4:"type";i:253;s:8:"decimals";i:0;}i:18;O:8:"stdClass":13:{s:4:"name";s:11:"date_insert";s:7:"orgname";s:11:"date_insert";s:5:"table";s:1:"c";s:8:"orgtable";s:6:"categs";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:19;s:6:"length";i:19;s:9:"charsetnr";i:63;s:5:"flags";i:128;s:4:"type";i:12;s:8:"decimals";i:0;}i:19;O:8:"stdClass":13:{s:4:"name";s:11:"date_update";s:7:"orgname";s:11:"date_update";s:5:"table";s:1:"c";s:8:"orgtable";s:6:"categs";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:19;s:6:"length";i:19;s:9:"charsetnr";i:63;s:5:"flags";i:128;s:4:"type";i:12;s:8:"decimals";i:0;}i:20;O:8:"stdClass":13:{s:4:"name";s:7:"user_id";s:7:"orgname";s:7:"user_id";s:5:"table";s:1:"c";s:8:"orgtable";s:6:"categs";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:3;s:6:"length";i:11;s:9:"charsetnr";i:63;s:5:"flags";i:32768;s:4:"type";i:3;s:8:"decimals";i:0;}i:21;O:8:"stdClass":13:{s:4:"name";s:4:"icon";s:7:"orgname";s:4:"icon";s:5:"table";s:1:"c";s:8:"orgtable";s:6:"categs";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:0;s:6:"length";i:300;s:9:"charsetnr";i:33;s:5:"flags";i:4097;s:4:"type";i:253;s:8:"decimals";i:0;}i:22;O:8:"stdClass":13:{s:4:"name";s:6:"f_spec";s:7:"orgname";s:6:"f_spec";s:5:"table";s:1:"c";s:8:"orgtable";s:6:"categs";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:1;s:6:"length";i:1;s:9:"charsetnr";i:63;s:5:"flags";i:32769;s:4:"type";i:1;s:8:"decimals";i:0;}i:23;O:8:"stdClass":13:{s:4:"name";s:7:"in_last";s:7:"orgname";s:7:"in_last";s:5:"table";s:1:"c";s:8:"orgtable";s:6:"categs";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:1;s:6:"length";i:1;s:9:"charsetnr";i:63;s:5:"flags";i:32769;s:4:"type";i:1;s:8:"decimals";i:0;}i:24;O:8:"stdClass":13:{s:4:"name";s:4:"shop";s:7:"orgname";s:4:"shop";s:5:"table";s:1:"c";s:8:"orgtable";s:6:"categs";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:1;s:6:"length";i:1;s:9:"charsetnr";i:63;s:5:"flags";i:32769;s:4:"type";i:1;s:8:"decimals";i:0;}i:25;O:8:"stdClass":13:{s:4:"name";s:11:"show_filter";s:7:"orgname";s:11:"show_filter";s:5:"table";s:1:"c";s:8:"orgtable";s:6:"categs";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:1;s:6:"length";i:1;s:9:"charsetnr";i:63;s:5:"flags";i:32769;s:4:"type";i:1;s:8:"decimals";i:0;}i:26;O:8:"stdClass":13:{s:4:"name";s:16:"set_qty_products";s:7:"orgname";s:0:"";s:5:"table";s:0:"";s:8:"orgtable";s:0:"";s:3:"def";s:0:"";s:2:"db";s:0:"";s:7:"catalog";s:3:"def";s:10:"max_length";i:2;s:6:"length";i:12;s:9:"charsetnr";i:63;s:5:"flags";i:32897;s:4:"type";i:8;s:8:"decimals";i:0;}i:27;O:8:"stdClass":13:{s:4:"name";s:12:"qty_comments";s:7:"orgname";s:0:"";s:5:"table";s:0:"";s:8:"orgtable";s:0:"";s:3:"def";s:0:"";s:2:"db";s:0:"";s:7:"catalog";s:3:"def";s:10:"max_length";i:1;s:6:"length";i:21;s:9:"charsetnr";i:63;s:5:"flags";i:32897;s:4:"type";i:8;s:8:"decimals";i:0;}i:28;O:8:"stdClass":13:{s:4:"name";s:8:"qty_pubs";s:7:"orgname";s:0:"";s:5:"table";s:0:"";s:8:"orgtable";s:0:"";s:3:"def";s:0:"";s:2:"db";s:0:"";s:7:"catalog";s:3:"def";s:10:"max_length";i:1;s:6:"length";i:21;s:9:"charsetnr";i:63;s:5:"flags";i:32897;s:4:"type";i:8;s:8:"decimals";i:0;}i:29;O:8:"stdClass":13:{s:4:"name";s:10:"qty_photos";s:7:"orgname";s:0:"";s:5:"table";s:0:"";s:8:"orgtable";s:0:"";s:3:"def";s:0:"";s:2:"db";s:0:"";s:7:"catalog";s:3:"def";s:10:"max_length";i:1;s:6:"length";i:21;s:9:"charsetnr";i:63;s:5:"flags";i:32897;s:4:"type";i:8;s:8:"decimals";i:0;}i:30;O:8:"stdClass":13:{s:4:"name";s:9:"qty_files";s:7:"orgname";s:0:"";s:5:"table";s:0:"";s:8:"orgtable";s:0:"";s:3:"def";s:0:"";s:2:"db";s:0:"";s:7:"catalog";s:3:"def";s:10:"max_length";i:1;s:6:"length";i:21;s:9:"charsetnr";i:63;s:5:"flags";i:32897;s:4:"type";i:8;s:8:"decimals";i:0;}i:31;O:8:"stdClass":13:{s:4:"name";s:12:"qty_products";s:7:"orgname";s:0:"";s:5:"table";s:0:"";s:8:"orgtable";s:0:"";s:3:"def";s:0:"";s:2:"db";s:0:"";s:7:"catalog";s:3:"def";s:10:"max_length";i:1;s:6:"length";i:21;s:9:"charsetnr";i:63;s:5:"flags";i:32897;s:4:"type";i:8;s:8:"decimals";i:0;}i:32;O:8:"stdClass":13:{s:4:"name";s:11:"qty_options";s:7:"orgname";s:0:"";s:5:"table";s:0:"";s:8:"orgtable";s:0:"";s:3:"def";s:0:"";s:2:"db";s:0:"";s:7:"catalog";s:3:"def";s:10:"max_length";i:1;s:6:"length";i:21;s:9:"charsetnr";i:63;s:5:"flags";i:32897;s:4:"type";i:8;s:8:"decimals";i:0;}i:33;O:8:"stdClass":13:{s:4:"name";s:16:"qty_bottomcategs";s:7:"orgname";s:0:"";s:5:"table";s:0:"";s:8:"orgtable";s:0:"";s:3:"def";s:0:"";s:2:"db";s:0:"";s:7:"catalog";s:3:"def";s:10:"max_length";i:1;s:6:"length";i:21;s:9:"charsetnr";i:63;s:5:"flags";i:32897;s:4:"type";i:8;s:8:"decimals";i:0;}i:34;O:8:"stdClass":13:{s:4:"name";s:13:"qty_topcategs";s:7:"orgname";s:0:"";s:5:"table";s:0:"";s:8:"orgtable";s:0:"";s:3:"def";s:0:"";s:2:"db";s:0:"";s:7:"catalog";s:3:"def";s:10:"max_length";i:2;s:6:"length";i:21;s:9:"charsetnr";i:63;s:5:"flags";i:32897;s:4:"type";i:8;s:8:"decimals";i:0;}}s:11:"last_result";a:1:{i:0;O:8:"stdClass":35:{s:2:"id";s:2:"93";s:5:"title";s:25:"Офисные двери";s:9:"id_parent";s:1:"9";s:12:"parent_title";N;s:12:"parent_alias";N;s:10:"id_parent2";N;s:13:"parent2_title";N;s:13:"parent2_alias";N;s:4:"page";s:13:"category.html";s:11:"description";s:458:"В нашей компании вы можете заказать двери для офиса и других деловых помещений. Высокая сопротивляемость износу, долгий срок службы и высококачественные облицовочные материалы добавят благородства и прекрасно впишутся в ваше деловое пространство.";s:8:"keywords";s:1:".";s:9:"metatitle";s:105:"Офисные двери премиум качества на заказ от производителя";s:5:"alias";s:13:"ofisnye-dveri";s:7:"content";s:17369:"<svg fill="#cc0605" height="32" viewbox="0 0 96 96" width="32" xmlns="http://www.w3.org/2000/svg"><switch><g><path d="M52 83.999V21.655l21.172 21.172a4 4 0 1 0 5.656-5.657l-28-28a4 4 0 0 0-5.656 0l-28 28A3.987 3.987 0 0 0 16 39.999a4 4 0 0 0 6.828 2.828L44 21.655v62.344a4 4 0 0 0 8 0z"></path></g></switch></svg>
+
+<h1 style="display: inline; text-align: center;"><strong>Выберите тип двери</strong></h1>
+
+<p style="text-align: center;"><span style="font-size:14px;">ООО &laquo;СК Норма&raquo; производит и устанавливает под ключ офисные двери высокого качества любых размеров.</span></p>
+
+<div>Вы не можете принять решение, какие двери выбрать для офиса? Вид, размер, цвет? Кампания &laquo;СК-Норма&raquo; готова вам помочь.</div>
+
+<div>Для удобства мы разделили офисные или межкомнатные двери на виды:</div>
+
+<div><strong>-<span style="white-space:pre"> </span>Глухие двери</strong></div>
+
+<div><strong>-<span style="white-space:pre"> </span>Стеклянные двери </strong></div>
+
+<div>Важно понимать, что офисные двери - это не только та часть которую мы открываем - <strong>дверное полотно</strong>, но и конструкция&nbsp; к которой оно крепится - <strong>дверная коробка</strong>. То есть, офисные двери это дверные блоки, состоящие из дверной коробки и дверного полотна.</div>
+
+<div><strong>Дверная коробка может быть:</strong></div>
+
+<div>&bull;<span style="white-space:pre"> </span>деревянная</div>
+
+<div>&bull;<span style="white-space:pre"> </span>из алюминиевого окрашенного профиля</div>
+
+<div>&bull;<span style="white-space: pre;"> </span>может вообще отсутствовать</div>
+
+<div><strong>Дверное полотно может быть:</strong></div>
+
+<div>&bull;<span style="white-space:pre"> </span>глухое дверное полотно с лицевой поверхностью пластиком, шпоном ценных пород дерева, кожей, каменным шпоном&nbsp;и т.п.</div>
+
+<div>&bull;<span style="white-space:pre"> </span>дверное полотно из закаленного стекла</div>
+
+<div>&bull;<span style="white-space:pre"> </span>дверное полотно из стекла в алюминиевой раме</div>
+
+<div><strong>По типу открывания двери делятся на:</strong></div>
+
+<div>&bull;<span style="white-space:pre"> </span>распашные двери (открывание в одну сторону)</div>
+
+<div>&bull;<span style="white-space:pre"> </span>двери маятниковые (открывание в обе стороны)</div>
+
+<div>&bull;<span style="white-space:pre"> </span>двери откатные (дверное полотно откатывается в плоскости стены в сторону)</div>
+
+<div>&bull;<span style="white-space:pre"> </span>двери откатные скрытые (дверное полотно откатывается в &laquo;тело&raquo; перегородки)</div>
+
+<div><strong>По наличию специальных свойств двери делятся на:</strong></div>
+
+<div>&bull;<span style="white-space:pre"> </span>двери электромеханические (дверное полотно откатывается при&nbsp; срабатывании&nbsp; фотоэлемента)</div>
+
+<div>&bull;<span style="white-space:pre"> </span>двери металлические огнестойкие</div>
+
+<div>&bull;<span style="white-space:pre"> </span>двери входные (дверной&nbsp; блок&nbsp; усилен и имеет дополнительно утепление профиля дверей)</div>
+
+<div><strong>Комплектация дверной фурнитурой и специальным&nbsp; оборудованием:</strong></div>
+
+<div>&bull;<span style="white-space:pre"> </span>фурнитура Abloy, Hoppe или иная по выбору Заказчика</div>
+
+<div>&bull;<span style="white-space:pre"> </span>в дверные коробки устанавливаем ЭМЗ (Электромеханические защелки) для СКДУД</div>
+
+<div>&bull;<span style="white-space:pre"> </span>дверные доводчики</div>
+
+<div>&nbsp;</div>
+
+<div>&nbsp;Двери произведённые компанией &laquo;СК-Норма&raquo;:</div>
+
+<div><strong>&bull;<span style="white-space:pre"> </span></strong><strong>имеют выгодное соотношение цена - качество</strong></div>
+
+<div><strong>&bull;<span style="white-space:pre"> </span>характеризуются высокой износостойкостью</strong></div>
+
+<div><strong>&bull;<span style="white-space:pre"> </span>устойчивы к повреждениям</strong></div>
+
+<div><strong>&bull;<span style="white-space:pre"> </span>устойчивы к загрязнениям различного рода</strong></div>
+
+<div><strong>&bull;<span style="white-space:pre"> </span>устойчивы к сильным химическим очистителям</strong></div>
+
+<div><strong>&bull;<span style="white-space:pre"> </span>легко очищаются</strong></div>
+
+<div><strong>&bull;<span style="white-space:pre">&nbsp;</span>экологически безопасны</strong></div>
+
+<div><strong>&bull;<span style="white-space:pre"> </span>обеспечивают надёжную защиту помещений от проникновения</strong></div>
+
+<div><strong>&bull;<span style="white-space:pre"> </span>обладают хорошей звукоизоляцией</strong></div>
+
+<div><strong>&bull;<span style="white-space:pre"> </span>сохраняют неизменный вид многие годы даже в помещениях с большой проходимостью</strong></div>
+
+<div style="text-align: center;"><br />
+<strong>ВОЗМОЖНОСТИ</strong></div>
+
+<div>&nbsp;&nbsp; В ООО &laquo;СК Норма&raquo; вы можете приобрести двери полностью - полотна в комплекте с коробкой и фурнитурой. А можете заказать отдельно полотна по вашим индивидуальным размерам. Если есть необходимость можем осуществить монтажные работы по установке дверей &laquo;под ключ&raquo;. Работаем с НДС. Гарантия.</div>
+
+<div>&nbsp;&nbsp;&nbsp; ООО &laquo;СК-Норма&raquo; изготовит и смонтирует двери не только в офисные перегородоки, но и в готовые проемы стен любых помещений офиса, для обеспечения единства дизайнерского решения. Компания имеет решения по отделке откосов окон и дверей, в едином стиле. ООО &laquo;СК-Норма&raquo; может предложить еще много вариантов данной продукции в хорошем исполнении и удачном дизайне. Качественное и своевременное обслуживание останутся приятным воспоминанием и залогом нового сотрудничества.</div>
+
+<div>
+<p style="text-align: center;"><strong>ТЕХНИЧЕСКИЕ ХАРАКТЕРИСТИКИ</strong></p>
+
+<p>&nbsp; &nbsp; <u><strong>Алюминиевые дверные коробки</strong></u> имеют толщину 98 мм., красятся полимерной краской. В Вашем распоряжение огромный выбор цветов по RAL каталогу - <a href="http://sk-norma.ru/katalogi/ral-katalog-tcveta-aliuminievogo-profilia1"><strong style="color: rgb(0, 0, 255);">ВЫБРАТЬ ЦВЕТ АЛЮМИНИЕВОЙ КОРОБКИ</strong></a></p>
+
+<p>&nbsp;&nbsp;&nbsp; <strong><u>Двери с коробками из МДФ</u></strong> - её толщина выбирается относительно толщины откоса, плюс в том, что откосы не нужно будет отделывать. Цвет коробки может быть идентичный цвету полотна. Возможно сделать разные цвета с разных сторон. <a href="http://sk-norma.ru/katalogi/egger-plastik-litcevaia-otdelka-panelei-edvans"><strong style="color: rgb(0, 0, 255);">ВЫБРАТЬ ЦВЕТ МДФ КОРОБКИ</strong></a></p>
+
+<p><strong>&nbsp;&nbsp;&nbsp; </strong>Толщина <u><strong>дверных полотен</strong></u> 38, 40 или 46 мм. В стандарте поверхность дверного полотна выполняется из пластика Egger, если требуется используем материалы других производителей: Кроношпан, Лемарк, Abbet, AGT, Arpa и другие. Так же есть опыт использования шпона, кожи, каменного шпона и&nbsp; имитации&nbsp;всевозможных металлов. <a href="http://sk-norma.ru/katalogi/egger-plastik-litcevaia-otdelka-panelei-edvans"><strong style="color: rgb(0, 0, 255);">ВЫБРАТЬ ЦВЕТ ДВЕРНОГО ПОЛОТНА​</strong></a></p>
+
+<p><u style="text-align: center; color: rgb(178, 34, 34); font-size: 18px;"><strong>Стандартная комплектация офисных дверей:</strong></u></p>
+
+<p><strong>Замки (два варианта):</strong> Abloy (Финляндия) или Nemef (Нидерланды).<br />
+<strong>Петли (два варианта):</strong> петли бабочка или скрытые петли.<br />
+<strong>Силиконовый уплотнитель</strong> комплектуется по умолчанию во все двери.<br />
+<strong>Стандартные цвета фурнитуры:</strong> матовая нержавеющая сталь, хромированный металл, возможна покраска в цвет дверной коробки или любой цвет по каталогу RAL.<br />
+Возможна комплектация фурнитурой других производителей. Гарантия на поставляемую фурнитуру 1 год.</p>
+
+<p><u style="text-align: center; color: rgb(178, 34, 34); font-size: 18px;"><strong>Дополнительная комплектация офисных дверей:</strong></u></p>
+
+<p><strong>Выдвижной порожек</strong> используется для дополнительной звукоизоляции дверного блока.<br />
+<strong>Доводчики дверные</strong> производства Dorma (Германия), Geze (Германия), DL (Китай). Выбор модели согласно техническим требованиям. Цвета белый, серый, коричневый. Возможна покраска.<br />
+<strong>Задвижка дополнительная</strong>. Комплектуются двери для санузлов и душевых кабин. Цвет матовый алюминий, хромированный, возможна покраска в цвет дверной коробки или любой цвет по каталогу RAL.<br />
+Возможна комплектация фурнитурой других производителей. Гарантия на поставляемую фурнитуру 1 год.</p>
+</div>
+
+<p>&nbsp;</p>
+
+<div>
+<p style="text-align: center;"><strong>Типовые размеры офисных дверей, полотен и необходимых для монтажа проёмов.<br />
+По вашему желанию изготовим дверные коробки и полотна любых размеров!</strong></p>
+
+<table align="center" border="1" cellpadding="1" cellspacing="1" class="table table-bordered">
+	<tbody>
+		<tr>
+			<td style="text-align: center;"><strong>Обозначение</strong></td>
+			<td style="text-align: center;"><strong>Габариты коробки, мм.</strong></td>
+			<td style="text-align: center;"><strong>Габариты полотен, мм.</strong></td>
+			<td style="text-align: center;"><strong>Необходимый проём, мм.</strong></td>
+		</tr>
+		<tr>
+			<td colspan="4" style="text-align: center;"><strong>Одностворчатые</strong></td>
+		</tr>
+		<tr>
+			<td style="text-align: center;"><strong>7М</strong></td>
+			<td style="text-align: center;">688х2088</td>
+			<td style="text-align: center;">622х2046</td>
+			<td style="text-align: center;">700х2100</td>
+		</tr>
+		<tr>
+			<td style="text-align: center;"><strong>8М</strong></td>
+			<td style="text-align: center;">788х2088</td>
+			<td style="text-align: center;">722х2046</td>
+			<td style="text-align: center;">800х2100</td>
+		</tr>
+		<tr>
+			<td style="text-align: center;"><strong>9М</strong></td>
+			<td style="text-align: center;">888х2088</td>
+			<td style="text-align: center;">822х2046</td>
+			<td style="text-align: center;">900х2100</td>
+		</tr>
+		<tr>
+			<td style="text-align: center;"><strong>10М</strong></td>
+			<td style="text-align: center;">988х2088</td>
+			<td style="text-align: center;">922х2046</td>
+			<td style="text-align: center;">1000х2100</td>
+		</tr>
+		<tr>
+			<td colspan="4" style="text-align: center;"><strong>Полуторостворчатые</strong></td>
+		</tr>
+		<tr>
+			<td style="text-align: center;"><strong>12М</strong></td>
+			<td style="text-align: center;">1188х2088</td>
+			<td style="text-align: center;">303х2046 + 815х2046</td>
+			<td style="text-align: center;">1200х2100</td>
+		</tr>
+		<tr>
+			<td style="text-align: center;"><strong>13М</strong></td>
+			<td style="text-align: center;">1288х2088</td>
+			<td style="text-align: center;">403х2046 + 815х2046</td>
+			<td style="text-align: center;">1300х2100</td>
+		</tr>
+		<tr>
+			<td style="text-align: center;"><strong>14М</strong></td>
+			<td style="text-align: center;">1388х2088</td>
+			<td style="text-align: center;">503х2046 + 815х2046</td>
+			<td style="text-align: center;">1400х2100</td>
+		</tr>
+		<tr>
+			<td colspan="4" style="text-align: center;"><strong>Двустворчатые</strong></td>
+		</tr>
+		<tr>
+			<td style="text-align: center;"><strong>15М</strong></td>
+			<td style="text-align: center;">1488х2088</td>
+			<td style="text-align: center;">705х2046 + 715х2046</td>
+			<td style="text-align: center;">1500х2100</td>
+		</tr>
+		<tr>
+			<td style="text-align: center;"><strong>16М</strong></td>
+			<td style="text-align: center;">1588х2088</td>
+			<td style="text-align: center;">705х2046 + 815х2046</td>
+			<td style="text-align: center;">1600х2100</td>
+		</tr>
+		<tr>
+			<td style="text-align: center;"><strong>17М</strong></td>
+			<td style="text-align: center;">1688х2088</td>
+			<td style="text-align: center;">803х2046 + 815х2046</td>
+			<td style="text-align: center;">1700х2100</td>
+		</tr>
+		<tr>
+			<td style="text-align: center;"><strong>18М</strong></td>
+			<td style="text-align: center;">1788х2088</td>
+			<td style="text-align: center;">803х2046 + 915х2046</td>
+			<td style="text-align: center;">1800х2100</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+
+<p>&nbsp;</p>
+
+<div style="text-align: center;"><strong>МОНТАЖНЫМ ОРГАНИЗАЦИЯМ</strong></div>
+
+<div>
+<p>&nbsp;&nbsp;&nbsp; Строительным компаниям и монтажным организациям ООО &quot;СК Норма&quot; осуществляет оптовые поставки дверей и дверных полотен высокого качества различных цветов, фактур и комплектаций на индивидуальных условиях.<br />
+&nbsp;&nbsp;&nbsp; Так же можем выполнять субподрядные работы по монтажу дверей, панелей, перегородок. Имеем опыт более 10 лет. Гарантия 5 лет на изделие (дверная коробка, полотно) и 1 год на фурнитуру (замки, петли, доводчики, выдвижные порожки).</p>
+</div>
+
+<p>&nbsp;</p>
+";s:5:"intro";s:0:"";s:6:"active";s:1:"1";s:4:"sort";s:1:"3";s:6:"sortby";s:16:"date_insert desc";s:11:"date_insert";s:19:"2018-05-25 00:00:01";s:11:"date_update";s:19:"2022-06-22 14:21:06";s:7:"user_id";s:3:"154";s:4:"icon";s:0:"";s:6:"f_spec";s:1:"0";s:7:"in_last";s:1:"0";s:4:"shop";s:1:"0";s:11:"show_filter";s:1:"0";s:16:"set_qty_products";s:2:"20";s:12:"qty_comments";s:1:"0";s:8:"qty_pubs";s:1:"0";s:10:"qty_photos";s:1:"0";s:9:"qty_files";s:1:"0";s:12:"qty_products";s:1:"0";s:11:"qty_options";s:1:"0";s:16:"qty_bottomcategs";s:1:"2";s:13:"qty_topcategs";s:2:"11";}}s:8:"num_rows";i:1;s:12:"return_value";i:1;}

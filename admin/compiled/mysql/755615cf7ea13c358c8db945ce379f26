@@ -1,0 +1,173 @@
+a:4:{s:8:"col_info";a:16:{i:0;O:8:"stdClass":13:{s:4:"name";s:2:"id";s:7:"orgname";s:2:"id";s:5:"table";s:1:"b";s:8:"orgtable";s:6:"blocks";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:3;s:6:"length";i:12;s:9:"charsetnr";i:63;s:5:"flags";i:32769;s:4:"type";i:3;s:8:"decimals";i:0;}i:1;O:8:"stdClass":13:{s:4:"name";s:6:"active";s:7:"orgname";s:6:"active";s:5:"table";s:1:"b";s:8:"orgtable";s:6:"blocks";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:1;s:6:"length";i:2;s:9:"charsetnr";i:63;s:5:"flags";i:32769;s:4:"type";i:1;s:8:"decimals";i:0;}i:2;O:8:"stdClass":13:{s:4:"name";s:12:"where_placed";s:7:"orgname";s:12:"where_placed";s:5:"table";s:1:"b";s:8:"orgtable";s:6:"blocks";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:11;s:6:"length";i:150;s:9:"charsetnr";i:33;s:5:"flags";i:1;s:4:"type";i:253;s:8:"decimals";i:0;}i:3;O:8:"stdClass":13:{s:4:"name";s:5:"title";s:7:"orgname";s:5:"title";s:5:"table";s:1:"b";s:8:"orgtable";s:6:"blocks";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:12;s:6:"length";i:750;s:9:"charsetnr";i:33;s:5:"flags";i:4097;s:4:"type";i:253;s:8:"decimals";i:0;}i:4;O:8:"stdClass":13:{s:4:"name";s:11:"title_admin";s:7:"orgname";s:11:"title_admin";s:5:"table";s:1:"b";s:8:"orgtable";s:6:"blocks";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:43;s:6:"length";i:750;s:9:"charsetnr";i:33;s:5:"flags";i:4097;s:4:"type";i:253;s:8:"decimals";i:0;}i:5;O:8:"stdClass":13:{s:4:"name";s:3:"qty";s:7:"orgname";s:3:"qty";s:5:"table";s:1:"b";s:8:"orgtable";s:6:"blocks";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:1;s:6:"length";i:4;s:9:"charsetnr";i:63;s:5:"flags";i:32769;s:4:"type";i:1;s:8:"decimals";i:0;}i:6;O:8:"stdClass":13:{s:4:"name";s:4:"type";s:7:"orgname";s:4:"type";s:5:"table";s:1:"b";s:8:"orgtable";s:6:"blocks";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:11;s:6:"length";i:150;s:9:"charsetnr";i:33;s:5:"flags";i:4097;s:4:"type";i:253;s:8:"decimals";i:0;}i:7;O:8:"stdClass":13:{s:4:"name";s:7:"type_id";s:7:"orgname";s:7:"type_id";s:5:"table";s:1:"b";s:8:"orgtable";s:6:"blocks";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:2;s:6:"length";i:12;s:9:"charsetnr";i:63;s:5:"flags";i:32769;s:4:"type";i:3;s:8:"decimals";i:0;}i:8;O:8:"stdClass":13:{s:4:"name";s:5:"pages";s:7:"orgname";s:5:"pages";s:5:"table";s:1:"b";s:8:"orgtable";s:6:"blocks";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:85;s:6:"length";i:196605;s:9:"charsetnr";i:33;s:5:"flags";i:4113;s:4:"type";i:252;s:8:"decimals";i:0;}i:9;O:8:"stdClass":13:{s:4:"name";s:10:"skip_pages";s:7:"orgname";s:10:"skip_pages";s:5:"table";s:1:"b";s:8:"orgtable";s:6:"blocks";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:41;s:6:"length";i:196605;s:9:"charsetnr";i:33;s:5:"flags";i:4113;s:4:"type";i:252;s:8:"decimals";i:0;}i:10;O:8:"stdClass":13:{s:4:"name";s:4:"html";s:7:"orgname";s:4:"html";s:5:"table";s:1:"b";s:8:"orgtable";s:6:"blocks";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:2540;s:6:"length";i:50331645;s:9:"charsetnr";i:33;s:5:"flags";i:4113;s:4:"type";i:252;s:8:"decimals";i:0;}i:11;O:8:"stdClass":13:{s:4:"name";s:4:"sort";s:7:"orgname";s:4:"sort";s:5:"table";s:1:"b";s:8:"orgtable";s:6:"blocks";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:2;s:6:"length";i:4;s:9:"charsetnr";i:63;s:5:"flags";i:32769;s:4:"type";i:1;s:8:"decimals";i:0;}i:12;O:8:"stdClass":13:{s:4:"name";s:7:"type_up";s:7:"orgname";s:4:"type";s:5:"table";s:7:"b_extra";s:8:"orgtable";s:6:"blocks";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:9;s:6:"length";i:150;s:9:"charsetnr";i:33;s:5:"flags";i:4096;s:4:"type";i:253;s:8:"decimals";i:0;}i:13;O:8:"stdClass":13:{s:4:"name";s:8:"extra_id";s:7:"orgname";s:7:"type_id";s:5:"table";s:7:"b_extra";s:8:"orgtable";s:6:"blocks";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:1;s:6:"length";i:12;s:9:"charsetnr";i:63;s:5:"flags";i:32768;s:4:"type";i:3;s:8:"decimals";i:0;}i:14;O:8:"stdClass":13:{s:4:"name";s:10:"extra_html";s:7:"orgname";s:4:"html";s:5:"table";s:7:"b_extra";s:8:"orgtable";s:6:"blocks";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:0;s:6:"length";i:50331645;s:9:"charsetnr";i:33;s:5:"flags";i:4112;s:4:"type";i:252;s:8:"decimals";i:0;}i:15;O:8:"stdClass":13:{s:4:"name";s:10:"qty_photos";s:7:"orgname";s:0:"";s:5:"table";s:0:"";s:8:"orgtable";s:0:"";s:3:"def";s:0:"";s:2:"db";s:0:"";s:7:"catalog";s:3:"def";s:10:"max_length";i:2;s:6:"length";i:21;s:9:"charsetnr";i:63;s:5:"flags";i:32768;s:4:"type";i:8;s:8:"decimals";i:0;}}s:11:"last_result";a:17:{i:0;O:8:"stdClass":16:{s:2:"id";s:1:"2";s:6:"active";s:1:"1";s:12:"where_placed";s:6:"header";s:5:"title";s:4:"menu";s:11:"title_admin";s:23:"Верхнее меню";s:3:"qty";s:1:"0";s:4:"type";s:4:"free";s:7:"type_id";s:1:"0";s:5:"pages";s:0:"";s:10:"skip_pages";s:0:"";s:4:"html";s:586:"<table cellspacing="0" cellpadding="0" id="swmenu" class="swmenu" > 
+				<tr> 
+					<td><a id="menu108" href="/nasha-kompaniia" >Наша компания</a></td> 
+					<td><a id="menu114" href="/fotogalery" >Фотогалерея </a></td> 
+					<td><a id="menu132" href="/nashi-preimushchestva" >Наши преимущества</a></td> 
+					<td><a id="menu119" href="/nashi-klienty" >Клиенты</a></td> 
+					<td><a id="menu138" href="/katalogi" >Цвета</a></td> 
+					<td class="last"><a id="menu147" href="/kontakty" >Контакты</a></td> 
+				</tr> 
+			</table>";s:4:"sort";s:1:"1";s:7:"type_up";N;s:8:"extra_id";N;s:10:"extra_html";N;s:10:"qty_photos";s:1:"0";}i:1;O:8:"stdClass":16:{s:2:"id";s:1:"1";s:6:"active";s:1:"1";s:12:"where_placed";s:4:"left";s:5:"title";s:9:"left_menu";s:11:"title_admin";s:19:"Меню слева";s:3:"qty";s:1:"0";s:4:"type";s:10:"listCategs";s:7:"type_id";s:1:"9";s:5:"pages";s:0:"";s:10:"skip_pages";s:0:"";s:4:"html";s:1790:"<h2>продукция / услуги</h2>
+
+
+{if !empty($array)}
+<ul class="menu_ajandar-leftmenu"> 
+	{foreach from=$array value="v"}			
+		{if $v.child_categs > 0 AND $v.id_parent == 9}
+			<li>{if !empty($page.alias) AND $v.alias == $page.alias}<a href="{$v.link}" style="background-color:#cccccc;">{$v.title}</a>
+		{else}<a href="{$v.link}">{$v.title}</a>{/if}
+		
+		{in_array array=$page.breadcrumbs_2 match=$v.alias returnvalue="CHECKED" assign="ch"}
+		
+		{if $ch == "CHECKED"}
+			<ul>
+			{foreach from=$array value="v1"}
+				{if $v.id == $v1.id_parent}
+						
+					{if $v1.child_categs > 0}
+						<li>
+						{if $v.alias == "dveri" AND $v1.alias == $page.alias}
+						<b style="background-color:#cccccc;">{$v1.title}</b>
+						{elseif $v.alias == "dveri"}
+						<a href="{$v1.link}"><b>{$v1.title}</b></a>
+						{else}<b>{$v1.title}</b>{/if}
+							<ul>
+							{foreach from=$array value="v2"}
+								{if $v1.id == $v2.id_parent AND !empty($page.alias) AND $v2.alias == $page.alias}
+								<li style="background-color:#cccccc;"> <b>{$v2.title}</b></li>
+								{elseif $v1.id == $v2.id_parent}
+								<li><a href="{$v2.link}">{$v2.title}</a></li>
+								{/if}							
+							{/foreach}
+							</ul>
+						</li>
+						{else}
+							{if !empty($page.alias) AND $v1.alias == $page.alias}
+							<li style="background-color:#cccccc;"> <b>{$v1.title}</b></li>
+							{else}
+							<li><a href="{$v1.link}">{$v1.title}</a></li>
+							{/if}								
+						{/if}
+					{/if}
+				{/foreach}
+				</ul>
+	{/if}
+
+			{elseif $v.id_parent == 9}
+				{if !empty($page.alias) AND $v.alias == $page.alias}
+				<li style="background-color:#cccccc;"><a href="{$v.link}">{$v.title}</a></li>
+				{else}
+				<li><a href="{$v.link}">{$v.title}</a></li>
+				{/if}
+			{/if}
+				</li>   
+		{/foreach}
+	</ul>
+{/if}";s:4:"sort";s:1:"1";s:7:"type_up";N;s:8:"extra_id";N;s:10:"extra_html";N;s:10:"qty_photos";s:1:"0";}i:2;O:8:"stdClass":16:{s:2:"id";s:2:"91";s:6:"active";s:1:"1";s:12:"where_placed";s:6:"manual";s:5:"title";s:0:"";s:11:"title_admin";s:0:"";s:3:"qty";s:1:"0";s:4:"type";s:5:"categ";s:7:"type_id";s:2:"83";s:5:"pages";s:0:"";s:10:"skip_pages";s:0:"";s:4:"html";s:1961:"<h1 style="text-align: center;"><strong>Стеклянные офисные перегородки</strong></h1>
+
+<p>Очень часто клиент выбирает стеклянные перегородки по визуальному признаку, при этом не учитывая другие характеристики, такие как: звукоизоляция, необходимость провести электрику, наличие закладной конструкции, необходимая прочность, безопасность, устойчивость, не забываем и цену.<br />
+<br />
+Допустим для детских садов, школ, учебных заведений параметр безопасности в приоритете, относительно визуального. Для переговорной, приоритетный параметр, обычно, является звукоизоляция. Для витрин бутиков важна прочность и отсутствие стоек между стёкол, чтобы не закрывать обзор товара. Очень часто есть необходимость крепить тяжёлые устройства на стеклянные перегородки, такие как раздвижные двери, роллеты, элементы рекламы мониторы и т.п.<br />
+<br />
+Для того, чтобы найти консенсус между визуальным и техническим параметром, предлагаем 4 системы стеклянных перегородок, которые отличаются конструктивом. Мы поможем вам с выбором, предложим оптимальный вариант конструкции, подскажем где можно сэкономить.</p>";s:4:"sort";s:1:"1";s:7:"type_up";N;s:8:"extra_id";N;s:10:"extra_html";N;s:10:"qty_photos";s:1:"0";}i:3;O:8:"stdClass":16:{s:2:"id";s:3:"102";s:6:"active";s:1:"1";s:12:"where_placed";s:6:"manual";s:5:"title";s:0:"";s:11:"title_admin";s:29:"Универсал текст";s:3:"qty";s:1:"0";s:4:"type";s:5:"categ";s:7:"type_id";s:2:"83";s:5:"pages";s:0:"";s:10:"skip_pages";s:0:"";s:4:"html";s:2540:"<h2><br />
+<strong>Стеклянная офисная перегородка &laquo;ИРЛАЙН УНИВЕРСАЛ&raquo;&nbsp;</strong></h2>
+
+<p>Это самый оптимальный вариант с соотношением цена &ndash; качество. Эта система самая крепкая, лучшая звукоизоляция, на неё можно весить максимальные возможные нагрузки, лёгкая и не дорогая замена стекла, можно монтировать без примыкания к потолку.&nbsp;</p>
+
+<div><strong>Отличительные особенности:&nbsp;</strong><br />
+​― Можно добиться очень хорошей звукоизоляции, если использовать стёкла разной толщины, эффект достигается за счёт разных резонансов стекла с разной толщиной, допустим один ряд 5&nbsp;мм., второй 8 мм.<br />
+― Можно использовать сырое или закалённое стекло. Толщиной 5 - 10 мм.</div>
+
+<div>― Стеклянные офисные перегородки с двойным или одинарным остеклением. Жалюзи, плёнка, мателюкс (матовое стекло).&nbsp;</div>
+
+<div>― Каркас &ndash; оцинкованный стальной профиль. Стекло прижимается декоративным (прижимным) профилем к каркасу.&nbsp;</div>
+
+<div>― Ширина прижимного профиля 32 мм. Шаг вертикальных профилей, формирующих модуль перегородки, рекомендуем не более 1200 мм.&nbsp;</div>
+
+<div>― Отличный уровень звукоизоляции за счет склеивающего эффекта прозрачного силиконового уплотнителя со стеклом и плотной стяжки всех элементов перегородки.&nbsp;</div>
+
+<div>― Перегородка устойчива даже в случае отсутствия крепления к потолку.&nbsp;</div>
+
+<div>― Исключено дребезжание стекла в установленной перегородке (не клипсовое крепление профиля!!).</div>";s:4:"sort";s:1:"3";s:7:"type_up";N;s:8:"extra_id";N;s:10:"extra_html";N;s:10:"qty_photos";s:1:"0";}i:4;O:8:"stdClass":16:{s:2:"id";s:3:"103";s:6:"active";s:1:"1";s:12:"where_placed";s:11:"slider_auto";s:5:"title";s:0:"";s:11:"title_admin";s:27:"универсал фото";s:3:"qty";s:1:"3";s:4:"type";s:5:"categ";s:7:"type_id";s:2:"83";s:5:"pages";s:4:"3000";s:10:"skip_pages";s:0:"";s:4:"html";s:0:"";s:4:"sort";s:1:"4";s:7:"type_up";s:9:"templates";s:8:"extra_id";s:1:"0";s:10:"extra_html";s:0:"";s:10:"qty_photos";s:2:"12";}i:5;O:8:"stdClass":16:{s:2:"id";s:2:"13";s:6:"active";s:1:"1";s:12:"where_placed";s:6:"footer";s:5:"title";s:5:"links";s:11:"title_admin";s:32:"Внизу блок ссылок";s:3:"qty";s:1:"0";s:4:"type";s:4:"free";s:7:"type_id";s:1:"0";s:5:"pages";s:0:"";s:10:"skip_pages";s:0:"";s:4:"html";s:511:"<center>«СК Норма» - <a href="/ofisnye-stacionarnye-peregorodki">стационарные перегородки</a>, <a href="/ofisnye-stacionarnye-peregorodki/steklyannye-peregorodki">раздвижные стеклянные перегородки</a>, <a href="/santekhnicheskie-peregorodki">сантехнические перегородки</a>, <a href="/ofisnye-dveri">офисные двери</a>. <a href="/dopolnitelnaia-informatciia/informatciia">Доп. информация</a></center>";s:4:"sort";s:1:"5";s:7:"type_up";N;s:8:"extra_id";N;s:10:"extra_html";N;s:10:"qty_photos";s:1:"0";}i:6;O:8:"stdClass":16:{s:2:"id";s:2:"25";s:6:"active";s:1:"1";s:12:"where_placed";s:6:"manual";s:5:"title";s:0:"";s:11:"title_admin";s:17:"Айс текст";s:3:"qty";s:1:"0";s:4:"type";s:5:"categ";s:7:"type_id";s:2:"83";s:5:"pages";s:0:"";s:10:"skip_pages";s:0:"";s:4:"html";s:2260:"<h2><br />
+<strong>Офисная стеклянная перегородка &laquo;ИРЛАЙН АЙС&raquo;</strong></h2>
+
+<p>Только двойное остекление. Отличается от Универсал более тонкой и незаметной стойкой (стекло-стекло). Данная система была создана для того, чтобы максимально сохранить&nbsp;звукоизоляцию (как у Универсал), при этом увеличить прозрачность конструкции.&nbsp;</p>
+
+<div><strong>Отличительные особенности:</strong>&nbsp;<br />
+― В целях экономии можно использовать сырое стекло, толщиной 5 - 6 мм.</div>
+
+<div>― Стеклянные офисные перегородки только с двойным остеклением. Каркасная стойка заменена стеклянной пластиной.&nbsp;</div>
+
+<div>― Стекла заполнения и стеклянная стойка соединяются тонким (11 мм) декоративным профилем.&nbsp;</div>
+
+<div>― Шаг вертикальных профилей, формирующих модуль перегородки, стандартно 1000 мм.&nbsp;</div>
+
+<div>― Отличный уровень звукоизоляции за счет комбинации склеивающего эффекта прозрачного силиконового уплотнителя со стеклом и проклейки силиконом в профиле месте стыков стекол в стеклопакет.&nbsp;</div>
+
+<div>― Офисная перегородка выглядит и обладает визуальными и практическими свойствами стеклянной стены. Узкие стойки теряются на фоне всей конструкции, благодаря чему создается впечатление цельного стекла по всей площади перегородки. Новинка! Не имеет аналогов.</div>";s:4:"sort";s:1:"5";s:7:"type_up";N;s:8:"extra_id";N;s:10:"extra_html";N;s:10:"qty_photos";s:1:"0";}i:7;O:8:"stdClass":16:{s:2:"id";s:2:"14";s:6:"active";s:1:"1";s:12:"where_placed";s:6:"footer";s:5:"title";s:11:"bottom_left";s:11:"title_admin";s:10:"Адрес";s:3:"qty";s:1:"0";s:4:"type";s:4:"free";s:7:"type_id";s:1:"0";s:5:"pages";s:0:"";s:10:"skip_pages";s:0:"";s:4:"html";s:71:"г. Москва, ул. Шкулева, дом 2А, 2 эт., каб. 13";s:4:"sort";s:1:"6";s:7:"type_up";N;s:8:"extra_id";N;s:10:"extra_html";N;s:10:"qty_photos";s:1:"0";}i:8;O:8:"stdClass":16:{s:2:"id";s:2:"30";s:6:"active";s:1:"1";s:12:"where_placed";s:11:"slider_auto";s:5:"title";s:0:"";s:11:"title_admin";s:15:"Айс фото";s:3:"qty";s:1:"3";s:4:"type";s:5:"categ";s:7:"type_id";s:2:"83";s:5:"pages";s:4:"3000";s:10:"skip_pages";s:0:"";s:4:"html";s:0:"";s:4:"sort";s:1:"6";s:7:"type_up";s:9:"templates";s:8:"extra_id";s:1:"0";s:10:"extra_html";s:0:"";s:10:"qty_photos";s:1:"9";}i:9;O:8:"stdClass":16:{s:2:"id";s:2:"15";s:6:"active";s:1:"1";s:12:"where_placed";s:6:"footer";s:5:"title";s:12:"bottom_right";s:11:"title_admin";s:29:"Копирайт справа";s:3:"qty";s:1:"0";s:4:"type";s:4:"free";s:7:"type_id";s:1:"0";s:5:"pages";s:0:"";s:10:"skip_pages";s:0:"";s:4:"html";s:97:"<!--<a rel=nofollow href="http://www.363.ru/">Обслуживание сайта</a> - 363.ru-->";s:4:"sort";s:1:"7";s:7:"type_up";N;s:8:"extra_id";N;s:10:"extra_html";N;s:10:"qty_photos";s:1:"0";}i:10;O:8:"stdClass":16:{s:2:"id";s:2:"20";s:6:"active";s:1:"1";s:12:"where_placed";s:6:"header";s:5:"title";s:11:"breadcrumbs";s:11:"title_admin";s:18:"Навигация";s:3:"qty";s:1:"0";s:4:"type";s:11:"breadcrumbs";s:7:"type_id";s:1:"0";s:5:"pages";s:0:"";s:10:"skip_pages";s:0:"";s:4:"html";s:681:"{* путь до страницы *}
+{if $page.breadcrumbs|@count > 0}
+    <ul class="breadcrumb">
+    {foreach from=$page.breadcrumbs value="v"}
+        {if $v|@count > 0}
+                    <li><a href="{$uri.site}/">Главная</a></li>
+                      {foreach from=$v key="k" value="v2"}
+                          {if empty($uri.params) AND $k == $v|@lastkey}
+                              <li class="active">{$page.title}</li>
+                          {else}
+                              <li><a href="{$v2.link}">{$v2.title}</a></li>
+                          {/if}
+                      {/foreach}    
+        {/if}
+    {/foreach}
+    </ul>
+{/if}";s:4:"sort";s:1:"7";s:7:"type_up";N;s:8:"extra_id";N;s:10:"extra_html";N;s:10:"qty_photos";s:1:"0";}i:11;O:8:"stdClass":16:{s:2:"id";s:2:"31";s:6:"active";s:1:"1";s:12:"where_placed";s:6:"manual";s:5:"title";s:0:"";s:11:"title_admin";s:21:"ТРЕЙД текст";s:3:"qty";s:1:"0";s:4:"type";s:5:"categ";s:7:"type_id";s:2:"83";s:5:"pages";s:0:"";s:10:"skip_pages";s:0:"";s:4:"html";s:2239:"<h2><br />
+<strong>Стеклянные офисные перегородки &laquo;ИРЛАЙН ТРЕЙД&raquo;</strong>&nbsp;</h2>
+
+<p>Стёкла примыкают друг к другу полированной кромкой и склеиваются двойным прозрачным скотчем. Поэтому стекло может быть только закалённым 8 &ndash; 10 мм. Может быть двойным или одинарным, в зависимости от требований по звукоизоляции.&nbsp;</p>
+
+<div><strong>Отличительные особенности:&nbsp;</strong><br />
+​― Можно добиться очень хорошей звукоизоляции, если использовать стёкла разной толщины, эффект достигается за счёт разных резонансов стекла с разной толщиной, допустим один ряд 8 мм., второй 10 мм.</div>
+
+<div>― Стеклянные перегородки могут быть с одинарным или двойным остеклением.&nbsp;</div>
+
+<div>― Стекло в заполнении соединяется стык в стык, только закалённые.&nbsp;</div>
+
+<div>― Для предотвращения прогиба стекол в соединении может применяться прозрачный тонкий (2 мм) ПВХ профиль или склеивание стекла 3М скотчем, соединение стеклом, фитингами или наклеиваются монеты.</div>
+
+<div>― Стекло на большой площади, дает отличный обзор торговой зоны. Широкая (94 мм) цокольная часть четко отделяет зону коридора от торговой зоны, препятствует &laquo;вхождение&raquo; в стекло ограждения.&nbsp;</div>
+
+<div>― Различная цветовая гамма профилей позволяет дополнительно выделить торговую зону.</div>";s:4:"sort";s:1:"7";s:7:"type_up";N;s:8:"extra_id";N;s:10:"extra_html";N;s:10:"qty_photos";s:1:"0";}i:12;O:8:"stdClass":16:{s:2:"id";s:2:"32";s:6:"active";s:1:"1";s:12:"where_placed";s:11:"slider_auto";s:5:"title";s:0:"";s:11:"title_admin";s:19:"ТРЕЙД фото";s:3:"qty";s:1:"3";s:4:"type";s:5:"categ";s:7:"type_id";s:2:"83";s:5:"pages";s:4:"3000";s:10:"skip_pages";s:0:"";s:4:"html";s:0:"";s:4:"sort";s:1:"8";s:7:"type_up";s:9:"templates";s:8:"extra_id";s:1:"0";s:10:"extra_html";s:0:"";s:10:"qty_photos";s:1:"8";}i:13;O:8:"stdClass":16:{s:2:"id";s:2:"35";s:6:"active";s:1:"1";s:12:"where_placed";s:6:"manual";s:5:"title";s:0:"";s:11:"title_admin";s:43:"ЦЕЛЬНОСТЕКЛЯННАЯ текст";s:3:"qty";s:1:"0";s:4:"type";s:5:"categ";s:7:"type_id";s:2:"83";s:5:"pages";s:0:"";s:10:"skip_pages";s:0:"";s:4:"html";s:2258:"<h2><br />
+<strong>Цельностеклянные перегородки&nbsp;</strong></h2>
+
+<p>Стекло 10 &ndash; 12 мм, в один слой. Не значительная звукоизоляция. В основном используется в торговых залах, ТРЦ, музеях, в демонстрационных залах для отделения специальных зон в холлах БЦ, конференц залах, в общем в тех зонах, где в приоритете физическое разделение зон, при этом нужно сохранить максимальный обзор.&nbsp;</p>
+
+<div><strong>Отличительные особенности:</strong>&nbsp;</div>
+
+<div>― Стеклянные перегородки всегда с одинарным остеклением 10-12 мм. Стекло соединяется стык в стык.&nbsp;</div>
+
+<div>― Звукоизоляция не значительная.<br />
+― Крепление стекла производится на зажимной профиль пол / потолок, либо посредством фитингов (специальный крепеж, в отверстие в стекле вставляется ось, с другой стороны стекла зажимается фиксатором, другая сторона крепится к полу или стене) либо же применяется &laquo;П&raquo; &ndash; алюминиевый окрашенный профиль крепится к полу и потолку, в профиль вставляется стекло 10-12мм, фиксируется уплотнителем.&nbsp;</div>
+
+<div>― Стеклянная перегородка на фитингах имеет оригинальный вид, сочетается с популярным стилем отделки офисных помещений Лофт. ― Стеклянная перегородка в &laquo;П&raquo; профиле &ndash; предоставляет возможность сделать стеклянную стену с минимальными затратами.</div>";s:4:"sort";s:1:"9";s:7:"type_up";N;s:8:"extra_id";N;s:10:"extra_html";N;s:10:"qty_photos";s:1:"0";}i:14;O:8:"stdClass":16:{s:2:"id";s:2:"29";s:6:"active";s:1:"1";s:12:"where_placed";s:11:"slider_auto";s:5:"title";s:0:"";s:11:"title_admin";s:41:"ЦЕЛЬНОСТЕКЛЯННАЯ фото";s:3:"qty";s:1:"3";s:4:"type";s:5:"categ";s:7:"type_id";s:2:"83";s:5:"pages";s:4:"3000";s:10:"skip_pages";s:0:"";s:4:"html";s:0:"";s:4:"sort";s:2:"10";s:7:"type_up";s:9:"templates";s:8:"extra_id";s:1:"0";s:10:"extra_html";s:0:"";s:10:"qty_photos";s:1:"9";}i:15;O:8:"stdClass":16:{s:2:"id";s:2:"22";s:6:"active";s:1:"1";s:12:"where_placed";s:4:"main";s:5:"title";s:6:"bottom";s:11:"title_admin";s:38:"Разделы с картинками";s:3:"qty";s:1:"0";s:4:"type";s:4:"free";s:7:"type_id";s:1:"0";s:5:"pages";s:0:"";s:10:"skip_pages";s:41:"/dopolnitelnaia-informatciia/informatciia";s:4:"html";s:644:"{if !empty($page.list_bottomcategs)}
+	<table cellpadding="5" width="690">
+		{foreach from=$page.list_bottomcategs value="v"}
+			{if $page.id == $v.id_parent}
+			{ cycle values="1,2,3" assign="row"}
+				{if $row == 1}<tr>{/if}
+				
+				<td {if $row < 3}width="33%"{/if}>{if !empty($v.pic.small.url)}<a href="{$v.link}" class="linkwarr"><img src="{$v.pic.small.url}" style="max-width:100%; height:auto;"><span>{$v.title}</span></a>{else}<a href="{$v.link}">{$v.title}</a>{/if}</td>
+				
+				{if $row == 3}</tr>{/if}
+			{/if}												
+		{/foreach}
+		{if $row == 1}<td></td><td></td></tr>{/if}
+		{if $row == 2}<td></td></tr>{/if}
+	</table>
+{/if}";s:4:"sort";s:2:"99";s:7:"type_up";N;s:8:"extra_id";N;s:10:"extra_html";N;s:10:"qty_photos";s:1:"0";}i:16;O:8:"stdClass":16:{s:2:"id";s:2:"21";s:6:"active";s:1:"1";s:12:"where_placed";s:5:"right";s:5:"title";s:3:"dop";s:11:"title_admin";s:27:"Доп.информация";s:3:"qty";s:1:"0";s:4:"type";s:10:"listCategs";s:7:"type_id";s:2:"56";s:5:"pages";s:85:"/dopolnitelnaia-informatciia/informatciia
+/dopolnitelnaia-informatciia/informatciia*";s:10:"skip_pages";s:0:"";s:4:"html";s:156:"{if !empty($array)}
+	<ul class="menu"> 
+		{foreach from=$array value="v"}			
+				<li><a href="{$v.link}">{$v.title}</a></li>
+		{/foreach}
+	</ul>
+{/if}";s:4:"sort";s:2:"99";s:7:"type_up";N;s:8:"extra_id";N;s:10:"extra_html";N;s:10:"qty_photos";s:1:"0";}}s:8:"num_rows";i:17;s:12:"return_value";i:17;}

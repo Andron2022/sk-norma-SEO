@@ -1,0 +1,90 @@
+a:4:{s:8:"col_info";a:35:{i:0;O:8:"stdClass":13:{s:4:"name";s:2:"id";s:7:"orgname";s:2:"id";s:5:"table";s:1:"c";s:8:"orgtable";s:6:"categs";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:2;s:6:"length";i:11;s:9:"charsetnr";i:63;s:5:"flags";i:49667;s:4:"type";i:3;s:8:"decimals";i:0;}i:1;O:8:"stdClass":13:{s:4:"name";s:5:"title";s:7:"orgname";s:5:"title";s:5:"table";s:1:"c";s:8:"orgtable";s:6:"categs";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:72;s:6:"length";i:196605;s:9:"charsetnr";i:33;s:5:"flags";i:20505;s:4:"type";i:252;s:8:"decimals";i:0;}i:2;O:8:"stdClass":13:{s:4:"name";s:9:"id_parent";s:7:"orgname";s:9:"id_parent";s:5:"table";s:1:"c";s:8:"orgtable";s:6:"categs";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:2;s:6:"length";i:11;s:9:"charsetnr";i:63;s:5:"flags";i:49161;s:4:"type";i:3;s:8:"decimals";i:0;}i:3;O:8:"stdClass":13:{s:4:"name";s:12:"parent_title";s:7:"orgname";s:5:"title";s:5:"table";s:2:"c2";s:8:"orgtable";s:6:"categs";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:10;s:6:"length";i:196605;s:9:"charsetnr";i:33;s:5:"flags";i:20504;s:4:"type";i:252;s:8:"decimals";i:0;}i:4;O:8:"stdClass":13:{s:4:"name";s:12:"parent_alias";s:7:"orgname";s:5:"alias";s:5:"table";s:2:"c2";s:8:"orgtable";s:6:"categs";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:8;s:6:"length";i:765;s:9:"charsetnr";i:33;s:5:"flags";i:16392;s:4:"type";i:253;s:8:"decimals";i:0;}i:5;O:8:"stdClass":13:{s:4:"name";s:10:"id_parent2";s:7:"orgname";s:9:"id_parent";s:5:"table";s:2:"c2";s:8:"orgtable";s:6:"categs";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:2;s:6:"length";i:11;s:9:"charsetnr";i:63;s:5:"flags";i:49160;s:4:"type";i:3;s:8:"decimals";i:0;}i:6;O:8:"stdClass":13:{s:4:"name";s:13:"parent2_title";s:7:"orgname";s:5:"title";s:5:"table";s:2:"c3";s:8:"orgtable";s:6:"categs";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:0;s:6:"length";i:196605;s:9:"charsetnr";i:33;s:5:"flags";i:20504;s:4:"type";i:252;s:8:"decimals";i:0;}i:7;O:8:"stdClass":13:{s:4:"name";s:13:"parent2_alias";s:7:"orgname";s:5:"alias";s:5:"table";s:2:"c3";s:8:"orgtable";s:6:"categs";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:0;s:6:"length";i:765;s:9:"charsetnr";i:33;s:5:"flags";i:16392;s:4:"type";i:253;s:8:"decimals";i:0;}i:8;O:8:"stdClass":13:{s:4:"name";s:4:"page";s:7:"orgname";s:8:"multitpl";s:5:"table";s:1:"c";s:8:"orgtable";s:6:"categs";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:13;s:6:"length";i:300;s:9:"charsetnr";i:33;s:5:"flags";i:4097;s:4:"type";i:253;s:8:"decimals";i:0;}i:9;O:8:"stdClass":13:{s:4:"name";s:11:"description";s:7:"orgname";s:16:"meta_description";s:5:"table";s:1:"c";s:8:"orgtable";s:6:"categs";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:68;s:6:"length";i:50331645;s:9:"charsetnr";i:33;s:5:"flags";i:4113;s:4:"type";i:252;s:8:"decimals";i:0;}i:10;O:8:"stdClass":13:{s:4:"name";s:8:"keywords";s:7:"orgname";s:13:"meta_keywords";s:5:"table";s:1:"c";s:8:"orgtable";s:6:"categs";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:1;s:6:"length";i:50331645;s:9:"charsetnr";i:33;s:5:"flags";i:4113;s:4:"type";i:252;s:8:"decimals";i:0;}i:11;O:8:"stdClass":13:{s:4:"name";s:9:"metatitle";s:7:"orgname";s:10:"meta_title";s:5:"table";s:1:"c";s:8:"orgtable";s:6:"categs";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:68;s:6:"length";i:50331645;s:9:"charsetnr";i:33;s:5:"flags";i:4113;s:4:"type";i:252;s:8:"decimals";i:0;}i:12;O:8:"stdClass":13:{s:4:"name";s:5:"alias";s:7:"orgname";s:5:"alias";s:5:"table";s:1:"c";s:8:"orgtable";s:6:"categs";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:47;s:6:"length";i:765;s:9:"charsetnr";i:33;s:5:"flags";i:16393;s:4:"type";i:253;s:8:"decimals";i:0;}i:13;O:8:"stdClass":13:{s:4:"name";s:7:"content";s:7:"orgname";s:4:"memo";s:5:"table";s:1:"c";s:8:"orgtable";s:6:"categs";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:3721;s:6:"length";i:50331645;s:9:"charsetnr";i:33;s:5:"flags";i:20497;s:4:"type";i:252;s:8:"decimals";i:0;}i:14;O:8:"stdClass":13:{s:4:"name";s:5:"intro";s:7:"orgname";s:10:"memo_short";s:5:"table";s:1:"c";s:8:"orgtable";s:6:"categs";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:0;s:6:"length";i:50331645;s:9:"charsetnr";i:33;s:5:"flags";i:4113;s:4:"type";i:252;s:8:"decimals";i:0;}i:15;O:8:"stdClass":13:{s:4:"name";s:6:"active";s:7:"orgname";s:6:"active";s:5:"table";s:1:"c";s:8:"orgtable";s:6:"categs";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:1;s:6:"length";i:3;s:9:"charsetnr";i:33;s:5:"flags";i:257;s:4:"type";i:254;s:8:"decimals";i:0;}i:16;O:8:"stdClass":13:{s:4:"name";s:4:"sort";s:7:"orgname";s:4:"sort";s:5:"table";s:1:"c";s:8:"orgtable";s:6:"categs";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:1;s:6:"length";i:11;s:9:"charsetnr";i:63;s:5:"flags";i:32769;s:4:"type";i:3;s:8:"decimals";i:0;}i:17;O:8:"stdClass":13:{s:4:"name";s:6:"sortby";s:7:"orgname";s:6:"sortby";s:5:"table";s:1:"c";s:8:"orgtable";s:6:"categs";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:16;s:6:"length";i:90;s:9:"charsetnr";i:33;s:5:"flags";i:4097;s:4:"type";i:253;s:8:"decimals";i:0;}i:18;O:8:"stdClass":13:{s:4:"name";s:11:"date_insert";s:7:"orgname";s:11:"date_insert";s:5:"table";s:1:"c";s:8:"orgtable";s:6:"categs";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:19;s:6:"length";i:19;s:9:"charsetnr";i:63;s:5:"flags";i:128;s:4:"type";i:12;s:8:"decimals";i:0;}i:19;O:8:"stdClass":13:{s:4:"name";s:11:"date_update";s:7:"orgname";s:11:"date_update";s:5:"table";s:1:"c";s:8:"orgtable";s:6:"categs";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:19;s:6:"length";i:19;s:9:"charsetnr";i:63;s:5:"flags";i:128;s:4:"type";i:12;s:8:"decimals";i:0;}i:20;O:8:"stdClass":13:{s:4:"name";s:7:"user_id";s:7:"orgname";s:7:"user_id";s:5:"table";s:1:"c";s:8:"orgtable";s:6:"categs";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:3;s:6:"length";i:11;s:9:"charsetnr";i:63;s:5:"flags";i:32768;s:4:"type";i:3;s:8:"decimals";i:0;}i:21;O:8:"stdClass":13:{s:4:"name";s:4:"icon";s:7:"orgname";s:4:"icon";s:5:"table";s:1:"c";s:8:"orgtable";s:6:"categs";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:0;s:6:"length";i:300;s:9:"charsetnr";i:33;s:5:"flags";i:4097;s:4:"type";i:253;s:8:"decimals";i:0;}i:22;O:8:"stdClass":13:{s:4:"name";s:6:"f_spec";s:7:"orgname";s:6:"f_spec";s:5:"table";s:1:"c";s:8:"orgtable";s:6:"categs";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:1;s:6:"length";i:1;s:9:"charsetnr";i:63;s:5:"flags";i:32769;s:4:"type";i:1;s:8:"decimals";i:0;}i:23;O:8:"stdClass":13:{s:4:"name";s:7:"in_last";s:7:"orgname";s:7:"in_last";s:5:"table";s:1:"c";s:8:"orgtable";s:6:"categs";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:1;s:6:"length";i:1;s:9:"charsetnr";i:63;s:5:"flags";i:32769;s:4:"type";i:1;s:8:"decimals";i:0;}i:24;O:8:"stdClass":13:{s:4:"name";s:4:"shop";s:7:"orgname";s:4:"shop";s:5:"table";s:1:"c";s:8:"orgtable";s:6:"categs";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:1;s:6:"length";i:1;s:9:"charsetnr";i:63;s:5:"flags";i:32769;s:4:"type";i:1;s:8:"decimals";i:0;}i:25;O:8:"stdClass":13:{s:4:"name";s:11:"show_filter";s:7:"orgname";s:11:"show_filter";s:5:"table";s:1:"c";s:8:"orgtable";s:6:"categs";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:1;s:6:"length";i:1;s:9:"charsetnr";i:63;s:5:"flags";i:32769;s:4:"type";i:1;s:8:"decimals";i:0;}i:26;O:8:"stdClass":13:{s:4:"name";s:16:"set_qty_products";s:7:"orgname";s:0:"";s:5:"table";s:0:"";s:8:"orgtable";s:0:"";s:3:"def";s:0:"";s:2:"db";s:0:"";s:7:"catalog";s:3:"def";s:10:"max_length";i:2;s:6:"length";i:12;s:9:"charsetnr";i:63;s:5:"flags";i:32897;s:4:"type";i:8;s:8:"decimals";i:0;}i:27;O:8:"stdClass":13:{s:4:"name";s:12:"qty_comments";s:7:"orgname";s:0:"";s:5:"table";s:0:"";s:8:"orgtable";s:0:"";s:3:"def";s:0:"";s:2:"db";s:0:"";s:7:"catalog";s:3:"def";s:10:"max_length";i:1;s:6:"length";i:21;s:9:"charsetnr";i:63;s:5:"flags";i:32897;s:4:"type";i:8;s:8:"decimals";i:0;}i:28;O:8:"stdClass":13:{s:4:"name";s:8:"qty_pubs";s:7:"orgname";s:0:"";s:5:"table";s:0:"";s:8:"orgtable";s:0:"";s:3:"def";s:0:"";s:2:"db";s:0:"";s:7:"catalog";s:3:"def";s:10:"max_length";i:1;s:6:"length";i:21;s:9:"charsetnr";i:63;s:5:"flags";i:32897;s:4:"type";i:8;s:8:"decimals";i:0;}i:29;O:8:"stdClass":13:{s:4:"name";s:10:"qty_photos";s:7:"orgname";s:0:"";s:5:"table";s:0:"";s:8:"orgtable";s:0:"";s:3:"def";s:0:"";s:2:"db";s:0:"";s:7:"catalog";s:3:"def";s:10:"max_length";i:1;s:6:"length";i:21;s:9:"charsetnr";i:63;s:5:"flags";i:32897;s:4:"type";i:8;s:8:"decimals";i:0;}i:30;O:8:"stdClass":13:{s:4:"name";s:9:"qty_files";s:7:"orgname";s:0:"";s:5:"table";s:0:"";s:8:"orgtable";s:0:"";s:3:"def";s:0:"";s:2:"db";s:0:"";s:7:"catalog";s:3:"def";s:10:"max_length";i:1;s:6:"length";i:21;s:9:"charsetnr";i:63;s:5:"flags";i:32897;s:4:"type";i:8;s:8:"decimals";i:0;}i:31;O:8:"stdClass":13:{s:4:"name";s:12:"qty_products";s:7:"orgname";s:0:"";s:5:"table";s:0:"";s:8:"orgtable";s:0:"";s:3:"def";s:0:"";s:2:"db";s:0:"";s:7:"catalog";s:3:"def";s:10:"max_length";i:1;s:6:"length";i:21;s:9:"charsetnr";i:63;s:5:"flags";i:32897;s:4:"type";i:8;s:8:"decimals";i:0;}i:32;O:8:"stdClass":13:{s:4:"name";s:11:"qty_options";s:7:"orgname";s:0:"";s:5:"table";s:0:"";s:8:"orgtable";s:0:"";s:3:"def";s:0:"";s:2:"db";s:0:"";s:7:"catalog";s:3:"def";s:10:"max_length";i:1;s:6:"length";i:21;s:9:"charsetnr";i:63;s:5:"flags";i:32897;s:4:"type";i:8;s:8:"decimals";i:0;}i:33;O:8:"stdClass":13:{s:4:"name";s:16:"qty_bottomcategs";s:7:"orgname";s:0:"";s:5:"table";s:0:"";s:8:"orgtable";s:0:"";s:3:"def";s:0:"";s:2:"db";s:0:"";s:7:"catalog";s:3:"def";s:10:"max_length";i:1;s:6:"length";i:21;s:9:"charsetnr";i:63;s:5:"flags";i:32897;s:4:"type";i:8;s:8:"decimals";i:0;}i:34;O:8:"stdClass":13:{s:4:"name";s:13:"qty_topcategs";s:7:"orgname";s:0:"";s:5:"table";s:0:"";s:8:"orgtable";s:0:"";s:3:"def";s:0:"";s:2:"db";s:0:"";s:7:"catalog";s:3:"def";s:10:"max_length";i:1;s:6:"length";i:21;s:9:"charsetnr";i:63;s:5:"flags";i:32897;s:4:"type";i:8;s:8:"decimals";i:0;}}s:11:"last_result";a:1:{i:0;O:8:"stdClass":35:{s:2:"id";s:2:"74";s:5:"title";s:72:"Акрил лицевая отделка панелей «Эдванс»";s:9:"id_parent";s:2:"54";s:12:"parent_title";s:10:"Цвета";s:12:"parent_alias";s:8:"katalogi";s:10:"id_parent2";s:2:"81";s:13:"parent2_title";N;s:13:"parent2_alias";N;s:4:"page";s:13:"category.html";s:11:"description";s:68:"Акрил лицевая отделка панелей Эдванс";s:8:"keywords";s:1:".";s:9:"metatitle";s:68:"Акрил лицевая отделка панелей Эдванс";s:5:"alias";s:47:"katalogi/akril-litcevaia-otdelka-panelei-edvans";s:7:"content";s:3721:"<p><strong>Материал - основа:</strong><br />
+плита МДФ с односторонним меламиновым покрытием или ДСП.</p>
+
+<p><strong>Облицовочный материал:</strong><br />
+Суперглянцевый акриловый пластик<br />
+Толщина 1 мм.</p>
+
+<p><strong>Степень глянца:</strong> &gt; 80 GLE</p>
+
+<p><strong>ОТЛИЧИТЕЛЬНЫЕ ОСОБЕННОСТИ ACRYLINE</strong></p>
+
+<ul>
+	<li>Уникальная степень глянца</li>
+	<li>Глубокие и насыщенные цвета</li>
+	<li>Идеально ровная поверхность</li>
+	<li>Устойчивость к деформации при изготовлении панелей</li>
+	<li>Высокая устойчивость к изменению цвета</li>
+	<li>Экологическая безопасность - не содержит тяжелых металлов, канцерогенных элементов. Материал может подвергаться переработке.</li>
+</ul>
+
+<table align="center" border="0" cellpadding="7">
+	<tbody>
+		<tr>
+			<td align="center" width="50%"><img src="/upload/images/akril/AL9.jpg" /><br />
+			антрацит металлик AL9</td>
+			<td align="center"><img src="/upload/images/akril/AL12.jpg" /><br />
+			баклажан AL12</td>
+		</tr>
+		<tr>
+			<td align="center"><img src="/upload/images/akril/AL3.jpg" /><br />
+			белый AL3</td>
+			<td align="center"><img src="/upload/images/akril/AL25.jpg" /><br />
+			бордовый металлик AL25</td>
+		</tr>
+		<tr>
+			<td align="center"><img src="/upload/images/akril/AL4.jpg" /><br />
+			ваниль AL4</td>
+			<td align="center"><img src="/upload/images/akril/AL13.jpg" /><br />
+			винный красный AL13</td>
+		</tr>
+		<tr>
+			<td align="center"><img src="/upload/images/akril/AL14.jpg" /><br />
+			жасмин AL14</td>
+			<td align="center"><img src="/upload/images/akril/AL19.jpg" /><br />
+			каберне AL19</td>
+		</tr>
+		<tr>
+			<td align="center"><img src="/upload/images/akril/AL5.jpg" /><br />
+			каппучино AL5</td>
+			<td align="center"><img src="/upload/images/akril/AL2.jpg" /><br />
+			красный AL2</td>
+		</tr>
+		<tr>
+			<td align="center"><img src="/upload/images/akril/AL22.jpg" /><br />
+			красный грейпфрут AL22</td>
+			<td align="center"><img src="/upload/images/akril/AL20.jpg" /><br />
+			лаванда AL20</td>
+		</tr>
+		<tr>
+			<td align="center"><img src="/upload/images/akril/AL24.jpg" /><br />
+			лунный камень AL24</td>
+			<td align="center"><img src="/upload/images/akril/AL21.jpg" /><br />
+			медный металлик AL21</td>
+		</tr>
+		<tr>
+			<td align="center"><img src="/upload/images/akril/AL17.jpg" /><br />
+			оливковый солнечный L17</td>
+			<td align="center"><img src="/upload/images/akril/AL8.jpg" /><br />
+			оранж AL8</td>
+		</tr>
+		<tr>
+			<td align="center"><img src="/upload/images/akril/AL16.jpg" /><br />
+			песочный AL16</td>
+			<td align="center"><img src="/upload/images/akril/AL23.jpg" /><br />
+			темно-зеленый AL23</td>
+		</tr>
+		<tr>
+			<td align="center"><img src="/upload/images/akril/AL1.jpg" /><br />
+			черный AL1</td>
+			<td align="center"><img src="/upload/images/akril/AL15.jpg" /><br />
+			черный металлик AL15</td>
+		</tr>
+		<tr>
+			<td align="center"><img src="/upload/images/akril/AL18.jpg" /><br />
+			шоколадный AL18</td>
+			<td align="center">&nbsp;</td>
+		</tr>
+	</tbody>
+</table>
+";s:5:"intro";s:0:"";s:6:"active";s:1:"1";s:4:"sort";s:1:"4";s:6:"sortby";s:16:"date_insert desc";s:11:"date_insert";s:19:"2015-10-07 00:00:01";s:11:"date_update";s:19:"2022-04-08 12:36:36";s:7:"user_id";s:3:"154";s:4:"icon";s:0:"";s:6:"f_spec";s:1:"0";s:7:"in_last";s:1:"0";s:4:"shop";s:1:"0";s:11:"show_filter";s:1:"0";s:16:"set_qty_products";s:2:"20";s:12:"qty_comments";s:1:"0";s:8:"qty_pubs";s:1:"0";s:10:"qty_photos";s:1:"1";s:9:"qty_files";s:1:"0";s:12:"qty_products";s:1:"0";s:11:"qty_options";s:1:"0";s:16:"qty_bottomcategs";s:1:"0";s:13:"qty_topcategs";s:1:"5";}}s:8:"num_rows";i:1;s:12:"return_value";i:1;}

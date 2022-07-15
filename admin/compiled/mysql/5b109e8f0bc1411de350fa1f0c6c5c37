@@ -1,0 +1,188 @@
+a:4:{s:8:"col_info";a:16:{i:0;O:8:"stdClass":13:{s:4:"name";s:2:"id";s:7:"orgname";s:2:"id";s:5:"table";s:1:"b";s:8:"orgtable";s:6:"blocks";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:3;s:6:"length";i:12;s:9:"charsetnr";i:63;s:5:"flags";i:32769;s:4:"type";i:3;s:8:"decimals";i:0;}i:1;O:8:"stdClass":13:{s:4:"name";s:6:"active";s:7:"orgname";s:6:"active";s:5:"table";s:1:"b";s:8:"orgtable";s:6:"blocks";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:1;s:6:"length";i:2;s:9:"charsetnr";i:63;s:5:"flags";i:32769;s:4:"type";i:1;s:8:"decimals";i:0;}i:2;O:8:"stdClass":13:{s:4:"name";s:12:"where_placed";s:7:"orgname";s:12:"where_placed";s:5:"table";s:1:"b";s:8:"orgtable";s:6:"blocks";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:11;s:6:"length";i:150;s:9:"charsetnr";i:33;s:5:"flags";i:1;s:4:"type";i:253;s:8:"decimals";i:0;}i:3;O:8:"stdClass":13:{s:4:"name";s:5:"title";s:7:"orgname";s:5:"title";s:5:"table";s:1:"b";s:8:"orgtable";s:6:"blocks";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:12;s:6:"length";i:750;s:9:"charsetnr";i:33;s:5:"flags";i:4097;s:4:"type";i:253;s:8:"decimals";i:0;}i:4;O:8:"stdClass":13:{s:4:"name";s:11:"title_admin";s:7:"orgname";s:11:"title_admin";s:5:"table";s:1:"b";s:8:"orgtable";s:6:"blocks";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:66;s:6:"length";i:750;s:9:"charsetnr";i:33;s:5:"flags";i:4097;s:4:"type";i:253;s:8:"decimals";i:0;}i:5;O:8:"stdClass":13:{s:4:"name";s:3:"qty";s:7:"orgname";s:3:"qty";s:5:"table";s:1:"b";s:8:"orgtable";s:6:"blocks";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:1;s:6:"length";i:4;s:9:"charsetnr";i:63;s:5:"flags";i:32769;s:4:"type";i:1;s:8:"decimals";i:0;}i:6;O:8:"stdClass":13:{s:4:"name";s:4:"type";s:7:"orgname";s:4:"type";s:5:"table";s:1:"b";s:8:"orgtable";s:6:"blocks";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:11;s:6:"length";i:150;s:9:"charsetnr";i:33;s:5:"flags";i:4097;s:4:"type";i:253;s:8:"decimals";i:0;}i:7;O:8:"stdClass":13:{s:4:"name";s:7:"type_id";s:7:"orgname";s:7:"type_id";s:5:"table";s:1:"b";s:8:"orgtable";s:6:"blocks";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:2;s:6:"length";i:12;s:9:"charsetnr";i:63;s:5:"flags";i:32769;s:4:"type";i:3;s:8:"decimals";i:0;}i:8;O:8:"stdClass":13:{s:4:"name";s:5:"pages";s:7:"orgname";s:5:"pages";s:5:"table";s:1:"b";s:8:"orgtable";s:6:"blocks";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:85;s:6:"length";i:196605;s:9:"charsetnr";i:33;s:5:"flags";i:4113;s:4:"type";i:252;s:8:"decimals";i:0;}i:9;O:8:"stdClass":13:{s:4:"name";s:10:"skip_pages";s:7:"orgname";s:10:"skip_pages";s:5:"table";s:1:"b";s:8:"orgtable";s:6:"blocks";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:41;s:6:"length";i:196605;s:9:"charsetnr";i:33;s:5:"flags";i:4113;s:4:"type";i:252;s:8:"decimals";i:0;}i:10;O:8:"stdClass":13:{s:4:"name";s:4:"html";s:7:"orgname";s:4:"html";s:5:"table";s:1:"b";s:8:"orgtable";s:6:"blocks";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:2598;s:6:"length";i:50331645;s:9:"charsetnr";i:33;s:5:"flags";i:4113;s:4:"type";i:252;s:8:"decimals";i:0;}i:11;O:8:"stdClass":13:{s:4:"name";s:4:"sort";s:7:"orgname";s:4:"sort";s:5:"table";s:1:"b";s:8:"orgtable";s:6:"blocks";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:2;s:6:"length";i:4;s:9:"charsetnr";i:63;s:5:"flags";i:32769;s:4:"type";i:1;s:8:"decimals";i:0;}i:12;O:8:"stdClass":13:{s:4:"name";s:7:"type_up";s:7:"orgname";s:4:"type";s:5:"table";s:7:"b_extra";s:8:"orgtable";s:6:"blocks";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:9;s:6:"length";i:150;s:9:"charsetnr";i:33;s:5:"flags";i:4096;s:4:"type";i:253;s:8:"decimals";i:0;}i:13;O:8:"stdClass":13:{s:4:"name";s:8:"extra_id";s:7:"orgname";s:7:"type_id";s:5:"table";s:7:"b_extra";s:8:"orgtable";s:6:"blocks";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:1;s:6:"length";i:12;s:9:"charsetnr";i:63;s:5:"flags";i:32768;s:4:"type";i:3;s:8:"decimals";i:0;}i:14;O:8:"stdClass":13:{s:4:"name";s:10:"extra_html";s:7:"orgname";s:4:"html";s:5:"table";s:7:"b_extra";s:8:"orgtable";s:6:"blocks";s:3:"def";s:0:"";s:2:"db";s:11:"u1126524_sk";s:7:"catalog";s:3:"def";s:10:"max_length";i:0;s:6:"length";i:50331645;s:9:"charsetnr";i:33;s:5:"flags";i:4112;s:4:"type";i:252;s:8:"decimals";i:0;}i:15;O:8:"stdClass":13:{s:4:"name";s:10:"qty_photos";s:7:"orgname";s:0:"";s:5:"table";s:0:"";s:8:"orgtable";s:0:"";s:3:"def";s:0:"";s:2:"db";s:0:"";s:7:"catalog";s:3:"def";s:10:"max_length";i:1;s:6:"length";i:21;s:9:"charsetnr";i:63;s:5:"flags";i:32768;s:4:"type";i:8;s:8:"decimals";i:0;}}s:11:"last_result";a:17:{i:0;O:8:"stdClass":16:{s:2:"id";s:3:"109";s:6:"active";s:1:"1";s:12:"where_placed";s:6:"manual";s:5:"title";s:0:"";s:11:"title_admin";s:0:"";s:3:"qty";s:1:"0";s:4:"type";s:5:"categ";s:7:"type_id";s:2:"95";s:5:"pages";s:0:"";s:10:"skip_pages";s:0:"";s:4:"html";s:447:"<p><strong>Для простоты восприятия мы поделили стеклянные двери на 4 типа: распашные цельностеклянные (безрамные) двери, распашные стеклянные двери в алюминиевой рамке, стеклянные двери маятниковые, стеклянные двери с раздвижными полотнами.</strong></p>";s:4:"sort";s:1:"0";s:7:"type_up";N;s:8:"extra_id";N;s:10:"extra_html";N;s:10:"qty_photos";s:1:"0";}i:1;O:8:"stdClass":16:{s:2:"id";s:1:"2";s:6:"active";s:1:"1";s:12:"where_placed";s:6:"header";s:5:"title";s:4:"menu";s:11:"title_admin";s:23:"Верхнее меню";s:3:"qty";s:1:"0";s:4:"type";s:4:"free";s:7:"type_id";s:1:"0";s:5:"pages";s:0:"";s:10:"skip_pages";s:0:"";s:4:"html";s:586:"<table cellspacing="0" cellpadding="0" id="swmenu" class="swmenu" > 
+				<tr> 
+					<td><a id="menu108" href="/nasha-kompaniia" >Наша компания</a></td> 
+					<td><a id="menu114" href="/fotogalery" >Фотогалерея </a></td> 
+					<td><a id="menu132" href="/nashi-preimushchestva" >Наши преимущества</a></td> 
+					<td><a id="menu119" href="/nashi-klienty" >Клиенты</a></td> 
+					<td><a id="menu138" href="/katalogi" >Цвета</a></td> 
+					<td class="last"><a id="menu147" href="/kontakty" >Контакты</a></td> 
+				</tr> 
+			</table>";s:4:"sort";s:1:"1";s:7:"type_up";N;s:8:"extra_id";N;s:10:"extra_html";N;s:10:"qty_photos";s:1:"0";}i:2;O:8:"stdClass":16:{s:2:"id";s:1:"1";s:6:"active";s:1:"1";s:12:"where_placed";s:4:"left";s:5:"title";s:9:"left_menu";s:11:"title_admin";s:19:"Меню слева";s:3:"qty";s:1:"0";s:4:"type";s:10:"listCategs";s:7:"type_id";s:1:"9";s:5:"pages";s:0:"";s:10:"skip_pages";s:0:"";s:4:"html";s:1790:"<h2>продукция / услуги</h2>
+
+
+{if !empty($array)}
+<ul class="menu_ajandar-leftmenu"> 
+	{foreach from=$array value="v"}			
+		{if $v.child_categs > 0 AND $v.id_parent == 9}
+			<li>{if !empty($page.alias) AND $v.alias == $page.alias}<a href="{$v.link}" style="background-color:#cccccc;">{$v.title}</a>
+		{else}<a href="{$v.link}">{$v.title}</a>{/if}
+		
+		{in_array array=$page.breadcrumbs_2 match=$v.alias returnvalue="CHECKED" assign="ch"}
+		
+		{if $ch == "CHECKED"}
+			<ul>
+			{foreach from=$array value="v1"}
+				{if $v.id == $v1.id_parent}
+						
+					{if $v1.child_categs > 0}
+						<li>
+						{if $v.alias == "dveri" AND $v1.alias == $page.alias}
+						<b style="background-color:#cccccc;">{$v1.title}</b>
+						{elseif $v.alias == "dveri"}
+						<a href="{$v1.link}"><b>{$v1.title}</b></a>
+						{else}<b>{$v1.title}</b>{/if}
+							<ul>
+							{foreach from=$array value="v2"}
+								{if $v1.id == $v2.id_parent AND !empty($page.alias) AND $v2.alias == $page.alias}
+								<li style="background-color:#cccccc;"> <b>{$v2.title}</b></li>
+								{elseif $v1.id == $v2.id_parent}
+								<li><a href="{$v2.link}">{$v2.title}</a></li>
+								{/if}							
+							{/foreach}
+							</ul>
+						</li>
+						{else}
+							{if !empty($page.alias) AND $v1.alias == $page.alias}
+							<li style="background-color:#cccccc;"> <b>{$v1.title}</b></li>
+							{else}
+							<li><a href="{$v1.link}">{$v1.title}</a></li>
+							{/if}								
+						{/if}
+					{/if}
+				{/foreach}
+				</ul>
+	{/if}
+
+			{elseif $v.id_parent == 9}
+				{if !empty($page.alias) AND $v.alias == $page.alias}
+				<li style="background-color:#cccccc;"><a href="{$v.link}">{$v.title}</a></li>
+				{else}
+				<li><a href="{$v.link}">{$v.title}</a></li>
+				{/if}
+			{/if}
+				</li>   
+		{/foreach}
+	</ul>
+{/if}";s:4:"sort";s:1:"1";s:7:"type_up";N;s:8:"extra_id";N;s:10:"extra_html";N;s:10:"qty_photos";s:1:"0";}i:3;O:8:"stdClass":16:{s:2:"id";s:2:"87";s:6:"active";s:1:"1";s:12:"where_placed";s:6:"manual";s:5:"title";s:0:"";s:11:"title_admin";s:62:"распашные цельностеклянные текст";s:3:"qty";s:1:"0";s:4:"type";s:5:"categ";s:7:"type_id";s:2:"95";s:5:"pages";s:0:"";s:10:"skip_pages";s:0:"";s:4:"html";s:2598:"<p><span style="color: rgb(178, 34, 34);"><strong>РАСПАШНЫЕ ЦЕЛЬНОСТЕКЛЯННЫЕ (БЕЗРАМНЫЕ) ДВЕРИ</strong></span></p>
+
+<p>Дверной блок состоит из алюминиевой дверной коробки и дверного полотна. Дверная коробка окрашена в любой цвет по RAL каталогу. По периметру дверной коробки в притвор встраивается силиконовый уплотнитель, обеспечивающий достаточный уровень звукоизоляции. Дверное полотно из закаленного стекла, которое может быть прозрачным, матовым, с плёнкой.</p>
+
+<div><strong>Характеристики дверных блоков</strong>:</div>
+
+<div>- Стандартная высота 2,1м;</div>
+
+<div>- Стандартная ширина для однопольных 7М; 8М; 9М; 10М; 11М; 12М:</div>
+
+<div>- Стандартная ширина для двупольных 13М; 14М; 15М; 16М; 17М; 18М;</div>
+
+<div>- Толщина стеклянного полотна 8, 10, 12 мм. в зависимости от высоты двери;</div>
+
+<div>- Уплотнитель по периметру дверной коробки в притворе &ndash; силиконовый, цвета: серый, белый, прозрачный;</div>
+
+<div>- Цвета алюминиевого профиля дверной коробки - в любом цвете по RAL каталогу. Стандартные цвета 8684, 9010, 7047, 1015, 9005</div>
+
+<div>- В стандарте комплектуется петлями, замком, ручками, цилиндром. Возможно доукомплектовывать доводчиками, выпадающими порожками, ЭМЗ для СКУД (электрические механические защёлки для систем контроля управления доступом).</div>
+
+<div>- Устойчивость к износу и механическим повреждениям - высокая, но боится удара в торец стекла;</div>
+
+<div>- Уровень звукоизоляции - средний; - Гигиенические характеристики &ndash; отличные. Рекомендуются при жестких гигиенических требованиях.</div>";s:4:"sort";s:1:"1";s:7:"type_up";N;s:8:"extra_id";N;s:10:"extra_html";N;s:10:"qty_photos";s:1:"0";}i:4;O:8:"stdClass":16:{s:2:"id";s:3:"110";s:6:"active";s:1:"1";s:12:"where_placed";s:11:"slider_auto";s:5:"title";s:0:"";s:11:"title_admin";s:60:"распашные цельностеклянные фото";s:3:"qty";s:1:"3";s:4:"type";s:5:"categ";s:7:"type_id";s:2:"95";s:5:"pages";s:4:"3000";s:10:"skip_pages";s:0:"";s:4:"html";s:0:"";s:4:"sort";s:1:"2";s:7:"type_up";s:9:"templates";s:8:"extra_id";s:1:"0";s:10:"extra_html";s:0:"";s:10:"qty_photos";s:1:"8";}i:5;O:8:"stdClass":16:{s:2:"id";s:2:"88";s:6:"active";s:1:"1";s:12:"where_placed";s:6:"manual";s:5:"title";s:0:"";s:11:"title_admin";s:66:"распашные в алюминиевой рамке текст";s:3:"qty";s:1:"0";s:4:"type";s:5:"categ";s:7:"type_id";s:2:"95";s:5:"pages";s:0:"";s:10:"skip_pages";s:0:"";s:4:"html";s:2317:"<p><span style="color: rgb(178, 34, 34);"><strong>РАСПАШНЫЕ СТЕКЛЯННЫЕ ДВЕРИ В АЛЮМИНИЕВОЙ РАМКЕ</strong></span></p>
+
+<p>В зависимости от назначения двери могут быть с двойным или одинарным остеклением. Дверная коробка алюминиевая, снабжена уплотнителем.</p>
+
+<div><strong>Характеристики дверных блоков:</strong></div>
+
+<div>- Стандартная высота 2,1м;</div>
+
+<div>- Стандартная ширина для однопольных 7М; 8М; 9М; 10М; 11М; 12М:</div>
+
+<div>- Стандартная ширина для двупольных 13М; 14М; 15М; 16М; 17М; 18М;</div>
+
+<div>- Толщина полотна 40мм;</div>
+
+<div>- Уплотнитель по периметру дверной коробки - силиконовый уплотнитель, цвета серый, белый, прозрачный;</div>
+
+<div>- Цвета алюминиевого профиля дверной коробки и рамы дверного полотна - любой цвет по RAL каталогу. Стандартные цвета 8684, 9010,7047,1015</div>
+
+<div>- В стандарте комплектуется петлями, замком, ручками, цилиндром. Возможно доукомплектовывать доводчиками, выпадающими порожками, ЭМЗ для СКУД (электрические механические защёлки для систем контроля управления доступом).</div>
+
+<div>- Устойчивость к износу и механическим повреждениям высокая, не боится удара в торец дверного полотна;</div>
+
+<div>- Уровень звукоизоляции хороший;</div>
+
+<div>- Гигиенические характеристики &ndash; отличные. Рекомендуются при жестких гигиенических требованиях.</div>
+
+<div>- Установка поворотных жалюзи при двойном остеклении- возможна;</div>";s:4:"sort";s:1:"3";s:7:"type_up";N;s:8:"extra_id";N;s:10:"extra_html";N;s:10:"qty_photos";s:1:"0";}i:6;O:8:"stdClass":16:{s:2:"id";s:3:"111";s:6:"active";s:1:"1";s:12:"where_placed";s:6:"manual";s:5:"title";s:0:"";s:11:"title_admin";s:64:"распашные в алюминиевой рамке фото";s:3:"qty";s:1:"3";s:4:"type";s:5:"categ";s:7:"type_id";s:2:"95";s:5:"pages";s:0:"";s:10:"skip_pages";s:0:"";s:4:"html";s:0:"";s:4:"sort";s:1:"4";s:7:"type_up";N;s:8:"extra_id";N;s:10:"extra_html";N;s:10:"qty_photos";s:1:"7";}i:7;O:8:"stdClass":16:{s:2:"id";s:2:"13";s:6:"active";s:1:"1";s:12:"where_placed";s:6:"footer";s:5:"title";s:5:"links";s:11:"title_admin";s:32:"Внизу блок ссылок";s:3:"qty";s:1:"0";s:4:"type";s:4:"free";s:7:"type_id";s:1:"0";s:5:"pages";s:0:"";s:10:"skip_pages";s:0:"";s:4:"html";s:511:"<center>«СК Норма» - <a href="/ofisnye-stacionarnye-peregorodki">стационарные перегородки</a>, <a href="/ofisnye-stacionarnye-peregorodki/steklyannye-peregorodki">раздвижные стеклянные перегородки</a>, <a href="/santekhnicheskie-peregorodki">сантехнические перегородки</a>, <a href="/ofisnye-dveri">офисные двери</a>. <a href="/dopolnitelnaia-informatciia/informatciia">Доп. информация</a></center>";s:4:"sort";s:1:"5";s:7:"type_up";N;s:8:"extra_id";N;s:10:"extra_html";N;s:10:"qty_photos";s:1:"0";}i:8;O:8:"stdClass":16:{s:2:"id";s:2:"62";s:6:"active";s:1:"1";s:12:"where_placed";s:6:"manual";s:5:"title";s:0:"";s:11:"title_admin";s:65:"двери стеклянные маятниковые текст";s:3:"qty";s:1:"0";s:4:"type";s:5:"categ";s:7:"type_id";s:2:"95";s:5:"pages";s:0:"";s:10:"skip_pages";s:0:"";s:4:"html";s:1654:"<p><span style="color: rgb(178, 34, 34);"><strong>ДВЕРИ СТЕКЛЯННЫЕ МАЯТНИКОВЫЕ&nbsp;</strong></span></p>
+
+<p>Открывание полотна в обе стороны. Не имеют коробки, монтируется в чистовой проём, полотно цельностеклянное. Доводчик является одновременно нижней петлёй, монтируется в пол.&nbsp;</p>
+
+<div><strong>Характеристики дверных блоков:&nbsp;</strong></div>
+
+<div>- Стандартная высота 2,1м.</div>
+
+<div>- Стандартная ширина для однопольных 7М;8М;9М;10М;11М12М.</div>
+
+<div>- Стандартная ширина для двупольных 13М; 14М; 15М; 16М; 17М; 18М.</div>
+
+<div>- Толщина стеклянного полотна 8,10,12 мм. в зависимости от высоты двери.</div>
+
+<div>- Устойчивость к износу и механическим повреждениям - высокая, но боится удара в торец стекла.</div>
+
+<div>- Уровень звукоизоляции - средний.</div>
+
+<div>- Гигиенические характеристики &ndash; отличные. Рекомендуются при жестких гигиенических требованиях.&nbsp;</div>
+
+<div>- Стандартная комплектация дверной фурнитурой (петля &ndash; доводчик, верхняя петли и замок, ручки цилиндр).</div>";s:4:"sort";s:1:"5";s:7:"type_up";N;s:8:"extra_id";N;s:10:"extra_html";N;s:10:"qty_photos";s:1:"0";}i:9;O:8:"stdClass":16:{s:2:"id";s:2:"14";s:6:"active";s:1:"1";s:12:"where_placed";s:6:"footer";s:5:"title";s:11:"bottom_left";s:11:"title_admin";s:10:"Адрес";s:3:"qty";s:1:"0";s:4:"type";s:4:"free";s:7:"type_id";s:1:"0";s:5:"pages";s:0:"";s:10:"skip_pages";s:0:"";s:4:"html";s:71:"г. Москва, ул. Шкулева, дом 2А, 2 эт., каб. 13";s:4:"sort";s:1:"6";s:7:"type_up";N;s:8:"extra_id";N;s:10:"extra_html";N;s:10:"qty_photos";s:1:"0";}i:10;O:8:"stdClass":16:{s:2:"id";s:3:"112";s:6:"active";s:1:"1";s:12:"where_placed";s:6:"manual";s:5:"title";s:0:"";s:11:"title_admin";s:63:"двери стеклянные маятниковые фото";s:3:"qty";s:1:"3";s:4:"type";s:5:"categ";s:7:"type_id";s:2:"95";s:5:"pages";s:0:"";s:10:"skip_pages";s:0:"";s:4:"html";s:0:"";s:4:"sort";s:1:"6";s:7:"type_up";N;s:8:"extra_id";N;s:10:"extra_html";N;s:10:"qty_photos";s:1:"8";}i:11;O:8:"stdClass":16:{s:2:"id";s:2:"15";s:6:"active";s:1:"1";s:12:"where_placed";s:6:"footer";s:5:"title";s:12:"bottom_right";s:11:"title_admin";s:29:"Копирайт справа";s:3:"qty";s:1:"0";s:4:"type";s:4:"free";s:7:"type_id";s:1:"0";s:5:"pages";s:0:"";s:10:"skip_pages";s:0:"";s:4:"html";s:97:"<!--<a rel=nofollow href="http://www.363.ru/">Обслуживание сайта</a> - 363.ru-->";s:4:"sort";s:1:"7";s:7:"type_up";N;s:8:"extra_id";N;s:10:"extra_html";N;s:10:"qty_photos";s:1:"0";}i:12;O:8:"stdClass":16:{s:2:"id";s:2:"20";s:6:"active";s:1:"1";s:12:"where_placed";s:6:"header";s:5:"title";s:11:"breadcrumbs";s:11:"title_admin";s:18:"Навигация";s:3:"qty";s:1:"0";s:4:"type";s:11:"breadcrumbs";s:7:"type_id";s:1:"0";s:5:"pages";s:0:"";s:10:"skip_pages";s:0:"";s:4:"html";s:681:"{* путь до страницы *}
+{if $page.breadcrumbs|@count > 0}
+    <ul class="breadcrumb">
+    {foreach from=$page.breadcrumbs value="v"}
+        {if $v|@count > 0}
+                    <li><a href="{$uri.site}/">Главная</a></li>
+                      {foreach from=$v key="k" value="v2"}
+                          {if empty($uri.params) AND $k == $v|@lastkey}
+                              <li class="active">{$page.title}</li>
+                          {else}
+                              <li><a href="{$v2.link}">{$v2.title}</a></li>
+                          {/if}
+                      {/foreach}    
+        {/if}
+    {/foreach}
+    </ul>
+{/if}";s:4:"sort";s:1:"7";s:7:"type_up";N;s:8:"extra_id";N;s:10:"extra_html";N;s:10:"qty_photos";s:1:"0";}i:13;O:8:"stdClass":16:{s:2:"id";s:2:"90";s:6:"active";s:1:"1";s:12:"where_placed";s:6:"manual";s:5:"title";s:0:"";s:11:"title_admin";s:52:"раздвижные стеклянные текст";s:3:"qty";s:1:"0";s:4:"type";s:5:"categ";s:7:"type_id";s:2:"95";s:5:"pages";s:0:"";s:10:"skip_pages";s:0:"";s:4:"html";s:1692:"<p><span style="color: rgb(178, 34, 34);"><strong>ДВЕРИ СТЕКЛЯННЫЕ РАЗДВИЖНЫЕ&nbsp;</strong></span></p>
+
+<p>Не имеют коробки. Полотно откатывается вдоль перегородки (стены). Привод может быть ручной или электрический (с датчиками движения).&nbsp;</p>
+
+<div><strong>Характеристики откатных дверей:&nbsp;</strong></div>
+
+<div>- высота откатного полотна от 2,1м до 3м; - ширина полотна от 700мм; 800мм; 900мм; 1000мм;&nbsp;</div>
+
+<div>- Толщина дверного полотна 10-12мм; Цвет прозрачный, матовый, рисунок, логотип, плёнка.&nbsp;</div>
+
+<div>- Торец стеклянного дверного полотна обрабатывается полировкой. В электромеханических в алюминиевой рамке.&nbsp;</div>
+
+<div>- Стандартные цвета фурнитуры матовый анодированный алюминий, нержавейка полированная, нержавейка матовая. Возможно покрасить по каталогу RAL.&nbsp;</div>
+
+<div>- Трек может закрываться декоративной планкой.&nbsp;</div>
+
+<div>- Существует большое разнообразие фурнитуры. Выбрать вам поможем. Вам лишь сформировать понимание каким требованиям она должна отвечать.</div>";s:4:"sort";s:1:"7";s:7:"type_up";N;s:8:"extra_id";N;s:10:"extra_html";N;s:10:"qty_photos";s:1:"0";}i:14;O:8:"stdClass":16:{s:2:"id";s:3:"113";s:6:"active";s:1:"1";s:12:"where_placed";s:6:"manual";s:5:"title";s:0:"";s:11:"title_admin";s:50:"раздвижные стеклянные фото";s:3:"qty";s:1:"3";s:4:"type";s:5:"categ";s:7:"type_id";s:2:"95";s:5:"pages";s:0:"";s:10:"skip_pages";s:0:"";s:4:"html";s:0:"";s:4:"sort";s:1:"8";s:7:"type_up";N;s:8:"extra_id";N;s:10:"extra_html";N;s:10:"qty_photos";s:1:"7";}i:15;O:8:"stdClass":16:{s:2:"id";s:2:"22";s:6:"active";s:1:"1";s:12:"where_placed";s:4:"main";s:5:"title";s:6:"bottom";s:11:"title_admin";s:38:"Разделы с картинками";s:3:"qty";s:1:"0";s:4:"type";s:4:"free";s:7:"type_id";s:1:"0";s:5:"pages";s:0:"";s:10:"skip_pages";s:41:"/dopolnitelnaia-informatciia/informatciia";s:4:"html";s:644:"{if !empty($page.list_bottomcategs)}
+	<table cellpadding="5" width="690">
+		{foreach from=$page.list_bottomcategs value="v"}
+			{if $page.id == $v.id_parent}
+			{ cycle values="1,2,3" assign="row"}
+				{if $row == 1}<tr>{/if}
+				
+				<td {if $row < 3}width="33%"{/if}>{if !empty($v.pic.small.url)}<a href="{$v.link}" class="linkwarr"><img src="{$v.pic.small.url}" style="max-width:100%; height:auto;"><span>{$v.title}</span></a>{else}<a href="{$v.link}">{$v.title}</a>{/if}</td>
+				
+				{if $row == 3}</tr>{/if}
+			{/if}												
+		{/foreach}
+		{if $row == 1}<td></td><td></td></tr>{/if}
+		{if $row == 2}<td></td></tr>{/if}
+	</table>
+{/if}";s:4:"sort";s:2:"99";s:7:"type_up";N;s:8:"extra_id";N;s:10:"extra_html";N;s:10:"qty_photos";s:1:"0";}i:16;O:8:"stdClass":16:{s:2:"id";s:2:"21";s:6:"active";s:1:"1";s:12:"where_placed";s:5:"right";s:5:"title";s:3:"dop";s:11:"title_admin";s:27:"Доп.информация";s:3:"qty";s:1:"0";s:4:"type";s:10:"listCategs";s:7:"type_id";s:2:"56";s:5:"pages";s:85:"/dopolnitelnaia-informatciia/informatciia
+/dopolnitelnaia-informatciia/informatciia*";s:10:"skip_pages";s:0:"";s:4:"html";s:156:"{if !empty($array)}
+	<ul class="menu"> 
+		{foreach from=$array value="v"}			
+				<li><a href="{$v.link}">{$v.title}</a></li>
+		{/foreach}
+	</ul>
+{/if}";s:4:"sort";s:2:"99";s:7:"type_up";N;s:8:"extra_id";N;s:10:"extra_html";N;s:10:"qty_photos";s:1:"0";}}s:8:"num_rows";i:17;s:12:"return_value";i:17;}
