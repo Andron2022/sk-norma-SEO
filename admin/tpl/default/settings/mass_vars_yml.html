@@ -1,0 +1,139 @@
+{include file="header.html"}
+<h1 class="mt-0">{lang key1="admin" key2="elements" key3="master"} 
+{if $hint == "smtp"}: {lang key1="admin" key2="elements" key3="smtp"}{/if}
+{if $hint == "currencies"}: {lang key1="admin" key2="elements" key3="currencies"}{/if}
+{if $hint == "images"}: {lang key1="admin" key2="elements" key3="pics"}{/if}
+{if $hint == "extra"}: {lang key1="admin" key2="elements" key3="extra_lists"}{/if}
+{if $hint == "social"}: {lang key1="admin" key2="elements" key3="social_nets"}{/if}
+{if $hint == "yml"}: {lang key1="admin" key2="elements" key3="yml"}{/if}
+{if $hint == "gmc"}: {lang key1="admin" key2="elements" key3="gmc"}{/if}
+{if $hint == "sms"}: SMS{/if}
+</h1>
+
+{include file="settings/elements_menu.html"}
+
+{if !empty($error)}
+    <blockquote class="red">{$error}</blockquote>
+{/if}
+
+{if !empty($simpla.GET.updated)}
+    <blockquote>{lang key1="admin" key2="updated"}</blockquote>
+{/if}
+
+
+
+{if !empty($site_vars.sys_gmc_key) AND $hint == "gmc"}
+<p><a href="{$site_vars.site_url}/price/?gmc=1&{$site_vars.sys_gmc_key}" target="_blank"><i class="fa fa-external-link"></i> {$site_vars.site_url}/price/?gmc=1&{$site_vars.sys_gmc_key}</a></p>
+{/if}
+
+{if !empty($site_vars.yml_key) AND $hint == "yml"}
+<p><a href="{$site_vars.site_url}/price/?{$site_vars.yml_key}" target="_blank"><i class="fa fa-external-link"></i> {$site_vars.site_url}/price/?{$site_vars.yml_key}</a></p>
+{/if}
+
+{if !empty($vars)}
+    <form method="post">
+    {foreach from=$vars key="k" value="v"}    
+            <h3 class="mb-5"><a href="?action=settings&do=site_vars&id=0&hint={$k}"><i class="fa fa-plus-circle"></i></a> <b>{$k}</b></h3>
+            {if !empty($v)}
+				{assign var="no_empty" value="1"}
+                {if !empty($v.0.description)}
+					<table class="ml-20" width="70%"><tr><td>{$v.0.description}</td></tr></table>{/if}
+				
+                <table class="ml-20" width="70%">
+                {foreach from=$v value="v1"}
+                    <tr class="odd">
+						<td valign="top" class="pt-10">
+						{if $v1.site_id == 0}{lang key1="admin" key2="elements" key3="for_all_sites"}{elseif empty($v1.site_url)}<b style="color:red;">{lang key1="admin" key2="sites" key3="unknown"}</b>{else}{$v1.site_url}{/if}
+						</td>
+						<td width="80%" class="pt-10">
+						<input type="hidden" name="vars[{$v1.id}][type]" value="{$v1.type}">
+							{if $v1.type == 'checkbox'}
+						<input type="checkbox" name="vars[{$v1.id}][value]" value="1"{if $v1.value == "1"} checked="checked"{/if}> 
+							{elseif $v1.type == 'list' AND !empty($v1.value_ar)}
+							
+								<select name="vars[{$v1.id}][value]">
+								{foreach from=$v1.value_ar value="t"}
+									<option value="{$t}"{if $t == $v1.value} selected="selected"{/if}>{$t}</option> 
+								{/foreach}
+								</select>
+							{else} 
+								{if $v1.width > 0 OR $v1.height > 0}
+								<input type="text" name="vars[{$v1.id}][width]" value="{$v1.width}" size="10"> width<br>
+								<input type="text" name="vars[{$v1.id}][height]" value="{$v1.height}" size="10"> height
+								{else}
+									{if $k != "sys_yml_book_categs" AND $k != "sys_gmc_categs"}
+						<input type="text" name="vars[{$v1.id}][value]" value="{$v1.value|escape}" style="width:100%;">
+									{/if}
+								{/if}
+							{/if}
+							
+							
+							{if $k == "sys_yml_book_categs"}
+								<p><u>{lang key1="admin" key2="set" key3="books_categs"}</u></p>
+								<input type="hidden" name="vars[{$v1.id}][ids]" value="">
+																
+							<table border="0" cellspacing="2" width="100%">
+								{foreach from=$site_vars._pages value="c"}
+									{if $c.shop == "1" AND !empty($c.products)}
+										{if !empty($v1.ids_selected)}
+											{ in_array array=$v1.ids_selected match=$c.id returnvalue="CHECKED" assign="ch"}
+										{else}
+											{assign var="ch" value=""}
+										{/if}
+									
+										<tr>
+											<td><input type="checkbox" name="vars[{$v1.id}][ids][]" value="{$c.id}"{if !empty($ch)} checked="checked"{/if}></td>
+											<td><a href="?action=info&do=edit_categ&id={$c.id}">{$c.title}</a></td>
+										</tr>									
+									{/if}
+								{/foreach}
+							
+							</table>
+							
+							{/if}
+							
+							
+							{if $k == "sys_gmc_categs"}
+								<p><u>{lang key1="admin" key2="set" key3="conn_categs"} Google Merchant Center</u></p>
+								<a href="https://support.google.com/merchants/answer/1705911" target="_blank">{lang key1="admin" key2="set" key3="gmc_classify"} Google</a>
+								<input type="hidden" name="vars[{$v1.id}][gmc]" value="">	
+							
+							
+							<table border="0" cellspacing="2" width="100%">
+								<tr>
+									<th width="60%">{lang key1="admin" key2="categ"}</th>
+									<th>{lang key1="admin" key2="set" key3="gmc_categ"}</th>
+								</tr>
+								{foreach from=$site_vars._pages value="c"}
+									{if $c.shop == "1" AND !empty($c.products)}
+								<tr><td><a href="?action=info&do=edit_categ&id={$c.id}">{$c.title}</a></td><td>
+									{assign var="cid" value=$c.id}
+									<input type="text" name="vars[{$v1.id}][gmc][{$c.id}]" value="{if !empty($gmc_categs[$cid])}{$gmc_categs[$cid]}{/if}" style="width:100%;">
+								</td></tr>
+									{/if}
+								{/foreach}
+							</table>
+							
+							{/if}							
+							
+						</td>
+						<td class="center pt-10" valign="top">
+						<a href="?action=settings&do=site_vars&id={$v1.id}"><i class="fa fa-pencil"></i></a>
+						</td>
+					</tr>
+                {/foreach}
+                </table>
+            {/if}
+        
+    {/foreach}
+	
+	{if !empty($no_empty)}
+	<p>
+		<input type="submit" name="update" value="{lang key1="admin" key2="save"}">
+	</p>
+	{/if}
+	</form>
+    
+{/if}
+
+{ include file="footer.html" }

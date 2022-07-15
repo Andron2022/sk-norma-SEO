@@ -1,0 +1,547 @@
+{include file="header.html"}
+
+{if empty($o.id)}
+	<h1 class="mt-0">{lang key1="admin" key2="orders" key3="new_order"}</h1>
+{else}<h1 class="mt-0">{favorites where="order" id=$o.id} {lang key1="admin" key2="orders" key3="order"} # {$o.site_id}-{$o.order_id|chunk:4:"-"} <small>{lang key1="admin" key2="fav" key3="from"} { $o.date}</small></h1>{/if}
+
+<form method="post" enctype="multipart/form-data">
+
+{if !empty($o.site)}
+
+<table border="0" width="100%">
+	<tr>
+		<td width="30%" valign="top">
+			<h3 class="mt-0">{lang key1="admin" key2="fb" key3="executor"}: {if empty($o.manager_id)}{lang key1="admin" key2="no"} ({lang key1="admin" key2="orders" key3="common_order"}){else}{$o.manager_name}{/if}</h3>
+			{if !empty($o.id)}
+			
+				{if !empty($o.manager_id) AND $o.manager_id != $admin_vars.bo_user.id}
+				<blockquote class="red">{lang key1="admin" key2="orders" key3="other_exec"}</blockquote>
+				{/if}
+			
+			{lang key1="admin" key2="fb" key3="assign_exec"}:<br>
+			{if !empty($o.managers)}
+				<select name="o[manager_id]">
+				<option value="0"{if $o.manager_id == "0"} selected="selected"{/if}>- {lang key1="admin" key2="for_all"}</option>
+				{foreach from=$o.managers value="v"}
+					<option value="{$v.id}"{if $o.manager_id == $v.id} selected="selected"{/if}>{$v.name} ({$v.login})</option>
+				{/foreach}
+				</select>				
+				<input class="small" type=submit name="o[update]" value="{lang key1="admin" key2="fb" key3="assign"}">
+			{/if}
+			{/if}
+			
+		</td>
+	
+	<td width="30%" valign="top">
+		<ul>
+		<li><a href="?action=orders&site_id={$o.site_id}">{$o.site} {$o.site_url} <i class="fa fa-flag"></i></a></li>
+		<li><a href="{$o.open_link}" target="_blank">{lang key1="admin" key2="fb" key3="open_link"} <i class="fa fa-external-link"></i></a></li>
+		<li><a href="{$o.site_url}/o/{$o.order_id}" target="_blank">{lang key1="admin" key2="fb" key3="short_link"} <i class="fa fa-external-link"></i></a></li>
+		</ul>
+		</td>
+		<td valign="top">
+			<ul>
+				{if !empty($o.docs) AND !empty($o.org)}
+					{foreach from=$o.docs value="v"}
+						<li><a href="{$v.url}" target="_blank">{$v.title}</a></li>
+					{/foreach}
+				{elseif empty($o.org)}
+					<li style="color:red;">{lang key1="admin" key2="orders" key3="no_org"}</li>
+				{/if}
+				
+				<li><small><a href="?action=settings&do=site_vars&site_id=-1&q=sys_docs&redirect=1">{lang key1="admin" key2="orders" key3="set_docs"}</a></small></li>
+			</ul>
+
+		</td>
+	</tr>
+</table>
+
+{else}
+	{if empty($o.id)}
+	{lang key1="admin" key2="website"}: <select name="o[site_id]">
+		<option value="0">- {lang key1="admin" key2="website" case="lower"}</option>
+		{foreach from=$site.list_sites value="v"}
+		<option value="{$v.id}" {if $site.id == $v.id}selected="selected"{/if}>{$v.site_url} ({$v.id})</option>
+		{/foreach}
+	</select>
+	{/if}
+{/if}
+
+{if isset($simpla.GET.added)}
+  <blockquote>{lang key1="admin" key2="orders" key3="items_added"} ({$simpla.GET.added})</blockquote>
+{/if}
+
+{if isset($simpla.GET.deleted)}
+  <blockquote>{lang key1="admin" key2="orders" key3="item_deleted"}</blockquote>
+{/if}
+
+{if isset($simpla.GET.order_remind)}
+  <blockquote>{lang key1="admin" key2="orders" key3="remind_sent"}</blockquote>
+{/if}
+
+{if isset($simpla.GET.updated)}
+  <blockquote><a href="?action=orders&id={ $o.id }">{lang key1="admin" key2="updated"}</a></blockquote>
+{/if}
+
+
+<table width="100%">
+  <tr>
+    <th width="200"><a href="?action=settings&do=statuses">{lang key1="admin" key2="products" key3="status"}</a></th>
+    <th width="50%">{lang key1="admin" key2="products" key3="payment"}</th>
+    <th>{lang key1="admin" key2="date"}</th>
+  </tr>
+  <tr>
+    <td width="200"><select name="o[status]">
+      <option value="0"{if $o.status == 0} selected{/if}>{lang key1="admin" key2="orders" key3="new"}</option>
+	  {if !empty($o.list_statuses)}
+		{foreach from=$o.list_statuses value="s"}
+			<option value="{$s.id}"{if $o.status == $s.id} selected{/if}>{$s.title}</option>
+		{/foreach}
+	  {/if}
+    </select>
+	
+    </td>
+    <td class="center"><select name="o[payd_status]">
+                    <option value="0"{if empty($o.payd_status)}selected="selected"{/if}>{lang key1="admin" key2="orders" key3="not_payd"}</option>
+                    <option value="1"{if !empty($o.payd_status)}selected="selected"{/if}>{lang key1="admin" key2="orders" key3="payd"}</option>
+                </select>{if !empty($o.payd_status)} <i class="fa fa-truck" style="color:red;"></i>{/if}
+				
+				
+		{if empty($o.payd_status)}<input class="small" type=submit name="o[order_remind]" value="{lang key1="admin" key2="orders" key3="pay_reminder"}" onclick="if(confirm('{lang key1="admin" key2="orders" key3="really_remind"}')) return true; else return false;">{/if}
+	</td>
+    <td class="center"><small>{lang key1="admin" key2="orders" key3="added"}: { $o.date}
+	{if !empty($o.last_edit) AND $o.last_edit != "0000-00-00 00:00:00"}<br>{lang key1="admin" key2="orders" key3="updated"}: {$o.last_edit}{/if}
+	{if !empty($o.set_paid_date) AND !empty($o.set_paid_date)}<br>
+	{lang key1="admin" key2="paid"}: {$o.set_paid_date}
+	{if !empty($o.set_paid_name)}({$o.set_paid_name})
+	{elseif !empty($o.set_paid.login)}({$o.set_paid_login}){/if}
+	{/if}
+	
+	
+	</small></td>
+  </tr>
+  <tr>
+    <th colspan="3">{lang key1="admin" key2="orders" key3="order_info"}</th>
+  </tr>
+  
+		<tr class="{cycle values=",odd"}">
+            <td><a href="?action=org">{lang key1="admin" key2="orders" key3="org_seller"}</a></td>
+            <td>
+	{if !empty($orgs)}
+				<select name="orgs">
+					<option value="0">-</option>
+					{foreach from=$orgs value="v"}						
+						<option value="{$v.id}" {if !empty($v.connected)}selected="selected"{/if}>{$v.title} {if !empty($v.inn)}{lang key1="admin" key2="orders" key3="org_inn"}: {$v.inn}{/if}</option>
+					{/foreach}
+				</select>
+	{else} - <span style="color:red; font-weight:bold;">{lang key1="admin" key2="orders" key3="not_set1"}</span> <a href="?action=org"><i class="fa fa-pencil"></i></a>{/if}  
+			</td>
+        </tr> 
+  
+  <tr class="{cycle values=",odd"}">
+    <td valign="top" width="200">{lang key1="admin" key2="orders" key3="fio"}</td>
+    <td colspan="2"><input type="text" name="o[fio]" style="width: 100%;" maxlength="255" value="{$o.fio|htmlspecialchars}"></td>
+  </tr>
+  <tr class="{cycle values=",odd"}">
+    <td valign="top" width="200">{lang key1="admin" key2="user" key3="phone"}</td>
+    <td colspan="2"><input type="text" name="o[phone]" style="width: 100%;" maxlength="255" value="{$o.phone|htmlspecialchars}"></td>
+  </tr>
+  
+  <tr class="{cycle values=",odd"}">
+    <td valign="top" width="200">{lang key1="admin" key2="user" key3="email"}</td>
+    <td colspan="2"><input type="text" name="o[email]" style="width: 100%;" maxlength="255" value="{$o.email|htmlspecialchars}"></td>
+  </tr>
+
+  
+  <tr class="{cycle values=",odd"}">
+              <td><a href="?action=settings&do=payments">{lang key1="admin" key2="orders" key3="pay_method"}</a></td>
+              <td colspan="2"><select name="o[payment_method]">
+                    <option value="0"{if $o.payment_method == 0} selected="selected"{/if}>-</option>
+					{if !empty($o.list_payments)}
+						{foreach from=$o.list_payments value="p"}
+							<option value="{$p.id}"{if $o.payment_method == $p.id} selected="selected"{/if}>{$p.title}</option>
+						{/foreach}
+					{else}
+						<p><a href="?action=settings&do=payments">{lang key1="admin" key2="orders" key3="not_set"}</a></p>
+					{/if}					
+                </select></td>
+            </tr>     
+			
+  <tr>
+    <td colspan="3">
+    <a href="javascript: ShowHide('block-company')" style="border-bottom: 1px dashed blue;">{lang key1="admin" key2="orders" key3="cust_and_pay"}</a>
+    <div style="display: none;" id="block-company">
+
+        <table width="100%" cellpadding="0" cellspacing="1">
+            <tbody>
+            <tr class="{cycle values=",odd"}">
+              <td>{lang key1="admin" key2="orders" key3="buyer"}</td>
+              <td><select name="o[ur_type]">
+                    <option value="0"{if empty($o.ur_type)}selected="selected"{/if}>{lang key1="admin" key2="orders" key3="fiz"}</option>
+                    <option value="1"{if !empty($o.ur_type)}selected="selected"{/if}>{lang key1="admin" key2="orders" key3="yur"}</option>
+                </select></td>
+            </tr>
+            <tr class="{cycle values=",odd"}">
+              <td width="200">{lang key1="admin" key2="orders" key3="org_name"}</td>
+              <td><input type="text" name="o[name_company]" style="width: 100%;" maxlength="255" value="{$o.name_company|htmlspecialchars}"></td>
+            </tr>
+            
+            </tbody>
+        </table>
+    </div>
+    </td>
+  </tr>
+
+  <tr class="{cycle values=",odd"}">
+              <td><a href="?action=delivery">{lang key1="admin" key2="orders" key3="delivery_method"}</a></td>
+              <td colspan="2">{if !empty($o.delivery_list)}
+				<select name="o[delivery_method]">
+                    <option value="0"{if $o.delivery_method == 0} selected="selected"{/if}>-</option>
+					{foreach from=$o.delivery_list value="dm"}
+                    <option value="{$dm.id}"{if $o.delivery_method == $dm.id} 
+						selected="selected"{/if}>{$dm.title} 
+						{if $dm.price > 0}({$dm.price_formatted}){/if}
+					</option>
+					{/foreach}
+                </select>
+				{else}
+				<p><a href="?action=delivery">{lang key1="admin" key2="orders" key3="not_set"}</a></p>
+			  {/if}
+			  </td>
+    </tr>
+
+  <tr>
+    <td colspan="3">
+    <a href="javascript: ShowHide('block-meta')" style="border-bottom: 1px dashed blue;">{lang key1="admin" key2="orders" key3="addr_delivery"}</a>
+    <div style="display: none;" id="block-meta">
+
+        <table width="100%" cellpadding="0" cellspacing="1">
+            <tbody>
+            
+            <tr class="{cycle values=",odd"}">
+              <td width="200">{lang key1="admin" key2="orders" key3="delivery_notes"}</td>
+              <td><input type="text" name="o[region]" style="width: 100%;" maxlength="255" value="{$o.region|htmlspecialchars}"></td>
+            </tr>
+            
+            <tr class="{cycle values=",odd"}">
+              <td width="200">{lang key1="admin" key2="orders" key3="index"}</td>
+              <td><input type="text" name="o[delivery_index]" style="width: 100%;" maxlength="255" value="{$o.delivery_index|htmlspecialchars}"></td>
+            </tr>
+            <tr class="{cycle values=",odd"}">
+              <td width="200">{lang key1="admin" key2="user" key3="city"}</td>
+              <td><input type="text" name="o[city]" style="width: 100%;" maxlength="255" value="{$o.city|htmlspecialchars}"></td>
+            </tr>
+            <tr class="{cycle values=",odd"}">
+              <td width="200">{lang key1="admin" key2="orders" key3="address"}</td>
+              <td><input type="text" name="o[address]" style="width: 100%;" maxlength="255" value="{$o.address|htmlspecialchars}"></td>
+            </tr>
+            <tr class="{cycle values=",odd"}">
+              <td width="200">{lang key1="admin" key2="orders" key3="fio_or_notes"}</td>
+              <td><textarea name="o[address_memo]" style="width: 100%;" rows="3">{$o.address_memo}</textarea></td>
+            </tr>
+            <tr class="{cycle values=",odd"}">
+              <td width="200">{lang key1="admin" key2="orders" key3="metro"}</td>
+              <td><input type="text" name="o[metro]" style="width: 100%;" maxlength="255" value="{$o.metro|htmlspecialchars}"></td>
+            </tr>
+        </tbody></table>
+    </div>
+    </td>
+  </tr>
+  
+{if !empty($o.visit_log)}  
+  <tr class="odd">
+    <td colspan="3">
+    <a href="javascript: ShowHide('block-stat')" style="border-bottom: 1px dashed blue;">{lang key1="admin" key2="prava" key3="orders_stat"}</a>
+    <div style="display: none;" id="block-stat">
+
+        <h4 style="text-align:center;"><a href="?action=stat&id={$o.visit_log.id}">{lang key1="admin" key2="fb" key3="sess_record"}</a></h4>
+		  <table border="1" cellpadding="3" cellspacing="0" width="70%" align="center">
+			
+			<tr><td>{lang key1="admin" key2="fb" key3="time_in"}</td><td>{$o.visit_log.time}</td></tr>
+			<tr><td>IP</td><td>{$o.visit_log.ip} <a href="?action=feedback&q={$o.visit_log.ip}"><i class="fa fa-search" title="{lang key1="admin" key2="fb" key3="requests_from_ip"}"></i></a></td></tr>
+			<tr><td>{lang key1="admin" key2="fb" key3="from"}</td><td>{if empty($o.visit_log.referer)}{lang key1="admin" key2="fb" key3="direct_in"}{else}{$o.visit_log.referer}{/if}</td></tr>
+			{if !empty($o.visit_log.referer_query)}<tr><td>{lang key1="admin" key2="fb" key3="request"}</td><td>{textformat wrap=80 }{$o.visit_log.referer_query}{ /textformat }</td></tr>{/if}
+			{if !empty($o.visit_log.page)}<tr><td>{lang key1="admin" key2="fb" key3="page_in"}</td><td>{$o.visit_log.page}</td></tr>{/if}
+			{if !empty($o.visit_log.partner_key)}<tr><td>{lang key1="admin" key2="fb" key3="partner_code"}</td><td>{$o.visit_log.partner_key}</td></tr>{/if}
+			<tr><td>{lang key1="admin" key2="fb" key3="see_pages"}</td><td>{$o.visit_log.qty_pages_visited}</td></tr>
+			{if !empty($o.visit_log.pages_visited)}<tr><td>{lang key1="admin" key2="fb" key3="seen_pages"}</td>
+				<td>{foreach from=$o.visit_log.pages_visited key="fk" value="fl"}
+					{if !empty($fk)}, {/if}<a href="{$o.site_url}{$fl}" target="_blank">{if $fl == "/"}{lang key1="admin" key2="home"}{else}{$fl}{/if}</a>
+				{/foreach}
+				</td>
+			</tr>{/if}
+		  </table>
+		  
+    </div>
+    </td>
+  </tr>  
+{/if}  
+  
+
+  <tr class="{cycle values=",odd"}">
+    <td valign="top">{lang key1="admin" key2="comment"}</td>
+    <td colspan="2">{if !empty($o.memo)}{ $o.memo}{else}-{/if}</td>
+  </tr>
+
+  {if !empty($cart)}
+  <tr>
+    <th colspan="3">{lang key1="admin" key2="orders" key3="order_content"}</th>
+  </tr>
+  
+  <tr>
+    <td colspan="3">	
+        <table cellpadding="2" cellspacing="1">
+            <tbody>
+                <tr class="{cycle values=",odd"}" style="text-align:center;">
+                    <td>#</td>
+                    <td width="20"> </td>
+                    <td width="20"> </td>
+                    <td width="300">{lang key1="admin" key2="products" key3="title"}</td>
+                    <td width="30">{lang key1="admin" key2="products" key3="qty"}</td>
+                    <td width="100">{lang key1="admin" key2="products" key3="price"}</td>
+                    <td width="50">{lang key1="admin" key2="orders" key3="rate"}</td>
+                    <td width="100">{lang key1="admin" key2="orders" key3="discount"}</td>
+                    <td width="150">{lang key1="admin" key2="orders" key3="summ"}</td>
+                    <td>{lang key1="admin" key2="products" key3="currency"}</td>
+                    <td width="20"></td>
+                </tr>
+            
+
+    {foreach from=$cart value="v"}
+      <tr class="{cycle values=",odd"}">
+        <td>{counter} <a href="" target="_blank"></a></td>
+        <td width="20">{if !empty($v.alias)}<a href="{$o.site_url}/{$v.alias}{$simpla.CONST.URL_END}" target="_blank"><i class="fa fa-external-link"></i></a>{/if}</td>
+        <td width="20">{if !empty($v.alias)}<a href="?action=products&do=edit&id={$v.product_id}" target="_blank"><i class="fa fa-pencil"></i></a>{/if}</td>
+        
+        <td width="300"><input type="text" name="cart[{$v.ID}][items]" style="width: 100%;" maxlength="255" value="{$v.items|htmlspecialchars}"></td>
+        <td width="30"><input type="number" min="1" name="cart[{$v.ID}][qty]" value="{$v.qty}">
+        </td>
+        <td width="100"><input style="text-align:right;" type="text" name="cart[{$v.ID}][price]" style="width: 100%;" maxlength="255" value="{$v.price}"></td>
+        <td><input style="text-align:right;{if $v.pricerate == 0} background-color:red;{/if}" type="text" name="cart[{$v.ID}][pricerate]" size="4" maxlength="255" value="{$v.pricerate}"></td>
+        <td width="100"><input style="text-align:right;" type="text" name="cart[{$v.ID}][discount]" style="width: 100%;" maxlength="255" value="{$v.discount}"></td>
+        <td width="150" align="right">{if $v.original_summa != $v.summ}<i class="fa fa-exclamation-triangle" style="color:red;" title="{lang key1="admin" key2="orders" key3="start_price"}: {$v.original_price} * {$v.original_rate}"></i> {/if}<b>{$v.summ|numformat}</b></td>
+        <td><select name="cart[{$v.ID}][currency_sell]">
+                <option value="euro"{if $v.currency_sell == "euro"} selected{/if}>{lang key1="admin" key2="products" key3="euro"}</option>
+                <option value="usd"{if $v.currency_sell == "usd"} selected{/if}>{lang key1="admin" key2="products" key3="usd"}</option>
+                <option value="rur"{if $v.currency_sell == "rur"} selected{/if}>{lang key1="admin" key2="products" key3="rub"}</option>
+              </select></td>
+        <td width="20"><a href="?action=orders&id={$o.id}&delete={$v.ID}" onclick="if(confirm('{lang key1="admin" key2="really"}')) return true; else return false;"><i class="fa fa-trash"></i></a></td>
+              
+      </tr>
+    {/foreach}
+
+      {if empty($o.diff_currency)}<tr class="{cycle values=",odd"}">
+        <td align="right" colspan="8">{lang key1="admin" key2="orders" key3="subtotal"}:</td>
+        <td align="right">{$o.order_summ|numformat}</td>
+        <td colspan="2"></td>
+      </tr>{/if}
+
+      <tr class="{cycle values=",odd"}">
+        <td align="right" colspan="8">{lang key1="admin" key2="orders" key3="delivery_price"}:</td>
+        <td><input type="text" name="o[delivery_price]" style="width: 100%; text-align:right;" maxlength="255" value="{$o.delivery_price}"></td>
+        <td colspan="2"></td>
+      </tr>
+
+      {if !empty($o.d_title)}<tr class="{cycle values=",odd"}">
+        <td align="right" colspan="9">{lang key1="admin" key2="orders" key3="delivery_sel"}: {$o.d_title} ({if !empty($o.d_price)}{$o.d_price_formatted}{else}0{/if})</td>
+        <td colspan="2"></td>
+      </tr>{/if}
+
+	  
+	  {if !empty($o.dis_summ)}<tr class="{cycle values=",odd"}">
+        <td align="right" colspan="8">{lang key1="admin" key2="orders" key3="coupon_discount"} <b><a href="?action=coupons&id={$o.coupon_id}">{$o.coupon}</a></b>:</td>
+        <td align="right"><b>{$o.dis_summ|numformat}</b></td>
+        <td colspan="2"></td>
+      </tr>{/if}
+	  
+	  
+      {if empty($o.diff_currency)}<tr class="{cycle values=",odd"}">
+        <td align="right" colspan="8">{lang key1="admin" key2="db" key3="total" case="upper"}:</td>
+        <td align="right"><b>{$o.total_summ|numformat}</b></td>
+        <td colspan="2"></td>
+      </tr>{/if}
+
+            </tbody>
+        </table>
+    </td>
+  </tr>
+  {/if}
+  
+  
+  {* discount_summ	2536
+coupon	54
+order_summ *}
+{if empty($o.id)}
+  <tr>
+    <td colspan="3">
+		<p style="color:red; font-size:120%; text-align:center;">{lang key1="admin" key2="orders" key3="add_items_desc"}</p>
+	</td>
+  </tr>
+
+{/if}
+
+{if (!empty($o.order_edit) OR $o.status == 0) AND !empty($o.id)}
+  <tr>
+    <td colspan="3">
+    <a href="javascript: ShowHide('block-add')" style="border-bottom: 1px dashed blue;">{lang key1="admin" key2="orders" key3="add_to_order"}</a>
+    <div style="display: {if empty($simpla.POST.add)}none{else}display{/if};" id="block-add">
+	
+        <table width="80%">
+            <tbody>
+                <tr class="{cycle values=",odd"}">
+                    <td colspan="2">{lang key1="admin" key2="orders" key3="enter_id"}<br><input type="text" name="add" style="width: 100%;" maxlength="255" value="{if !empty($simpla.POST.add)}{$simpla.POST.add|escape}{/if}"></td>
+                    <td><input type="submit" name="add_product" value="{lang key1="admin" key2="orders" key3="find"}"></td>
+                </tr>
+                {if !empty($list_add)}
+                    {foreach from=$list_add value="add"}
+                        <tr class="{cycle values=",odd"}">
+                            <td width="5%" class="right"><input type="checkbox" name="add_items[]" value="{$add.id}"></td>
+                            <td><a href="?action=products&do=edit&id={$add.id}" target="_blank">{$add.name}</a></td>
+                            <td class="right">{$add.price|numformat} <i class="fa fa-{if $add.currency == "usd"}usd{elseif $add.currency == "euro"}euro{else}rub{/if}"></i>
+							</td>
+                        </tr>
+                    {/foreach}
+                        <tr class="{cycle values=",odd"}">
+                            <td colspan="3"><br><input type="submit" name="do_add_products" value="{lang key1="admin" key2="add"}"></td>
+                        </tr>
+                {elseif !empty($simpla.POST.add)}
+                    <tr class="{cycle values=",odd"}">
+                        <td><b>{lang key1="admin" key2="orders" key3="id_not_found"}</b></td>
+                    </tr>
+                {/if}
+            </tbody>
+        </table>
+    </div>
+    </td>
+  </tr>
+{/if}
+  
+
+{if !empty($o.id) AND ((!empty($o.site) AND !empty($o.order_edit)) OR $o.status == 0)}
+    <input type="hidden" name="o[created]" value="{$o.created}" />
+  <tr>
+    <td valign="top" align="right"><input type="checkbox" name="o[update_link]" value="1" /></td>
+    <td colspan="2">{lang key1="admin" key2="fb" key3="change_link"}</td>
+  </tr>
+{/if}
+
+{if !empty($comments)}	
+<tr><td colspan="3">
+
+	<table border="0" cellpadding="5" cellspacing="0" width="100%">
+		<tr>
+			<th colspan="2">{lang key1="admin" key2="comments"} ({$comments|@count})</th>
+		</tr>
+			
+		{foreach from=$comments value="c"}
+
+			<a name="comment{$c.id}"></a>
+			<tr class="odd">
+				<td width="200"><b>{if !empty($c.userid)}<a href="?action=settings&do=add_user&id={$c.userid}">{if empty($c.user_name)}{$c.user_login}{else}{$c.user_name}{/if}</a>{elseif !empty($c.unreg_email)}{$c.unreg_email}{/if}</b>
+				{if !empty($c.sms)} <small>[{lang key1="admin" key2="fb" key3="sent_sms"}]</small>{/if}
+				</td>
+				<td align="right">{$c.ddate|date:$site.site_date_format} {$c.ddate|date:$site.site_time_format} <a href="?action=orders&id={$o.id}&del_comment={$c.id}" title="{lang key1="admin" key2="orders" key3="admin_can_del"}" onclick="if(confirm('{lang key1="admin" key2="orders" key3="admin_can_del"} {lang key1="admin" key2="really"}')) return true; else return false;"><i class="fa fa-trash"></i></a>				
+				</td>
+			</tr>			
+			
+			<tr>
+				<td width="200">{if $c.active == "1"}<i class="fa fa-eye"></i> {lang key1="admin" key2="fb" key3="client_see"} {if $c.notify == "1"}<br>{lang key1="admin" key2="fb" key3="notif_sent"}{/if}{/if}</td>
+				<td>{$c.comment_text|nl2br}
+				{if !empty($c.pay_comment)}
+				<br><a href="javascript: ShowHide('comment{$c.id}')" style="border-bottom: 1px dashed blue;">{lang key1="order" key2="details"}</a>
+				<div style="display: none;" id="comment{$c.id}">
+				<pre>{$c.pay_comment}</pre>
+				</div>
+				{/if}
+				</td>
+			</tr>
+			
+			{if !empty($c.file_id) AND !empty($c.file_ext)}
+			<tr>
+				<td width="30%">{lang key1="admin" key2="fb" key3="attachment"}</td>
+				<td>{$c.file_title} [{$c.file_ext}]
+				<a href="{$site.site_url}/getfile/?l={$c.file_id|md5}&ext={$c.file_ext}&id={$c.id}">{lang key1="admin" key2="fb" key3="download"}</a>
+				</td>
+			</tr>
+			{/if}
+			<tr>
+				<td colspan="2"><hr></td>
+			</tr>				
+		{/foreach}		
+	</table>
+</td></tr>
+{/if}
+
+{if !empty($o.id)}
+	<tr>
+		<th colspan="3">{lang key1="admin" key2="products" key3="add_comment"}</th>
+	</tr>  
+	<tr>
+		<td colspan="3">
+		
+			<table border="0" cellpadding="3" cellspacing="1" align="center">
+				<tr>
+					<td>{lang key1="admin" key2="fb" key3="client_see"}</td>
+					<td><input type="checkbox" name="send_comment[active]" value="1"></td>
+				</tr>
+				<tr class="odd">
+					<td>{lang key1="admin" key2="fb" key3="send_customer"}</td>
+					<td><input type="checkbox" name="send_comment[notify]" value="1"></td>
+				</tr>
+				<tr>
+					<td><a href="/{ $simpla.CONST.ADMIN_FOLDER }/?action=settings&do=mass_vars&hint=sms">{lang key1="admin" key2="fb" key3="sms"}</a></td>
+					<td><input type="checkbox" name="send_comment[sms]" value="1">  
+					{if !empty($site.sys_smsc_url)}
+					<small>({lang key1="admin" key2="orders" key3="link_willadded_auto"})</small>
+					{/if}
+					</td>
+				</tr>
+				<tr class="odd">
+					<td>{lang key1="admin" key2="elements" key3="text"}</td>
+					<td><textarea rows="6" cols="80" name="send_comment[message]"></textarea></td>					
+				</tr>
+				<tr>
+					<td>{lang key1="admin" key2="fb" key3="attachment"}</td>
+					<td><input type="file" name="files[0]"></td>
+				</tr>
+			</table>
+		
+		</td>
+	</tr>
+{/if}	
+
+
+{if (!empty($o.order_edit) OR $o.status == 0)}
+<tr><td colspan="3">
+
+  <table border="0" cellpadding="3" cellspacing="1" width="100%">
+	<tr><td width="50%" align="right">
+    <input type="hidden" name="o[id]" value="{ $o.id}" /">
+	{if !empty($o.id)}
+    <input type=submit name="o[update]" value="{lang key1="admin" key2="update"}">
+	{else}
+    <input type=submit name="o[add]" value="{lang key1="admin" key2="add"}">
+	{/if}
+	</td><td align="right">
+	{if !empty($o.id)}
+    <input class="small" type="submit" name="o[delete]" value="{lang key1="admin" key2="orders" key3="delete_all"}" onclick="if(confirm('{lang key1="admin" key2="really"}')) return true; else return false;">
+	{/if}
+	</td></tr>
+  </table>
+  
+</td></tr>
+{else}
+<tr><td colspan="3">
+
+	<blockquote><p style="color:red;">{lang key1="admin" key2="orders" key3="order_status"} <b>{$o.status_title}</b>. {lang key1="admin" key2="orders" key3="changes_forbidden"}</p></blockquote>
+
+	</td></tr>
+{/if}
+
+</table>
+
+  </form>
+  
+  
+
+{include file="footer.html" }

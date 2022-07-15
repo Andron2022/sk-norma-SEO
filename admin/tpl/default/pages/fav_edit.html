@@ -1,0 +1,65 @@
+{include file="header.html"}
+
+{if !empty($fav)}
+
+    <h1 class="mt-0"><i class="fa fa-star"></i> {lang key1="admin" key2="fav" key3="in"} ({$fav|@count}) <small><a href="?action=fav"><i class="fa fa-edit"></i></a></small></h1>
+
+{if isset($simpla.GET.updated)}
+	<table width="80%"><tr><td><blockquote>{lang key1="admin" key2="updated"}</blockquote></td></tr></table>
+{/if}
+
+{if isset($simpla.GET.added)}
+	<table width="80%"><tr><td><blockquote>{lang key1="admin" key2="added"}</blockquote></td></tr></table>
+{/if}
+
+    <form method="post">
+    <table width="80%">
+        <tr>
+            <th width="30"></th>
+            <th width="20%">{lang key1="admin" key2="fav" key3="title"}</th>
+            <th width="30%">{lang key1="admin" key2="fav" key3="your_title"}</th>
+            <th width="30%">{lang key1="admin" key2="comment"}</th>
+            <th><i class="fa fa-sort" title="{lang key1="admin" key2="status" key3="sort"}"></i></th>
+			<th width="30"><i class="fa fa-users" title="{lang key1="admin" key2="add_all"}"></i></th>
+			<th width="30"><i class="fa fa-trash" title="{lang key1="admin" key2="delete"}"></i></th>
+        </tr>
+    {foreach from=$fav value="f"}
+        <tr bgcolor="{cycle values="#ffffff,".$admin_vars.bglight }">
+            <td><a href="{$f.link}">
+            {if $f.where == 'categ'}
+                <i class="fa fa-sitemap"></i>
+            {elseif $f.where == 'pub'}
+                <i class="fa fa-bars"></i>
+            {elseif $f.where == 'product'}
+                <i class="fa fa-shopping-cart"></i>
+            {elseif $f.where == 'fb'}
+                <i class="fa fa-envelope"></i>
+            {elseif $f.where == 'order'}
+                <i class="fa fa-shopping-cart"></i>
+            {elseif $f.where == 'var'}
+                <i class="fa fa-cog"></i>
+            {elseif $f.where == 'site'}
+                <i class="fa fa-globe"></i>
+            {else}
+                <i class="fa fa-external-link"></i>
+            {/if}</a></td>
+            <td><a href="{$f.link}">{$f.row_title}</a>
+			{if !empty($f.site)}<br><small>{$f.site|delhttp}</small>{/if}
+			</td>
+            
+            <td><textarea name="fav[{$f.id}][title]" rows="2" style="width:100%;">{$f.title|escape}</textarea></td>
+            <td><textarea name="fav[{$f.id}][comment]" rows="2" style="width:100%;">{$f.comment|escape}</textarea></td>
+            <td><textarea name="fav[{$f.id}][sort]" rows="2" style="width:100%;">{$f.sort|escape}</textarea></td>
+            <td align="center">
+			{if $f.qty_admins > $f.qty_added}<a href="?action=fav&all={$f.id}" onclick="if(confirm('{lang key1="admin" key2="add_all"}')) return true; else return false;"><i class="fa fa-plus"></i></a>{else}
+			<i class="fa fa-check"></i>{/if}</td> 
+			<td align="center"><a href="?action=fav&delete={$f.id}" onclick="if(confirm('{lang key1="admin" key2="really"}')) return true; else return false;"><i class="fa fa-trash"></i></a></td>       
+    {/foreach}
+    </table>
+    <input type="submit" name="update" value="{lang key1="admin" key2="save"}">
+    </form>
+{else}
+	<h3><i class="fa fa-star"></i> {lang key1="admin" key2="fav" key3="in"}</h3>
+	<p>{lang key1="admin" key2="fav" key3="empty"}</p>
+{/if}
+{include file="footer.html"}

@@ -1,0 +1,64 @@
+{include file="header.html"}
+
+<h1 class="mt-0">{lang key1="admin" key2="prava" key3="statuses"}</h1>
+
+{if isset($simpla.GET.deleted)}
+	<table width="80%">
+		<tr>
+			<td><blockquote>{lang key1="admin" key2="deleted"}</blockquote></td>
+		</tr>
+	</table>
+{/if}
+
+{if $site_vars.list_sites|@count > 1}
+<form method="get">
+	<input type="hidden" name="action" value="settings">
+	<input type="hidden" name="do" value="statuses">
+    <select name="" onchange="top.location=this.value">
+		<option value="?action=settings&do=statuses"> - {lang key1="admin" key2="fb" key3="all_sites"}</option>
+		{foreach from=$site_vars.list_sites value="v"}
+			<option value="?action=settings&do=statuses&site_id={$v.id}"{if !empty($simpla.GET.site_id) AND $simpla.GET.site_id == $v.id} selected="selected"{/if}>{$v.name_short} {$v.site_url}</option>  
+		{/foreach}
+	</select>
+</form>
+{/if}
+
+
+
+{if $list_statuses|@count > 0}
+	<table width="80%">
+		<tr>
+			<th>ID</th>
+			<th>{lang key1="admin" key2="elements" key3="name"}</th>
+			<th>{lang key1="admin" key2="status" key3="title_client"}</th>
+			<th><i class="fa fa-sort" title="{lang key1="admin" key2="status" key3="sort"}"></i></th>
+			<th><i class="fa fa-eye" title="{lang key1="admin" key2="status" key3="active"}"></i></th>
+			<th><i class="fa fa-user" title="{lang key1="admin" key2="status" key3="show_client"}"></i></th>
+			<th><i class="fa fa-edit" title="{lang key1="admin" key2="edit"}"></i></th>
+			<th>{lang key1="admin" key2="website"}</th>
+			<th>{lang key1="admin" key2="mass" key3="code"}</th>
+		</tr>
+		
+		{ foreach from=$list_statuses value="v" }
+			<tr {cycle values=",class=odd"}>
+				<td><a href="{$v.href}">{ $v.id }</a></td>
+				<td><a href="{$v.href}">{$v.title}</a></td>
+				<td><a href="{$v.href}">{$v.title_client}</a></td>
+				<td align="center"><a href="{$v.href}">{$v.sort}</a></td>
+				<td align="center"><a href="{$v.href}">{if $v.active == 1}<i class="fa fa-check"></i>{else}<i class="fa fa-minus"></i>{/if}</a></td>
+				<td align="center"><a href="{$v.href}">{if $v.show_client == 1}<i class="fa fa-check"></i>{else}<i class="fa fa-minus"></i>{/if}</a></td>
+				<td align="center"><a href="{$v.href}">{if $v.edit == 1}<i class="fa fa-check"></i>{else}<i class="fa fa-minus"></i>{/if}</a></td>
+				<td align="center"><a href="{$v.href}">{if $v.site > 0}{$v.site_url}{else}{lang key1="admin" key2="for_all"}{/if}</a></td>
+				<td>{$v.alias}</td>
+			</tr>
+		{ /foreach }
+	</table>
+
+{else}
+	<p>{lang key1="admin" key2="user" key3="list_empty"}</p>
+{/if}          
+
+<p><a href="?action=settings&do=statuses&id=0"><i class="fa fa-plus"></i> {lang key1="admin" key2="add"}</a></p>
+
+
+{ include file="footer.html" }          

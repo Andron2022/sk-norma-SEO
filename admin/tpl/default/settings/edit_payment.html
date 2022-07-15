@@ -1,0 +1,127 @@
+{include file="header.html"}
+
+<h1 class="mt-0">{if $row.id > 0}{lang key1="admin" key2="payments" key3="editing"}
+{else}{lang key1="admin" key2="payments" key3="adding"}{/if}</h1>
+
+{if isset($simpla.GET.updated)}
+	<table width="80%">
+		<tr>
+			<td><blockquote>{lang key1="admin" key2="updated"}</blockquote></td>
+		</tr>
+	</table>
+{elseif isset($simpla.GET.added)}
+	<table width="80%">
+		<tr>
+			<td><blockquote>{lang key1="admin" key2="added"}</blockquote></td>
+		</tr>
+	</table>
+{/if}
+
+	<table width="80%">
+		<form method="post">
+			<tr>
+				<th width=200>{lang key1="admin" key2="user" key3="field"}</th>
+				<th>{lang key1="admin" key2="user" key3="value"}</th>
+			</tr>
+			
+			<tr class="{cycle values=",odd"}">
+				<td width=200>ID</td>
+				<td>{ if $row.id }{$row.id}{ else }{lang key1="admin" key2="user" key3="not_set"}{ /if }</td>
+			</tr>
+			
+			<tr class="{cycle values=",odd"}">
+				<td width=200>{lang key1="admin" key2="website"}</td>
+				<td>
+					<select name="payment[site]">
+						<option value="0">- {lang key1="admin" key2="for_all"}</option>
+						{foreach from=$sites value="s"}
+							<option value="{$s.id}"{if $s.id == $row.site} selected="selected"{/if}>{$s.site_url}</option>
+						{/foreach}
+					</select>
+				</td>
+			</tr>
+			
+			<tr class="{cycle values=",odd"}">
+				<td width=200>{lang key1="admin" key2="elements" key3="name"}</td>
+				<td><input type=text name="payment[title]" style="width:100%;" maxlength=100 value="{ $row.title|htmlspecialchars }" /></td>
+			</tr>
+			
+			<tr class="{cycle values=",odd"}">
+				<td width=200>{lang key1="admin" key2="status" key3="sort"}</td>
+				<td><input type=text name="payment[sort]" style="width:100%;" maxlength=100 value="{ $row.sort|htmlspecialchars }" /></td>
+			</tr>
+			
+			<tr class="{cycle values=",odd"}">
+				<td width=200>{lang key1="admin" key2="payments" key3="price_min"}</td>
+				<td><input type=text name="payment[price_min]" style="width:100%;" maxlength=100 value="{ $row.price_min|htmlspecialchars }" /></td>
+			</tr>
+
+			<tr class="{cycle values=",odd"}">
+				<td width=200>{lang key1="admin" key2="payments" key3="price_max"}</td>
+				<td><input type=text name="payment[price_max]" style="width:100%;" maxlength=100 value="{ $row.price_max|htmlspecialchars }" /></td>
+			</tr>
+						
+			<tr class="{cycle values=",odd"}">
+				<td width=200>{lang key1="admin" key2="payments" key3="currency"}</td>
+				<td>
+					<select name="payment[currency]">
+						<option value="rur"{if $row.currency == "rur"} selected="selected"{/if}>{lang key1="admin" key2="products" key3="rub"}</option>
+						<option value="usd"{if $row.currency == "usd"} selected="selected"{/if}>{lang key1="admin" key2="products" key3="usd"}</option>
+						<option value="euro"{if $row.currency == "euro"} selected="selected"{/if}>{lang key1="admin" key2="products" key3="euro"}</option>
+					</select>
+				</td>
+			</tr>
+		  
+			<tr class="{cycle values=",odd"}">
+				<td width=200>{lang key1="admin" key2="payments" key3="active"}</td>
+				<td><input type=checkbox name="payment[active]" value="1"{if $row.active == "1"} checked="checked"{/if} /></td>
+			</tr>
+
+			<tr class="{cycle values=",odd"}">
+				<td width=200>{lang key1="admin" key2="payments" key3="description"}</td>
+				<td>
+					<textarea name="payment[description]" rows="5" style="width:100%;">{$row.description}</textarea>
+				</td>
+			</tr>
+			
+			<tr class="{cycle values=",odd"}">
+				<td width=200>{lang key1="admin" key2="payments" key3="new_window"}</td>
+				<td><input type=checkbox name="payment[new_window]" value="1"{if $row.new_window == "1"} checked="checked"{/if} /></td>
+			</tr>
+
+			<tr class="{cycle values=",odd"}">
+				<td width=200>{lang key1="admin" key2="payments" key3="what_todo"}</td>
+				<td><input type=text name="payment[what_todo]" style="width:100%;" maxlength=100 value="{ $row.what_todo|htmlspecialchars }" /></td>
+			</tr>
+						
+			<tr class="{cycle values=",odd"}">
+				<td width=200>{lang key1="admin" key2="payments" key3="encoding"}</td>
+				<td>
+					<select name="payment[encoding]">
+						<option value="utf-8"{if $row.encoding == "utf-8"} selected="selected"{/if}>utf-8</option>
+						<option value="windows-1251"{if $row.encoding == "windows-1251"} selected="selected"{/if}>windows-1251</option>
+						<option value="iso-8859-1"{if $row.encoding == "iso-8859-1"} selected="selected"{/if}>iso-8859-1</option>
+					</select>
+				</td>
+			</tr>
+			
+			<tr class="">
+				<td colspan=2>
+					{ include file="settings/options.html" }
+				</td>
+			</tr>
+			
+			<tr class="{cycle values=",odd"}">
+				<td colspan=2 align=center>
+					<input type=submit name=save value="{lang key1="admin" key2="save"}">
+					{ if !empty($row.id) }
+						<input class="small" type="submit" name="delete" value="{lang key1="admin" key2="delete"}" onclick="if(confirm('{lang key1="admin" key2="really"}')) return true; else return false;">
+					{ /if }
+				</td>
+			</tr>
+		</form>
+	</table>
+
+
+
+{ include file="footer.html" } 

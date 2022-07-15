@@ -1,0 +1,95 @@
+{include file="header.html"}
+
+<h1 class="mt-0 mb-0">{lang key1="admin" key2="prava" key3="search"}</h1>
+
+
+{ if !empty($search_area) }
+	{ assign var="search_total" value=$num_items}
+{ else }
+	{ math equation="a+c+d" a=$num_products c=$num_publications d=$num_categories assign="search_total"}
+{ /if }
+
+
+{ if !empty($search_total) }
+	<table width="80%"><tr><td><blockquote>{lang key1="admin" key2="index" key3="you_searched"}: <b>{ $query }</b>
+	<br>{lang key1="admin" key2="index" key3="found"} 
+	{ if $search_area }
+		{ if $search_area eq 'products'}{lang key1="admin" key2="index" key3="found_offers"}:{/if}
+		{ if $search_area eq 'publications'}{lang key1="admin" key2="index" key3="found_pubs"}:{/if}
+		{ if $search_area eq 'categories'}{lang key1="admin" key2="index" key3="found_categs"}:{/if}
+	{ else }
+		{lang key1="admin" key2="index" key3="results"}: 
+	{ /if }
+	<b>{ $search_total }</b>
+	</blockquote></td></tr></table>
+
+	<h3>{lang key1="admin" key2="index" key3="found_results"}:</h3>
+
+	{ if $search_area }
+		<ul>
+		{ foreach from=$items item=search_item }
+			{ if $search_area eq 'products' }
+				<li><a href="?action=products&do=edit&id={$search_item.id}">{$search_item.name} {$search_item.name_short}</a> <small>{$search_item.date_insert|date_format:"%d.%m.%Y"}</small></li>
+			{ /if }
+			
+			{ if $search_area eq 'publications' }
+				<li><a href="?action=info&do=edit_publication&id={$search_item.id}">{$search_item.name}</a> <small>{$search_item.date_insert|date_format:"%d.%m.%Y"}</small></li>
+			{ /if }
+			
+			{ if $search_area eq 'categories' }
+				<li><a href="?action=info&do=edit_categ&id={$search_item.id}">{$search_item.title}</a> <small>{$search_item.date_insert|date_format:"%d.%m.%Y"}</small></li>
+			{ /if }
+		{ /foreach } 
+		</ul>
+		{if !empty($total_pages) AND $total_pages > 1 }
+			<b>{lang key1="admin" key2="categs"}:</b>
+			{math equation="a+1" a=$total_pages assign="total_pages"}
+			
+			{for start=1 stop=$total_pages step=1 value="i"}
+				{if $i != $current_page}
+					<a href="?action=search&q={$query}&where={$search_area}&p={$i}">{$i}</a>&nbsp;
+				{else}{$i}{/if}
+			{/for} 
+		<br>{ /if }
+		
+	{ else }
+	
+		<ul>
+			{if $num_products > 0 }<li><b>{lang key1="admin" key2="offers"}:</b> <a href="?action=search&q={$query}&where=products">{ $num_products }</a></li> { /if }
+			
+			{ if $num_publications > 0 }<li><b>{lang key1="admin" key2="publications"}:</b> <a href="?action=search&q={$query}&where=publications">{ $num_publications }</a></li> { /if }
+			
+			{ if $num_categories > 0 }<li><b>{lang key1="admin" key2="categs"}:</b> <a href="?action=search&q={$query}&where=categories">{ $num_categories }</a></li> { /if }
+		</ul>
+		
+		{ if $num_products > 0 }
+			<b>{lang key1="admin" key2="index" key3="offers_in_catalog"}</b>&nbsp;<small>(<a href="?action=search&q={$query}&where=products">{lang key1="admin" key2="products" key3="total_views"}: {$num_products}</a>, {lang key1="admin" key2="index" key3="shown_last"} {$search_frontpage})</small><br><br>
+			{ foreach from=$search_results_products item=product }
+				<li><a href="?action=products&do=edit&id={$product.id}">{$product.name} {$product.name_short}</a> <small>{$product.date_insert|date_format:"%d.%m.%Y"}</small></li>
+			{ /foreach } 
+			<br>
+		{ /if }
+
+
+		{ if $num_publications > 0 }
+			<b>{lang key1="admin" key2="index" key3="result_pubs"}</b>&nbsp;<small>(<a href="?action=search&q={$query}&where=publications">{lang key1="admin" key2="products" key3="total_views"}: {$num_publications}</a>, {lang key1="admin" key2="index" key3="shown_last"} {$search_frontpage})</small><br><br>
+			{ foreach from=$search_results_publications item=publication }
+				<li><a href="?action=info&do=edit_publication&id={$publication.id}">{$publication.name}</a> <small>{$publication.date_insert|date_format:"%d.%m.%Y"}</small></li>
+			{ /foreach } 
+		<br>{ /if }
+
+		{ if $num_categories > 0 }
+			<b>{lang key1="admin" key2="index" key3="result_categs"}</b>&nbsp;<small>(<a href="?action=search&q={$query}&where=categories">{lang key1="admin" key2="products" key3="total_views"}: {$num_categories}</a>, {lang key1="admin" key2="index" key3="shown_last"} {$search_frontpage})</small><br><br>
+			{ foreach from=$search_results_categories item=category }
+				<li><a href="?action=info&do=edit_categ&id={$category.id}">{$category.title}</a> <small>{$category.date_insert|date_format:"%d.%m.%Y"}</small></li>
+			{ /foreach } 
+		<br>{ /if }
+	{ /if }
+
+{ else }
+	<table width="80%"><tr><td><blockquote>{lang key1="admin" key2="index" key3="you_searched"}: <b>{ $query }</b><br>
+	{lang key1="admin" key2="index" key3="nothing_found"}</td></tr></table>
+{ /if }
+
+{include file="pages/pages.html"}
+{include file="footer.html"}

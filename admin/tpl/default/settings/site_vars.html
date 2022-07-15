@@ -1,0 +1,114 @@
+{include file="header.html"}
+{assign var="do" value=$admin_vars.uri.do}
+{assign var="mode" value=$admin_vars.uri.mode}
+
+<h1 class="mt-0">{lang key1="admin" key2="elements" key3="title"}</h1>
+{include file="settings/elements_menu.html"}
+
+<table width="80%">
+	<tr>
+		<td>
+			
+<blockquote>{if $mode == "img"}
+{lang key1="admin" key2="set" key3="var_help1"}
+{else}
+{lang key1="admin" key2="set" key3="var_help2"}
+{/if}</blockquote>
+  
+<div class="center"> 
+<form method="get">
+<input type="hidden" name="action" value="settings" />
+<input type="hidden" name="do" value="site_vars" />
+{if $mode == "sys"}
+<input type="hidden" name="mode" value="sys" />
+{/if}
+{lang key1="admin" key2="fb" key3="filter"}: 
+<select name="site_id">
+<option value="-1">{lang key1="admin" key2="set" key3="all_vars"}</option>
+<option value="0"{if isset($simpla.GET.site_id) AND $simpla.GET.site_id == "0"} selected{/if}>{lang key1="admin" key2="elements" key3="common_vars"}</option>
+{foreach from=$sites value="value"}
+<option value="{$value.id}"{if isset($simpla.GET.site_id) AND $simpla.GET.site_id == $value.id} selected{/if}>{$value.site_url|delhttp}</option>
+{/foreach}
+</select>
+ {lang key1="admin" key2="elements" key3="text" case="lower"} <input size="20" type="text" name="q" value="{if isset($simpla.GET.q)}{$simpla.GET.q|escape}{/if}" />
+ <input type="submit" value="{lang key1="admin" key2="orders" key3="find"} &raquo;" class="small" />
+</form>
+</div>
+
+{if isset($simpla.GET.deleted)}
+  <blockquote class="red"><a href="?action=settings&do=site_vars">{lang key1="admin" key2="deleted"} { $simpla.GET.deleted }</a></blockquote>
+{/if}
+
+
+		</td>
+	</tr>
+</table>
+
+{if $list_vars|@count > 0}
+<form method="post">
+		<table width="80%">
+			<tr>
+				<th width="5%">{lang key1="admin" key2="set" key3="auto"}</th>
+				<th width="20%">{lang key1="admin" key2="user" key3="name"}</th>
+				{if $mode == "img" || (isset($simpla.GET.q) AND $simpla.GET.q|truncate:4:"":false == "img_") }
+					<th width="10%">{lang key1="admin" key2="elements" key3="width"}</th>
+					<th width="10%">{lang key1="admin" key2="elements" key3="height"}</th>
+				{else}
+					<th width="20%">{lang key1="admin" key2="elements" key3="value"}</th>
+				{/if}
+				<th>{lang key1="admin" key2="website"}</th>
+				<th>{lang key1="admin" key2="products" key3="desc"}</th>
+				{if $mode != "sys" AND $mode != "img"}<th width="5%"><i class="fa fa-trash" title="{lang key1="admin" key2="delete"}"></i> <input type="checkbox" onclick="CheckAll(this,'del[]')"/></th>{/if}
+			</tr>
+	
+  	{ foreach from=$list_vars value="value" }
+      <tr {cycle values=",class=odd" }>
+        <td class="center">{if $value.autoload == "1"}<i class="fa fa-check"></i>{else}<i class="fa fa-minus"></i>{/if}</td>
+  		<td nowrap><a href="?action=settings&do=site_vars&id={ $value.id }"><i class="fa fa-pencil"></i> { $value.name }</a></td>
+
+        {if $mode == "img" || (isset($simpla.GET.q) AND $simpla.GET.q|truncate:4:"":false == "img_") }
+    			<td align="center">{ $value.width }</td>
+    			<td align="center">{ $value.height }</td>
+        {else}
+    			<td>
+				{if $value.type == "checkbox"}
+					{if empty($value.value)}
+						<i class="fa fa-minus"></i>
+					{else}
+						<i class="fa fa-check"></i>
+					{/if}
+				{else}
+					{ $value.value|strip_tags|truncate:50:"...":false }
+				{/if}
+				</td>
+        {/if}
+
+  			<td>			
+			{if $value.site_id == 0}- {lang key1="admin" key2="for_all"}
+			{else}
+				{if empty($value.website)}
+					<span style="color:red; font-weight:bold;">?</span>
+				{else}
+					{ $value.website|delhttp}
+				{/if}
+			{/if}</td>
+  			<td>{ $value.description|strip_tags|truncate:250:"...":false  }</td>
+  			{if $mode != "sys" AND $mode != "img"}<td class="center"><input name="del[]" type="checkbox" value="{ $value.id }" /></td>{/if}
+			</tr>
+		{ /foreach }
+     </table>
+    {if $mode != "sys" AND $mode != "img"}
+		<table width="80%">
+  		<tr><td class="right"><input type="submit" name="delete" value="{lang key1="admin" key2="del_selected"}" onclick="if(confirm('{lang key1="admin" key2="really"}')) return true; else return false;" class="small" /></td></tr></table>
+    {/if}
+
+		</form>
+            
+{elseif isset($simpla.GET.q)}
+  <p>{lang key1="admin" key2="index" key3="you_searched"} <b>{$simpla.GET.q}</b>. {lang key1="admin" key2="set" key3="list_empty"} <a href="?action=settings&do=site_vars&id=0&hint={$simpla.GET.q}">{lang key1="admin" key2="elements" key3="add_var_now"}</a>.</p> 
+{else}
+  <p>{lang key1="admin" key2="list_empty"}</p>
+{ /if }
+
+{include file="pages/pages.html"}
+{ include file="footer.html" }

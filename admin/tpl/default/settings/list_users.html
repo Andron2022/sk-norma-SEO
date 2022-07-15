@@ -1,0 +1,61 @@
+{include file="header.html"}
+
+<h1 class="mt-0 mb-0">{lang key1="admin" key2="user" key3="list_users"}</h1>
+	<ul>
+		<li>{if empty($simpla.GET.admin)}<a href="?action=settings&do=users&admin=1">{lang key1="admin" key2="user" key3="admins"}</a>{else}<b>{lang key1="admin" key2="user" key3="admins"}</b>{/if}</li>
+		<li>{if empty($simpla.GET.news)}<a href="?action=settings&do=users&news=1">{lang key1="admin" key2="user" key3="subscribers"}</a>{else}<b>{lang key1="admin" key2="user" key3="subscribers"}</b>{/if}</li>
+		<li>{if empty($simpla.GET.all)}<a href="?action=settings&do=users&all=1">{lang key1="admin" key2="user" key3="others"}</a>{else}<b>{lang key1="admin" key2="user" key3="others"}</b>{/if}</li>
+	</ul>
+
+{if $list_users|@count > 0}
+
+{if isset($simpla.GET.deleted)}
+	<table width="80%">
+		<tr>
+			<td><blockquote>{lang key1="admin" key2="deleted"}</blockquote></td>
+		</tr>
+	</table>
+{/if}
+
+<table width="80%">
+	<tr>
+		<th>ID</th>
+		<th>{lang key1="admin" key2="prava" key3="avatar"}</th>
+		<th>{lang key1="admin" key2="user" key3="fio"}</th>
+		<th><i class="fa fa-user" title="{lang key1="admin" key2="user" key3="login"}"></i></th>
+		<th><i class="fa fa-at" title="{lang key1="admin" key2="user" key3="email"}"></i></th>
+		<th><i class="fa fa-check" title="{lang key1="admin" key2="status" key3="active"}"></i></th>
+		<th><i class="fa fa-folder-open" title="{lang key1="admin" key2="prava" key3="info"}"></i></th>
+		<th><i class="fa fa-shopping-cart" title="{lang key1="admin" key2="prava" key3="products"}"></i></th>
+		<th><i class="fa fa-phone-square" title="{lang key1="admin" key2="prava" key3="orders"}"></i></th>
+		<th><i class="fa fa-envelope" title="{lang key1="admin" key2="prava" key3="feedback"}"></i></th>
+		<th><i class="fa fa-tasks" title="{lang key1="admin" key2="prava" key3="admin"}"></i></th>
+		<th><i class="fa fa-newspaper-o" title="{lang key1="admin" key2="prava" key3="news"}"></i></th>
+	</tr>
+ 
+	{ foreach from=$list_users value="value" }
+		<tr {cycle values=",class=odd"}>
+		{ assign var="r_href" value="?action=settings&do=add_user&id=".$value.id }
+		<td><a href="{$r_href}">{ $value.id }</a></td>
+		<td align="center"><a href="{$r_href}">{if !empty($value.avatar)}<img src="{$value.avatar}" width="50">{else}<i class="fa fa-user"></i>{/if}</a></td>
+		<td><a href="{$r_href}"><i class="fa fa-pencil"></i> { $value.name|stripslashes }</a></td>
+		<td><a href="{$r_href}">{ $value.login|stripslashes }</a></td>
+		<td><a href="{$r_href}">{ $value.email|stripslashes }</a></td>
+		<td align="center"><a href="{$r_href}">{if empty($value.active)}<i class="fa fa-minus" style="color:{$admin_vars.bgdark}"></i>{else}<i class="fa fa-check" style="color:{$admin_vars.bgdark}"></i>{/if}</a></td>
+		<td align=center>{ if !empty($value.info)}<i class="fa fa-check" style="color:{$admin_vars.bgdark}"></i>{/if}</td>
+		<td align=center>{ if !empty($value.products)}<i class="fa fa-check" style="color:{$admin_vars.bgdark}"></i>{/if}</td>
+		<td align=center>{ if !empty($value.orders)}<i class="fa fa-check" style="color:{$admin_vars.bgdark}"></i>{/if}</td>
+		<td align=center>{ if !empty($value.feedback) }<i class="fa fa-check" style="color:{$admin_vars.bgdark}"></i>{/if}</td>
+		<td align=center>{ if !empty($value.settings) }<i class="fa fa-check" style="color:{$admin_vars.bgdark}"></i>{/if}</td>
+		<td align=center>{ if !empty($value.news) }<i class="fa fa-check" style="color:{$admin_vars.bgdark}"></i>{/if}</td>
+	</tr>
+  { /foreach }        
+</table>
+
+{else}
+	<p>{lang key1="admin" key2="user" key3="list_empty"}</p>
+{/if}          
+
+
+{include file="pages/pages.html"}
+{ include file="footer.html" }          

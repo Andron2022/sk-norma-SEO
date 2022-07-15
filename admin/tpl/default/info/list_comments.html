@@ -1,0 +1,109 @@
+{include file="header.html"}
+
+<h1 class="mt-0">{lang key1="admin" key2="comments"}</h1>
+
+<p><a href="?action=comments&id=0"><i class="fa fa-plus"></i></a> <a href="?action=comments&id=0">{lang key1="admin" key2="add"}</a></p> 
+
+
+  {if !empty($simpla.GET.deleted)}
+    <table width="80%"><tr><td><blockquote>{$simpla.GET.deleted} {lang key1="admin" key2="deleted"}</blockquote></td></tr></table>
+  {/if}
+
+  {if !empty($simpla.GET.confirmed)}
+    <table width="80%"><tr><td><blockquote>{$simpla.GET.confirmed} {lang key1="admin" key2="updated"}</blockquote></td></tr></table>
+  {/if}
+  
+  {if $filter_comments|@count > 1}
+    <form method="get">
+      <input type="hidden" name="action" value="comments">
+      {literal}
+      <select onChange="if(this.options[this.selectedIndex].value!=''){window.location=this.options[this.selectedIndex].value}else{this.options[selectedIndex=0];}">
+      {/literal}
+         <option value="?action=comments">- {lang key1="admin" key2="fb" key3="filter"}</option>
+        {foreach value="filter" from=$filter_comments}
+          {if $filter.record_type == "pub"}
+            {assign var="tophref" value="action=comments&record_id=".$filter.pub_id."&record_type=".$filter.record_type}
+            {if $simpla.SERVER.QUERY_STRING == $tophref}
+              {assign var="selected" value=" selected"}
+            {else}
+              {assign var="selected" value=""}
+            {/if}
+            <option value="?{$tophref}" {$selected}>{$filter.pub_title}</option>
+          {elseif $filter.record_type == "categ"}
+            {assign var="tophref" value="action=comments&record_id=".$filter.categ_id."&record_type=".$filter.record_type}
+            {if $simpla.SERVER.QUERY_STRING == $tophref}
+              {assign var="selected" value=" selected"}
+            {else}
+              {assign var="selected" value=""}
+            {/if}
+            <option value="?{$tophref}" {$selected}>{$filter.categ_title}</option>
+
+          {elseif $filter.record_type == "catalog"}
+            {assign var="tophref" value="action=comments&record_id=".$filter.catalog_id."&record_type=".$filter.record_type}
+            {if $simpla.SERVER.QUERY_STRING == $href}
+              {assign var="selected" value=" selected"}
+            {else}
+              {assign var="selected" value=""}
+            {/if}
+            <option value="?{$tophref}" {$selected}>{$filter.catalog_title}</option>
+          {elseif $filter.record_type == "product"}
+            {assign var="tophref" value="action=comments&record_id=".$filter.product_id."&record_type=".$filter.record_type}
+            {if $simpla.SERVER.QUERY_STRING == $tophref}
+              {assign var="selected" value=" selected"}
+            {else}
+              {assign var="selected" value=""}
+            {/if}
+            <option value="?{$tophref}" {$selected}>{$filter.product_title}</option>
+          {elseif $filter.record_type == "comment"}
+            {*<option value="">comment</option>*}
+          {else}
+          {/if}
+        {/foreach}
+      </select> 
+    </form>
+  {/if} 
+
+  {if $list_comments|@count > 3}
+    {include file="pages/pages.html"}
+  {/if}
+
+  
+{if $list_comments|@count > 0 }
+  <table width="80%">
+	<form method=post name=form1>
+    <tr>
+      <th>{lang key1="admin" key2="products" key3="status"}</th>
+      <th><i class="fa fa-edit"></i></th>
+      <th>{lang key1="admin" key2="date"}</th>
+      <th>{lang key1="admin" key2="author"}</th>
+      <th width="60%">{lang key1="admin" key2="elements" key3="text"}</th>
+      <th><i class="fa fa-trash"></i> <INPUT onclick="CheckAll(this,'del[]')" type=checkbox></th>
+    </tr>
+
+    {foreach from=$list_comments value="value"  }
+    <tr {cycle values=",class=odd"}>
+        <td align="center"><a href="{$value.rowhref}">{if $value.active == 1}
+            <i class="fa fa-check" title="{lang key1="admin" key2="sidebar" key3="shown"}"></i>{elseif $value.active == 0}
+			<i class="fa fa-question-circle" style="color:red;" title="{lang key1="admin" key2="sidebar" key3="to_moderate"}"></i>
+			{else}<i class="fa fa-minus" title="{lang key1="admin" key2="sidebar" key3="blocked"}"></i>{/if}</a></td>
+        <td align="center"><a href="{$value.rowhref}"><i class="fa fa-pencil"></i></a></td>
+        <td><a href="{$value.rowhref}">{$value.inserted}</a> 
+            { if $value.active == 1 && $value.record_type != 'comment'}<a href="{$value.rowhref}&add=1" title="{lang key1="admin" key2="add_subcomment"}"><i class="fa fa-reply"></i></a>{/if}
+        </td>
+        <td><a href="{$value.rowhref}">{ $value.u_email}{if !empty($value.u_name)} ({$value.u_name}){/if}</a></td>
+        <td>{if !empty($value.files_qty)}<i class="fa fa-paperclip" title="{lang key1="admin" key2="there_files"}"></i> {/if}{if !empty($value.fotos_qty)}<i class="fa fa-camera" title="{lang key1="admin" key2="there_pics"}"></i> {/if}<a href="{$value.rowhref}">{ $value.comment_text|truncate:150}</a></td>
+        <td align=center><INPUT type=checkbox name=del[] value="{ $value.id }"></td>
+    </tr>
+    {/foreach }
+
+    <tr>
+      <td colspan=3><input type="submit" name="confirm_comments" value="{lang key1="admin" key2="ok_selected"}" /></td>
+      <td colspan=3 align=right><input type="submit" class="small" name="delete" value="{lang key1="admin" key2="del_selected"}" onclick="return confirm('{lang key1="admin" key2="really"}')" /></td></tr>
+  </form></table>
+
+{else}
+<blockquote><p>{lang key1="admin" key2="set" key3="list_empty"}</p></blockquote>
+{/if}
+
+{include file="pages/pages.html"}
+{include file="footer.html"}

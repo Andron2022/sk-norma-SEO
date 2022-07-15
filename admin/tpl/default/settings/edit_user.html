@@ -1,0 +1,289 @@
+{include file="header.html"}
+
+<h1 class="mt-0 mb-0">{if $user.id > 0}{lang key1="admin" key2="user" key3="editing"}{else}{lang key1="admin" key2="user" key3="adding"}{/if}</h1>
+
+<table width="80%"><tr><td>
+	<blockquote>{lang key1="admin" key2="user" key3="help"}</blockquote>
+
+	{if isset($simpla.GET.updated)}
+		<blockquote>{lang key1="admin" key2="updated"}</blockquote>
+	{elseif isset($simpla.GET.added)}
+		<blockquote>{lang key1="admin" key2="added"}</blockquote>
+	{/if}
+</td></tr></table>
+
+<table width="80%">
+	<tr>
+		<th width=200>{lang key1="admin" key2="user" key3="field"}</th>
+		<th>{lang key1="admin" key2="user" key3="value"}</th>
+	</tr>
+	
+	<form method="post" enctype="multipart/form-data">
+	<tr {cycle values=",class=odd" }>
+		<td width=200>ID</td>
+		<td>{ if !empty($user.id) }{$user.id}{else }{lang key1="admin" key2="user" key3="not_set"}{/if}</td>
+	</tr>
+
+	{ if !empty($user.id) }
+	<tr {cycle values=",class=odd" }>
+		<td width=200>{lang key1="admin" key2="user" key3="available_site"}</td>
+		<td>{ if !empty($user.site_id) }
+			<a href="?action=settings&do=site&mode=edit&id={$user.site_id}">{$user.site_id}: {$user.site_url|delhttp}</a>
+		{else}{lang key1="admin" key2="user" key3="all"}{/if}</td>
+	</tr>
+	{/if}
+
+	{ if !empty($user.id) }
+	<tr {cycle values=",class=odd" }>
+		<td width=200>{lang key1="admin" key2="user" key3="last_login"}</td>
+		<td>
+        {if $user.last_login == '0000-00-00 00:00:00' OR empty($user.last_login)}
+			{lang key1="admin" key2="user" key3="no_logged"}
+		{else}
+			<small>{$user.last_login} ({$user.last_ip})</small>
+		{/if} 
+		 {lang key1="admin" key2="user" key3="reg_date"}: <small>{$user.date_insert}</small></td>
+	</tr>
+	{/if}
+	
+	<tr {cycle values=",class=odd" }>
+		<td width=200>{lang key1="admin" key2="user" key3="fio"}</td>
+		<td><input type=text name="name" style="width:100%;" maxlength=100 value="{ $user.name|stripslashes|htmlspecialchars }" /></td>
+	</tr>
+          
+	<tr {cycle values=",class=odd" }>
+		<td width=200>{lang key1="admin" key2="user" key3="login"}</td>
+		<td><input type=text name="login" style="width:100%;" maxlength=100 value="{ $user.login|stripslashes|htmlspecialchars }" /></td>
+	</tr>
+	
+	<tr {cycle values=",class=odd" }>
+		<td width=200>{lang key1="admin" key2="user" key3="password"}</td>
+		<td>
+			{ if $user.id }<small>{lang key1="admin" key2="user" key3="enter_new_password"}</small><br>{/if}
+          <input type=text name="passwd" style="width:100%;" maxlength=100 value="" /></td>
+	</tr>
+
+	<tr {cycle values=",class=odd" }>
+		<td width=200>{lang key1="admin" key2="user" key3="email"}</td>
+		<td><input type=text name="email" style="width:100%;" maxlength=100 value="{ $user.email|stripslashes|htmlspecialchars }" /></td>
+	</tr>
+	
+	<tr {cycle values=",class=odd" }>
+		<td width=200>{lang key1="admin" key2="user" key3="note"}<br><small>{lang key1="admin" key2="user" key3="admin_only"}</small></td>
+		<td><textarea name="memo" style="width:100%;" rows="4">{ $user.memo }</textarea></td>
+	</tr>
+	
+	
+	<tr>
+        <td colspan="2">
+        <a href="javascript: ShowHide('block-1')" style="border-bottom: 1px dashed blue;">{lang key1="admin" key2="elements" key3="extra"}</a>
+			<div style="display: none;" id="block-1">
+				<table width="100%">
+					<tbody>
+					
+						<tr {cycle values=",class=odd" }>
+							<td width="200">{lang key1="admin" key2="user" key3="phone"}</td>
+							<td><input type=text name=phone_mobil style="width:100%;" maxlength=255 value="{ $user.phone_mobil|stripslashes|htmlspecialchars }" /></td>
+						</tr>
+
+						<tr {cycle values=",class=odd" }>
+							<td width="200">{lang key1="admin" key2="user" key3="messenger"}</td>
+							<td><input type=text name=icq style="width:100%;" maxlength=255 value="{ $user.icq|stripslashes|htmlspecialchars }" /></td>
+						</tr>										
+					
+						<tr class="{cycle values=" ,odd" }">
+							<td width="200">
+							{lang key1="admin" key2="user" key3="country"}
+							</td>
+							<td>
+							<input type=text name=country style="width:100%;" maxlength=255 value="{ $user.country|stripslashes|htmlspecialchars }" />
+							</td>
+						</tr>
+						
+						<tr class="{cycle values=" ,odd" }">
+							<td width="200">
+							{lang key1="admin" key2="user" key3="city"}
+							</td>
+							<td>
+							<input type=text name=city style="width:100%;" maxlength=255 value="{ $user.city|stripslashes|htmlspecialchars }" />
+							</td>
+						</tr>
+
+						<tr class="{cycle values=" ,odd" }">
+							<td width="200">
+							{lang key1="admin" key2="user" key3="birth_day"}
+							</td>
+							<td>
+							{ html_select_date time=$user.birth_day start_year="-70" end_year="-3" day_value_format="%02d" month_format="%m" field_order="DMY" field_array="birth_day" prefix="" lang=$site_vars.lang_admin year_empty="-" 
+							month_empty="-" day_empty="-"}
+							</td>
+						</tr>
+
+						<tr class="{cycle values=" ,odd" }">
+							<td width="200">
+							{lang key1="admin" key2="user" key3="user_interes"}
+							</td>
+							<td>
+							<textarea name="user_interes" style="width:100%;" rows="2">{ $user.user_interes }</textarea>
+							</td>
+						</tr>
+
+						<tr class="{cycle values=" ,odd" }">
+							<td width="200">
+							{lang key1="admin" key2="user" key3="user_about"}
+							</td>
+							<td>
+							<textarea name="user_about" style="width:100%;" rows="2">{ $user.user_about }</textarea>
+							</td>
+						</tr>
+
+						<tr class="{cycle values=" ,odd" }">
+							<td width="200">
+							{lang key1="admin" key2="user" key3="url"}
+							</td>
+							<td>
+							<input type=text name=url style="width:100%;" maxlength=255 value="{ $user.url|stripslashes|htmlspecialchars }" />
+							</td>
+						</tr>
+
+						<tr class="{cycle values=" ,odd" }">
+							<td width="200">
+							{lang key1="admin" key2="user" key3="pers_hi"}
+							</td>
+							<td>
+							<textarea name="pers_hi" style="width:100%;" rows="2">{ $user.pers_hi }</textarea>
+							</td>
+						</tr>
+
+						<tr class="{cycle values=" ,odd" }">
+							<td width="200">
+							{lang key1="admin" key2="user" key3="gender"}
+							</td>
+							<td>							
+							<input type="radio" name="gender" value="m" {if $user.gender|lower == "m"}checked="checked"{/if}> {lang key1="admin" key2="user" key3="gender_m"}<br>
+							<input type="radio" name="gender" value="f"{if $user.gender|lower == "f"}checked="checked"{/if}> {lang key1="admin" key2="user" key3="gender_f"}<br>
+							<input type="radio" name="gender" value="-"{if $user.gender|lower != "m" AND $user.gender|lower != "f"}checked="checked"{/if}> -<br>
+							</td>
+						</tr>
+
+						<tr class="{cycle values=" ,odd" }">
+							<td width="200">
+							{lang key1="admin" key2="user" key3="user_title"}
+							</td>
+							<td>
+							<input type=text name=user_title style="width:100%;" maxlength=255 value="{ $user.user_title|stripslashes|htmlspecialchars }" />
+							</td>
+						</tr>
+						
+						<tr class="{cycle values=" ,odd" }">
+							<td width="200">
+							{lang key1="admin" key2="user" key3="site_url"}
+							</td>
+							<td>
+							<select name="site_id">
+								<option value="0">- {lang key1="admin" key2="user" key3="all"}</option>
+								{if !empty($site.list_sites)}
+									{foreach from=$site.list_sites value="si"}
+										<option value="{$si.id}" {if $si.id == $user.site_id}selected="selected"{/if}>{$si.id}: {$si.site_url|delhttp}</option>
+									{/foreach}
+								{/if}
+							</select>
+							</td>
+						</tr>
+						
+						<tr class="{cycle values=" ,odd" }">
+							<td width="200">
+							{lang key1="admin" key2="user" key3="ref"} 1
+							</td>
+							<td>
+							{if empty($user.id)}
+								<input type="text" name="ref1" style="width:100%;" maxlength="255" value="0" />
+							{elseif !empty($user.ref1)}
+								{$user.ref1}
+							{else}
+								-
+							{/if}
+							</td>
+						</tr>	
+						
+						<tr class="{cycle values=" ,odd" }">
+							<td width="200">
+							{lang key1="admin" key2="user" key3="ref"} 2
+							</td>
+							<td>
+							{if empty($user.id)}
+								<input type="text" name="ref2" style="width:100%;" maxlength="255" value="0" />
+							{elseif !empty($user.ref2)}
+								{$user.ref2}
+							{else}
+								-
+							{/if}
+							</td>
+						</tr>						
+						
+					</tbody>
+				</table>
+			</div>
+		</td>
+	</tr>
+	
+	
+
+	<tr {cycle values=",class=odd" }>
+		<td width=200>{lang key1="admin" key2="status" key3="active"}</td>
+        <input type="hidden" name="active" value="0">
+        <td><input type="checkbox" name="active" value="1"{if !empty($user.active)} checked="checked"{/if}></td>
+	</tr>
+	
+	<tr {cycle values=",class=odd" }>
+		<td width=200>{lang key1="admin" key2="prava" key3="news"}</td>
+		<input type="hidden" name="news" value="0">
+		<td><input type="checkbox" name="news" value="1"{if $user.news == 1} checked="checked"{/if}></td>
+	</tr>    
+		  
+	<tr {cycle values=",class=odd" }>
+		<td width=200>{lang key1="admin" key2="prava" key3="admin"}</td>
+		<input type="hidden" name="admin" value="0">
+		<td><input type="checkbox" name="admin" value="1"{if $user.admin == 1} checked="checked"{/if}></td>
+	</tr>    
+
+{if $user.prava|@count > 0}
+  {foreach from=$user.prava key="key" value="value"}
+    {if $key != "bo_userid"}
+      <tr {cycle values=",class=odd" }>
+        <td width=200>{if isset($pravo[$key])}{$pravo[$key]}{else}{$key}{/if}</td>
+        <input type="hidden" name="pravo[{$key}]" value="0">
+        <td><input type="checkbox" name="pravo[{$key}]" value="1"{if $value == 1} checked{/if}></td>
+      </tr>    
+    {/if}
+  {/foreach}
+{/if}
+
+
+	<tr {cycle values=",class=odd" }>
+		<td width=200>{lang key1="admin" key2="prava" key3="avatar"}</td>
+		<td>{if !empty($user.avatar)}
+                <p><img src="{$user.avatar}" width="50" border="0" /></p>
+                <input type="checkbox" name="del_avatar" value="1"> {lang key1="admin" key2="delete"}<br>
+            {/if}
+            <input type="file" name="add_avatar" value="{lang key1="admin" key2="user" key3="choose_photo"}">
+			<ul>
+				{if !empty($site_vars.img_size1)}<li>{$site_vars.img_size1.width}*{$site_vars.img_size1.height}</li>{/if}
+				{if !empty($site_vars.img_size2)}<li>{$site_vars.img_size2.width}*{$site_vars.img_size2.height}</li>{/if}
+				{if !empty($site_vars.img_size3)}<li>{$site_vars.img_size3.width}*{$site_vars.img_size3.height}</li>{/if}
+			</ul>
+		</td>
+	</tr>    
+
+	<tr {cycle values=",class=odd" }>
+		<td colspan=2 align=center>
+			<input type=submit name=save value="{lang key1="admin" key2="save"}">
+			{ if !empty($user.id) }
+				<input class="small" type=submit name=del value="{lang key1="admin" key2="delete"}" onclick="if(confirm('{lang key1="admin" key2="really"}')) return true; else return false;">
+			{ /if }
+		</td>
+	</tr>
+</form>
+</table>
+
+{ include file="footer.html" }

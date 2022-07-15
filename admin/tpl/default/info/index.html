@@ -1,0 +1,151 @@
+{include file="header.html"}
+
+<h1 class="mt-0">{lang key1="admin" key2="index" key3="info_manage"}</h1>
+
+<table width="80%" border="0" cellpadding="6">
+	<tr>
+		<td valign="top">
+			<blockquote>{lang key1="admin" key2="index" key3="info_help"}</blockquote>
+		</td>
+	</tr>
+	
+	<tr>
+		<td valign="top">
+			<h3>{lang key1="admin" key2="index" key3="structure"}{if !empty($categ_info.title)} / {$categ_info.title} <a href="?action=info{if $categ_info.id_parent > 0}&id={$categ_info.id_parent}{/if}"><i class="fa fa-arrow-left"></i></a> <a href="?action=info&do=edit_categ&id={$categ_info.id}"><i class="fa fa-pencil"></i></a> <a href="?action=info&do=categories&id={$categ_info.id}"><i class="fa fa-bars"></i></a>{/if}</h3>
+			<ul>
+				<li><a href="?action=info&do=edit_categ&id=0{if !empty($simpla.get.id)}&cid={$simpla.get.id}{/if}">{lang key1="admin" key2="index" key3="add_categ"} <i class="fa fa-plus-circle" style="color:{$admin_vars.bgdark}"></i></a></li>
+			
+			{if !empty($categs_tree) AND $qty_categs > 0}
+				<li><a href="?action=info&do=categories">{lang key1="admin" key2="index" key3="total_pages"}: {if $categs_tree|@count < $qty_categs}{$categs_tree|@count} {lang key1="admin" key2="index" key3="from"} {/if} {$qty_categs}</a></li>
+			{/if}
+			</ul>
+			{if !empty($categs_tree)}
+			
+			{if !empty($site_vars._pages)}
+				<p><b>{lang key1="admin" key2="fb" key3="filter"}</b> 
+				<input type="hidden" name="action" value="info" />
+				<input type="hidden" name="do" value="tree_categs" />
+				<select style="width: 200px; word-break: break-all;" name="" onchange="top.location=this.value">
+					<option value="?action=info"{if !isset($simpla.GET.id)} selected="selected"{/if}> - {lang key1="admin" key2="index" key3="all_pages"}</option>
+					
+					{foreach from=$site_vars._pages value="v"}
+						{if !empty($v.subcategs)}
+						<option value="?action=info&do=tree_categs&id={$v.id}"{if $admin_vars.uri.id == $v.id} selected="selected"{/if}>{if $v.level > 1}
+							{ for start=1 stop=$v.level step=1 value=current } - {/for}
+						{/if}{$v.title}</option>
+						{/if}
+					{/foreach}
+				
+				</select>
+				</form>     
+				</p>
+			{/if}
+		</td>
+	</tr>
+
+	<tr>
+		<td valign="top">
+        {if $categs_tree|@count >0 }
+          <table width="100%">
+            <tr>
+              <th width="5%">ID</th>
+              <th>{lang key1="admin" key2="fav" key3="title"}</th>
+              <th width="5%"><i class="fa fa-check" title="{lang key1="admin" key2="index" key3="show_on_website"}"></i></th>
+              <th width="5%"><i class="fa fa-edit" title="{lang key1="admin" key2="edit"}"></i></th>
+              <th width="5%"><i class="fa fa-external-link" title="{lang key1="admin" key2="index" key3="link_to_website"}"></i></th>              
+              <th width="10%"><i class="fa fa-copy" title="{lang key1="admin" key2="publications"}"></i></th>
+			  <th width="10%"><i class="fa fa-shopping-cart" title="{lang key1="admin" key2="index" key3="offers_and_objects"}"></i></th>
+            </tr>
+            
+            {foreach from=$categs_tree value="row"}
+              <tr { cycle values="class=odd, " }>
+				<td class="center"><a href="?action=info&do=edit_categ&id={$row.id}">{$row.id}</a></td>
+                <td>{if $row.level < 0}
+				<i class="fa fa-exclamation-circle" style="color:red;" title="Wrong page connection"></i> 
+				{/if}<span style="padding-left:{$row.padding}px;"></span>{if $row.site_id > 0}<a href="?action=settings&do=site&mode=edit&id={$row.site_id}"><i class="fa fa-home" title="{lang key1="admin" key2="index" key3="website_homepage"}"></i></a>{/if} <a href="?action=info&do=edit_categ&id={$row.id}">{$row.title}</a>{if !empty($row.starred)}*{/if}
+				
+				{if $row.subcategs > 0} 
+					<a href="?action=info&id={$row.id}"><i class="fa fa-sitemap"></i></a>
+					<a href="?action=info&do=categories&id={$row.id}"><i class="fa fa-bars"></i></a>
+				{/if}
+				
+				{if $row.date_insert|strtotime > $simpla[NOW]}
+					<i class="fa fa-clock-o red" title="{lang key1="admin" key2="not_shown_yet"}"></i>
+				{/if}
+				
+				</td>
+                <td align="center"><a href="?action=info&do=edit_categ&id={$row.id}">{if $row.visible == 1}<i class="fa fa-check"></i>{else}<i class="fa fa-minus"></i>{/if}</a></td>
+                <td align="center"><a href="?action=info&do=edit_categ&id={$row.id}"><i class="fa fa-pencil"></i></a></td>
+                <td align="center">{if !empty($row.site_url_qty) AND $row.site_url_qty > 1}<span class="red">*</span>{elseif !empty($row.site_url_qty)}
+					{if $row.site_id > 0}
+					<small><a href="{$row.site_url}" target="_blank"><i class="fa fa-external-link"></i></a></small>
+					{elseif !empty($row.url)}<small><a href="{$row.url}" target="_blank"><i class="fa fa-external-link"></i></a></small>{/if}
+				{/if}</td>
+                				
+				<td align="center">{if $row.pubs > 0}<a href="?action=info&do=list_publications&cid={$row.id}">{$row.pubs}</a>{/if} <a href="?action=info&do=edit_publication&id=0&cid={$row.id}"><i class="fa fa-plus" style="color:{$admin_vars.bgdark}"></i></a></td>
+				<td align="center">{if $row.products > 0}<a href="?action=products&do=list_products&cid={$row.id}">{$row.products}</a>{/if} {if $row.shop == 1}<a href="?action=products&do=add&cid={$row.id}"><i class="fa fa-plus" style="color:{$admin_vars.bgdark}"></i></a>{/if}</td>
+                
+              </tr>
+            {/foreach}
+          </table>
+        
+        {/if}
+      {else}
+        <p>{lang key1="admin" key2="index" key3="no_pages"}</p>
+      {/if}
+	  
+       </td>
+	</tr>
+
+	<tr>
+		<td valign="top">
+      <h3>{if $qty_pubs > 10}{lang key1="admin" key2="index" key3="last_10_pubs"}{else}{lang key1="admin" key2="block_types" key3="lastPubs"}{/if}</h3>
+	  <ul>
+	  {if !empty($categs_tree) OR $admin_vars.uri.id > 0} 
+        <li><a href="?action=info&do=edit_publication&id=0">{lang key1="admin" key2="add_pub"} <i class="fa fa-plus-circle" style="color:{$admin_vars.bgdark}"></i></a></li>
+      {/if}
+	  
+	  {if !empty($last_pubs) AND !empty($qty_pubs)}
+		<li><a href="?action=info&do=list_publications">{lang key1="admin" key2="products" key3="total_views"}: {$qty_pubs}</a></li>
+	  {/if}
+	  
+	  </ul>
+      {if $last_pubs|@count > 0}
+       
+        <table width="100%">
+			<tr>
+				<th width="5%">ID</th>
+				<th width="10%">{lang key1="admin" key2="date"}</th>
+				<th>{lang key1="admin" key2="fav" key3="title"}</th>
+				<th width="5%"><i class="fa fa-edit" title="{lang key1="admin" key2="edit"}"></i></th>
+				<th width="5%"><i class="fa fa-external-link" title="{lang key1="admin" key2="index" key3="link_to_website"}"></i></th>
+			</tr>
+          {foreach value="value" from=$last_pubs}
+            <tr { cycle values="class=odd, " reset="1"}>
+              <td class="center"><a href="?action=info&do=edit_publication&id={$value.id}"><small>{$value.id}</small></a></td>
+			  <td class="center"><a href="?action=info&do=edit_publication&id={$value.id}"><small>{$value.date_insert|date:"d.m.Y"}</small></a></td>
+              <td><a href="?action=info&do=edit_publication&id={$value.id}">{$value.name}</a>
+			  {if $value.date_insert|strtotime > 
+					$simpla[NOW]}
+					<i class="fa fa-clock-o red" title="{lang key1="admin" key2="not_shown_yet"}"></i>
+				{/if}
+			  </td>
+              <td class="center"><a href="?action=info&do=edit_publication&id={$value.id}"><i class="fa fa-pencil"></i></a></td>
+              <td class="center">{if !empty($value.site_url)}			  
+				<small><a href="{$value.site_url}/{$value.alias}/{if empty($value.active)}?debug=1{/if}" target="_blank"><i class="fa fa-external-link"></i></a></small>
+			  {/if}</td>
+            </tr>     
+          {/foreach}
+        </table>
+      {else}
+        <p>{lang key1="admin" key2="index" key3="no_pubs"}</p>
+      {/if}
+      
+        </td>
+	</tr>
+
+	</table>
+    
+
+
+{include file="footer.html"}

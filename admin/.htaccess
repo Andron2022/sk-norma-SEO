@@ -1,0 +1,19 @@
+RewriteEngine Off
+
+<IfModule mod_php5.c>
+php_value memory_limit 256M
+php_value post_max_size 64M
+php_value upload_max_filesize 64M
+php_value max_execution_time 60
+php_value max_input_time 300
+</IfModule>
+
+<IfModule mod_charset.c>
+CharsetSourceEnc utf-8
+CharsetDefault utf-8
+</IfModule>
+
+<IfModule mod_php5.c>
+php_flag  log_errors on
+php_value error_log  "phperror.log"
+</IfModule>

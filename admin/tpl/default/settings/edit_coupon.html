@@ -1,0 +1,185 @@
+{include file="header.html"}
+<h1 class="mt-0">{lang key1="admin" key2="orders" key3="coupon"}: {if !empty($row.title)}<a href="?action=coupons&id={$row.id}">{$row.title}</a>
+{else}{lang key1="admin" key2="add"}{/if}</h1>
+
+{if isset($simpla.GET.updated)}
+	<table width="80%">
+		<tr>
+			<td><blockquote>{lang key1="admin" key2="updated"}</blockquote></td>
+		</tr>
+	</table>
+  {elseif isset($simpla.GET.added)}
+    <table width="80%">
+		<tr>
+			<td><blockquote>{lang key1="admin" key2="added"}</blockquote></td>
+		</tr>
+	</table>
+  {elseif isset($simpla.GET.error)}
+    <table width="80%">
+		<tr>
+			<td><blockquote>{lang key1="admin" key2="set" key3="cant_delete_coupon"}</blockquote></td>
+		</tr>
+	</table>
+	{/if}
+ 
+{if !empty($row.error)} 
+	<table width="80%">
+		<tr>
+			<td><blockquote class="red">{$row.error}</blockquote></td>
+		</tr>
+	</table>
+{/if}
+	<form method="post">
+	<table width="80%">		
+		<tr>
+			<th width="20%">{lang key1="admin" key2="user" key3="field"}</th>
+			<th>{lang key1="admin" key2="user" key3="value"}</th>
+		</tr>
+			
+		<tr class="{cycle values=",odd"}">
+			<td width=200>ID</td>
+			<td>{ if $row.id }{$row.id}{ else }{lang key1="admin" key2="user" key3="not_set"}{ /if }</td>
+		</tr>
+			
+		<tr class="{cycle values=",odd"}">
+			<td>{lang key1="admin" key2="products" key3="activity"}</td>
+			<td><input type="checkbox" name="active" value="1"{if !empty($row.active)} checked="checked"{/if}>
+			</td>
+		</tr>
+			
+		<tr class="{cycle values=",odd"}">
+			<td>{lang key1="admin" key2="products" key3="use_one_time"}</td>
+			<td><input type="checkbox" name="onetime" value="1"{if !empty($row.onetime)} checked="checked"{/if}>
+				</td>
+		</tr>
+			
+		<tr class="{cycle values=",odd"}">
+			<td>{lang key1="admin" key2="orders" key3="coupon"} <small>({lang key1="admin" key2="icons" key3="for_example"}, SALE2016)</small></td>
+			<td><input type="text" name="title" value="{$row.title|escape}" style="width:100%;">
+			</td>
+		</tr>
+			
+		<tr class="{cycle values=",odd"}">
+			<td>{lang key1="admin" key2="products" key3="date_start"}</td>
+			<td>{ html_select_date time=$row.date_start start_year="-1" end_year="+3" day_value_format="%02d" lang=$site_vars.lang_admin  
+				month_format="%m" field_array="date_start" prefix="" 
+				field_order="DMY" field_separator=" " 
+				year_empty="-" month_empty="-" day_empty="-"} 
+				
+				{ html_select_time use_24_hours=true 
+				time=$row.date_start field_array="date_start" 
+				hour_empty="-" minute_empty="-" 
+				prefix=""}
+				
+			</td>
+		</tr>
+			
+		<tr class="{cycle values=",odd"}">
+			<td>{lang key1="admin" key2="products" key3="date_stop"}</td>
+			<td>{ html_select_date time=$row.date_stop start_year="-1"
+				end_year="+3" day_value_format="%02d" 
+				lang=$site_vars.lang_admin  
+				month_format="%m" field_array="date_stop" prefix="" 
+				field_order="DMY" field_separator=" " 
+				year_empty="-" month_empty="-" day_empty="-"} 
+				
+				{ html_select_time use_24_hours=true 
+				time=$row.date_stop 
+				field_array="date_stop" 
+				hour_empty="-" minute_empty="-"
+				prefix=""}
+			</td>
+		</tr>
+			
+		<tr class="{cycle values=",odd"}">
+			<td>{lang key1="admin" key2="products" key3="id_offer"}</td>
+			<td><input type="text" name="id_product" value="{$row.id_product|escape}" style="width:100%;">
+			</td>
+		</tr>
+			
+		<tr class="{cycle values=",odd"}">
+			<td>{lang key1="admin" key2="products" key3="id_categ"}</td>
+			<td><input type="text" name="id_categ" value="{$row.id_categ|escape}" style="width:100%;">
+			</td>
+		</tr>
+			
+		<tr class="{cycle values=",odd"}">
+			<td>{lang key1="admin" key2="user" key3="note"}</td>
+			<td><textarea name="content" rows="4" style="width:100%;">{$row.content}</textarea>
+			</td>
+		</tr>
+			
+		<tr class="{cycle values=",odd"}">
+			<td>{lang key1="admin" key2="products" key3="persent_discount"}</td>
+			<td><input type="checkbox" name="discount_procent" value="1"{if !empty($row.discount_procent)} checked="checked"{/if}>
+			</td>
+		</tr>
+
+		<tr class="{cycle values=",odd"}">
+			<td>{lang key1="admin" key2="products" key3="discount_size"}</td>
+			<td><input type="text" name="discount_summ" value="{$row.discount_summ|escape}" style="width:100%;">
+			</td>
+		</tr>
+
+		<tr class="{cycle values=",odd"}">
+			<td>{lang key1="admin" key2="products" key3="whom_coupon"}</td>
+			<td><input type="text" name="for_userid" value="{$row.for_userid}" style="width:100%;">
+			</td>
+		</tr>
+
+		<tr class="{cycle values=",odd"}">
+			<td>{lang key1="admin" key2="products" key3="persent_whom_coupon"}</td>
+			<td><input type="text" name="partner_summ" value="{$row.partner_summ|escape}" style="width:100%;">
+			</td>
+		</tr>
+			
+		<tr class="{cycle values=",odd"}">
+			<td>{lang key1="admin" key2="website"}</td>
+			<td><select name="site_id">
+				<option value="0"> - {lang key1="admin" key2="for_all"}</option>				
+				{if !empty($site.list_sites)}
+					{foreach from=$site.list_sites value="v"}
+						<option value="{$v.id}"{if $v.id == $row.site_id} selected="selected"{/if}>{$v.site_url} ({$v.id})</option>
+					{/foreach}
+				{/if}				
+				</select>
+			</td>
+		</tr>
+			
+		{if !empty($row.id)}
+		<tr class="{cycle values=",odd"}">
+			<td>{lang key1="admin" key2="products" key3="date_added"}</td>
+			<td>{if !empty($row.when_added)}{$row.when_added|date:"d.m.Y H:i"}{else}-{/if}</td>
+		</tr>
+		<tr class="{cycle values=",odd"}">
+			<td>{lang key1="admin" key2="products" key3="added_by"}</td>
+			<td>
+			{if !empty($row.who_added) AND !empty($row.who_added_id)}<a href="?action=settings&do=add_user&id={$row.who_added_id}">{$row.who_added}</a>{else}-{/if}
+			</td>
+		</tr>
+		<tr class="{cycle values=",odd"}">
+			<td>{lang key1="admin" key2="products" key3="last_edit_by"}</td>
+			<td>
+			{if !empty($row.last_updated)}{$row.last_updated|date:"d.m.Y H:i"}{else}-{/if}
+			</td>
+		</tr>
+		<tr class="{cycle values=",odd"}">
+			<td>{lang key1="admin" key2="products" key3="who_changed"}</td>
+			<td>
+			{if !empty($row.who_updated) AND !empty($row.who_updated_id)}<a href="?action=settings&do=add_user&id={$row.who_updated_id}">{$row.who_updated}</a>{else}-{/if}
+			</td>
+		</tr>{/if}
+
+			
+		<tr class="{cycle values=",odd"}">
+			<td align="right">
+				<input type="submit" name="save" value="{lang key1="admin" key2="save"}">
+				{ if !empty($row.id) AND empty($row.qty_orders) AND empty($row.qty_sites)}
+					</td><td align="right"><input type="submit" class="small" name="delete" value="{lang key1="admin" key2="delete"}" onclick="if(confirm('{lang key1="admin" key2="really"}')) return true; else return false;"></small>
+				{else}</td><td>{ /if }
+			</td>
+		</tr>		
+	</table>
+	</form>
+	
+{ include file="footer.html" } 

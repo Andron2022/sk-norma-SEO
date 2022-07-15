@@ -1,0 +1,39 @@
+{include file="header.html"}
+
+<h1 class="mt-0">{lang key1="admin" key2="prava" key3="stat"}</h1>      
+
+<p>
+<a href="?action=stat&do=list">{lang key1="admin" key2="sidebar" key3="attendance"}</a> | 
+<a href="?action=stat&do=search">{lang key1="admin" key2="site_search"}</a>
+</p>
+
+<table width="600">
+	<tr>
+		<th>{lang key1="admin" key2="products" key3="period"}</th>
+		<th>{lang key1="admin" key2="visits"}</th>
+		<th>{lang key1="admin" key2="categs"}</th>
+	</tr>
+	<tr>
+		<td><a href="?action=stat&from={$simpla[NOW]|date:"Y-m-d"}">{lang key1="admin" key2="today"}</a></td>
+		<td align="center">{if empty($stat.today.qty)}-{else}{$stat.today.qty}{/if}</td>
+		<td align="center">{if empty($stat.today.total)}-{else}{$stat.today.total}{/if}</td>
+	</tr>
+	<tr class="odd">
+		<td><a href="?action=stat&from={$stat.dates.yesterday}&to={$stat.dates.yesterday}">{lang key1="admin" key2="yesterday"}</a></td>
+		<td align="center">{if empty($stat.yesterday.qty)}-{else}{$stat.yesterday.qty}{/if}</td>
+		<td align="center">{if empty($stat.yesterday.total)}-{else}{$stat.yesterday.total}{/if}</td>
+	</tr>
+	<tr>
+		<td><a href="?action=stat&from={$stat.dates.week}">{lang key1="admin" key2="for_7_days"}</a></td>
+		<td align="center">{if empty($stat.week.qty)}-{else}{$stat.week.qty}{/if}</td>
+		<td align="center">{if empty($stat.week.total)}-{else}{$stat.week.total}{/if}</td>
+	</tr>
+	<tr class="odd">
+		<td><a href="?action=stat&from={$stat.dates.month}">{lang key1="admin" key2="for_30_days"}</a></td>
+		<td align="center">{if empty($stat.month.qty)}-{else}{$stat.month.qty}{/if}</td>
+		<td align="center">{if empty($stat.month.total)}-{else}{$stat.month.total}{/if}</td>
+	</tr>
+</table>
+
+{include file="pages/pages.html"}
+{include file="footer.html" }

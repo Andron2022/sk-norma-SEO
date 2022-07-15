@@ -1,0 +1,53 @@
+{include file="header.html"}
+
+<h1 class="mt-0">{lang key1="admin" key2="prava" key3="orgs"} ({$all})</h1>
+
+<ul>
+	<li><a href="?action=org&id=0">{lang key1="admin" key2="add"}</a></li>
+</ul>
+{if isset($simpla.GET.deleted)}
+	<table width="80%"><tr><td><blockquote>{lang key1="admin" key2="deleted"}</blockquote></td></tr></table>
+{/if}
+
+
+{if !empty($list)}
+	<table width="80%">
+		<tr>
+			<th>#</th>
+			<th>ID</th>
+			<th><i class="fa fa-eye" title="{lang key1="admin" key2="products" key3="active"}"></i></th>
+			<th>{lang key1="admin" key2="elements" key3="name"}</th>
+			<th>{lang key1="admin" key2="orders" key3="org_inn"}</th>
+			<th>{lang key1="admin" key2="elements" key3="own_f"}</th>			
+			<th>{lang key1="admin" key2="user" key3="phone"}</th>
+
+			<th>{lang key1="admin" key2="mass" key3="code"}</th>
+			<th>{lang key1="admin" key2="user" key3="city"}</th>
+			<th>{lang key1="admin" key2="user" key3="country"}</th>
+			
+		</tr>
+		
+		{ foreach from=$list value="v" }
+			<tr bgcolor="{cycle values="#ffffff,".$admin_vars.bglight }">
+				<td><a href="?action=org&id={$v.id}"><i class="fa fa-pencil"></i></a></td>
+				<td><a href="?action=org&id={$v.id}">{ $v.id }</a></td>
+				<td align="center"><a href="?action=org&id={$v.id}">{if !empty($v.active)}<i class="fa fa-check"></i>{/if}</a></td>
+				<td><a href="?action=org&id={$v.id}">{$v.title}</a></td>
+				<td>{if !empty($v.inn)}<a href="?action=org&id={$v.id}">{$v.inn}</a>{/if}</td>
+				<td align="center"><a href="?action=org&id={$v.id}">{if !empty($v.own)}<i class="fa fa-check"></i>{/if}</a></td>
+				<td>{$v.phone}</td>
+				<td>{if !empty($v.postal_code)}{$v.postal_code}{/if}</td>
+				<td>{$v.city}</td>
+				<td>{$v.address}</td>
+			</tr>
+		{ /foreach }
+	</table>
+
+{else}
+	<p>{lang key1="admin" key2="user" key3="list_empty"}</p>
+	<p><a href="?action=org&id=0">{lang key1="admin" key2="add"}</a></p>
+{/if}          
+
+{$pages}
+
+{ include file="footer.html" }          

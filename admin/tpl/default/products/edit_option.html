@@ -1,0 +1,129 @@
+{include file="header.html"}
+
+<h1 class="mt-0">{if $option.id > 0}{lang key1="admin" key2="products" key3="editing_option"}{else}{lang key1="admin" key2="products" key3="adding_option"}{/if}</h1> 
+
+
+<table width="80%">
+	<tr>
+		<td width="20%">
+			{if $option.id > 0}<p><a href="?action=products&do=add_option"><i class="fa fa-plus"></i> {lang key1="admin" key2="add"}</a></p>{/if}
+		</td>
+		<td>
+			{if !empty($option.group)}	
+			<p><a href="?action=products&do=options&group={$option.group}"><i class="fa fa-sitemap"></i> {lang key1="admin" key2="products" key3="group_options"}</a></p>
+			{elseif !empty($simpla.GET.gid)}
+			<p><a href="?action=products&do=options&group={$simpla.GET.gid}"><i class="fa fa-sitemap"></i> {lang key1="admin" key2="products" key3="group_options"}</a></p>
+			{/if}
+		</td>
+	</tr>
+
+{ if isset($simpla.get.updated) }
+  <tr>
+    <td colspan="2"><blockquote>{lang key1="admin" key2="updated"}</blockquote></td>
+  </tr>  
+{ /if }
+{ if isset($simpla.get.added) }
+  <tr>
+    <td colspan="2"><blockquote>{lang key1="admin" key2="added"}</blockquote></td>
+  </tr>  
+{ /if }
+
+  <form method=post>
+  <tr class="odd">
+    <td width="20%">{lang key1="admin" key2="elements" key3="name"}</td>
+    <td><input type="text" name="title" style="width:100%;" value="{$option.title|stripslashes|htmlspecialchars }" /></td>
+  </tr>
+
+  <tr>
+    <td>{lang key1="admin" key2="products" key3="synonim"} <small>?option[<span style="color:red;">name</span>]</small></td>
+    <td><input type="text" name="alias" style="width:100%;" value="{  $option.alias|htmlspecialchars }" /></td>
+  </tr>
+  
+  <tr class="odd">
+    <td>{lang key1="admin" key2="status" key3="sort"}</td>
+    <td><input type="text" name="sort" style="width:100%;" value="{  $option.sort|stripslashes|htmlspecialchars }" /></td>
+  </tr>
+  
+  <tr>
+    <td>{lang key1="admin" key2="group"}</td>
+    <td><select name="group">
+    <option value="0">- {lang key1="admin" key2="group" case="lower"}</option>
+    {if $option.option_group|@count > 0 }
+      {foreach from=$option.option_group value="opt"}
+        <option value="{$opt.id}"{$opt.id|compare:$option.group:" selected='selected'"}{if empty($option.group) AND !empty($simpla.GET.gid) AND $simpla.GET.gid == $opt.id} selected="selected"{/if}>{$opt.title}</option>
+      {/foreach}    
+    {/if}
+    </select>
+    </td>
+  </tr>
+  
+  <tr class="odd">
+    <td>{lang key1="admin" key2="products" key3="option_type"}</td>
+    <td><select name="type">
+      <option value="val"{if $option.type == "val"} selected="selected"{/if}>{lang key1="admin" key2="elements" key3="text"}</option>
+      <option value="int"{if $option.type == "int"} selected="selected"{/if}>{lang key1="admin" key2="products" key3="digit"}</option>
+      <option value="select"{if $option.type == "select"} selected="selected"{/if}>{lang key1="admin" key2="elements" key3="select"}</option>
+      <option value="connected"{if $option.type == "connected"} selected="selected"{/if}>{lang key1="admin" key2="products" key3="conn_lists"}</option>
+      <option value="checkbox"{if $option.type == "checkbox"} selected="selected"{/if}>{lang key1="admin" key2="elements" key3="flag"}</option>
+      <option value="multicheckbox"{if $option.type == "multicheckbox"} selected="selected"{/if}>{lang key1="admin" key2="elements" key3="several_flags"}</option>
+	  <option value="date"{if $option.type == "date"} selected="selected"{/if}>{lang key1="admin" key2="date"}</option>
+	  <option value="datetime"{if $option.type == "datetime"} selected="selected"{/if}>{lang key1="admin" key2="elements" key3="date_time"}</option>
+      <option value="categ"{if $option.type == "categ"} selected="selected"{/if}>{lang key1="admin" key2="elements" key3="pub_of_categ"}</option>
+      <option value="products"{if $option.type == "products"} selected="selected"{/if}>{lang key1="admin" key2="elements" key3="item_of_categ"}</option>
+    </select></td>
+  </tr>
+  
+  <tr>
+    <td width="200">{lang key1="admin" key2="elements" key3="variants_to_choose"} <br><small>{lang key1="admin" key2="elements" key3="variants_help"}</small></td>
+    <td><textarea name=if_select rows=7 style="width:100%;">{ $option.if_select|htmlspecialchars }</textarea></td>
+  </tr>
+
+  <tr class="odd">
+    <td>&nbsp;</td>
+    <td><input type="checkbox" name="show_in_list" value="1" { if $option.show_in_list } checked="checked"{/if} /> {lang key1="admin" key2="products" key3="show_in_list"}</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+    <td><input type="checkbox" name="show_in_filter" value="1" { if $option.show_in_filter } checked="checked"{/if} /> {lang key1="admin" key2="products" key3="show_in_filter"}</td>
+  </tr>
+  
+  <tr class="odd">
+    <td>{lang key1="admin" key2="products" key3="filter_type"}: </td>
+    <td><select name="filter_type">
+      <option value="text"{if $option.filter_type == "text"} selected="selected"{/if}>{lang key1="admin" key2="elements" key3="text"}</option>
+      <option value="select"{if $option.filter_type == "select"} selected="selected"{/if}>{lang key1="admin" key2="elements" key3="select"}</option>
+      <option value="connected"{if $option.filter_type == "connected"} selected="selected"{/if}>{lang key1="admin" key2="products" key3="conn_lists"}</option>
+      <option value="checkbox"{if $option.filter_type == "checkbox"} selected="selected"{/if}>{lang key1="admin" key2="elements" key3="flag"}</option>
+      <option value="multicheckbox"{if $option.filter_type == "multicheckbox"} selected="selected"{/if}>{lang key1="admin" key2="elements" key3="several_flags"}</option>
+      <option value="radio"{if $option.filter_type == "radio"} selected="selected"{/if}>{lang key1="admin" key2="elements" key3="radio_button"}</option>
+    </select></td>
+  </tr>
+    
+  <tr>
+    <td width="200">{lang key1="admin" key2="elements" key3="option_desc_infilter"}: </td>
+    <td><textarea name="filter_description" rows="5" style="width:100%;">{ $option.filter_description|htmlspecialchars}</textarea></td>
+  </tr>
+  
+  <tr class="odd">
+    <td>{lang key1="admin" key2="elements" key3="text_after"}:</td>
+    <td><input type="text" name="after" style="width:100%;" value="{$option.after|htmlspecialchars}" /></td>
+  </tr>
+
+  <tr>
+    <td>{lang key1="admin" key2="icon"}:
+    <br><small>{lang key1="admin" key2="icon_help"}<br>{lang key1="admin" key2="icons" key3="for_example"}, {'<i class="fa fa-star"></i>'|escape}</small>
+    </td>
+    <td><input type="text" name="icon" style="width:100%;" value="{$option.icon|escape}" /></td>
+  </tr>
+  
+  <tr>
+    <td colspan=2><input type=submit name="{if $option.id > 0}edit{else}add{/if}" value="{if $option.id > 0}{lang key1="admin" key2="update"}{else}{lang key1="admin" key2="add"}{/if}">
+    {if $option.id > 0} <input type=submit name=delete value="{lang key1="admin" key2="delete"}" class="small" onclick="if(confirm('{lang key1="admin" key2="really"}')) return true; else return false;">{/if}
+    </td>
+  </tr>
+
+  </form>
+</table>
+
+{include file="footer.html"}

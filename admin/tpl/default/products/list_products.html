@@ -1,0 +1,334 @@
+{include file="header.html"}
+
+<h1 class="mt-0">
+{if !empty($simpla.GET.lider)}{lang key1="admin" key2="products" key3="best_sellers"}{if !empty($products_qty)} ({$products_qty}){/if} <small><a href="?action=products&do=list_products">{lang key1="admin" key2="user" key3="all" case="lower"}</a></small>
+{else}{lang key1="admin" key2="index" key3="offers_and_objects"}{if !empty($products_qty)} ({$products_qty}){/if}{if !empty($cid)}: {$cid.title} 
+<a href="?action=info&do=edit_categ&id={$cid.id}"><i class="fa fa-pencil"></i></a> 
+{if !empty($cid.url)} <a href="{$cid.url}" target="_blank"><i class="fa fa-external-link"></i></a>{/if} 
+<a href="?action=products&do=list_products&cid={$cid.id}&lider=1"><i class="fa fa-thumbs-up" title="{lang key1="admin" key2="products" key3="best_sellers"}"></i></a>
+{else} <a href="?action=products&do=list_products&lider=1"><i class="fa fa-thumbs-up" title="{lang key1="admin" key2="products" key3="best_sellers"}"></i></a>
+{/if}
+{/if}
+</h1>
+
+{if isset($simpla.GET.updated)}
+  <blockquote>{lang key1="admin" key2="index" key3="rows_updated"}: {$simpla.GET.updated}</blockquote>
+{/if}
+
+{if isset($simpla.GET.deleted)}
+  <blockquote>{lang key1="admin" key2="index" key3="rows_deleted"}: {$simpla.GET.deleted}</blockquote>
+{/if}
+
+<table width="100%">
+<tbody>
+	<tr>
+		<td nowrap><a href="?action=products&do=add{if !empty($simpla.GET.cid)}&cid={$simpla.GET.cid}{/if}"><i class="fa fa-plus"></i> {lang key1="admin" key2="add"}</a>
+		</td>
+		
+    <form method="get">
+		<td align="right" nowrap><i class="fa fa-search" style="color:#8eaebe;"></i> {lang key1="admin" key2="search_in_title"}:</td>
+		<td nowrap>
+          <input type="hidden" name="action" value="products">
+          <input type="hidden" name="do" value="list_products">
+		  {if !empty($simpla.GET.cid)}
+		  <input type="hidden" name="cid" value="{$simpla.GET.cid}">
+		  {/if}
+          <input type="text" size="10" name="q" value="{if isset($simpla.GET.q)}{$simpla.GET.q|htmlspecialchars}{/if}">
+          <button type="submit" class="small"><i class="fa fa-search"></i></button>
+		  </td>
+		<td align="right" nowrap>{lang key1="admin" key2="fb" key3="filter"}:</td>
+    </form>
+    <form method="get">
+    <td nowrap>
+	
+	
+	
+			{literal}<select style="width: 200px; word-break: break-all;" onChange="if(this.options[this.selectedIndex].value!=''){window.location=this.options[this.selectedIndex].value}else{this.options[selectedIndex=0];}">{/literal}
+				
+				<option value="?action=products&do=list_products{if !empty($simpla.GET.q)}&q={$simpla.GET.q}{/if}">- {lang key1="admin" key2="index" key3="all_pages"}</option>
+				
+			{if !empty($site_vars._pages)}
+				{foreach from=$site_vars._pages value="v"}
+						{if !empty($v.products)}
+						<option value="?action=products&do=list_products&cid={$v.id}{if !empty($simpla.GET.q)}&q={$simpla.GET.q}{/if}{if !empty($simpla.GET.options)}&options=1{/if}"{if isset($simpla.GET.cid) AND $simpla.GET.cid == $v.id} selected="selected"{/if}>{if $v.level > 1}
+							{ for start=1 stop=$v.level step=1 value=current } - {/for}
+						{/if}{$v.title} ({$v.products})</option>
+						{elseif !empty($v.subcategs)}
+						<optgroup label="{if $v.level > 1}
+							{ for start=1 stop=$v.level step=1 value=current } - {/for}
+						{/if}{$v.title}"></optgroup>
+						{/if}
+				{/foreach}
+			{/if}	
+				
+				</select>
+	
+	
+			{if isset($simpla.GET.cid) AND empty($simpla.GET.options)}
+				<a href="?action=products&do=list_products&cid={$simpla.GET.cid}&options=1"><i class="fa fa-bars" title="{lang key1="admin" key2="index" key3="edit_options"}"></i></a>
+			{elseif !empty($simpla.GET.options)}
+				<a href="?action=products&do=list_products&cid={$simpla.GET.cid}"><i class="fa fa-shopping-cart" title="{lang key1="admin" key2="block_types" key3="listProducts"}"></i></a>
+			{/if}
+    </td>
+    </form>
+  </tr>
+</tbody>
+</table>
+
+
+{include file="pages/pages.html"}
+
+{if $products_list|@count > 0 AND !empty($simpla.GET.cid) AND !empty($simpla.GET.options)}
+
+<form method=post name=form1>
+	<input type="hidden" name="products_qty" value="{$products_qty}" />
+	
+    <table width="100%" class="bordered">
+      <tr>
+        <th>#</th>
+        <th><i class="fa fa-edit"></i></th>
+        <th>{lang key1="admin" key2="products" key3="title"}</th>
+		
+		{if !empty($th_options)}
+			{foreach from=$th_options value="v"}
+					{if !empty($v.g_value2)}
+						<th><a href="?action=products&do=option_group&id={$v.group_id}" style="color:white;">{$v.g_title}</a><br><a href="?action=products&do=options&id={$v.id}" style="color:white; text-decoration: underline;">{$v.title}{if !empty($v.after)} ({$v.after}){/if}</a><br><small>({$v.g_value1})</small><br><small>({$v.type})</small></th>
+						<th>{$v.title}<br><small>({$v.g_value2})</small><br><small>({$v.type})</small></th>
+						<th>{$v.title}<br><small>({$v.g_value3})</small><br><small>({$v.type})</small></th>
+					{else}
+						<th><a href="?action=products&do=option_group&id={$v.group_id}" style="color:white;">{$v.g_title}</a><br><a href="?action=products&do=options&id={$v.id}" style="color:white; text-decoration: underline;">{$v.title}{if !empty($v.after)} ({$v.after}){/if}</a><br><small>({$v.type})</small></th>
+					{/if}
+			{/foreach}
+		{/if}
+
+        <th><i class="fa fa-external-link"></i></th>
+      </tr>
+
+      {foreach from=$products_list value="value" key="key"}
+        <tr { cycle values=" ,class=odd"}>
+          <td align=center valign="top"><a href="?action=products&do=edit&id={$value.id}">{$value.id}</a></td>
+          <td align=center valign="top"><a href="?action=products&do=edit&id={$value.id}"><i class="fa fa-pencil"></i></a></td>
+          <td valign="top"><a href="?action=products&do=edit&id={$value.id}">{$value.name}</a></td>
+					
+			{if !empty($th_options)}
+				{foreach from=$th_options value="v"}
+				
+					{assign var="ids" value=$value.id}
+					{assign var="vids" value=$v.id}
+					{assign var="opts" value=$u_options[$ids]}
+					{assign var="opt" value=$opts[$vids]}
+					
+					{if isset($opt.id)}
+						{assign var="value_id" value=$opt.id}
+						{assign var="value1" value=$opt.value}
+						{assign var="value2" value=$opt.value2}
+						{assign var="value3" value=$opt.value3}
+					{else}
+						{assign var="value_id" value=0}
+						{assign var="value1" value=""}
+						{assign var="value2" value=""}
+						{assign var="value3" value=""}
+					{/if}
+					
+				
+					{if !empty($v.g_value2)}
+						<td valign="top">{get_option_field 
+						id=$v.id 
+						value_id=$value_id 
+						type=$v.type 
+						if_select=$v.if_select 
+						value=$value1 
+						product_id=$value.id 
+						inc_product=1
+						title=$v.title 
+						field="value"  
+						value2=$value2  
+						value3=$value3
+						}
+						</td>
+						<td valign="top">{get_option_field 
+						id=$v.id 
+						value_id=$value_id 
+						type=$v.type 
+						if_select=$v.if_select 
+						value=$value2 
+						product_id=$value.id 
+						inc_product=1
+						title=$v.title 
+						field="value2"}
+						</td>
+						<td valign="top">{get_option_field 
+						id=$v.id 
+						value_id=$value_id 
+						type=$v.type 
+						if_select=$v.if_select 
+						value=$value3 
+						product_id=$value.id 
+						inc_product=1
+						title=$v.title 
+						field="value3"}</td>
+					{else}
+						<td valign="top">{get_option_field 
+						id=$v.id 
+						value_id=$value_id 
+						type=$v.type 
+						if_select=$v.if_select 
+						value=$value1  
+						product_id=$value.id 
+						inc_product=1
+						title=$v.title 
+						field="value" 
+						value2="" 
+						value3=""
+						}</td>
+					{/if}
+					
+					
+				{/foreach}
+			{/if}
+
+          <td valign="top" class="center">
+			<small>{if !empty($value.site_url)}
+				<a href="{$value.site_url}/{$value.alias}{$simpla.CONST.URL_END}{if empty($value.active)}?debug={$value.site_id}{/if}"><i class="fa fa-external-link"></i></a>			
+			{else}-{/if}</small>
+		  
+          </td>
+        </tr>
+      {/foreach}
+
+      
+    </table>
+    
+	
+	<p style="text-align:center;"><input type=submit name=update value="{lang key1="admin" key2="update"}" onclick="if(confirm('{lang key1="admin" key2="are_u_sure"}')) return true; else return false;"></p>
+	
+  </form>
+
+
+
+{elseif !empty($products_list)}
+
+
+	{if !empty($simpla.GET.lider)}
+	
+		<table width="80%">
+			<tr class="{cycle values=" ,odd"}">
+				<th>ID</th>
+				<th width="30"><i class="fa fa-pencil"></i></th>
+				<th width="30%">{lang key1="admin" key2="products" key3="title"}</th>
+				<th>{lang key1="admin" key2="orders" key3="title"}</th>
+				<th>{lang key1="admin" key2="products" key3="price"}</th>
+				<th><i class="fa fa-eye" title="{lang key1="admin" key2="products" key3="active"}"></i></th>
+				<th><i class="fa fa-shopping-cart" title="{lang key1="admin" key2="products" key3="active_to_buy"}"></i></td>
+				<th><i class="fa fa-external-link" title="{lang key1="admin" key2="index" key3="link_to_website"}"></i></th>
+			</tr>
+		{foreach from=$products_list value="v"}
+			<tr class="{cycle values=" ,odd"}">
+				<td class="center"><a href="?action=products&do=edit&id={$v.id}">{$v.id}</a></td>
+				<td class="center"><a href="?action=products&do=edit&id={$v.id}"><i class="fa fa-pencil"></i></a></td>
+				<td>{$v.name}</td>
+				<td class="center"><a href="?action=products&do=edit&id={$v.id}&orders=1">{$v.cnt}</a></td>
+				<td class="right">{$v.price|numformat} {if $value.currency == "usd"}<i class="fa fa-usd"></i>{elseif $value.currency == "euro"}<i class="fa fa-euro"></i>{else}<i class="fa fa-rub"></i>{/if}</td>
+				<td class="center">{if !empty($v.active)}<i class="fa fa-check"></i>{/if}</td>
+				<td class="center">{if !empty($v.accept_orders)}<i class="fa fa-check"></i>{/if}</td>
+				<td class="center">
+				{if !empty($v.site_url_qty) AND $v.site_url_qty > 1}
+					<span class="red">*</span>
+				{else}
+					<small><a href="{$v.site_url}/{$v.alias}{$simpla.CONST.URL_END}{if empty($v.active)}?debug={$v.site_id}{/if}" target="_blank"><i class="fa fa-external-link"></i></a></small>
+				{/if}
+				</td>
+			</tr>
+		{/foreach}
+		</table>
+		
+	{else}
+
+{*	
+	memo] => 
+            [memo_short
+			if(empty($value.memo) AND empty($value.memo_short))
+			elseif(empty($value.memo) OR empty($value.memo_short))
+*}
+  <form method=post name=form1>
+  
+    <table width="100%" class="">
+      <tr>
+        <th>#</th>
+        <th><i class="fa fa-edit"></i></th>
+        <th width=50><i class="fa fa-check" title="{lang key1="admin" key2="products" key3="active"}"></i> <INPUT onclick="CheckAll(this,'active[]')" type=checkbox></th>
+        <th width=50><i class="fa fa-shopping-cart" title="{lang key1="admin" key2="products" key3="active_to_buy"}"></i> <INPUT onclick="CheckAll(this,'accept_orders[]')" type=checkbox></th>
+        <th width="25%">{lang key1="admin" key2="products" key3="title"}</th>
+        <th width="20%">{lang key1="admin" key2="products" key3="synonim"}</th>
+        <th>{lang key1="admin" key2="products" key3="price"}</th>
+        <th><i class="fa fa-usd"></i></th>
+        <th>YML</th>
+        <th width=50>{lang key1="admin" key2="products" key3="qty_short"}</th>
+        <th><i class="fa fa-bullhorn" title="{lang key1="admin" key2="products" key3="new"}"></i> <INPUT onclick="CheckAll(this,'f_new[]')" type="checkbox"></th>
+        <th><i class="fa fa-thumbs-up" title="{lang key1="admin" key2="products" key3="special_products"}"></i> <INPUT onclick="CheckAll(this,'f_spec[]')" type="checkbox"></th>
+        <th><i class="fa fa-camera" title="{lang key1="admin" key2="qty_pics"}"></i></th>
+        <th><i class="fa fa-external-link"></i></th>
+        <th width=50><i class="fa fa-trash" title="{lang key1="admin" key2="delete"}"></i> <INPUT onclick="CheckAll(this,'del[]')" type="checkbox"></th>
+      </tr>
+
+      {foreach from=$products_list value="value" key="key"}
+        <tr { cycle values=" ,class=odd"}>
+          <td align=center><a href="?action=products&do=edit&id={$value.id}">{$value.id}</a></td>
+          <td align=center nowrap><a href="?action=products&do=edit&id={$value.id}"><i class="fa fa-pencil{if empty($value.memo) AND empty($value.memo_short)} red
+			{elseif empty($value.memo) OR empty($value.memo_short)} grey{/if}"></i></a> {if $value.date_insert|strtotime > 
+					$simpla[NOW]}
+					<i class="fa fa-clock-o red" title="{lang key1="admin" key2="not_shown_yet"}"></i>
+				{/if}</td>
+          <td align=center><input type=checkbox name="active[]" value="{$value.id}"{if $value.active} checked="checked"{/if} /></td>
+          <td width=50 align=center><input type=checkbox name="accept_orders[]" value="{$value.id}"{if $value.accept_orders} checked="checked"{/if} /></td>
+          <td><input type=text style="width:100%;" name="goods[{$value.id}][name]" value="{$value.name|htmlspecialchars}"></td>
+          <td><input type=text style="width:100%;" name="goods[{$value.id}][alias]" value="{$value.alias|htmlspecialchars}" /></td>
+          
+          <td align=right><input style="text-align: right;" type="text" style="width:100%;" name="goods[{$value.id}][price]" value="{ $value.price }" /></td>
+          <td align=center>{if $value.currency == "usd"}<i class="fa fa-usd"></i>{elseif $value.currency == "euro"}<i class="fa fa-euro"></i>{else}<i class="fa fa-rub"></i>{/if}</td>
+
+		  <td align=center><input style="text-align: center;" type="text" size="2" name="goods[{$value.id}][bid_ya]" value="{ $value.bid_ya }" /></td>
+		  
+		  
+		  
+          <td align=center>{$value.total_qty}</td>
+
+          <td width=50 align=center><input type=checkbox name="f_new[]" value="{$value.id}"{if $value.f_new == 1} checked="checked"{/if} /></td>
+          <td width=50 align=center><input type=checkbox name="f_spec[]" value="{$value.id}"{if $value.f_spec == 1} checked="checked"{/if} /></td>
+          <td width=50 align=center>{if $value.fotos == 0}<span style="color:red;">0</span>{else}{$value.fotos}{/if}</td>
+          <td align="center">
+          
+          {if !empty($cid)}
+            
+				{if !empty($value.site_url_qty) AND $value.site_url_qty > 1}
+					<span class="red">*</span>
+				{else}
+					<small><a href="{$value.site_url}/{$value.alias}{$simpla.CONST.URL_END}{if empty($value.active)}?debug={$value.site_id}{/if}" target="_blank"><i class="fa fa-external-link"></i></a></small>
+				{/if}
+			{elseif !empty($value.site_url)}
+			
+				{if !empty($value.site_url_qty) AND $value.site_url_qty > 1}
+					<span class="red">*</span>
+				{else}
+					<small><a href="{$value.site_url}/{$value.alias}{$simpla.CONST.URL_END}{if empty($value.active)}?debug={$value.site_id}{/if}" target="_blank"><i class="fa fa-external-link"></i></a></small>
+				{/if}
+		
+          {/if}
+          </td>
+          <td width=50 align=center><input  type="checkbox" name="del[]" value="{$value.id}"></td>
+        </tr>
+      {/foreach}
+
+      
+    </table>
+   <p><input type=submit name=update value="{lang key1="admin" key2="update"}" 
+   onclick="if(confirm('{lang key1="admin" key2="are_u_sure"}')) return true; else return false;" /></p> 
+  </form>
+  {/if}
+
+{else}
+  <p>{lang key1="admin" key2="user" key3="list_empty"} <a href="?action=products&do=add">{lang key1="admin" key2="add"}</a></p>
+{/if}
+
+{include file="pages/pages.html"}
+{include file="footer.html" }

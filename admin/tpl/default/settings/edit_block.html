@@ -1,0 +1,201 @@
+{include file="header.html"}
+<script language="Javascript" type="text/javascript" src="/admin/js/editarea/edit_area/edit_area_full.js"></script>
+<script language="Javascript" type="text/javascript">
+  {literal}
+    // initialisation
+    editAreaLoader.init({
+      id: "example_1" // id of the textarea to transform    
+      ,start_highlight: true  // if start with highlight
+      ,allow_resize: "both"
+      ,allow_toggle: true
+      ,word_wrap: true
+      ,language: "en"
+      ,syntax: "php" 
+      ,toolbar: "search, go_to_line, fullscreen, |, undo, redo, |, select_font,|, highlight, word_wrap"
+    });
+
+    // callback functions
+    function my_save(id, content){
+      alert("Here is the content of the EditArea '"+ id +"' as received by the save callback function:\n"+content);
+    }
+    
+    function my_load(id){
+      editAreaLoader.setValue(id, "The content is loaded from the load_callback function into EditArea");
+    }
+    
+    function test_setSelectionRange(id){
+      editAreaLoader.setSelectionRange(id, 100, 150);
+    }
+    
+    function test_getSelectionRange(id){
+      var sel =editAreaLoader.getSelectionRange(id);
+      alert("start: "+sel["start"]+"\nend: "+sel["end"]); 
+    }
+    
+    function test_setSelectedText(id){
+      text= "[REPLACED SELECTION]"; 
+      editAreaLoader.setSelectedText(id, text);
+    }
+    
+    function test_getSelectedText(id){
+      alert(editAreaLoader.getSelectedText(id)); 
+    }
+    
+    function editAreaLoaded(id){
+      if(id=="example_2")
+      {
+        open_file1();
+        open_file2();
+      }
+    }
+    
+    function open_file1()
+    {
+      var new_file= {id: "to\\ é # € to", text: "$authors= array();\n$news= array();", syntax: 'php', title: 'beautiful title'};
+      editAreaLoader.openFile('example_2', new_file);
+    }
+    
+    function open_file2()
+    {
+      var new_file= {id: "Filename", text: "<a href=\"toto\">\n\tbouh\n</a>\n<!-- it's a comment -->", syntax: 'html'};
+      editAreaLoader.openFile('example_2', new_file);
+    }
+    
+    function close_file1()
+    {
+      editAreaLoader.closeFile('example_2', "to\\ é # € to");
+    }
+    
+    function toogle_editable(id)
+    {
+      editAreaLoader.execCommand(id, 'set_editable', !editAreaLoader.execCommand(id, 'is_editable'));
+    }
+    {/literal}
+  </script>
+
+
+<h1 class="mt-0">{if $block.id > 0}{favorites where="block" id=$block.id} {lang key1="admin" key2="blocks" key3="edit"}{else}{lang key1="admin" key2="blocks" key3="add"}{/if}</h1>
+{include file="settings/elements_menu.html"}
+
+<table width="80%">
+    <tr>
+		<td>
+
+{ if $admin_vars.uri.updated == 1}
+  { assign var="href" value="?action=settings&do=blocks&id=".$block.id }
+  <blockquote><a href="{$href}">{lang key1="admin" key2="blocks" key3="updated"}</a></blockquote>
+{elseif $admin_vars.uri.deleted == 1}
+  <blockquote>{lang key1="admin" key2="blocks" key3="deleted"}</blockquote>
+{elseif $admin_vars.uri.added == 1}
+  { assign var="href" value="?action=settings&do=blocks&id=".$block.id }
+  <blockquote><a href="{$href}">{lang key1="admin" key2="blocks" key3="added"}</a></blockquote>
+{else}
+
+  <blockquote>{lang key1="admin" key2="blocks" key3="content"}
+	{if $block.id > 0}<br><br>{lang key1="admin" key2="elements" key3="code_to_insert_in_tpl"}:<br> 
+		<b>{ $simpla.LDELIM }blocks where="{$block.where}" name="{$block.title}"{ $simpla.RDELIM }</b>
+		{if !empty($block.where) AND $block.where == "form"}
+		<br>{lang key1="admin" key2="elements" key3="code_to_insert_in_html"}: <b>%{$block.title}%</b>
+		{/if}
+	{/if}
+  </blockquote>
+
+  
+		</td>
+	</tr>
+</table>
+  
+  <form method="post">
+
+  <table width="80%">
+    <tr>
+      <th>{lang key1="admin" key2="sites" key3="key"}</th>
+      <th>{lang key1="admin" key2="sites" key3="value"}</th>
+    </tr>
+    
+    <tr {cycle values=" ,class=odd" }>
+      <td width="200">{lang key1="admin" key2="blocks" key3="active"}</td>
+      <td><input type="checkbox" name="block[active]" value="1"{if $block.active == 1} checked{/if}></td>
+    </tr>
+
+    <tr {cycle values=" ,class=odd" }>
+      <td width="200">{lang key1="admin" key2="blocks" key3="title"}*</td>
+      <td><input type="text" name="block[title]" style="width:100%;" maxlength="100" value="{$block.title|htmlspecialchars}" /></td>
+    </tr>
+
+    <tr {cycle values=" ,class=odd" }>
+      <td width="200">{lang key1="admin" key2="blocks" key3="title_admin"}</td>
+      <td><input type="text" name="block[title_admin]" style="width:100%;" maxlength="255" value="{$block.title_admin|htmlspecialchars}" /></td>
+    </tr>
+    
+    <tr {cycle values=" ,class=odd" }>
+      <td width="200">{lang key1="admin" key2="blocks" key3="where"}</td>
+      <td><select name="block[where]">
+				{foreach from=$block.where_ar key="k" value="v"}
+					<option value="{$k}"{if $block.where == $k} selected="selected"{/if}>{$v}</option>
+				{/foreach}
+			</select>	  
+	  </td>
+    </tr>
+        
+    <tr {cycle values=" ,class=odd" }>
+      <td width="200">{lang key1="admin" key2="blocks" key3="qty"}</td>
+      <td><input type="text" name="block[qty]" style="width:100%;" maxlength="255" value="{$block.qty|htmlspecialchars}" /></td>
+    </tr>
+
+    <tr {cycle values=" ,class=odd" }>
+      <td width="200">{lang key1="admin" key2="status" key3="sort"}</td>
+      <td><input type="text" name="block[sort]" style="width:100%;" maxlength="255" value="{$block.sort|htmlspecialchars}" /></td>
+    </tr>
+    
+    <tr {cycle values=" ,class=odd" }>
+      <td width="200">{lang key1="admin" key2="blocks" key3="type"}</td>
+      <td><select name="block[type]">
+				{foreach from=$block.type_ar key="k" value="v"}
+					<option value="{$k}"{if $block.type == $k} selected="selected"{/if}>{$v}</option>
+				{/foreach}
+			</select>	  
+	  </td>
+    </tr>
+	
+    <tr {cycle values=" ,class=odd" }>
+      <td width="200">{lang key1="admin" key2="blocks" key3="type_id"}</td>
+      <td><input type="text" name="block[type_id]" style="width:100%;" maxlength="255" value="{$block.type_id|htmlspecialchars}" /></td>
+    </tr>
+    
+    <tr {cycle values=" ,class=odd" }>
+      <td width="200">{lang key1="admin" key2="pages"}<br><small>{lang key1="admin" key2="blocks" key3="pages_comment"}</small></td>
+      <td><textarea name="block[pages]" rows="4" style="width:100%;">{$block.pages|stripslashes|htmlspecialchars}</textarea></td>
+    </tr>
+    
+    <tr {cycle values=" ,class=odd" }>
+      <td width="200">{lang key1="admin" key2="blocks" key3="skip_pages"}<br><small>{lang key1="admin" key2="blocks" key3="pages_comment"}</small></td>
+      <td><textarea name="block[skip_pages]" rows="4" style="width:100%;">{$block.skip_pages|stripslashes|htmlspecialchars}</textarea></td>
+    </tr>
+
+    <tr {*cycle values=" ,class=odd" *}>
+      <td width="200">{lang key1="admin" key2="blocks" key3="html"}</td>
+      <td><textarea id="example_1" name="block[html]" style="width:100%; height:350px;">{$block.html|stripslashes|htmlspecialchars}</textarea>
+	  	  
+	  </td>
+    </tr>
+	
+    <tr {cycle values=" ,class=odd" }>
+      <td width="200">{lang key1="admin" key2="websites"}</td>
+      <td>
+			{foreach from=$block.sites_ar value="v"}
+				<input type="checkbox" name="block[sites][]" value="{$v.id}"{if !empty($v.connected)} checked="checked"{/if}> {$v.name_short} - {$v.site_url}<br>
+			{/foreach}
+	  </td>
+    </tr>
+
+    <tr {cycle values=" ,class=odd" }>
+      <td colspan="2" align="center"><input type="submit" name="save" value="{lang key1="admin" key2="save"}"> 
+      { if $block.id > 0}<input type="submit" name="del" value="{lang key1="admin" key2="delete"}" class="small" onclick="if(confirm('{lang key1="admin" key2="really"}')) return true; else return false;">{ /if }
+      </td>
+    </tr>
+  </table>
+  </form>
+{/if}
+  
+{ include file="footer.html" }

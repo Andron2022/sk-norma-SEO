@@ -1,0 +1,76 @@
+<table border=0 cellpadding=5 cellspacing=1 width="200">
+  <tr><th>{lang key1="admin" key2="sidebar" key3="settings"}</th></tr>
+  <tr{if $admin_vars.uri.do == "site"} class="odd"{/if}>
+    <td><i class="fa fa-wrench" style="color:{$admin_vars.bgdark};"></i> <a href="?action=settings&do=site">{lang key1="admin" key2="sidebar" key3="site_settings"}</a></td>
+  </tr>
+  <tr{if $admin_vars.uri.do == "site_vars" OR $admin_vars.uri.do == "mass_vars"} class="odd"{/if}>
+    <td><i class="fa fa-cogs" style="color:{$admin_vars.bgdark};"></i> <a href="?action=settings&do=site_vars">{lang key1="admin" key2="sidebar" key3="elements"}</a> <a href="?action=settings&do=site_vars&id=0"><i class="fa fa-plus" style="color:{$admin_vars.bgdark};"></i></a></td>
+  </tr>
+  
+  {if !empty($site_vars.fav.vars)}
+  <tr>
+	<td>
+		{foreach from=$site_vars.fav.vars key="k" value="v"}
+			{if $k > 0}<br>{/if}<small><a href="?action=settings&do=site_vars&id={$v.id}" title="{if !empty($v.site)} {$v.site|delhttp}{/if}"><i class="fa fa-star"></i> {$v.name}</a></small>
+		{/foreach}
+	</td>
+  </tr>
+  {/if}
+  
+  <tr{if $admin_vars.uri.do == "blocks"} class="odd"{/if}>
+    <td><i class="fa fa-th-large" style="color:{$admin_vars.bgdark};"></i> <a href="?action=settings&do=blocks">{lang key1="admin" key2="sidebar" key3="blocks"}</a> <a href="?action=settings&do=blocks&id=0"><i class="fa fa-plus" style="color:{$admin_vars.bgdark};"></i></a></td>
+  </tr> 
+  
+  {if !empty($site_vars.fav.blocks)}
+  <tr>
+	<td>
+		{foreach from=$site_vars.fav.blocks key="k" value="v"}
+			{if $k > 0}<br>{/if}<a href="?action=settings&do=blocks&id={$v.id}"><small><i class="fa fa-star"></i> {if !empty($v.title)}{$v.title}{else}{$v.row_title}{/if}</small></a>
+		{/foreach}
+	</td>
+  </tr>
+  {/if}
+  
+  <tr{if $admin_vars.uri.do == "tpl"} class="odd"{/if}>
+    <td><i class="fa fa-sitemap" style="color:{$admin_vars.bgdark};"></i> <a href="?action=settings&do=tpl">{lang key1="admin" key2="sidebar" key3="tpls"}</a></td>
+  </tr>
+  <tr{if $admin_vars.uri.do == "users" OR $admin_vars.uri.do == "add_user"} class="odd"{/if}>
+    <td><i class="fa fa-users" style="color:{$admin_vars.bgdark};"></i> <a href="?action=settings&do=users">{lang key1="admin" key2="sidebar" key3="users"}</a> <a href="?action=settings&do=add_user"><i class="fa fa-plus" style="color:{$admin_vars.bgdark};"></i></a></td>
+  </tr>
+
+  <tr{if $admin_vars.uri.action == "delivery"} class="odd"{/if}>
+    <td><i class="fa fa-truck" style="color:{$admin_vars.bgdark};"></i> <a href="?action=delivery">{lang key1="admin" key2="sidebar" key3="delivery"}</a> <a href="?action=delivery&id=0"><i class="fa fa-plus" style="color:{$admin_vars.bgdark};"></i></a></td>
+  </tr>
+
+  <tr{if $admin_vars.uri.do == "payments"} class="odd"{/if}>
+    <td><i class="fa fa-credit-card" style="color:{$admin_vars.bgdark};"></i> <a href="?action=settings&do=payments">{lang key1="admin" key2="sidebar" key3="pay_methods"}</a></td>
+  </tr>
+
+  <tr{if $admin_vars.uri.do == "statuses"} class="odd"{/if}>
+    <td><i class="fa fa-spinner" style="color:{$admin_vars.bgdark};"></i> <a href="?action=settings&do=statuses">{lang key1="admin" key2="sidebar" key3="order_statuses"}</a></td>
+  </tr>
+  
+  <tr{if $admin_vars.uri.action == "db"} class="odd"{/if}>
+    <td><i class="fa fa-database" style="color:{$admin_vars.bgdark};"></i> <a href="?action=db">{lang key1="admin" key2="sidebar" key3="database"}</a></td>
+  </tr>
+
+  <tr{if $admin_vars.uri.action == "mass"} class="odd"{/if}>
+    <td><i class="fa fa-plus" style="color:{$admin_vars.bgdark};"></i> <a href="?action=mass">{lang key1="admin" key2="sidebar" key3="mass_add"}</a></td>
+  </tr>
+
+  <tr{if $admin_vars.uri.action == "emails"} class="odd"{/if}>
+    <td><i class="fa fa-envelope" style="color:{$admin_vars.bgdark};"></i> <a href="?action=emails">{lang key1="admin" key2="sidebar" key3="mail_events"}</a></td>
+  </tr>
+
+  <tr{if $admin_vars.uri.action == "coupons"} class="odd"{/if}>
+    <td><i class="fa fa-gift" style="color:{$admin_vars.bgdark};"></i> <a href="?action=coupons">{lang key1="admin" key2="sidebar" key3="coupons"}</a></td>
+  </tr>
+
+  <tr{if $admin_vars.uri.action == "org"} class="odd"{/if}>
+    <td><i class="fa fa-briefcase" style="color:{$admin_vars.bgdark};"></i> <a href="?action=org">{lang key1="admin" key2="sidebar" key3="orgs"}</a></td>
+  </tr>
+  
+
+</table>
+
+</td><td valign="top">

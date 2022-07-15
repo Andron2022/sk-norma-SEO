@@ -1,0 +1,72 @@
+{include file="header.html"}
+
+<h1 class="mt-0">{lang key1="admin" key2="tpl" key3="templates"}</h1>
+{if !empty($simpla.GET.folder) }
+<ul>
+	<li><a href="?action=settings&do=tpl">{lang key1="admin" key2="tpl" key3="templates"}</a></li>
+	<li><a href="?action=settings&do=tpl&folder={$folder}">{$folder}</a></li>
+</ul>
+{/if}
+              
+<p><b>{lang key1="admin" key2="tpl" key3="tpl_available"}</b>
+
+<ul>
+
+{foreach from=$templates key="key" value="value"}
+  {if $value.link}
+    <li><a href="{ $value.link }">{ if $value.img }<i class="fa fa-folder-open"></i> { $value.file }{ /if }</a>
+<br><a href="javascript: ShowHide('block-{$key}')" style="border-bottom: 1px dashed blue; margin-left:20px;">{lang key1="admin" key2="tpl" key3="open"}</a>
+<div style="display: none;" id="block-{$key}">
+		<ul>
+			<li>{lang key1="admin" key2="home"} - <a href="?action=settings&do=tpl&folder=&folder={ $value.file }&doc=index.html">index.html</a></li>
+			<li>{lang key1="admin" key2="tpl" key3="header"} - <a href="?action=settings&do=tpl&folder=&folder={ $value.file }&doc=header.html">header.html</a></li>
+			<li>{lang key1="admin" key2="tpl" key3="footer"} - <a href="?action=settings&do=tpl&folder=&folder={ $value.file }&doc=footer.html">footer.html</a></li>
+			<br>
+			<li>{lang key1="admin" key2="categ"} - <a href="?action=settings&do=tpl&folder=&folder={ $value.file }&doc=category.html">category.html</a></li>
+			<li>{lang key1="admin" key2="pub"} - <a href="?action=settings&do=tpl&folder=&folder={ $value.file }&doc=pub.html">pub.html</a></li>
+			<li>{lang key1="admin" key2="product"} - <a href="?action=settings&do=tpl&folder=&folder={ $value.file }&doc=product.html">product.html</a></li>
+			<li>{lang key1="admin" key2="tpl" key3="feedback"} - <a href="?action=settings&do=tpl&folder=&folder={ $value.file }&doc=feedback.html">feedback.html</a></li>
+			<li>{lang key1="admin" key2="tpl" key3="blank_page"} - <a href="?action=settings&do=tpl&folder=&folder={ $value.file }&doc=blank.html">blank.html</a></li>
+			<li>{lang key1="admin" key2="categ"} 404 - <a href="?action=settings&do=tpl&folder=&folder=../tpl/{ $value.file }/pages&doc=404.html">404.html</a></li>
+			<br>
+			<li><b>{lang key1="admin" key2="tpl" key3="for_homepage"}</b></li>
+			<li>{lang key1="admin" key2="block_types" key3="lastProducts"} 
+			(<a href="?action=settings&do=site_vars&mode=sys&site_id=-1&q=sys_qty_last_products&redirect=1">{if isset($site_vars.sys_qty_last_products)}{$site_vars.sys_qty_last_products}{else}?{/if}</a>) - <a href="?action=settings&do=tpl&folder=&folder=../tpl/{ $value.file }/pages&doc=index_last_products.html">index_last_products.html</a></li>
+			<li>{lang key1="admin" key2="block_types" key3="lastPubs"} (<a href="?action=settings&do=site_vars&mode=sys&site_id=-1&q=sys_qty_last_pubs&redirect=1">{if isset($site_vars.sys_qty_last_pubs)}{$site_vars.sys_qty_last_pubs}{else}?{/if}</a>) - <a href="?action=settings&do=tpl&folder=&folder=../tpl/{ $value.file }/pages&doc=index_last_pubs.html">index_last_pubs.html</a></li>
+			<br>
+			<li><b>{lang key1="admin" key2="tpl" key3="extended"}</b></li>
+			<li>{lang key1="admin" key2="block_types" key3="lastPubs"} {if !empty($site_vars.sys_qty_last_pubs)}(<a href="?action=settings&do=site_vars&mode=sys&site_id=-1&q=sys_qty_last_pubs&redirect=1">{if isset($site_vars.sys_qty_last_pubs)}{$site_vars.sys_qty_last_pubs}{else}?{/if}</a>) {/if}- <a href="?action=settings&do=tpl&folder=&folder=../tpl/{ $value.file }/pages&doc=last_pubs.html">last_pubs.html</a></li>
+			<li>{lang key1="admin" key2="block_types" key3="listPubs"} - <a href="?action=settings&do=tpl&folder=&folder=../tpl/{ $value.file }/pages&doc=include_pubs.html">include_pubs.html</a></li>
+			<li>{lang key1="admin" key2="tpl" key3="sidebar_last_pubs"} - <a href="?action=settings&do=tpl&folder=&folder=../tpl/{ $value.file }/pages&doc=sidebar_last_pubs.html">sidebar_last_pubs.html</a></li>
+			<li>{lang key1="admin" key2="block_types" key3="listProducts"} - <a href="?action=settings&do=tpl&folder=&folder=../tpl/{ $value.file }/pages&doc=include_products.html">include_products.html</a></li>
+			<li>{lang key1="admin" key2="tpl" key3="important_pubs"} {if !empty($site_vars.sys_qty_starred_pubs)}({$site_vars.sys_qty_starred_pubs}) {/if}	- {if !empty($site_vars.sys_skip_starred_pubs)}<span style="color:red;font-weight:bold;">{lang key1="admin" key2="db" key3="off"}</span> {/if}<a href="?action=settings&do=tpl&folder=&folder=../tpl/{ $value.file }/pages&doc=include_starred_pubs.html">include_starred_pubs.html</a>
+			<br>
+			<u><i>{lang key1="admin" key2="fav" key3="title"}:</i></u> <i><a href="?action=settings&do=site_vars&mode=sys&site_id=-1&q=sys_starred_pubs_title&redirect=1">{if isset($site_vars.sys_starred_pubs_title)}{$site_vars.sys_starred_pubs_title}{else}{lang key1="admin" key2="db" key3="not_set"}{/if}</a></i></li>
+			<li>{lang key1="admin" key2="tpl" key3="conn_offers"} - <a href="?action=settings&do=tpl&folder=&folder=../tpl/{ $value.file }/pages&doc=include_connected_products.html">include_connected_products.html</a></li>
+			<li>{lang key1="admin" key2="comments"} - <a href="?action=settings&do=tpl&folder=&folder=../tpl/{ $value.file }/pages&doc=include_comments.html">include_comments.html</a></li>
+			<li>{lang key1="admin" key2="tpl" key3="breadcrumbs"} - <a href="?action=settings&do=tpl&folder=&folder=../tpl/{ $value.file }/pages&doc=breadcrumbs.html">breadcrumbs.html</a></li>
+			<li>{lang key1="admin" key2="tpl" key3="pagination"} - <a href="?action=settings&do=tpl&folder=&folder=../tpl/{ $value.file }/pages&doc=pages.html">pages.html</a></li>
+			<li>{lang key1="admin" key2="tpl" key3="sidebar_spec"} (<a href="?action=settings&do=site_vars&mode=sys&site_id=-1&q=sys_qty_spec_products&redirect=1">{if isset($site_vars.sys_qty_spec_products)}{$site_vars.sys_qty_spec_products}{else}?{/if}</a>) - <a href="?action=settings&do=tpl&folder=&folder=../tpl/{ $value.file }/pages&doc=sidebar_spec_products.html">sidebar_spec_products.html</a></li>
+
+			<li>{lang key1="admin" key2="tpl" key3="viewed_products"} (<a href="?action=settings&do=site_vars&mode=sys&site_id=-1&q=sys_qty_visited_products&redirect=1">{if isset($site_vars.sys_qty_visited_products)}{$site_vars.sys_qty_visited_products}{else}?{/if}</a>) - {if !empty($site_vars.sys_skip_visited_products)}<span style="color:red;font-weight:bold;">{lang key1="admin" key2="db" key3="off"}</span> {/if}<a href="?action=settings&do=tpl&folder=&folder=../tpl/{ $value.file }/pages&doc=visited_products.html">visited_products.html</a></li>
+			
+			<li>{lang key1="admin" key2="tpl" key3="viewed_pubs"} (<a href="?action=settings&do=site_vars&mode=sys&site_id=-1&q=sys_qty_visited_pubs&redirect=1">{if isset($site_vars.sys_qty_visited_pubs)}{$site_vars.sys_qty_visited_pubs}{else}?{/if}</a>) - {if !empty($site_vars.sys_skip_visited_pubs)}<span style="color:red;font-weight:bold;">{lang key1="admin" key2="db" key3="off"}</span> {/if}<a href="?action=settings&do=tpl&folder=&folder=../tpl/{ $value.file }/pages&doc=visited_pubs.html">visited_pubs.html</a></li>
+			
+			<li>{lang key1="admin" key2="tpl" key3="sitemap"} - <a href="?action=settings&do=tpl&folder=&folder=../tpl/{ $value.file }/pages&doc=sitemap.html">sitemap.html</a></li>
+			<li>{lang key1="admin" key2="prava" key3="search"} - <a href="?action=settings&do=tpl&folder=&folder=../tpl/{ $value.file }/pages&doc=search.html">search.html</a></li>
+			<br>
+			<li><b>{lang key1="admin" key2="tpl" key3="shop"}</b></li>
+			<li>{lang key1="admin" key2="tpl" key3="cart"} - <a href="?action=settings&do=tpl&folder=&folder=../tpl/{ $value.file }/pages&doc=basket.html">basket.html</a></li>
+			<li>{lang key1="admin" key2="tpl" key3="sidebar_cart"} - <a href="?action=settings&do=tpl&folder=&folder=../tpl/{ $value.file }/pages&doc=basket_sidebar.html">basket_sidebar.html</a></li>
+			<li>{lang key1="admin" key2="tpl" key3="do_order"} - <a href="?action=settings&do=tpl&folder=&folder=../tpl/{ $value.file }/pages&doc=order.html">order.html</a></li>
+			<li>{lang key1="admin" key2="tpl" key3="new_order"} - <a href="?action=settings&do=tpl&folder=&folder=../tpl/{ $value.file }/pages&doc=order_add.html">order_add.html</a></li>
+			<li>{lang key1="admin" key2="tpl" key3="new_request"} - <a href="?action=settings&do=tpl&folder=&folder=../tpl/{ $value.file }/pages&doc=feedback.html">feedback.html</a></li>
+		</ul>
+</div>
+	</li>
+  {else}
+    <li>{ if $value.img }<img src='{$value.img}' border='0' /> { /if }{ $value.file }</li>
+  {/if}
+{/foreach}
+
+{ include file="footer.html" }

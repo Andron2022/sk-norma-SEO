@@ -1,0 +1,101 @@
+{include file="header.html"}
+
+<h1 class="mt-0">{if !empty($simpla.GET.do) AND $simpla.GET.do == "search"}{lang key1="admin" key2="site_search"}{else}{lang key1="admin" key2="prava" key3="stat"}{/if}
+{if !empty($stat.dates.all_results)} ({$stat.dates.all_results}){/if}</h1>      
+
+<form method="GET">
+<input type="hidden" name="action" value="stat" />
+<table width="80%">
+	<tr class="odd">
+{if !empty($stat.sites) AND $stat.sites|@count > 1}
+<td>
+	<select name="site_id">
+	<option value="0">- {lang key1="admin" key2="fb" key3="all_sites"}</option>
+	{foreach from=$stat.sites value="v"}
+		<option value="{$v.id}"{if !empty($simpla.GET.site_id) AND $simpla.GET.site_id == $v.id} selected="selected"{/if}>{$v.url|delhttp}</option>
+	{/foreach}
+	</select>
+</td>
+{/if}
+
+<td><input type="checkbox" name="do" value="search"
+{if !empty($simpla.GET.do) AND $simpla.GET.do == "search"} checked="checked" {/if}>{lang key1="admin" key2="site_search"}</td>
+<td>{lang key1="admin" key2="from"} { html_select_date time=$stat.dates.from start_year=$stat.dates.start_year lang=$site_vars.lang_admin
+end_year="+0" day_value_format="%02d" month_format="%m" field_order="DMY" 
+field_array="from" prefix="" year_empty="-"  month_empty="-"  day_empty="-"} 
+</td>
+<td> {lang key1="admin" key2="to"} { html_select_date time=$stat.dates.to start_year=$stat.dates.start_year lang=$site_vars.lang_admin 
+end_year="+0" day_value_format="%02d" month_format="%m" field_order="DMY" 
+field_array="to" prefix="" year_empty="-"  month_empty="-"  day_empty="-"} </td>
+    
+	</tr>
+</table>
+
+<table width="80%">
+	<tr>
+
+{if !empty($stat.dates.refs)}
+<td>
+	<select name="ref">
+	<option value="0">- {lang key1="admin" key2="referrals"}</option>
+	{foreach from=$stat.dates.refs value="v"}
+		<option value="{$v}"{if !empty($simpla.GET.ref) AND $simpla.GET.ref == $v} selected="selected"{/if}>{$v}</option>
+	{/foreach}
+	</select>
+</td>
+{/if}
+
+{if !empty($stat.dates.partners)}
+<td>
+	<select name="partners">
+	<option value="0">- {lang key1="admin" key2="partners"}</option>
+	{foreach from=$stat.dates.partners value="v"}
+		<option value="{$v.partners|escape}"{if !empty($simpla.GET.partners) AND $simpla.GET.partners == $v.partners} selected="selected"{/if}>{$v.partners}</option>
+	{/foreach}
+	</select>
+</td>
+{/if}
+
+
+		<td><input type="submit" value="{lang key1="admin" key2="fb" key3="find"}"></td>  
+	</tr>
+</table>
+</form>
+
+{include file="pages/pages.html"}
+{if !empty($stat.list)}
+<table width="80%">
+	<tr>
+		<th>#</th>
+		<th>{lang key1="admin" key2="date"}</th>
+		<th title="{lang key1="admin" key2="fb" key3="page_in"}">{lang key1="admin" key2="categ"}</th>
+		<th><i class="fa fa-bar-chart" title="{lang key1="admin" key2="qty_pages_viewed"}"></i></th>
+		<th>{lang key1="admin" key2="user" key3="ref"}</th>
+		<th>{lang key1="admin" key2="fb" key3="request"}</th>
+		<th>{lang key1="admin" key2="partner"}</th>
+		<th>IP</th>
+		<th>{lang key1="admin" key2="website"}</th>		
+	</tr>
+	{foreach from=$stat.list value="v"}
+	<tr class="{cycle values=",odd"}">
+		<td class="center"><a href="?action=stat&id={$v.id}{if !empty($stat.dates.back_url)}&back={$stat.dates.back_url}{/if}"><i class="fa fa-info"></i></a></td>
+		<td><small><a href="?action=stat&id={$v.id}{if !empty($stat.dates.back_url)}&back={$stat.dates.back_url}{/if}">{$v.time|date:"d.m.Y H:i"}</a></small></td>
+		<td>{$v.page}
+		{if !empty($v.qty_fb)} <small><i class="fa fa-envelope"></i></small>{/if}
+		{if !empty($v.qty_orders)} <small><i class="fa fa-shopping-cart"></i></small>{/if}
+		</td>
+		<td class="center">{$v.qty_pages_visited}</td>
+		<td>{$v.referer}</td>
+		<td>{$v.referer_query|truncate:"60":"..."}</td>
+		<td>{$v.partner_key}</td>
+		<td class="center">{$v.ip}</td>
+		<td>{$v.site_url|delhttp}</td>		
+	</tr>
+	{/foreach}
+</table>
+{else}
+	<p>{lang key1="admin" key2="list_empty"}</p>
+{/if}
+
+{include file="pages/pages.html"}
+{include file="footer.html" }

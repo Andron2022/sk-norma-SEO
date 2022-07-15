@@ -1,0 +1,35 @@
+{if !empty($admin_vars)}
+
+
+                </td>
+  </tr>
+</table>
+
+                </td>
+	</tr>
+	<tr>
+		<td background="{$tpl}images/header-bg-top.gif" height="5">&nbsp;</td>
+	</tr>
+	<tr>
+		<td align=center valign=middle>
+
+        <table border=0 align=center>
+          <tr>
+        		<td align=center valign=middle >  
+        	<a href="../" target="_blank"><i class="fa fa-external-link"></i></a> <a href="../" target="_blank">{lang key1="admin" key2="to_website"}</a> 
+            <a href="./docs/index.html" target="_blank"><i class="fa fa-book"></i></a> <a href="./docs/{$currentlang}/index.html" target="_blank">{lang key1="admin" key2="manual"}</a></td>
+            {if $admin_vars.bo_user.id == 0}<td>
+            <img src="{$tpl}images/icon/group.png" />
+            <a href="?action=remind">{lang key1="admin" key2="user" key3="reset_password"}</a>
+            </td>{/if}
+        	</tr>
+        </table>
+        <small>{lang key1="admin" key2="index" key3="page_generated_in"}: {page_loaded_time}</small>
+    </td>
+	</tr>
+</table>
+
+{/if}
+
+</body>
+</html>

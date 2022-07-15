@@ -1,0 +1,62 @@
+{include file="header.html"}
+
+<h1 class="mt-0">{lang key1="admin" key2="sidebar" key3="opt_groups"} ({$list_groups|@count})</h1>
+<p><a href="?action=products&do=add_option_group"><i class="fa fa-plus"></i> {lang key1="admin" key2="add"}</a></p>
+
+<table width="80%">
+    <tr>
+      <td><blockquote>{lang key1="admin" key2="elements" key3="opt_groups_help"}</blockquote></td>
+	</tr>
+</table>
+
+{if empty($list_groups)}
+  <p>{lang key1="admin" key2="elements" key3="no_optgroups"}</p>
+{else}
+  <table width="80%">
+    <tr>
+      <th width="30">#</th>
+      <th width="30"><i class="fa fa-edit"></i></th>
+      <th width="200">{lang key1="admin" key2="elements" key3="name"}</th>
+      <th width="50">{lang key1="admin" key2="for"}</th>
+      <th width="50">{lang key1="admin" key2="see_plural"}</th>
+      <th width="30"><i class="fa fa-filter" title="{lang key1="admin" key2="products" key3="options"}"></i></th>
+      <th width="30"><i class="fa fa-sort" title="{lang key1="admin" key2="status" key3="sort"}"></i></th>
+      <th>{lang key1="admin" key2="products" key3="desc"}</th>
+      <th>{lang key1="admin" key2="categs"}</th>
+    </tr>
+    
+    { foreach from=$list_groups value="value" }
+      <tr {cycle values="class='odd', " }>
+        <td valign="top" align="center"><a href="?action=products&do=option_group&id={ $value.id }">{$value.id}</a></td>
+        <td valign="top" align="center"><a href="?action=products&do=option_group&id={ $value.id }"><i class="fa fa-pencil"></i></a></td>
+        <td valign="top"><a href="?action=products&do=option_group&id={ $value.id }">{ $value.title|stripslashes }</a></td>
+        <td valign="top" align="center"><a href="?action=products&do=option_group&id={ $value.id }">
+          {if $value.where == "product"}
+            <i class="fa fa-shopping-cart" title="{lang key1="admin" key2="mass" key3="for_offers"}"></i>
+          {elseif $value.where == "pub"}
+            <i class="fa fa-copy" title="{lang key1="admin" key2="index" key3="for_pubs"}"></i>
+          {else}
+            <i class="fa fa-check" title="{lang key1="admin" key2="for_all" case="first"}"></i>
+          {/if}</a></td>
+		<td valign="top"><a href="?action=products&do=option_group&id={ $value.id }">
+		{if $value.to_show == 'info'}{lang key1="admin" key2="products" key3="content"}{elseif $value.to_show == 'manager'}{lang key1="admin" key2="products" key3="manager"}{elseif $value.to_show == 'user'}{lang key1="admin" key2="user" key3="user"}{elseif $value.to_show == 'hidden'}{lang key1="admin" key2="fb" key3="hidden"}{else}{lang key1="admin" key2="user" key3="all"}{/if}</a></td>
+		
+        <td valign="top" align="center"><a href="?action=products&do=options&categ=0&group={ $value.id }"><i class="fa fa-filter"></i></a></td>
+        <td valign="top" align="center"><a href="?action=products&do=option_group&id={ $value.id }">{ $value.sort }</a></td>
+        <td valign="top"><a href="?action=products&do=option_group&id={ $value.id }">{ $value.description }</a></td>
+        <td valign="top">{if $value.pages|@count > 0}
+		<a href="javascript: ShowHide('block{$value.id}')" style="border-bottom: 1px dashed blue;">{lang key1="admin" key2="show"} ({$value.pages|@count})</a>
+		<div style="display: none;" id="block{$value.id}"><br>		
+		
+          {foreach from=$value.pages key="key" value="page"}
+            <small><i class="fa fa-angle-double-right"></i> {if $page.active == 0}<s>{/if}<a href="{$page.link}">{$page.title}</a>{if $page.active == 0}</s>{/if} <a href="/{$page.ext_link}/" target="_blank"><i class="fa fa-external-link"></i></a></small><br>
+          {/foreach}
+		</div>
+        {else}- {lang key1="admin" key2="no"}{/if}
+        </td>
+      </tr>
+    { /foreach }
+  </table>
+{/if}
+
+{include file="footer.html"}

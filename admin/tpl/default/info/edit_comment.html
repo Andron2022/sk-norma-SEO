@@ -1,0 +1,179 @@
+{include file="header.html"}
+
+<h1 class="mt-0">{lang key1="admin" key2="editing_comment"}</h1>
+
+<p><a href="?action=comments&id=0"><i class="fa fa-plus"></i></a> <a href="?action=comments&id=0">{lang key1="admin" key2="add"}</a></p> 
+
+  {if isset($simpla.GET.updated)}
+    <table width="80%"><tr><td><blockquote>{lang key1="admin" key2="comment_updated"}</blockquote></td></tr></table>
+  {elseif isset($simpla.GET.added)}
+    <table width="80%"><tr><td><blockquote>{lang key1="admin" key2="comment_added"}</blockquote></td></tr></table>
+  {/if}
+
+<table width="80%">
+<form enctype="multipart/form-data" method="post">
+  <tr>
+    <td colspan=2>
+      <ul>
+	  
+	  
+        <li>{if !empty($comment.reply_for.alias)}
+              <a href="/{$comment.reply_for.alias}/" target="_blank"><i class="fa fa-external-link"></i> {$comment.reply_for.title}</a> 
+              {if $comment.record_type == "pub"}
+                {assign var="href" value="?action=info&do=edit_publication&id"}
+              {elseif $comment.record_type == "categ"}
+                {assign var="href" value="?action=info&do=edit_categ&id"}
+              {elseif $comment.record_type == "product"}
+                {assign var="href" value="?action=products&do=edit&id"}
+              {/if}
+              {if isset($href)}
+                <a style="padding-left:10px; margin-left:10px;" href="{$href}={$comment.record_id}"><i class="fa fa-pencil"></i></a> 
+				
+				<a style="padding-left:10px; margin-left:10px;" href="?action=comments&record_id={$comment.record_id}&record_type={$comment.record_type}"><i class="fa fa-sitemap"></i></a>
+              {/if}              
+              <a style="float:right;" href="?action=comments&id=0&record_id={$comment.record_id}&type={$comment.record_type}"><i class="fa fa-plus-circle"></i> {lang key1="admin" key2="add_more_comment"}</a>
+            {elseif $comment.record_type == "comment"}
+              <a href="?action=comments&id={$comment.record_id}">{lang key1="admin" key2="comment_number"}{$comment.record_id}</a>
+            {else}
+              - н/д
+            {/if}</li>
+        <li>{lang key1="admin" key2="author"}: {if $comment.userid > 0}<a href="?action=settings&do=add_user&id={$comment.userid}">{$comment.user_name}</a> / {$comment.user_login}
+		{elseif !empty($comment.unreg_email)}
+			{$comment.unreg_email}	
+		{else}
+			{lang key1="admin" key2="not_fill"}			
+		{/if}</li>
+        <li>{lang key1="admin" key2="sites" key3="ip"}: 
+			{if !empty($comment.ip_address)}
+				{$comment.ip_address}
+			{else}
+				{lang key1="admin" key2="no_data"}
+			{/if}		
+		</li>
+      </ul>
+    </td>
+  </tr>
+
+  <tr>
+    <th colspan=2>{lang key1="admin" key2="date"}: {$comment.inserted}</th>
+  </tr>
+  <tr class="odd">
+    <td width="20%">{lang key1="admin" key2="products" key3="status"}</td>
+    <td><select name="active">
+      <option value="0"{if $comment.active == 0} selected{/if}>{lang key1="admin" key2="sidebar" key3="to_moderate"}</option>
+      <option value="-1"{if $comment.active == -1} selected{/if}>{lang key1="admin" key2="sidebar" key3="blocked"}</option>
+      <option value="1"{if $comment.active == 1} selected{/if}>{lang key1="admin" key2="sidebar" key3="shown"}</option>
+      </select></td>
+  </tr>
+
+  <tr>
+    <td width="20%">{lang key1="admin" key2="products" key3="type"}</td>
+    <td><select name="record_type">
+      <option value="pub"{if $comment.record_type == "pub"} selected{/if}>{lang key1="admin" key2="pub"}</option>
+      <option value="categ"{if $comment.record_type == "categ"} selected{/if}>{lang key1="admin" key2="categ"}</option>
+      <option value="product"{if $comment.record_type == "product"} selected{/if}>{lang key1="admin" key2="product"}</option>
+      <option value="comment"{if $comment.record_type == "comment"} selected{/if}>{lang key1="admin" key2="comment"}</option>
+    </select></td>
+  </tr>
+
+  <tr class="odd">
+    <td width="20%">ID</td>
+    <td><input type=text name="record_id" size=5 value="{$comment.record_id}"></td>
+  </tr>
+
+  <tr>
+    <td width="20%">{lang key1="admin" key2="fav" key3="title"}</td>
+    <td><input type=text name="unreg_email" style="width:100%;" value="{$comment.unreg_email}"></td>
+  </tr>
+  
+  <tr class="odd">
+    <td width="20%">{lang key1="admin" key2="comment"}</td>
+    <td><textarea name="comment_text" id="comment_text_textarea" style="width:100%;" rows=20>{ $comment.comment_text }</textarea></td>
+  </tr>
+  
+  <tr>
+    <td colspan="2">
+		<a href="javascript: ShowHide('block-extra')" style="border-bottom: 1px dashed blue;">{lang key1="admin" key2="elements" key3="extra"}</a>
+		
+<div style="display: none;" id="block-extra">
+            <table cellpadding="0" cellspacing="1" width="100%">
+              <tbody>
+                <tr class="odd">
+                  <td width="20%">{lang key1="admin" key2="extra1"}</td>
+                  <td><textarea name="ext_h1" id="comment_text_textarea" style="width:100%;" rows=3>{$comment.ext_h1}</textarea></td>
+                </tr>
+                <tr class="odd">
+                  <td width="20%">{lang key1="admin" key2="extra2"}</td>
+                  <td><textarea name="ext_desc" id="comment_text_textarea" style="width:100%;" rows=5>{ $comment.ext_desc }</textarea></td>
+                </tr>
+		
+{if !empty($site_vars.img_comments.width) AND !empty($site_vars.img_comments.height)}	
+
+                <tr class="odd">
+                  <td width="20%">{lang key1="admin" key2="photo"} (<a href="?action=settings&do=site_vars&site_id=-1&q=img_comments&redirect=1">{ $site_vars.img_comments.width }*{ $site_vars.img_comments.height }</a>)</td>
+                  <td>					
+              {*<input type="hidden" name="record_type_img" value="comment" />
+			  <input type="hidden" name="record_id_img" value="{ $comment.id }" />*}
+              <input type="hidden" name="width" value="{ $site_vars.img_comments.width }" />
+              <input type="hidden" name="height" value="{ $site_vars.img_comments.height }" />
+              <input type="file" name="foto">
+					</td>
+                </tr>
+{else}
+				<tr class="odd">
+                  <td colspan="2">{lang key1="admin" key2="elements" key3="add_foto_sizes"} <b>img_comments</b>. <br><a href="?action=settings&do=site_vars&id=0&hint=img_comments">{lang key1="admin" key2="elements" key3="add_var_now"}</a>.</td>
+                </tr>
+{/if}				
+				
+              </tbody>
+            </table>
+        </div>
+	</td>
+  </tr>
+  
+  <tr class="odd">
+    <td width="20%">{lang key1="admin" key2="date"}</td>
+    <td>{ html_select_date time=$comment.ddate start_year="-20" end_year="+5" day_value_format="%02d" month_format="%m" field_order="DMY" field_array="insert_date" prefix="" lang=$site_vars.lang_admin} / { html_select_time use_24_hours=true display_seconds=false time=$comment.ddate field_array="insert_time"}</td>
+  </tr>
+  
+{ if !empty($comment_images) }
+  <tr>
+    <td width="20%">{lang key1="admin" key2="elements" key3="uploaded_pics"}</td>
+    <td><table>
+	{foreach from=$comment_images value="f"}
+		<tr>
+			<td><a href="/upload/records/{$f.id}.{$f.ext}" target="_blank">{$f.id}.{$f.ext}</a></td>
+			<td><input type="text" name="img[{$f.id}][title]" value="{$f.title|escape}"></td>
+			<td><a href="?action=comments&id={$comment.id}&delimg={$f.id}&delext={$f.ext}" onclick="if(confirm('{lang key1="admin" key2="really"}')) return true; else return false;"><i class="fa fa-trash"></i></a></td>
+		</tr>
+	{/foreach}
+	</table></td>
+  </tr>
+{/if}
+  
+  <tr class="odd">
+    <td colspan="2"><input type="submit" name="update" value="{lang key1="admin" key2="update"}"> 
+       <input type="submit" class="small" name="delete" value="{lang key1="admin" key2="delete"}" onclick="if(confirm('{lang key1="admin" key2="really"}')) return true; else return false;"></td>
+  </tr>
+</form></table>
+
+{ if isset($simpla.get.add) }
+    <h3>{lang key1="admin" key2="add_subcomment"}</h3>
+    <table width="80%" border="0" cellpadding="3" cellspacing="1">
+		<form method="post">
+		<tr>
+			<td>
+				<textarea name="remark" id="remark_textarea" style="width:100%;"  rows="20"></textarea>
+				<br>
+				<input type="submit" name="addremark" value="{lang key1="admin" key2="products" key3="add_comment"}">
+			</td>
+		</tr>
+		</form>
+	</table>
+{else}
+    { if $comment.record_type != 'comment' }
+      <a href="?action=comments&id={$comment.id}&add=1">{lang key1="admin" key2="products" key3="add_comment"}</a>
+    { /if }
+{ /if }
+
+{include file="footer.html"}

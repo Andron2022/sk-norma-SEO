@@ -1,0 +1,210 @@
+{include file="header.html"}
+
+<h1 class="mt-0">{favorites where="fb" id=$ticket.id} {lang key1="admin" key2="fb" key3="request"} # {$ticket.id}, {lang key1="admin" key2="fb" key3="ticket"} - { $ticket.ticket}</h1>
+<form method="post" enctype="multipart/form-data">
+<table width="80%">
+	<tr>
+		<td width="60%">
+			{if !empty($ticket.manager_name)}<h3 class="mt-0 mb-0">{lang key1="admin" key2="fb" key3="executor"}: {$ticket.manager_name}</h3>{/if}
+			{if !empty($ticket.managers)}
+				{lang key1="admin" key2="fb" key3="assign_exec"}:<br>
+				<select name="manager">
+				<option value="0"{if empty($ticket.manager_id)} selected="selected"{/if}>- {lang key1="admin" key2="user" key3="all" case="lower"}</option>
+				{foreach from=$ticket.managers value="v"}
+					<option value="{$v.id}"{if $ticket.manager_id == $v.id} selected="selected"{/if}>{$v.name} ({$v.login})</option>
+				{/foreach}
+				<select>
+				<input class="small" type=submit name="update" value="{lang key1="admin" key2="fb" key3="assign"}">
+			{/if}
+		</td>
+		<td>
+			{if !empty($ticket.site)}
+			<ul>
+			<li><a href="?action=feedback&site_id={$ticket.site_id}">{$ticket.site_url|delhttp} <i class="fa fa-filter"></i></a> <a href="?action=settings&do=site&mode=edit&id={$ticket.site_id}"><i class="fa fa-info-circle"></i></a></li>
+			<li><a href="{$ticket.open_link}" target="_blank">{lang key1="admin" key2="fb" key3="open_link"} <i class="fa fa-external-link"></i></a></li>
+			<li><a href="{$ticket.tinyurl}" target="_blank">{lang key1="admin" key2="fb" key3="short_link"} <i class="fa fa-external-link"></i></a></li>
+			</ul>
+			{/if}
+		</td>
+	</tr>
+</table>
+
+{if isset($simpla.GET.updated)}
+  <table width="80%"><tr><td><blockquote><a href="?action=feedback&id={ $simpla.GET.updated }">{lang key1="admin" key2="updated"}</a></blockquote></td></tr></table>
+{/if}
+
+<table width="80%">
+  <tr>
+    <th width="200">{lang key1="admin" key2="products" key3="status"}</th>
+    <th>{lang key1="admin" key2="date"}</th>
+    <th>{lang key1="admin" key2="fb" key3="hidden"}</th>
+  </tr>
+  <tr>
+    <td width="200"><select name="f_status">
+      <option value="0"{if $ticket.status == 0} selected{/if}>{lang key1="admin" key2="fb" key3="answer_wait"}</option>
+      <option value="1"{if $ticket.status == 1} selected{/if}>{lang key1="admin" key2="fb" key3="answer_sent"}</option>
+    </select>
+    </td>
+    <td class=""center">{ $ticket.date}</td>
+    <td>{ $ticket.hidden|nl2br }
+	{if !empty($ticket.hidden)} <a href="?action=feedback&q={$ticket.hidden|replace:"IP - "}"><i class="fa fa-search" title="{lang key1="admin" key2="fb" key3="requests_from_ip"}"></i></a>{/if}
+	</td>
+  </tr>
+  <tr class="odd">
+    <td valign="top" width="200">{lang key1="admin" key2="author"}</td>
+    <td>{$ticket.name} / {$ticket.email}</td>
+    <td>{$ticket.type}</td>
+  </tr>
+  <tr>
+    <td valign="top" width="200">{lang key1="admin" key2="user" key3="phone"}</td>
+    <td>
+	<input type="text" name="f_phone" 
+	value="{$ticket.phone|escape}" style="width:100%;"></td>
+    <td>{if !empty($ticket.from_page)}{$ticket.from_page}{/if}</td>
+  </tr>
+  <tr class="odd">
+    <td valign="top" width="200">{lang key1="admin" key2="user" key3="email"}</td>
+    <td><input type="text" name="f_email" value="{$ticket.email|escape}" style="width:100%;"></td>
+    <td>{if !empty($ticket.extras)}{$ticket.extras}{/if}</td>
+  </tr>
+  
+  <tr>
+    <td valign="top">{lang key1="admin" key2="fb" key3="subject"}</td>
+    <td colspan="2">
+	<input type="text" name="f_subject" value="{$ticket.subject|escape}" style="width:100%;"></td>
+  </tr>
+
+  <tr class="odd">
+    <td valign="top">{lang key1="admin" key2="fb" key3="message"}</td>
+    <td colspan="2">{ $ticket.message|stripslashes|nl2br}</td>
+  </tr>
+
+
+{if !empty($ticket.site)}
+    <input type="hidden" name="f_sent" value="{$ticket.sent}" />
+  <tr>
+    <td valign="top" align="right"><input type="checkbox" name="f_update_link" value="1" /></td>
+    <td colspan="2">{lang key1="admin" key2="fb" key3="change_link"}</td>
+  </tr>
+{/if}
+
+
+
+{if !empty($ticket.comments)}	
+<tr><td colspan="3">
+
+	<table border="0" cellpadding="5" cellspacing="0" width="100%">
+		<tr>
+			<th colspan="2">{lang key1="admin" key2="comments"} ({$ticket.comments|@count})</th>
+		</tr>
+			
+		{foreach from=$ticket.comments value="c"}
+			<a name="comment{$c.id}"></a>
+			<tr class="odd">
+				<td><b><a href="?action=settings&do=add_user&id={$c.userid}">{if empty($c.user_name)}{$c.user_login}{else}{$c.user_name}{/if}</a></b>{if !empty($c.sms)} <small>[{lang key1="admin" key2="fb" key3="sent_sms"}]</small>{/if}</td>
+				<td align="right">{$c.ddate|date:"d.m.Y H:i"} 
+				<a href="?action=feedback&id={$ticket.id}&del_comment={$c.id}" title="{lang key1="admin" key2="fb" key3="del_comment"}" onclick="if(confirm('{lang key1="admin" key2="really"}')) return true; else return false;"><i class="fa fa-trash"></i></a>				
+				</td>
+			</tr>			
+			
+			<tr>
+				<td width="30%">{if $c.active == "1"}<i class="fa fa-eye"></i> {lang key1="admin" key2="fb" key3="client_see"} {if $c.notify == "1"}<br>{lang key1="admin" key2="fb" key3="notif_sent"}{/if}{/if}</td>
+				<td>{$c.comment_text|nl2br}</td>
+			</tr>
+			{if !empty($c.file_id) AND !empty($c.file_ext)}
+			<tr>
+				<td width="30%">{lang key1="admin" key2="fb" key3="attachment"}</td>
+				<td>{$c.file_title} [{$c.file_ext}]
+				<a href="{$site.site_url}/getfile/?l={$c.file_id|md5}&ext={$c.file_ext}&id={$c.id}">{lang key1="admin" key2="fb" key3="download"}</a>
+				</td>
+			</tr>
+			{/if}
+			
+			<tr>
+				<td colspan="2"><hr></td>
+			</tr>
+				
+		{/foreach}
+		
+	</table>
+  
+
+
+</td></tr>
+{/if}
+
+	<tr>
+		<th colspan="3">{lang key1="admin" key2="products" key3="add_comment"}</th>
+	</tr>  
+	<tr>
+		<td colspan="3">
+		
+			<table border="0" cellpadding="3" cellspacing="1" align="center">
+				<tr>
+					<td>{lang key1="admin" key2="fb" key3="client_see"}</td>
+					<td><input type="checkbox" name="send_comment[active]" value="1"></td>
+				</tr>
+				<tr class="odd">
+					<td>{lang key1="admin" key2="fb" key3="send_customer"}</td>
+					<td><input type="checkbox" name="send_comment[notify]" value="1"></td>
+				</tr>
+				<tr>
+					<td><a href="/{ $simpla.CONST.ADMIN_FOLDER }/?action=settings&do=mass_vars&hint=sms">{lang key1="admin" key2="fb" key3="sms"}</a></td>
+					<td><input type="checkbox" name="send_comment[sms]" value="1">  {if !empty($site_vars.sys_smsc_url)}<small>({lang key1="admin" key2="fb" key3="link_willadded_auto"})</small>{/if}</td>
+				</tr>
+				<tr class="odd">
+					<td>{lang key1="admin" key2="fb" key3="message"}</td>
+					<td><textarea rows="6" cols="80" name="send_comment[message]"></textarea></td>
+				</tr>
+				<tr>
+					<td>{lang key1="admin" key2="fb" key3="attachment"}</td>
+					<td><input type="file" name="files[0]"></td>
+				</tr>
+			</table>
+		
+		</td>
+	</tr>
+
+{if !empty($ticket.visit_log)}
+<tr class="odd"><td colspan="3" style="padding-top:10px; padding-bottom:10px;">
+
+<h4 style="text-align:center;"><a href="?action=stat&id={$ticket.visit_log.id}">{lang key1="admin" key2="fb" key3="sess_record"}</a></h4>
+  <table border="1" cellpadding="3" cellspacing="0" width="70%" align="center">
+	
+	<tr><td>{lang key1="admin" key2="fb" key3="time_in"}</td><td>{$ticket.visit_log.time}</td></tr>
+    <tr><td>IP</td><td>{$ticket.visit_log.ip} <a href="?action=feedback&q={$ticket.visit_log.ip}"><i class="fa fa-search" title="{lang key1="admin" key2="fb" key3="requests_from_ip"}"></i></a></td></tr>
+	<tr><td>{lang key1="admin" key2="fb" key3="from"}</td><td>{if empty($ticket.visit_log.referer)}{lang key1="admin" key2="fb" key3="direct_in"}{else}{$ticket.visit_log.referer}{/if}</td></tr>
+	{if !empty($ticket.visit_log.referer_query)}<tr><td>{lang key1="admin" key2="fb" key3="request"}</td><td>{$ticket.visit_log.referer_query}</td></tr>{/if}
+    {if !empty($ticket.visit_log.page)}<tr><td>{lang key1="admin" key2="fb" key3="page_in"}</td><td>{$ticket.visit_log.page}</td></tr>{/if}
+	{if !empty($ticket.visit_log.partner_key)}<tr><td>{lang key1="admin" key2="fb" key3="partner_code"}</td><td>{$ticket.visit_log.partner_key}</td></tr>{/if}
+	<tr><td>{lang key1="admin" key2="fb" key3="see_pages"}</td><td>{$ticket.visit_log.qty_pages_visited}</td></tr>
+	{if !empty($ticket.visit_log.pages_visited)}<tr><td>{lang key1="admin" key2="fb" key3="seen_pages"}</td>
+		<td>{foreach from=$ticket.visit_log.pages_visited key="fk" value="fl"}
+			{if !empty($fk)}, {/if}<a href="{$ticket.site_url}{$fl}" target="_blank">{if $fl == "/"}{lang key1="admin" key2="home"}{else}{$fl}{/if}</a>
+		{/foreach}
+		</td>
+	</tr>{/if}
+  </table>
+  
+</td></tr>
+{/if}
+
+
+
+<tr><td colspan="3">
+
+  <table border="0" cellpadding="3" cellspacing="1" width="100%">
+	<tr><td width="50%" align="right">
+    <input type="hidden" name="fb_id" value="{ $ticket.id}" /">
+    <input type=submit name="update" value="{lang key1="admin" key2="update"}">
+	</td><td align="right">
+    <small><input type=submit name="del_question" value="{lang key1="admin" key2="products" key3="delete_all"}" onclick="if(confirm('{lang key1="admin" key2="really"}')) return true; else return false;"></small>
+  </td></tr>
+  </table>
+  
+</td></tr></table>
+  </form>
+  
+  
+
+{include file="footer.html" }

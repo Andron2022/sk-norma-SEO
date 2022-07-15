@@ -1,0 +1,55 @@
+<table width="100%">
+  <tr>
+	<td nowrap><a href="?action=info&do=edit_publication&id=0{if !empty($simpla.GET.cid)}&cid={$simpla.GET.cid}{/if}"><i class="fa fa-plus"></i> {lang key1="admin" key2="add"}</a></td>
+  
+    <form method="get">
+	
+    <td align="right" nowrap><i class="fa fa-search" style="color:{$admin_vars.bgdark};"></i> {lang key1="admin" key2="search_in_title"}:</td>
+    <td nowrap>
+          <input type=hidden name="action" value="info" />
+          <input type=hidden name="do" value="list_publications" />
+          {if isset($simpla.GET.cid)}<input type="hidden" name="cid" value="{$simpla.GET.cid|htmlspecialchars }" />{/if}
+          <input type=text size=10 name="q" value="{if isset($simpla.GET.q)}{$simpla.GET.q|htmlspecialchars }{/if}" />
+		  <button type="submit" class="small"><i class="fa fa-search"></i></button></td>
+    </form>
+    <td align="right" nowrap>{lang key1="admin" key2="fb" key3="filter"}:</td>
+    <form method=get>
+    <td nowrap><input type=hidden name="action" value="info" />
+           <input type=hidden name="do" value="list_publications" />
+           {if isset($simpla.GET.q)}<input type="hidden" name="q" value="{$simpla.GET.q|htmlspecialchars }" />{/if}
+           { if $categs|@count > 0 }
+		   
+				{literal}<select style="width: 200px; word-break: break-all;" onChange="if(this.options[this.selectedIndex].value!=''){window.location=this.options[this.selectedIndex].value}else{this.options[selectedIndex=0];}">{/literal}
+				
+				<option value="?action=info&do=list_publications{if !empty($simpla.GET.q)}&q={$simpla.GET.q}{/if}">- {lang key1="admin" key2="index" key3="all_pages"}</option>
+				
+				
+				
+				{if !empty($site_vars._pages)}
+					{foreach from=$site_vars._pages value="v"}
+						{if !empty($v.pubs)}
+						<option value="?action=info&do=list_publications&cid={$v.id}{if !empty($simpla.GET.q)}&q={$simpla.GET.q}{/if}{if !empty($simpla.GET.options)}&options=1{/if}"{if isset($simpla.GET.cid) AND $simpla.GET.cid == $v.id} selected="selected"{/if}>{if $v.level > 1}
+							{ for start=1 stop=$v.level step=1 value=current } - {/for}
+						{/if}{$v.title} ({$v.pubs})</option>
+						{elseif !empty($v.subcategs)}
+						<optgroup label="{if $v.level > 1}
+							{ for start=1 stop=$v.level step=1 value=current } - {/for}
+						{/if}{$v.title}"></optgroup>
+						{/if}
+					{/foreach}
+				{/if}	
+				</select>
+		   
+    		    { else }               
+    		      {lang key1="admin" key2="index" key3="pages_not_found"}
+    		    { /if }
+            
+			{if isset($simpla.GET.cid) AND empty($simpla.GET.options)}
+				<a href="?action=info&do=list_publications&cid={$simpla.GET.cid}&options=1"><i class="fa fa-bars" title="{lang key1="admin" key2="index" key3="edit_options"}"></i></a>
+			{elseif !empty($simpla.GET.options)}
+				<a href="?action=info&do=list_publications&cid={$simpla.GET.cid}"><i class="fa fa-list" title="{lang key1="admin" key2="block_types" key3="listPubs"}"></i></a>
+			{/if}
+	</td>
+    </form>
+  </tr>
+</table>

@@ -1,0 +1,64 @@
+{include file="header.html"}
+
+<h1 class="mt-0 mb-0">{lang key1="admin" key2="websites"}</h1>
+
+<table width="80%">
+	<tr>
+		<td>
+	
+{if $list_sites|@count >0}
+<blockquote>{lang key1="admin" key2="set" key3="help"}</blockquote>
+
+
+{if isset($simpla.GET.deleted)}<blockquote class="red">{lang key1="admin" key2="set" key3="site_deleted"}</blockquote>{/if}
+
+
+		</td>
+	</tr>
+</table>
+
+{lang key1="admin" key2="set" key3="sites_work"}: {$sites_working}
+
+<table width="80%">
+	<tr>
+		<th width=20><i class="fa fa-eye"></i></th>
+		<th width=10>ID</th>
+		<th width=20%>{lang key1="admin" key2="set" key3="short_name"}</th>
+		<th><span title="{lang key1="admin" key2="set" key3="site_address"}">{lang key1="admin" key2="set" key3="url"}</span></th>
+		<th><i class="fa fa-home" title="{lang key1="admin" key2="set" key3="default_page"}"></i></th>
+		<th>{lang key1="admin" key2="set" key3="email"}</th>
+		<th>{lang key1="admin" key2="set" key3="phone"}</th>
+		<th>{lang key1="admin" key2="set" key3="tpl"}</th>
+		<th width=20><span title="{lang key1="admin" key2="set" key3="price_link_for"}">YML</span></th>
+		<th width=20><i class="fa fa-envelope" title="{lang key1="admin" key2="set" key3="fb_in_db"}"></i></th>
+		<th width=20><a href="?action=settings&do=site_vars&site_id=0"><i class="fa fa-cogs" title="{lang key1="admin" key2="set" key3="overall_vars"}"></i></a></th>
+	</tr>
+          
+    {foreach from=$list_sites value="value" }
+    { assign var="href" value="?action=settings&do=site&mode=edit&id=".$value.id}
+    <tr {cycle values=",class=odd"}>
+      <td class="center"><a href="{$href}">{if $value.site_active == 1 }<i class="fa fa-check"></i>{ else }<i class="fa fa-minus"></i>{ /if }</a></td>
+      <td class="right"><a href="{$href}">{$value.id}</a></td>
+      <td><a href="{$href}"><i class="fa fa-pencil"></i> {$value.name_short|stripslashes}</a></td>
+      <td><a href="{$value.site_url}/" target="_blank"><small><i class="fa fa-external-link"></i></small></a> <a href="{$href}">{$value.site_url}</a></td>
+      <td align="center">{if $value.default_id_categ > 0}<a href="?action=info&do=edit_categ&id={$value.default_id_categ}">{$value.categ_title}</a>{else}-{/if}</td>
+      <td>{$value.email_info|stripslashes}</td>
+      <td>{$value.phone|stripslashes}</td>
+      <td>{$value.template_path|replace:"/tpl/,/"}</td>
+      <td align="center">{if !empty($value.yml)}<a href="{$value.site_url}/price{$simpla.CONST.URL_END}?{$value.yml}" target="_blank"><i class="fa fa-shopping-cart"></i></a>{else}<a href="?action=settings&do=site_vars&id=0&hint=yml_key"><i class="fa fa-plus-circle"></i></a>{/if}</td>
+      <td align="center">{if $value.feedback_in_db == 1}<i class="fa fa-check" style="color:{$admin_vars.bgdark}"></i>{else}-{/if}</td>
+
+
+      <td><a href="?action=settings&do=site_vars&site_id={$value.id}"><i class="fa fa-cog"></i></a></td>
+    </tr>          
+  { /foreach }
+</table>
+
+{else}
+<p>{lang key1="admin" key2="set" key3="no_sites_added"}</p>
+{/if}
+
+{if $admin_vars.multisite == 1}
+  <p><a href="?action=settings&do=add_site"><i class="fa fa-plus-circle"></i> {lang key1="admin" key2="add"}</a></p>
+{/if}
+{ include file="footer.html" }

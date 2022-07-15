@@ -1,0 +1,114 @@
+{include file="header.html"}
+
+<h1 class="mt-0">{lang key1="admin" key2="mass" key3="add_pages"}</h1>
+
+<table width="80%">
+	<tr>
+		<td>
+{if isset($simpla.GET.added)}
+  <blockquote>{lang key1="admin" key2="mass" key3="added_pages"}: 
+  {if !empty($simpla.GET.cid)}
+		<a href="?action=info&do=categories&id={$simpla.GET.cid}">{$simpla.GET.added}</a>
+	{else}
+		{$simpla.GET.added}
+	{/if}</blockquote>
+{/if}
+		</td>
+	</tr>
+</table>
+
+
+<h2>{lang key1="admin" key2="index" key3="show_on_website"}</h2>
+<form method="post">
+<p>
+<input type="checkbox" name="active" value="1" checked="checked"> {lang key1="admin" key2="mass" key3="dont_check"}
+</p>
+
+<h2>{lang key1="admin" key2="mass" key3="categs_for_products"}</h2>
+<p>
+<input type="checkbox" name="shop" value="1"> {lang key1="admin" key2="mass" key3="dont_check2"}
+</p>
+
+<h2>{lang key1="admin" key2="set" key3="tpl"}</h2>
+<p><select name="multitpl">
+{foreach from=$tpls value="tp"}
+<option value="{$tp}"{if $tp == $multitpl} selected="selected"{/if}>{$tp}</option>
+{/foreach}
+</select></p>
+
+<h2>{lang key1="admin" key2="sidebar" key3="opt_groups"}</h2>
+{foreach from=$option_groups value="og"}
+<p><input type="checkbox" name="option_groups[]" value="{$og.id}"> {$og.id} {$og.title}<br>
+{if $og.where == "product"}<i class="fa fa-shopping-cart" title="{lang key1="admin" key2="mass" key3="for_offers"}"></i> {/if}<i>{$og.description}</i></p>
+{/foreach}
+
+{if $sites|@count > 1}
+  <h2>{lang key1="admin" key2="mass" key3="conn_sites"}</h2>
+  <p>
+  {foreach from=$sites value="site"}
+  <input type="checkbox" name="sites[]" value="{$site.id}" checked="checked"> {$site.title} ({$site.site_url})<br>
+  {/foreach}
+  </p>
+{elseif $sites|@count == 1}
+  {foreach from=$sites value="site"}
+  <input type="hidden" name="sites[]" value="{$site.id}"> 
+  {/foreach}
+{else}
+{/if}      
+
+<h2>{lang key1="admin" key2="mass" key3="conn_page"}</h2>
+<select name="top_page">
+<option value="0">- {lang key1="admin" key2="mass" key3="choose_page"}</option>
+{if $top_pages|@count > 1}
+  {foreach from=$top_pages value="top"}
+    {if $top.level == 2}
+      {assign var="left" value="- "}
+    {elseif $top.level == 3}
+      {assign var="left" value="-- "}
+    {elseif $top.level == 4}
+      {assign var="left" value="--- "}
+    {elseif $top.level == 5}
+      {assign var="left" value="---- "}
+    {elseif $top.level == 6}
+      {assign var="left" value="----- "}
+    {else}
+      {assign var="left" value=""}
+    {/if}
+    
+    <option value="{$top.id}">{$left}{$top.title}</option>
+  {/foreach}
+{/if}
+</select>
+
+<h2>{lang key1="admin" key2="mass" key3="link_view"}</h2>
+<p>
+	<input type="radio" name="alias" value="text" > {lang key1="admin" key2="elements" key3="text"} (www.site.ru/<span style="color:red;">text-title</span>/)<br> 
+	<input type="radio" name="alias" value="time" checked="checked"> {lang key1="admin" key2="set" key3="tpl"} (www.site.ru/<span style="color:red;">{if !empty($site_vars.sys_prefix_categ)}{$site_vars.sys_prefix_categ}{else}page-{/if}1234567</span>/)<br> 
+	<input type="radio" name="alias" value="code"> {lang key1="admin" key2="mass" key3="code"} (www.site.ru/<span style="color:red;">{lang key1="admin" key2="mass" key3="code" case="lower"}</span>/)<br> 
+</p>
+
+
+<h2>{lang key1="admin" key2="mass" key3="page_title"}</h2>
+
+<table width="80%">
+	<tr>
+		<td colspan="2"><blockquote>{lang key1="admin" key2="mass" key3="new_line_title"}</blockquote></td>
+	</tr>
+	
+	<tr>
+		<th width="70%">{lang key1="admin" key2="elements" key3="name"}</th>
+		<th>{lang key1="admin" key2="mass" key3="code"}</th>
+	</tr>
+	
+	<tr>
+		<td align="center"><textarea name="categs" style="width:100%;" rows="30"></textarea></td>
+		<td align="center"><textarea name="barcode" style="width:100%;" rows="30"></textarea></td>
+	</tr>
+</table>
+
+<p><input type="submit" name="add" value="{lang key1="admin" key2="add"}"></p>
+</form>
+
+
+
+{include file="footer.html"}

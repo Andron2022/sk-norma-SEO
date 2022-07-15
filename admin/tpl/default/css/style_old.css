@@ -1,0 +1,158 @@
+body, p, td {
+	font-family: Tahoma,Arial,Verdana,Helvetica;
+	font-size: 90%;
+	color: #000000;
+}
+
+small {
+	font-size: 70%;
+}
+
+th{
+	font-weight: bold;
+	color: #ffffff;
+	background-color: #8eaebe;
+}
+
+th a{
+	color: #ffffff;
+}
+
+
+tr.odd{
+	background-color: #ebf3ff;
+}
+
+h1 {
+	font-family: Tahoma,Arial,Verdana,Helvetica;
+	font-size: 18px;
+	color: #000000;
+}
+
+h2 {
+	font-family: Tahoma,Arial,Verdana,Helvetica;
+	font-size: 140%;
+	color: #9fb56a;
+}
+
+h3 {
+	font-family: Tahoma,Arial,Verdana,Helvetica;
+	font-size: 130%;
+	color: #9fb56a;
+}
+
+a{
+    font-family: Tahoma,Arial,Verdana,Helvetica;
+    color:#0674BF;
+    text-decoration: none;
+}
+
+a:hover{
+  text-decoration: underline;
+}
+
+a.white{
+    color:#FFFFFF;
+    text-decoration: none;
+}
+
+a.white:hover{
+  text-decoration: underline;
+}
+
+td {
+    font-family: Tahoma,Arial,Verdana,Helvetica;
+    color:#000000;
+    
+}
+
+
+.biglink {
+    font-family: Tahoma,Verdana,Arial,Helvetica;
+    font-size:14px;
+    color:#0673C5;
+}
+
+blockquote, pre, .updated {
+	background: #CFEBF7 url(../images/notice.gif) no-repeat 1em ;
+	border: 1px solid #2580B2;
+	margin: 1em 5% 10px;
+	padding: 0 1em 0 3em;
+}
+
+p, blockquote{
+    font-size:14px;
+}
+.large_height{
+  line-height: 1.5;
+	height: 200px;
+	overflow: auto;
+}
+
+textarea, input, select {
+	background: #f4f4f4;
+	border: 1px solid #b2b2b2;
+	color: #000000;
+	font:  100% Verdana, Arial, Helvetica, sans-serif;
+	margin: 1px;
+	padding: 2px;
+}
+
+li{
+	line-height: 130%;
+}
+
+table.breadAndSeach {width:100%;padding:0;margin-bottom:15px}
+table.breadAndSeach td {padding:0;border-bottom:1px solid #9aa8b1}
+table.breadAndSeach td * {margin:0}
+.breadcrumbs {font-size:12px;font-family:Trebuchet MS, Helvetica, sans-serif}
+.breadcrumbs a {color:#3c6279}
+.search {width:188px;text-align:right}
+.search fieldset {border:0;padding:2px 0 4px 0;position:relative;top:26px;background:url(../images/searchBg.png) 0 0 no-repeat}
+.search .searchInput {width: 148px;padding:2px;border:1px solid #8799a3;background:#fff;font-size:11px;color:#afb4c8;vertical-align:top}
+.search .searchButton {width:18px;height:19px;background:url(../images/searchButton.png) 0 0; vertical-align:top; border: 0;cursor:pointer} 
+
+
+.langs {
+	color: #cccccc;
+    text-align: right;
+    padding-right: 15px;
+}
+
+.langs a {
+    color: white;
+    padding: 0px 2px 0px 2px;
+}
+
+.langs span {
+    padding: 0px 2px 0px 2px;
+}
+
+.hint {
+	display: none;
+    	position: absolute;
+    	background-color: white;
+    	border: 1px dashed black;
+    	border-color: black;
+    	padding: 3px;
+}
+
+.StyleSelectBox {
+    width:200px;
+    height:24px;
+    font:14px Arial, Tahoma, Helvetica, Verdana;
+    text-align:left;
+    background:#fff;
+    line-height:30px;
+    white-space:nowrap; /* запрещаем перенос */
+    /*padding:0 22px 0 12px; /* отступ справа с учетом стрелочки */
+    border:1;
+    zoom:1; /* для IE6 */
+}
+
+#selectBoxInfo{
+    clear:left;
+    padding:10px;
+    font:16px "Tahoma";
+    color:red;
+}

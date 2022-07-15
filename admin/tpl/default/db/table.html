@@ -1,0 +1,83 @@
+{include file="header.html"}
+<h1 class="mt-0">
+{if !empty($table.records) AND !empty($table.name)}
+{lang key1="admin" key2="db" key3="table_records"} {$table.name}{if !empty($table.qty)} ({$table.qty}){/if}
+{elseif !empty($table.name)}{lang key1="admin" key2="db" key3="table_info"} {$table.name}
+{else}{lang key1="admin" key2="db" key3="unknown_page"}{/if}
+</h1>
+
+{if !empty($table.records) AND !empty($table.name)}
+	<ul><li><a href="?action=db&do=view_db&table={$table.name}">{lang key1="admin" key2="db" key3="table_schema"} {$table.name}</a></li></ul>
+
+	{if !empty($table.rows)}
+	
+		{$pages}
+	
+		<div id="table-scroll" class="table-scroll">
+		  <div class="table-wrap">
+				<form method="POST">
+				<table class="table bordered">
+				{foreach from=$table.rows key="k1" value="v1"}
+					{if $k1 == 0}
+						<tr>
+						{foreach from=$v1 key="k" value="v"}
+							{if $k|lower == "id"}
+							<th><i class="fa fa-trash"></i></th>
+							{/if}
+							<th>{$k}</th>
+						{/foreach}
+						</tr>
+					{/if}
+					
+					<tr class="{cycle values=" ,odd"}">
+						{foreach from=$v1 key="k" value="v"}
+							{if $k|lower == "id"}
+							<td><button type="submit" name="del[{$k}]" value="{$v}" onclick="if(confirm('{lang key1="admin" key2="db" key3="really_delete_row"} ({$v})')) return true; else return false;"><i class="fa fa-trash"></i></button></td>
+							{/if}
+							<td>{$v|strip_tags|truncate:"250":"..."}</td>
+						{/foreach}
+					</tr>
+								
+				{/foreach}
+				</table>
+				</form>
+			</div>
+		</div>
+
+		{$pages}
+	{else}
+		<p>{lang key1="admin" key2="db" key3="no_records_found"}</p>
+	{/if}
+	
+	
+{elseif !empty($table.info)}
+
+	{if !empty($table.qty)}
+		<ul><li><a href="?action=db&do=view_db&table={$table.name}&records=1">{lang key1="admin" key2="db" key3="look_records"} ({$table.qty})</a></li></ul>
+	{/if}
+	
+	<table class="table bordered">
+		<tr>
+			<th>#</th>
+			<th>Field</th>
+			<th>Type</th>
+			<th>Null</th>
+			<th>Key</th>
+			<th>Default</th>
+			<th>Extra</th>	
+		</tr>
+	{foreach from=$table.info value="v"}
+		<tr>
+			<td>{counter}</td>
+			<td><b>{$v.Field}</b></td>
+			<td>{$v.Type}</td>
+			<td>{$v.Null}</td>
+			<td>{$v.Key}</td>
+			<td>{$v.Default}</td>
+			<td>{$v.Extra}</td>	
+		</tr>
+	{/foreach}
+	</table>
+{/if}
+
+{include file="footer.html"}

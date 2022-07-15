@@ -1,0 +1,56 @@
+{include file="header.html"}
+
+<h1 class="mt-0">{lang key1="admin" key2="elements" key3="master"} 
+{if $hint == "smtp"}: {lang key1="admin" key2="elements" key3="smtp"}{/if}
+{if $hint == "currencies"}: {lang key1="admin" key2="elements" key3="currencies"}{/if}
+{if $hint == "images"}: {lang key1="admin" key2="elements" key3="pics"}{/if}
+{if $hint == "extra"}: {lang key1="admin" key2="elements" key3="extra_lists"}{/if}
+{if $hint == "social"}: {lang key1="admin" key2="elements" key3="social_nets"}{/if}
+{if $hint == "yml"}: {lang key1="admin" key2="elements" key3="yml"}{/if}
+{if $hint == "gmc"}: {lang key1="admin" key2="elements" key3="gmc"}{/if}
+{if $hint == "sms"}: {lang key1="admin" key2="elements" key3="SMS"}{/if}
+</h1>
+
+{include file="settings/elements_menu.html"}
+
+
+{if !empty($error)}
+    <blockquote class="red">{$error}</blockquote>
+{/if}
+
+{if !empty($vars)}
+    <ul>
+    {foreach from=$vars key="k" value="v"}
+        <li style="padding-top:10px; padding-bottom:10px;">
+            <b>{$k}</b> <a href="?action=settings&do=site_vars&id=0&hint={$k}"><i class="fa fa-plus-circle"></i></a>
+            {if !empty($v)}
+                {if !empty($v.0.description)}<br>{$v.0.description}{/if}
+                <ul style="padding-top:5px;padding-bottom:5px;">
+                {foreach from=$v value="v1"}
+                    <li>
+                        {if $v1.site_id == 0}{lang key1="admin" key2="elements" key3="for_all_sites"}{else}{$v1.site_url}{/if}: 
+                        {if $v1.type == 'checkbox'}
+                            {if $v1.value == '1'}
+                                <i class="fa fa-check"></i>
+                            {else}
+                                -
+                            {/if}
+                        {else}
+                            {if $v1.width > 0 OR $v1.height > 0}
+                                {$v1.width} x {$v1.height}
+                            {else}
+                                {$v1.value}
+                            {/if}
+                        {/if}
+                         <a href="?action=settings&do=site_vars&id={$v1.id}"><i class="fa fa-pencil"></i></a>
+                    </li>                
+                {/foreach}
+                </ul>
+            {/if}
+        </li>
+    {/foreach}
+    </ul>
+{/if}
+
+
+{ include file="footer.html" }

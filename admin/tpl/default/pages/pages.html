@@ -1,0 +1,25 @@
+{if isset($npages) AND $npages > 0}<p>{lang key1="admin" key2="pages"}: 
+  {math equation="( x - y )" x=$page y=5 assign="lpage"}
+  {math equation="( x + y )" x=$page y=5 assign="ppage"}
+  {for start=0 stop=$npages step=1 value="i"}
+    {math equation="( x + y )" x=$i y=1 assign="subpage"}
+    {if $i!=$page }
+      {if $i == 0}
+        <a href="{$href|replace:"&page=":""}">{$subpage}</a>
+	  {elseif $npages == $subpage}
+		<a href="{ $href }{ $i }">{$subpage}</a>
+      {else}    
+			{if $i == $lpage}
+			...
+			{elseif $i == $ppage}
+			...
+			{elseif $i > $lpage AND $i < $ppage}
+			<a href="{ $href }{ $i }">{$subpage}</a>			
+			{else}
+			{/if}        
+      {/if}
+    {else}
+      <b>{ $subpage }</b>
+    {/if} 
+  {/for}</p>
+{/if}

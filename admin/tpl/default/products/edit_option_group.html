@@ -1,0 +1,167 @@
+{include file="header.html"}
+
+<h1 class="mt-0">{if $group.id  > 0}{lang key1="admin" key2="products" key3="editing_group"}{else}{lang key1="admin" key2="products" key3="adding_group"}{/if}</h3>
+<p><a href="?action=products&do=add_option_group"><i class="fa fa-plus"></i> {lang key1="admin" key2="products" key3="add_group"}</a> {if $group.id  > 0}<a href="?action=products&do=add_option&gid={$group.id}"><i class="fa fa-filter"></i> {lang key1="admin" key2="products" key3="add_option"}</a>{/if}</p>
+
+
+<table width="80%">
+{ if isset($simpla.get.updated) }
+  <tr>
+    <td colspan="2"><blockquote>{lang key1="admin" key2="updated"}</blockquote></td>
+  </tr>  
+{ /if }
+{ if isset($simpla.get.added) }
+  <tr>
+    <td colspan="2"><blockquote>{lang key1="admin" key2="added"}</blockquote></td>
+  </tr>  
+{ /if }
+
+
+  <form method=post>
+    <tr class="odd">
+      <td width="20%">{lang key1="admin" key2="elements" key3="name"}</td>
+      <td><input type="text" name="title" style="width:100%;" value="{$group.title|stripslashes|htmlspecialchars }" /></td>
+    </tr>
+    <tr>
+      <td width="20%">{lang key1="admin" key2="products" key3="hide_title"} <br><small>{lang key1="admin" key2="products" key3="hide_title_desc"}</small></td>
+      <td><input type="checkbox" name="hide" value="1" {if !empty($group.hide_title)}checked="checked"{/if} /></td>
+    </tr>
+    <tr class="odd">
+      <td>{lang key1="admin" key2="status" key3="sort"}</td>
+      <td><input type="text" name="sort" style="width:100%;" value="{$group.sort|stripslashes|htmlspecialchars }" /></td>
+    </tr>
+    <tr>
+      <td>{lang key1="admin" key2="user" key3="note"}</td>
+      <td><textarea name="description" style="width:100%;" rows="3">{$group.description|stripslashes|htmlspecialchars }</textarea></td>
+    </tr>
+
+
+    <tr>
+      <td colspan="2"><a href="javascript: ShowHide('block1')" style="border-bottom: 1px dashed blue;">{lang key1="admin" key2="elements" key3="extra"}</a>
+
+		<div style="display: none;" id="block1"><br>
+		  <table width="100%" cellpadding="0" cellspacing="1">
+		    <tbody>
+				<tr class="odd">
+				  <td width="20%">{lang key1="admin" key2="option_name"}<br><small>{lang key1="admin" key2="not_important"}</small></td>
+				  <td><input type="text" name="opt_title" style="width:100%;" value="{$group.opt_title|stripslashes|htmlspecialchars }" /></td>
+				</tr>
+
+				<tr>
+				  <td width="20%">{lang key1="admin" key2="elements" key3="value"}<br><small>{lang key1="admin" key2="not_important"}</small></td>
+				  <td><input type="text" name="value1" style="width:100%;" value="{$group.value1|stripslashes|htmlspecialchars }" /></td>
+				</tr>
+
+				<tr class="odd">
+				  <td width="20%">{lang key1="admin" key2="elements" key3="value"} 2<br><small>{lang key1="admin" key2="not_important"}</small></td>
+				  <td><input type="text" name="value2" style="width:100%;" value="{$group.value2|stripslashes|htmlspecialchars }" /></td>
+				</tr>
+
+				<tr>
+				  <td>{lang key1="admin" key2="elements" key3="value"} 3<br><small>{lang key1="admin" key2="not_important"}</small></td>
+				  <td><input type="text" name="value3" style="width:100%;" value="{$group.value3|stripslashes|htmlspecialchars }" /></td>
+				</tr>
+			</tbody>
+		</table>
+      </div>
+	  </td>
+    </tr>
+	
+	
+
+    <tr class="odd">
+      <td>{lang key1="admin" key2="products" key3="for_whom"}</td>
+      <td><select name="to_show">
+        <option value="all"{if $group.to_show == "all"} selected{/if}>{lang key1="admin" key2="for_all"}</option>
+        <option value="info"{if $group.to_show == "info"} selected{/if}>{lang key1="admin" key2="products" key3="for_content"}</option>
+        <option value="manager"{if $group.to_show == "manager"} selected{/if}>{lang key1="admin" key2="products" key3="for_managers"}</option>
+        <option value="user"{if $group.to_show == "user"} selected{/if}>{lang key1="admin" key2="products" key3="for_users"}</option>
+        <option value="hidden"{if $group.to_show == "hidden"} selected{/if}>{lang key1="admin" key2="products" key3="hide" case="lower"}</option>
+      </select></td>
+    </tr>      
+
+
+    <tr>
+      <td>{lang key1="admin" key2="products" key3="type"}</td>
+      <td><select name="where">
+        <option value="product"{if $group.where == "product"} selected{/if}>{lang key1="admin" key2="offers" case="lower"}</option>
+        <option value="pub"{if $group.where == "pub"} selected{/if}>{lang key1="admin" key2="publications" case="lower"}</option>
+        <option value="all"{if $group.where == "all"} selected{/if}>{lang key1="admin" key2="elements" key3="everywhere"}</option>
+      </select></td>
+    </tr>   
+
+	{if !empty($group.options)}
+	<tr>
+      <td>{lang key1="admin" key2="block_types" key3="options"}</td>
+      <td>
+	  
+			<table width="100%">
+			<tr>
+				<th><i class="fa fa-pencil"></i></th>
+				<th>ID</th>				
+				<th>{lang key1="admin" key2="elements" key3="name"}</th>
+				<th>{lang key1="admin" key2="products" key3="type"}</th>
+				<th>{lang key1="admin" key2="in_list"}</th>
+				<th>{lang key1="admin" key2="in_filter"}</th>
+				<th>{lang key1="admin" key2="index" key3="after"}</th>
+			</tr>
+	  
+	  
+			{foreach from=$group.options value="o"}
+			<tr class="{cycle values=",odd"}">
+				<td><a href="?action=products&do=options&id={$o.id}"><i class="fa fa-pencil"></i></a></td>
+				<td><a href="?action=products&do=options&id={$o.id}">{$o.id}</a></td>				
+				<td><a href="?action=products&do=options&id={$o.id}">{$o.title}</a></td>
+				<td>{$o.type} {if $o.type == "categ" AND !empty($o.if_select)} [<a href="?action=info&do=edit_categ&id={$o.if_select}">{$o.if_select}</a>]{/if}</td>
+				<td align="center">{if !empty($o.show_in_list)}<i class="fa fa-check"></i>{/if}</td>
+				<td align="center">{if !empty($o.show_in_filter)}<i class="fa fa-check"></i>{/if}</td>
+				<td>{$o.after}</td>
+			</tr>
+			{/foreach}
+			</table>
+	  
+	  </td>
+    </tr>     
+	{/if}
+	
+
+    
+    <tr  class="odd">
+      <td>{lang key1="admin" key2="products" key3="connected_page"}</td>
+      <td>  
+        <table width="100%" cellpadding="3" cellspacing="1">
+          <tr>
+            <th>{lang key1="admin" key2="elements" key3="name"}</th>
+            <th width="30"><i class="fa fa-check"></i></th>
+            <th width="30"><i class="fa fa-question"></i></th>
+          </tr>
+          
+          {foreach from=$group.categs value="gr"}
+          <tr>
+            <td><a href="?action=info&do=edit_categ&id={$gr.id}"{if !empty($gr.padding)} style="padding-left:{$gr.padding}px;"{/if}>{$gr.title}</a></td>
+            <td align="center"><input type="checkbox" name="categs[]" value="{$gr.id}"{if !empty($gr.group_id) AND $gr.group_id == $group.id} checked="checked"{/if}></td>
+            <td width="30" align="center">
+			{if !empty($gr.shop)}
+				<i class="fa fa-shopping-cart" title="{lang key1="admin" key2="mass" key3="for_offers"}"></i>
+			{else}
+				<i class="fa fa-copy" title="{lang key1="admin" key2="index" key3="for_pubs"}"></i>
+			{/if}</td>
+          </tr>
+          {/foreach}
+        </table>
+      </td>
+    </tr>
+    
+    <tr>
+      <td colspan="2">
+        <input type=submit name="{if $group.id > 0}edit_group{else}add_group{/if}"
+          value="{if $group.id > 0}{lang key1="admin" key2="update"}{else}{lang key1="admin" key2="add"}{/if}">
+        {if $group.id > 0}
+           <input type=submit name=delete_group value="{lang key1="admin" key2="delete"}" class="small" onclick="if(confirm('{lang key1="admin" key2="really_group"}')) return true; else return false;">
+        {/if}
+      </td>
+    </tr>
+  </form>
+</table>
+
+{include file="footer.html"}

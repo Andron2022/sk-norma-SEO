@@ -1,0 +1,25 @@
+{if !empty($simpla.GET.do) AND $simpla.GET.do == "licence"}
+{include file="header.html"}
+<h1 class="mt-0">{lang key1="admin" key2="set" key3="license_key"}</h1>
+{/if}
+
+<p><i class="fa fa-key"></i> <a href="?action=settings&do=licence">{lang key1="admin" key2="set" key3="license_key"}</a> <a href="?action=settings&do=site_vars&site_id=-1&q=sys_licence&redirect=1"><i class="fa fa-bars"></i></a>
+		{if !empty($site_vars.sys_licence_time) }
+			{ math equation="x - y" y=$simpla[NOW] x=$site_vars.sys_licence_time assign="diff"}
+			{if $site_vars.sys_licence_time < $simpla[NOW]}		
+				<br><small>{lang key1="admin" key2="set" key3="support_closed"} {$site_vars.sys_licence_time|date:"d.m.Y H:i"}</small>
+				<br> <i class="fa fa-info-circle" style="color:red;"></i> <a href="http://www.simpla.es/update-licence/?l={$site_vars.sys_licence}&r=1" target="_blank">{lang key1="admin" key2="set" key3="buy_prolong"}</a>
+			{elseif $diff > 0 AND $diff < 2592000}{* 30 days *}
+				<br><small>{lang key1="admin" key2="set" key3="support_ends"}  {$site_vars.sys_licence_time|date:"d.m.Y H:i"}</small>
+				<br> <i class="fa fa-info-circle" style="color:red;"></i> <a href="http://www.simpla.es/update-licence/?l={$site_vars.sys_licence}&r=1" target="_blank">{lang key1="admin" key2="set" key3="buy_prolong_light"}</a>
+			{else}
+				<br><small><i class="fa fa-check"></i> {lang key1="admin" key2="set" key3="support_ends"} </small> {$site_vars.sys_licence_time|date:"d.m.Y"}
+			
+			
+			{/if}
+		{/if}</p>
+
+		
+{if !empty($simpla.GET.do) AND $simpla.GET.do == "licence"}		
+{ include file="footer.html" } 
+{/if}

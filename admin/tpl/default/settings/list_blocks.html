@@ -1,0 +1,100 @@
+{include file="header.html"}
+<h1 class="mt-0">{lang key1="admin" key2="elements" key3="blocks"}</h1>
+
+<table width="80%">
+	<tr>
+		<td>
+
+{if !empty($filter_sites)}
+
+<p>{lang key1="admin" key2="fb" key3="filter"}: 
+{if !empty($simpla.get.site)}<a href="?action=settings&do=blocks">{lang key1="admin" key2="user" key3="all"}</a> | {/if}
+
+	{foreach from=$filter_sites key="k" value="v"}
+	{if !empty($v.id)}
+		{if $k > 0} | {/if}
+		{if !empty($simpla.get.site) AND $simpla.get.site == $v.id}
+			<b>{$v.name_short}</b> <small>({$v.site_url})</small>
+		{else}
+			<a href="?action=settings&do=blocks&site={$v.id}">{$v.name_short} <small>({$v.site_url})</small></a>
+		{/if} 
+	{/if}
+	{/foreach}
+</p>
+{/if}
+
+{if isset($simpla.GET.added)}<blockquote><a href="?action=settings&do=blocks&id={$simpla.GET.added}">{lang key1="admin" key2="blocks" key3="added"}</a></blockquote>{/if}
+{if isset($simpla.GET.updated)}<blockquote><a href="?action=settings&do=blocks&id={$simpla.GET.updated}">{lang key1="admin" key2="blocks" key3="updated"}</a></blockquote>{/if}
+{if isset($simpla.GET.deleted)}<blockquote class="red">{lang key1="admin" key2="blocks" key3="deleted"}</blockquote>{/if}
+
+		</td>
+	</tr>
+</table>
+
+{if !empty($list_blocks)}
+
+{assign var="place" value=""}
+{assign var="old" value="0"}
+
+
+
+<table width="80%">
+	<tr>
+		<th width=20><i class="fa fa-eye"></i></th>
+		<th width=10>ID</th>
+		<th>{lang key1="admin" key2="blocks" key3="title_admin"}</th>
+		<th>{lang key1="admin" key2="products" key3="synonim"}</th>
+		<th>{lang key1="admin" key2="blocks" key3="type"}</th>
+		<th>{lang key1="admin" key2="products" key3="qty"}</th>
+		<th><i class="fa fa-sort"></i></th>
+		<th>{lang key1="admin" key2="categs"}</th>
+		<th>{lang key1="admin" key2="exception"}</th>
+		<th>{lang key1="admin" key2="website"}</th>
+	</tr>
+          
+    {foreach from=$list_blocks value="v" }
+		{ assign var="href" value="?action=settings&do=blocks&id=".$v.id}
+		{if $v.where != $place}
+			<tr>
+				<td colspan="10"><h3>{lang key1="admin" key2="block_wheres" key3=$v.where}</h3></td>
+			</tr>			
+		{/if}
+		
+		{if $v.id == $old}
+		<tr {if isset($cnt)}class="{$cnt}"{/if}>
+			<td colspan="9"></td>
+			<td><small>{$v.site}</small></td>
+		</tr>
+		{else}
+		{assign var="old" value=$v.id}
+		{if $v.where != $place}
+			{cycle values="odd," reset="1" assign="cnt"}
+		{else}
+			{cycle values="odd," assign="cnt"}
+		{/if}
+		<tr class="{$cnt}">
+			<td class="center"><a href="{$href}">{if $v.active == 1 }<i class="fa fa-check"></i>{ else }<i class="fa fa-minus"></i>{ /if }</a></td>
+			<td class="center"><a href="{$href}">{$v.id}</a></td>
+			<td><a href="{$href}"><i class="fa fa-pencil"></i> {$v.title_admin}</a></td>
+			<td nowrap><a href="{$href}"><i class="fa fa-pencil"></i> {$v.title}</a></td>
+			<td><a href="{$href}">{lang key1="admin" key2="block_types" key3=$v.type}</a></td>
+			<td class="center"><a href="{$href}">{$v.qty}</a></td>
+			<td class="center"><a href="{$href}">{$v.sort}</a></td>
+			<td>{$v.pages|nl2br}</td>
+			<td>{$v.skip_pages|nl2br}</td>
+			<td><small>{$v.site_url|delhttp}</small></td>
+		</tr>
+		
+			{if $v.where != $place}
+				{assign var="place" value=$v.where}
+			{/if}
+		{/if}
+	{ /foreach }
+</table>
+{else}
+<p>{lang key1="admin" key2="list_empty"}</p>
+{/if}
+
+  <p><a href="?action=settings&do=blocks&id=0"><i class="fa fa-plus-circle"></i> {lang key1="admin" key2="add"}</a></p>
+
+{ include file="footer.html" }

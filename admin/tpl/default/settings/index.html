@@ -1,0 +1,187 @@
+{if !empty($simpla.GET.do) AND $simpla.GET.do == "phpinfo"}
+	<a href="?action=settings"><h1 class="center mt-0">{lang key1="admin" key2="set" key3="title"}</h1></a>
+	{phpinfo}
+{else}
+
+	{include file="header.html"}
+	
+	<h1 class="mt-0 mb-0">{lang key1="admin" key2="set" key3="title"}</h1>
+	
+	<table width="80%">
+		<tr>
+			<td>
+				<blockquote>{lang key1="admin" key2="set" key3="help"}</blockquote>
+			</td>
+		</tr>
+	</table>
+
+	<table width="80%">
+		<tr>
+			<td width="50%" valign="top">
+	
+			{if !empty($simpla.GET.do) AND $simpla.GET.do == "php"}	
+				{if !empty($settings)}
+					<h3>{lang key1="admin" key2="set" key3="php_settings"}</h3>
+					<table width="100%">
+					{foreach from=$settings key="k" value="v"}
+						{if $k != "mbstring"}
+						<tr class="{cycle values=",odd"}">
+							<td>{$k}</td>
+							<td>{if $v|is_array}
+								<ul>{foreach from=$v key="v1" value="v2"}
+									<li>{$v2}</li>
+								{/foreach}</ul>
+								{else}{$v}{/if}
+							</td>
+						</tr>
+						{/if}
+					{/foreach}
+					</table>
+				{/if}
+			{else}
+	
+				<h3>{lang key1="admin" key2="set" key3="check_vars"}</h3>
+				<ul>         
+					<li><a href="?action=settings&do=mass_vars&hint=images">{lang key1="admin" key2="set" key3="picsizes"}</a>: 
+					
+					{if isset($site_vars.img_size1)}1 - {$site_vars.img_size1.width}*{$site_vars.img_size1.height}{else}, 1 - <span style="color:red;">{lang key1="admin" key2="set" key3="not_set"}</span>{/if}
+					{if isset($site_vars.img_size2)}, 2 - {$site_vars.img_size2.width}*{$site_vars.img_size2.height}{else}, 2 - <span style="color:red;">{lang key1="admin" key2="set" key3="not_set"}</span>{/if}
+					{if isset($site_vars.img_size3)}, 3 - {$site_vars.img_size3.width}*{$site_vars.img_size3.height}{else}, 3 - <span style="color:red;">{lang key1="admin" key2="set" key3="not_set"}</span>{/if}
+					
+					
+					{if isset($site_vars.img_size4)}, 4 - {$site_vars.img_size4.width}*{$site_vars.img_size4.height}{else}, 4 - <span style="color:red;">{lang key1="admin" key2="set" key3="not_set"}</span>{/if}
+					
+					{if isset($site_vars.img_size5)}, 5 - {$site_vars.img_size5.width}*{$site_vars.img_size5.height}{else}, 5 - <span style="color:red;">{lang key1="admin" key2="set" key3="not_set"}</span>{/if}
+					
+					</li>
+					
+					<li>{lang key1="admin" key2="set" key3="resize_method"}: {if isset($site_vars.sys_resize_method)}<a href="?action=settings&do=site_vars&site_id=-1&q=sys_resize_method&redirect=1">{$site_vars.sys_resize_method}</a>{else}<span style="color:red;">{lang key1="admin" key2="set" key3="not_set"}</span>{/if}</li>
+					
+					<li>{lang key1="admin" key2="set" key3="file_upload"}: <a href="?action=settings&do=site_vars&site_id=-1&q=sys_upload_ext_allowed&redirect=1">{if isset($site_vars.sys_upload_ext_allowed) AND $site_vars.sys_upload_ext_allowed != "*"}{lang key1="admin" key2="set" key3="allowed"} - {$site_vars.sys_upload_ext_allowed}{else}<span style="color:red;">{lang key1="admin" key2="set" key3="any_format"}</span>{/if}</a></li>
+					<li>{lang key1="admin" key2="set" key3="original_pics"}: <a href="?action=settings&do=site_vars&site_id=-1&q=sys_save_original_fotos&redirect=1">{if !empty($admin_vars.save_original_fotos)}{lang key1="admin" key2="set" key3="saved"}{else}{lang key1="admin" key2="set" key3="deleted"}{/if}</a></li>
+					<li>{lang key1="admin" key2="set" key3="register_visitors"}: <a href="?action=settings&do=site_vars&site_id=-1&q=sys_count_visitors&redirect=1">{if !empty($site_vars.sys_count_visitors)}<span style="color:green; font-weight:bold;">{lang key1="admin" key2="set" key3="on"}</span>{else}<span style="color:red;">{lang key1="admin" key2="set" key3="off"}{/if}</a></li>
+					<li>{lang key1="admin" key2="set" key3="mysql_cache"}: <a href="?action=settings&do=site_vars&site_id=-1&q=sys_mysql_cache&redirect=1">{if !empty($site_vars.sys_mysql_cache) OR !isset($site_vars.sys_mysql_cache)}<span style="color:green; font-weight:bold;">{lang key1="admin" key2="set" key3="on"}</span>{else}<span style="color:red;">{lang key1="admin" key2="set" key3="off"}{/if}</a> | <a href="?action=db&do=clearcache">{lang key1="admin" key2="db" key3="reset"}</a></li>
+					
+					<li><a href="?action=settings&do=php">PHP</a> | 
+					<a href="?action=settings&do=phpinfo" target="_blank">phpinfo</a> | 
+					<a href="?action=settings&do=site_vars&site_id=-1&q=sys_robots_txt&redirect=1">robots.txt</a>
+					</li>
+					
+					{if !empty($smsc_balance)}
+					<li>{lang key1="admin" key2="elements" key3="smsc_balance"} - {$smsc_balance}</li>
+					{/if}
+					
+				</ul>
+
+				<h3>{lang key1="admin" key2="set" key3="shop"}</h3>
+				<ul>         
+					<li><a href="?action=settings&do=statuses">{lang key1="admin" key2="set" key3="statuses"}</a>, 
+					<a href="?action=delivery">{lang key1="admin" key2="set" key3="delivery"}</a>, 
+					<a href="?action=settings&do=payments">{lang key1="admin" key2="set" key3="payments"}</a>
+					</li>
+				</ul>
+			{/if}
+
+			</td>
+			<td valign="top">
+			
+			{if !empty($simpla.GET.do) AND $simpla.GET.do == "php"}	
+				{if !empty($settings.mbstring)}
+					<h3>mbstring</h3>
+					<table width="100%">
+					{foreach from=$settings.mbstring key="k" value="v"}
+						<tr class="{cycle values=",odd"}"><td>{$k}</td>
+							<td>{if $v|is_array}
+								{foreach from=$v key="v1" value="v2"}
+									{$v1}: {$v2}<br>
+								{/foreach}
+							{else}{$v}{/if}</td>
+						</tr>
+					{/foreach}
+					</table>
+				{/if}
+			{else}
+   
+				<h3>{lang key1="admin" key2="set" key3="uploaded_files"}</h3>
+				<ul>
+					<li>{*lang key1="admin" key2="set" key3="folder_size_pics"*}<a href="?action=settings&do=fotos">{lang key1="admin" key2="elements" key3="pics"}</a>: {$sizerecords.size|filesize:2:$site_vars.lang_admin}
+					<small>{$sizerecords.date|date:"d.m.Y H:i"} {if !empty($simpla.GET.update) AND $simpla.GET.update == "records"}<span style="color:red; font-weight:bold;">{lang key1="admin" key2="updated"}</span>{else}<a href="?action=settings&update=records">{lang key1="admin" key2="update"}</a>{/if}</small>
+					</li>
+					<li>{*lang key1="admin" key2="set" key3="folder_size_files"*}<a href="?action=settings&do=files">{lang key1="admin" key2="prava" key3="files"}</a>: {$sizefiles.size|filesize:2:$site_vars.lang_admin} 
+					<small>{$sizefiles.date|date:"d.m.Y H:i"} {if !empty($simpla.GET.update) AND $simpla.GET.update == "files"}<span style="color:red; font-weight:bold;">{lang key1="admin" key2="updated"}</span>{else}<a href="?action=settings&update=files">{lang key1="admin" key2="update"}</a>{/if}</small>
+					</li>
+				</ul>
+				
+				<p><i class="fa fa-envelope"></i> {lang key1="admin" key2="set" key3="email_notifications"}: <a href="?action=settings&do=mass_vars&hint=smtp">{if isset($site_vars.sys_smtp_on) AND $site_vars.sys_smtp_on == 1}{lang key1="admin" key2="set" key3="smtp"}{else}{lang key1="admin" key2="set" key3="sendmail"}{/if}</a> &raquo; <a href="?action=settings&do=email">{lang key1="admin" key2="set" key3="test"}</a></p>
+				
+				<p><i class="fa fa-shopping-cart"></i> {lang key1="admin" key2="set" key3="yml_link"}: {if !empty($site_vars.yml_key)}
+				<span style="color:darkgreen; font-weight:bold;">{lang key1="admin" key2="set" key3="published"}</span>{else}<span style="color:red;">{lang key1="admin" key2="set" key3="not_published"}{/if} <a href="?action=settings&do=mass_vars&hint=yml"><i class="fa fa-edit"></i></a></p>
+				
+				<p><i class="fa fa-google"></i> {lang key1="admin" key2="elements" key3="gmc"} <a href="?action=settings&do=mass_vars&hint=gmc"><i class="fa fa-edit"></i></a></p>
+				
+				{if $check_folders|@count > 0}
+				  <p style="color:red;">{lang key1="admin" key2="set" key3="folders_not_opened"}</p>
+					 { foreach from=$check_folders value="value" }
+					   <i class="fa fa-folder-o"></i> {$value} 
+					   {if !empty($simpla.GET.try) AND $simpla.GET.try == $value}
+					   <br><span style="color:red;">{lang key1="admin" key2="set" key3="bad_attempt"}</span><br>
+					   {else}[<a href="?action=settings&try={$value}">{lang key1="admin" key2="set" key3="correct"}</a>]<br>{/if}
+					 {/foreach}
+				{else}
+					<p><i class="fa fa-check"></i> {lang key1="admin" key2="set" key3="folders_ok"}</p>
+				{/if}
+	  
+				{include file="settings/licence.html"}
+			{/if}	
+
+			</td>
+		</tr>
+	</table>
+{/if}
+
+
+{if empty($simpla.GET.do)}	
+
+	<h3>{lang key1="admin" key2="set" key3="list_sites"}</h3>
+	
+	{if $allsites|@count > 0}
+    <table width="80%">
+      <tr>
+          <th width=20>&nbsp;</th>
+          <th width=10>{lang key1="admin" key2="set" key3="number"}</th>
+          <th width=25%>{lang key1="admin" key2="set" key3="short_name"}</th>
+          <th width=25%>{lang key1="admin" key2="set" key3="url"}</th>
+          <th><i class="fa fa-home" title="{lang key1="admin" key2="set" key3="default_page"}"></i></th>
+          <th>{lang key1="admin" key2="set" key3="email"}</th>
+          <th>{lang key1="admin" key2="set" key3="phone"}</th>
+          <th>{lang key1="admin" key2="set" key3="tpl"}</th>
+          <th><span title="{lang key1="admin" key2="set" key3="yml_link"}">{lang key1="admin" key2="set" key3="yml"}</th>
+          <th width=20><i class="fa fa-envelope" title="{lang key1="admin" key2="set" key3="fb_in_db"}"></i></th>
+          <th width=20><a href="?action=settings&do=site_vars&site_id=0"><i class="fa fa-cogs"></i></a></th>
+      </tr>
+          
+      {foreach from=$allsites value="value" }
+        { assign var="href" value="?action=settings&do=site&mode=edit&id=".$value.id}
+        <tr {cycle values=",class=odd"}>
+          <td><a href="{$href}">{if $value.site_active == 1 }<i class="fa fa-check"></i>{ else }<i class="fa fa-minus"></i>{ /if }</a></td>
+          <td><a href="{$href}">{$value.id}</a></td>
+          <td><a href="{$href}"><i class="fa fa-pencil"></i> {$value.name_short|stripslashes}</a></td>
+          <td><a href="{$value.site_url}/" target=_blank><small><i class="fa fa-external-link"></i></small> {$value.site_url}</a></td>
+          <td align="center">{if $value.default_id_categ > 0}<a href="?action=info&do=edit_categ&id={$value.default_id_categ}">{$value.categ_title}</a>{else}-{/if}</td>
+          <td>{$value.email_info|stripslashes}</td>
+          <td>{$value.phone|stripslashes}</td>
+          <td>{$value.template_path|replace:"/tpl/,/"}</td>
+          <td align="center">{if !empty($value.yml)}<a href="{$value.site_url}/price{$simpla.CONST.URL_END}?{$value.yml}" target="_blank"><i class="fa fa-shopping-cart"></i></a>{else}<a href="?action=settings&do=site_vars&id=0&hint=yml_key"><i class="fa fa-plus-circle"></i></a>{/if}</td>
+          <td align="center">{if $value.feedback_in_db == 1}<i class="fa fa-check" style="color:{$admin_vars.bgdark}"></i>{else}-{/if}</td>
+          <td><a href="?action=settings&do=site_vars&site_id={$value.id}"><i class="fa fa-cog"></i></a></td>
+		</tr>      
+      {/foreach}
+    </table>
+	{else}
+		<p>{lang key1="admin" key2="set" key3="list_empty"}</p>
+	{/if}
+{/if}
+
+{if empty($simpla.GET.do) OR $simpla.GET.do != "phpinfo"}
+	{ include file="footer.html" }
+{/if}

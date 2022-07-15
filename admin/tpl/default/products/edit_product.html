@@ -1,0 +1,429 @@
+{include file="header.html"}
+<h1 class="mt-0">{if $categ.id > 0}{favorites where="product" id=$categ.id} {lang key1="admin" key2="editing"}{else}{lang key1="admin" key2="adding"}{/if}</h1>
+{if $categ.id > 0}
+    <p><i class="fa fa-external-link"></i> {lang key1="admin" key2="index" key3="see_on_website"}: 	
+	{if !empty($categ.links)}
+		{foreach from=$categ.links key="k" value="v"}
+		{if $k > 0} <i class="fa fa-globe"></i> {/if}<a href="{$v.site_url}/{$categ.alias}{$simpla.CONST.URL_END}{if empty($categ.active)}?debug={$v.id}{/if}" target="_blank">{$v.site_url}</a>
+		{/foreach}	
+	{else}-{/if}	
+	</p>
+{/if}
+
+  {if isset($simpla.GET.updated)}
+    <table width="80%"><tr><td><blockquote>{lang key1="admin" key2="updated"}</blockquote></td></tr></table>
+  {elseif isset($simpla.GET.added)}
+    <table width="80%"><tr><td><blockquote>{lang key1="admin" key2="added"}</blockquote></td></tr></table>
+  {/if}
+
+
+{if !empty($simpla.GET.orders) AND !empty($categ.orders)}
+	<h3>{lang key1="admin" key2="products" key3="orders_with_product"} <a href="?action=products&do=edit&id={$categ.id}">{$categ.name} <i class="fa fa-pencil"></i></a></h3>
+	{if !empty($pages)}{$pages}{/if}
+	<table width="80%">
+		<tr class="{cycle values=" ,odd"}">
+			<th>ID</th>
+			<th><i class="fa fa-clock-o"></i></th>
+			<th>{lang key1="admin" key2="products" key3="payment"}</th>
+			<th>{lang key1="admin" key2="products" key3="status"}</th>
+			<th>{lang key1="admin" key2="website"}</th>
+		</tr>
+	{foreach from=$categ.orders value="v"}
+		<tr class="{cycle values=" ,odd"}">
+			<td><a href="?action=orders&id={$v.id}">{$v.site_id}-{$v.order_id|chunk:4:"-"}</a></td>
+			<td class="center"><a href="?action=orders&id={$v.id}">{$v.created|date:$site_vars.site_date_format}</a></td>
+			<td><a href="?action=orders&id={$v.id}">{if !empty($v.payd_status)}<i class="fa fa-check"></i>{/if}</a></td>
+			<td><a href="?action=orders&id={$v.id}">{$v.status_title}</a></td>
+			<td><a href="?action=orders&id={$v.id}">{$v.site}</a></td>
+		</tr>
+	{/foreach}
+	</table>
+	{if !empty($pages)}{$pages}{/if}
+{else}
+
+<form method=post enctype="multipart/form-data">
+  <table width="80%">
+    { if $categ.id > 0}<tr {cycle values=" ,class=odd" }>
+      <td width="200">ID: {$categ.id}</td>
+      <td>{if $categ.date_insert > $simpla[NOW]|date:"Y-m-d H:i:s" }
+		<i class="fa fa-clock-o" style="color:red;" title="{lang key1="admin" key2="products" key3="future_date"}"></i> {/if}{lang key1="admin" key2="products" key3="added_by"}: <a href="?action=settings&do=add_user&id={$categ.user_id}"><i class="fa fa-user"></i> {$categ.user_name}</a> {$categ.date_insert_f} 
+	  {if !empty($categ.date_update_f)}{lang key1="admin" key2="products" key3="last_edit_by"}: { $categ.date_update_f }{/if}
+	  {if !empty($categ.views)}<br>{lang key1="admin" key2="products" key3="views"}. {lang key1="admin" key2="products" key3="total_views"}: {$categ.views} / {lang key1="admin" key2="products" key3="views_for_month"}: {$categ.views_month}{/if}
+	  {if !empty($categ.orders_qty)}<br>{lang key1="admin" key2="products" key3="orders"}: <a href="?action=products&do=edit&id={$categ.id}&orders=1"><i class="fa fa-shopping-cart"></i> {$categ.orders_qty}</a>{/if}
+	  </td>               
+      </td>
+    </tr>{/if}
+   
+    <tr {cycle values="class=odd, " }>
+      <td width="200">{lang key1="admin" key2="products" key3="title"}</td>
+      <td><input type=text style="width:100%;" name="name" value="{$categ.name|htmlspecialchars}" /></td>
+    </tr>
+    
+    <tr {cycle values="class=odd, " }>
+      <td width="200">{lang key1="admin" key2="products" key3="product_code"} <small>({lang key1="admin" key2="products" key3="or_model"})</small></td>
+      <td><input type="text" style="width:100%;" name="barcode" value="{$categ.barcode|htmlspecialchars}" /></td>
+    </tr>
+
+    <tr { cycle values="class=odd, " }>
+      <td width="200">{lang key1="admin" key2="products" key3="address"}</td>
+      <td><input type="text" style="width:100%;" name="name_short" value="{$categ.name_short|htmlspecialchars}" /></td>
+    </tr>
+	
+	<tr>
+      <td{if empty($product_categories)} class="red"{/if}>{lang key1="admin" key2="products" key3="connected_page"}</td>
+      <td>
+	  
+	  {if !empty($product_categories)}
+		{foreach from=$product_categories value="v"}
+			{if !empty($v.subtitle) AND !empty($v.subid)}
+				&raquo; <a href="?action=info&do=edit_categ&id={$v.subid}">{$v.subtitle}</a> 
+				<a href="?action=info&do=categories&id={$v.subid}"><i class="fa fa-sitemap"></i></a> 
+			{/if}
+			
+			{if !empty($v.title) AND !empty($v.id_categ)}
+				&raquo; <a href="?action=products&do=list_products&cid={$v.id_categ}">{$v.title}</a> 
+				<a href="?action=info&do=edit_categ&id={$v.id_categ}"><i class="fa fa-pencil"></i></a> 
+				<a href="?action=products&do=list_products&cid={$v.id_categ}"><i class="fa fa-sitemap"></i></a><br>
+			{/if}
+			
+		{/foreach}
+	  {/if}
+	  
+	  
+        <p><a href="javascript: ShowHide('block-categs')" style="border-bottom: 1px dashed blue;"><i class="fa fa-edit"></i> {lang key1="admin" key2="products" key3="change"}</a></p> 
+		<div style="display: none; max-height: 400px; overflow: auto;" id="block-categs">
+			<table class="table">
+			{foreach from=$site_vars._pages key="k" value="v"}
+				{assign var="cur_id" value=$v.id}
+				<tr {cycle values=" ,class=odd" }>				
+				<td width="30">{if !empty($v.shop)}<input type="checkbox" name="categs[]" value="{$v.id}" {if isset($product_categories[$cur_id])}checked="checked"{/if}>{/if}</td>
+				<td>
+					
+					<span style="padding-left:{$v.padding}px;{if isset($product_categories[$cur_id])} color:red; font-weight:bold;{/if}">{if empty($v.visible)}<s>{$v.title}</s>{else}{$v.title}{/if}</span>
+				</td>
+				</tr>				
+			{/foreach}
+			</table>
+		</div>
+      </td>
+    </tr>
+		
+    
+    <tr { cycle values="class=odd, " }>
+      <td width="200">{lang key1="admin" key2="products" key3="active"}</td>
+      <td><input type="hidden" name="active" value="0" />
+        <input type="checkbox" name="active" value="1" { if $categ.active} checked="checked"{/if} />
+        <input type="submit" name="save" value="{lang key1="admin" key2="products" key3="save"}" />
+      </td>
+    </tr>
+    
+    <tr { cycle values="class=odd, " }>
+      <td width="200">{lang key1="admin" key2="products" key3="active_to_buy"}</td>
+      <td><input type="checkbox" name="accept_orders" value="1"{if $categ.accept_orders == 1} checked="checked"{/if}></td>
+    </tr>
+    
+    <tr { cycle values="class=odd, " }>
+      <td></td>
+      <td>
+          <table border=0 cellpadding=2 cellspacing=1 bgcolor="{$admin_vars.bglight}">
+            <tr>
+              <th><a href="?action=settings&do=site_vars&site_id=-1&q=sys_currency&redirect=1">{lang key1="admin" key2="products" key3="currency"}</a></th>
+              <th>{lang key1="admin" key2="products" key3="price"}</th>
+              <th>{lang key1="admin" key2="products" key3="price_old"}</th>
+              <th>{lang key1="admin" key2="products" key3="yml_rate"}</th>
+            </tr>
+            <tr class="odd">
+              <td><select name="currency">
+                <option value="euro"{if $categ.currency == "euro"} selected{/if}>{lang key1="admin" key2="products" key3="euro"}</option>
+                <option value="usd"{if $categ.currency == "usd"} selected{/if}>{lang key1="admin" key2="products" key3="usd"}</option>
+                <option value="rur"{if $categ.currency == "rur"} selected{/if}>{lang key1="admin" key2="products" key3="rub"}</option>
+              </select></td>
+              <td><input type=text size="10" name="price" value="{$categ.price}" /></td>
+              <td><input type=text size="10" name="price_spec" value="{$categ.price_spec}" /></td>
+              <td align="center"><input type="text" size="5" name="bid_ya" value="{$categ.bid_ya}" /></td>
+            </tr>
+            <tr>
+              <th>{lang key1="admin" key2="products" key3="new"}</th>
+              <th>{lang key1="admin" key2="products" key3="spec"}</th>
+              <th>{lang key1="admin" key2="products" key3="period"}</th>
+              <th>{lang key1="admin" key2="products" key3="qty"}</th>
+            </tr>
+            <tr>
+              <td align="center"><input type="checkbox" name="f_new" value="1"{if $categ.f_new == 1} checked="checked"{/if}></td>
+              <td align="center"><input type="checkbox" name="f_spec" value="1"{if $categ.f_spec == 1} checked="checked"{/if}></td>
+              <td><select name="price_period">
+                <option value="razovo"{if $categ.price_period == "razovo"} selected{/if}>-</option>
+                <option value="day"{if $categ.price_period == "day"} selected{/if}>{lang key1="admin" key2="products" key3="day"}</option>
+                <option value="week"{if $categ.price_period == "week"} selected{/if}>{lang key1="admin" key2="products" key3="week"}</option>
+                <option value="month"{if $categ.price_period == "month"} selected{/if}>{lang key1="admin" key2="products" key3="month"}</option>
+                <option value="year"{if $categ.price_period == "year"} selected{/if}>{lang key1="admin" key2="products" key3="year"}</option>
+                <option value="from"{if $categ.price_period == "from"} selected{/if}>{lang key1="admin" key2="products" key3="from"}</option>
+              </select></td>
+              <td align="center"><input type="text" size="5" name="total_qty" value="{$categ.total_qty}" /></td>
+            </tr>
+          </table>
+    </td>
+  </tr>
+
+  <tr { cycle values="class=odd, " }>
+    <td width="200">{lang key1="admin" key2="products" key3="short_desc"}</td>
+    <td><textarea name=memo_short rows=4 style="width:100%;">{$categ.memo_short|stripslashes|htmlspecialchars}</textarea></td>
+  </tr>
+
+  <tr { cycle values="class=odd, " }>
+    <td width="200">{lang key1="admin" key2="products" key3="desc"}</td>
+    <td><p>{if isset($simpla.GET.noeditor)}<img src="images/word.gif" vspace="3" /> <a href="?action=products&do=edit&id={$categ.id}">{lang key1="admin" key2="on_editor"}</a>{else}<img src="images/noword.gif" vspace="3" /> <a href="?action=products&do=edit&id={$categ.id}&noeditor=1">{lang key1="admin" key2="off_editor"}</a>{/if}</p>
+          <textarea id="memo" name="memo" rows="10" style="width: 100%;">{ $categ.memo }</textarea>
+          {if !isset($simpla.GET.noeditor)}
+          <script type="text/javascript">
+            var editor = CKEDITOR.replace( 'memo');
+            CKFinder.setupCKEditor( editor, '/{$simpla.CONST.ADMIN_FOLDER}/ckfinder/' ) ;
+          </script>
+          {/if}    
+    </td>
+  </tr>
+
+  
+  <tr {cycle values=" ,class=odd" reset="1" }>
+    <td colspan="2"><a href="javascript: ShowHide('block-meta')" style="border-bottom: 1px dashed blue;">{lang key1="admin" key2="products" key3="metatags"}</a>
+      <div style="display: none;" id="block-meta">
+		  <table width="100%" cellpadding="0" cellspacing="1">
+		    <tr {cycle values=" ,class=odd" }>
+          <td width="200">{lang key1="admin" key2="products" key3="metatitle"} (title)</td>
+          <td><input type="text" name="meta_title" style="width: 100%;" maxlength="255" value="{$categ.meta_title|htmlspecialchars}" /></td>
+        </tr>
+        <tr {cycle values=" ,class=odd" }>
+          <td width="200">{lang key1="admin" key2="products" key3="metadesc"} (description)</td>
+          <td><textarea name="meta_description" style="width: 100%;" rows="4">{ $categ.meta_description|htmlspecialchars}</textarea></td>
+        </tr>
+        <tr {cycle values=" ,class=odd" }>
+          <td width="200">{lang key1="admin" key2="products" key3="metakeyw"} (keywords)</td>
+          <td><textarea name="meta_keywords" style="width: 100%;" rows="4">{ $categ.meta_keywords|htmlspecialchars}</textarea></td>
+        </tr>
+		  </table>
+      </div>  
+    </td>
+  </tr>
+
+  <tr {cycle values=" ,class=odd" reset="1"}>
+	<td colspan="2">
+    <a href="javascript: ShowHide('block-extra')" style="border-bottom: 1px dashed blue;">{lang key1="admin" key2="products" key3="extras"}</a>
+    <div style="display: none;" id="block-extra">
+      <table width="100%" cellpadding="3" cellspacing="1">
+        <tr {cycle values="class=odd, " }>
+          <td width="200">{lang key1="admin" key2="products" key3="synonim"}  <br><small>(www.site.com/<span style="color:red;">###</span>/)</small></td>
+          <td><input type=text style="width:100%;" name="alias" value="{$categ.alias|stripslashes|htmlspecialchars}" /></td>
+        </tr>
+        <tr {cycle values="class=odd, " }>
+          <td width="200">{lang key1="admin" key2="products" key3="tpl"}</td>
+          <td>{if isset($categ.tpls)}
+            <select name="multitpl">
+            {foreach from=$categ.tpls value="value"}
+              <option value="{$value}"{if $value == $categ.multitpl} selected{/if}>{$value}</option>
+            {/foreach}
+            </select> 
+			<a href="?action=settings&do=site_vars&site_id=-1&q=sys_tpl_products&redirect=1"><i class="fa fa-pencil"></i></a>
+          {else}
+            <input type="text" name="multitpl" style="width:100%;" maxlength="255" value="{if $categ.multitpl == ""}product.html{else}{ $categ.multitpl|htmlspecialchars }{/if}" />
+          {/if}
+          </td>
+        </tr>
+
+        <tr>
+          <td></td>
+          <td>
+            <table border="0" cellpadding="2" cellspacing="1" width="500">
+              <tr>
+                <th>{lang key1="admin" key2="products" key3="price2"}</th>
+                <th>{lang key1="admin" key2="products" key3="price_own"}</th>
+                <th>{lang key1="admin" key2="products" key3="weight"} (1.00)</th>
+              </tr>
+              <tr class="odd">
+                <td><input type="text" style="width:100%;" name="price_opt" value="{$categ.price_opt}" /></td>
+                <td><input type="text" style="width:100%;" name="price_buy" value="{$categ.price_buy}" /></td>
+                <td><input type="text" style="width:100%;" name="weight_deliver" value="{$categ.weight_deliver}" /></td>
+              </tr>
+              <tr>
+      		      <th>{lang key1="admin" key2="products" key3="abuse"}</th>
+      		      <th>{lang key1="admin" key2="products" key3="gift"}</th>
+      		      <th>{lang key1="admin" key2="products" key3="new_id"}</th>
+      		    </tr>
+              <tr class="odd">
+      		      <td><input type="text" style="width:100%;" name="treba" value="{$categ.treba}" /></td>
+      		      <td><input type="text" style="width:100%;" name="present_id" value="{$categ.present_id}" /></td>
+      		      <td><input type="text" style="width:100%;" name="id_next_model" value="{$categ.id_next_model}" /></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        
+        <tr {cycle values="class=odd, " }>
+          <td width="200">{lang key1="admin" key2="products" key3="product_comment"}</td>
+          <td><input type="text" style="width:100%;" name="comment" value="{$categ.comment|stripslashes|htmlspecialchars}" /></td>
+        </tr>
+        
+        <tr {cycle values="class=odd, " }>
+          <td width="200">{lang key1="admin" key2="products" key3="complect"}</td>
+          <td><textarea name="complectation" rows="4" style="width:100%;">{$categ.complectation|stripslashes}</textarea></td>
+        </tr>
+
+        <tr {cycle values="class=odd, " }>
+          <td width="200">{lang key1="admin" key2="products" key3="alter_search"}</td>
+          <td><input type="text" style="width:100%;" name="alter_search" value="{$categ.alter_search|htmlspecialchars}" /></td>
+        </tr>
+      
+        {if $categ.id > 0}<tr {cycle values="class=odd, " }>
+          <td></td>
+          <td><p><a href="?action=comments&id=0&record_id={$categ.id}&type=product"><i class="fa fa-plus-circle"></i> {lang key1="admin" key2="products" key3="add_comment"}</a>
+		  {if !empty($categ.comments_qty)}<br><a href="?action=comments&record_id={$categ.id}&record_type=product">{lang key1="admin" key2="products" key3="added_comments"} ({$categ.comments_qty})</a>
+		  {/if}
+		  </p></td>
+        </tr>{/if}
+
+        <tr {cycle values="class=odd, " }>
+          <td width="200">{lang key1="admin" key2="products" key3="other_pr_conn"}</td>
+          <td><input type="hidden" name="id_produktov" id="id_produktov" value="{$connected_products_ids}" />
+          	<span id='produkti'>
+          		{foreach from=$connected_products key="k_prod" value="conn_prod"}
+          			&raquo; <a href="?action=products&do=edit&id={$k_prod}">{$conn_prod}</a><br>
+          		{/foreach}
+          	</span>
+            <a href="javascript:" onClick="$('#choose_product_form').dialog('open');"><i class="fa fa-edit"></i> {lang key1="admin" key2="products" key3="change"}</a>
+        	</td>
+        </tr>
+        
+        <div id="choose_product_form" title="{lang key1="admin" key2="products" key3="other_pr_conn"}">
+          <h1 id="header">{lang key1="admin" key2="products" key3="list_opened_products"}</h1>
+          {if empty($categ.other_products)}{lang key1="admin" key2="products" key3="toconnect_empty"}{else}{$categ.other_products}{/if}
+        </div>
+		
+		{if !empty($categ.all_pubs)}    
+      <tr {cycle values="class=odd, " }>
+        <td>{lang key1="admin" key2="products" key3="connect_pubs"}</td>
+        <td><input type="hidden" name="id_pubs" id="id_pubs" value="{$publication_pubs_ids}" />
+                 <span id='pubs'>
+		  {foreach from=$publication_pubs value="pub_pub"}
+			 &raquo; <a href="?action=info&do=edit_publication&id={$pub_pub.id}">{$pub_pub.title}</a><br>
+		  {/foreach}
+		  </span>
+		  <p><a href="javascript:" onClick="$('#choose_pub_form').dialog('open');"><i class="fa fa-edit"></i> {lang key1="admin" key2="products" key3="change"}</a></p>
+          
+		  <div id="choose_pub_form" title="{lang key1="admin" key2="products" key3="connect_pubs"}">
+		  <h1 id="header_pubs">{lang key1="admin" key2="publications"} ({$categ.all_pubs})</h1>
+			{ product_to_pubs id=$categ.id field='pubs' }
+		  </div>
+        </td>
+      </tr>
+      {/if}
+		
+
+        <tr {cycle values="class=odd, " }>
+          <td width=200>{lang key1="admin" key2="products" key3="change_add_date"}</td>
+          <td>
+		  { html_select_date time=$categ.date_insert start_year="-20" end_year="+5" day_value_format="%02d" month_format="%m" field_order="DMY" field_array="insert_date" prefix="" lang=$site_vars.lang_admin} { html_select_time use_24_hours=true 
+		  time=$categ.date_insert field_array="insert_date" prefix=""}
+		  </td>
+        </tr>
+      </table>
+      </div>
+    </td>
+  </tr>
+
+  	<tr {cycle values=" ,class=odd" reset="1"}>
+      <td colspan="2">
+
+  		  <a href="javascript: ShowHide('block-s')" style="border-bottom: 1px dashed blue;">{lang key1="admin" key2="products" key3="blocks"}</a>
+
+  		  <div {if empty($blocks)}style="display: none;"{/if} id="block-s">
+		  {include file="pages/add_block.html"}
+		  
+		  {if !empty($categ.id)}
+			<h4>{lang key1="admin" key2="products" key3="blocks_overall"}</h4>
+		  {if !empty($categ.blocks)}
+		  <table width="100%">
+			<tr>
+				<th>{lang key1="admin" key2="products" key3="spec_title"}</th>
+				<th>{lang key1="admin" key2="products" key3="layout"}</th>
+				<th>{lang key1="admin" key2="products" key3="alias"}</th>
+				<th>{lang key1="admin" key2="products" key3="type"}</th>
+				<th>{lang key1="admin" key2="products" key3="qty"}</th>
+			</tr>
+		  {foreach from=$categ.blocks key="k" value="b"}
+			{foreach from=$b value="v"}
+			<tr {cycle values=" ,class=odd"}>
+				<td><a href="?action=settings&do=blocks&id={$v.id}">{$v.title_admin}</a></td>
+				<td><a href="?action=settings&do=blocks&id={$v.id}">{$v.where}</a></td>
+				<td><a href="?action=settings&do=blocks&id={$v.id}">{$v.title}</a></td>
+				<td><a href="?action=settings&do=blocks&id={$v.id}">{$v.type}</a></td>
+				<td class="center">{$v.qty}</td>
+			</tr>
+			{/foreach}
+		  {/foreach}
+		  </table>
+		  {/if}
+		  
+			<ul><li><a href="?action=settings&do=blocks">{lang key1="admin" key2="products" key3="all_blocks"}</a></li></ul>
+			{/if}
+  		  </div>
+  		</td>
+    </tr>  
+	
+  <tr {cycle values=" ,class=odd" reset="1"}>
+    <td colspan="2">
+		  <a href="javascript: ShowHide('block-photos')" style="border-bottom: 1px dashed blue;">{lang key1="admin" key2="products" key3="upload_fotos"}</a>
+		  <div style="display: none;" id="block-photos">
+		  <p>{include file="pages/upload_fotos_form.html"}</p>
+		  </div>
+		</td>
+  </tr>
+          
+  <tr {cycle values=" ,class=odd" reset="1"}>
+    <td colspan="2">
+  		  <a href="javascript: ShowHide('block-files')" style="border-bottom: 1px dashed blue;">{lang key1="admin" key2="products" key3="upload_files"}</a>
+  		  <div style="display: none;" id="block-files">
+  		  <p>{include file="pages/upload_files_form.html"}</p>
+  		  </div>
+    </td>
+  </tr>
+
+  {if !empty($categ.options)}
+  <tr {cycle values=" ,class=odd" reset="1"}>
+    <td colspan="2">
+    <a href="javascript: ShowHide('block-options')" style="border-bottom: 1px dashed blue;">{lang key1="admin" key2="products" key3="options"}</a>
+      <div {*style="display: none;"*} id="block-options">
+        {include file="pages/options.html"}
+      </div>
+    </td>
+  </tr>
+	{/if}
+
+
+    {if $categ.fotos_qty}
+    <tr {cycle values=" ,class=odd" reset="1"}>
+      <td colspan="2">{include file="pages/uploaded_fotos.html"}</td>
+    </tr>                                
+    {/if}
+
+    {if $categ.files_qty}
+    <tr {cycle values=" ,class=odd" reset="1"}>
+      <td colspan="2">{include file="pages/uploaded_files.html"}</td>
+    </tr>                                
+    {/if}
+
+
+    {if $categ.id > 0}
+    <tr {cycle values=" ,class=odd" reset="1"}>
+      <td colspan="2" align="right"><a href="?action=info&do=copy&id={$categ.id}&where=product" onclick="if(confirm('{lang key1="admin" key2="products" key3="copy_help"}')) return true; else return false;"><i class="fa fa-copy"></i> {lang key1="admin" key2="products" key3="copy_object"}</a></td>
+    </tr>                                
+    {/if}
+
+        
+  <tr>
+    <td colspan="2" align="center"><input type="submit" name="save" value="{lang key1="admin" key2="products" key3="save"}" />
+  {if $categ.id > 0 }<input class="small" type="submit" name="del" value="{lang key1="admin" key2="products" key3="delete_all"}"  onclick="if(confirm('{lang key1="admin" key2="really"}')) return true; else return false;" />{/if}</td>
+  </tr>
+</table>
+</form>
+{/if}
+
+{include file="footer.html" }

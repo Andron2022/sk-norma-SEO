@@ -1,0 +1,143 @@
+{include file="header.html"}
+<h1 class="mt-0">{lang key1="admin" key2="block_types" key3="listCategs"}: 
+  {if isset($simpla.GET.shop) AND $simpla.GET.shop == 0}
+<span style="padding-left: 10px; margin-left: 10px;"><i class="fa fa-copy" title="{lang key1="admin" key2="index" key3="for_pubs"}"></i></a>
+<a style="padding-left: 5px; margin-left: 5px;" href="?action=info&do=categories&shop=1"><i class="fa fa-shopping-cart" title="{lang key1="admin" key2="index" key3="for_shop"}"></i></span>
+<a style="padding-left: 5px; margin-left: 5px;" href="?action=info&do=categories">{lang key1="admin" key2="user" key3="all"}</a>
+  {elseif isset($simpla.GET.shop) AND $simpla.GET.shop == 1}
+<a style="padding-left: 10px; margin-left: 10px;" href="?action=info&do=categories&shop=0"><i class="fa fa-copy" title="{lang key1="admin" key2="index" key3="for_pubs"}"></i></a>
+<span style="padding-left: 5px; margin-left: 5px;"><i class="fa fa-shopping-cart" title="{lang key1="admin" key2="index" key3="for_shop"}"></i></span>
+<a style="padding-left: 5px; margin-left: 5px;" href="?action=info&do=categories">{lang key1="admin" key2="user" key3="all"}</a>
+  {else}
+<a style="padding-left: 10px; margin-left: 10px;" href="?action=info&do=categories&shop=0"><i class="fa fa-copy" title="{lang key1="admin" key2="index" key3="for_pubs"}"></i></a>
+<a style="padding-left: 5px; margin-left: 5px;" href="?action=info&do=categories&shop=1"><i class="fa fa-shopping-cart" title="{lang key1="admin" key2="index" key3="for_shop"}"></i></a>
+<span style="padding-left: 5px; margin-left: 5px;">{lang key1="admin" key2="user" key3="all"}</span>
+  {/if}
+</h1>
+
+{if !empty($categ_info.title)} 
+	<h2>{$categ_info.title} <a href="?action=info&do=categories{if $categ_info.id_parent > 0}&id={$categ_info.id_parent}{/if}"><i class="fa fa-arrow-left"></i></a> <a href="?action=info&do=edit_categ&id={$categ_info.id}"><i class="fa fa-pencil"></i></a> <a href="?action=info&id={$categ_info.id}"><i class="fa fa-sitemap"></i></a></h2>
+{/if}
+
+
+{if isset($simpla.GET.updated)}
+  <table width="80%"><tr><td><blockquote>{lang key1="admin" key2="index" key3="rows_updated"}: {$simpla.GET.updated}</blockquote></td></tr></table>
+{/if}
+
+{if isset($simpla.GET.deleted)}
+  <table width="80%"><tr><td><blockquote>{lang key1="admin" key2="index" key3="rows_deleted"}: {$simpla.GET.deleted}</blockquote></td></tr></table>
+{/if}
+
+
+<table width="80%">
+	<tr>
+		<td><a href="?action=info&do=edit_categ&id=0"><i class="fa fa-plus"></i></a> <a href="?action=info&do=edit_categ&id=0{if !empty($simpla.get.id)}&cid={$simpla.get.id}{/if}">{lang key1="admin" key2="add"}</a></td>
+		<form method="get">
+		<td>
+			{if !empty($site_vars._pages)}
+				{lang key1="admin" key2="fb" key3="filter"}: {literal}<select style="width: 200px; word-break: break-all;" onChange="if(this.options[this.selectedIndex].value!=''){window.location=this.options[this.selectedIndex].value}else{this.options[selectedIndex=0];}">{/literal}
+  
+				<option value="?action=info&do=categories"{if $id == 0 AND !isset($simpla.GET.id)} selected="selected"{/if}>- {lang key1="admin" key2="user" key3="all" case="lower"}</option>
+				<option value="?action=info&do=categories&id=0"{if $id == 0 AND isset($simpla.GET.id)} selected="selected"{/if}>- {lang key1="admin" key2="home" case="lower"}</option>				
+				
+				{foreach from=$site_vars._pages value="v"}
+					{if !empty($v.subcategs)}
+					<option value="?action=info&do=categories&id={$v.id}"{if $id == $v.id} selected="selected"{/if}>{if $v.level > 1}
+						{ for start=1 stop=$v.level step=1 value=current } - {/for}
+					{/if}{$v.title}</option>
+					{/if}
+				{/foreach}
+				</select>
+			{/if}
+		</td>
+		</form>
+	</tr>
+</table>
+
+
+{if $categs_list|@count > 3}
+{include file="pages/pages.html"}
+{/if}
+
+
+{ if $categs_list|@count > 0 }
+<form method=post name=form1>
+{if isset($simpla.GET.id)}<input type="hidden" name="id" value="{$simpla.GET.id}">{/if}
+<table width="80%">
+  <tr>
+    <th width="40">#</th>
+    <th><i class="fa fa-edit"></i></th>
+    <th width="50"><i class="fa fa-check"></i> <INPUT onclick="CheckAll(this,'active[]')" type="checkbox" /></th>
+    <th width="30%">{lang key1="admin" key2="fav" key3="title"}</th>
+    <th width="20%">{lang key1="admin" key2="user" key3="url"}</th>
+    <th><i class="fa fa-sort"></i></th>
+    <th><i class="fa fa-files-o" title="{lang key1="admin" key2="publications"}"></i></th>
+    <th><i class="fa fa-plus" title="{lang key1="admin" key2="add_pub"}"></i></th>
+    <th><i class="fa fa-shopping-cart" title="{lang key1="admin" key2="offers"}"></i></th>
+    <th><i class="fa fa-plus" title="{lang key1="admin" key2="add_product"}"></i></th>
+    <th>{lang key1="admin" key2="websites"}</font></b></th>
+    <th width="50"><i class="fa fa-trash-o"></i> <INPUT onclick="CheckAll(this,'delcategs[]')" type="checkbox" /></th>
+  </tr>
+	
+  {foreach from=$categs_list value="value" key="key"}
+    <tr {cycle values=",class=odd" }>
+      <td align="center"><a href="?action=info&do=edit_categ&id={ $value.id }">{ $value.id }</a></td>
+      <td align="center" nowrap><a href="?action=info&do=edit_categ&id={ $value.id }"><i class="fa fa-pencil"></i></a>
+	  {if $value.id == $value.default_id_categ}
+	  <small><a href="?action=info&do=categories&id={$value.id}"><i class="fa fa-home"></i></a></small>
+	  {elseif !empty($value.childs)} <small><a href="?action=info&do=categories&id={$value.id}"><i class="fa fa-sitemap"></i></a></small>{/if}
+		{if $value.date_insert|strtotime > $simpla[NOW]}
+			<small><i class="fa fa-clock-o red" title="{lang key1="admin" key2="not_shown_yet"}"></i></small>
+		{/if}
+	  </td>
+      <td align="center"><input name="active[]" type="checkbox" value="{ $value.id }" {if $value.active} checked="checked"{ /if } /></td>
+      <td><input name="name[{ $value.id }]" type="text" style="width:100%;" value="{ $value.title }" /></td>
+      <td><input name="alias[{ $value.id }]" type="text" style="width:100%;" value="{ $value.alias }" /></td>
+      <td align="center"><input name="sort[{ $value.id }]" type="text" value="{ $value.sort }" size="2" /></td>
+      <td align="center">{if $value.pubs > 0}<a href="?action=info&do=list_publications&cid={ $value.id }">{ $value.pubs }</a>{else}-{/if}</td>
+      <td align="center"><a href="?action=info&do=edit_publication&id=0&cid={ $value.id }"><i class="fa fa-plus"></i></a></td>
+      <td align="center">{if $value.products > 0}<a href="?action=products&do=list_products&cid={$value.id}">{ $value.products }</a>{elseif $value.shop == 1}<i class="fa fa-check"></i>{else}-{/if}</td>
+      <td align="center">{if $value.shop == 1}<a href="?action=products&do=add&cid={ $value.id }"><i class="fa fa-plus"></i></a>{else}-{/if}</td>
+      <td align="center">{if !empty($value.site_url)}
+				{if $value.id == $value.default_id_categ}
+					{assign var="r_href" value=$value.site_url."/"}
+				{else}
+					{assign var="r_href" value=$value.site_url."/".$value.alias."/"}
+					
+					{if empty($value.active)}
+						{assign var="r_href" value=$r_href."?debug=".$value.site_id}
+					{/if}
+				{/if}
+	  
+				<small><a href="{$r_href}" target="_blank"><i class="fa fa-external-link"></i></a></small>
+			  {elseif !empty($value.site_url_qty)}<span class="red">*</span>{/if}</td>
+      <td align="center"><input onclick="return CheckCB(this);" type="checkbox" name="delcategs[]" value="{ $value.id}" /></td>
+    </tr>
+  {/foreach}
+
+  <tr>
+    <td colspan="10" align="right"><input type="submit" name="update" value="{lang key1="admin" key2="update"}" onclick="return confirm('{lang key1="admin" key2="are_u_sure"}')" /></td>
+  </tr>
+</table>
+</form>
+{ else }
+
+  { if $id == 0 }
+    <p>{lang key1="admin" key2="index" key3="no_pages"}<br/>
+    <a href="?action=info&do=edit_categ&id=0">{lang key1="admin" key2="index" key3="add_first_page"}</a>!</p>
+  { else }
+    <p><h2>{if !empty($categ_info.parent_title)}<a href="?action=info&do=categories&id={$categ_info.id_parent}">{ $categ_info.parent_title }</a> / {/if}{ $categ_info.title }</h2>  
+    <ul>
+      <li><a href="?action=info&do=edit_categ&id={ $id }">{lang key1="admin" key2="index" key3="edit_categ"}</a></li>
+      {if $categ_info.pubs > 0}<li><a href="?action=info&do=list_publications&cid={ $id }">{lang key1="admin" key2="index" key3="categ_pubs"}</a> ({$categ_info.pubs})</li>{/if}
+      <li><a href="?action=info&do=edit_categ&id=0&cid={ $id }">{lang key1="admin" key2="index" key3="add_conn_categ"}</a></li>
+      <li><a href="?action=info&do=edit_publication&id=0&cid={ $id }">{lang key1="admin" key2="add_pub"}</a></li>
+      <li><a href="../{ $categ_info.alias }/" target="_blank">{lang key1="admin" key2="index" key3="see_on_website"} <small><i class="fa fa-external-link"></i></small></a></li>
+    </ul>
+    {lang key1="admin" key2="index" key3="subcategs_empty"}</p>
+  { /if }
+
+{ /if }
+
+{include file="pages/pages.html"}
+{include file="footer.html"}

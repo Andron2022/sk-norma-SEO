@@ -1,0 +1,120 @@
+{include file="header.html"}
+
+
+<h1 class="mt-0">{lang key1="admin" key2="db" key3="database"}</h1>
+<ul>
+	<li>{lang key1="admin" key2="db" key3="mysql_caching"}: <a href="?action=settings&do=site_vars&site_id=-1&q=sys_mysql_cache&redirect=1">{if isset($site_vars.sys_mysql_cache)}
+	{if $site_vars.sys_mysql_cache == 1}{lang key1="admin" key2="db" key3="on"}{else}{lang key1="admin" key2="db" key3="off"}{/if}
+	{else}{lang key1="admin" key2="db" key3="not_set"}{/if}</a> [<a href="?action=db&do=clearcache">{lang key1="admin" key2="db" key3="clear_cache"}</a>] 
+	[<a href="?action=db&do=delstat">{lang key1="admin" key2="db" key3="delete_stat" case="lower"}</a>]
+	
+	{if !empty($last_clear_cache)}
+	<br> - {lang key1="admin" key2="db" key3="last_clear"}: {$last_clear_cache.date_insert|date:"d.m.Y H:i"} [<a href="?action=settings&do=add_user&id={$last_clear_cache.who_changed}">{if !empty($last_clear_cache.who_changed_name)}{$last_clear_cache.who_changed_name}{else}{$last_clear_cache.who_changed_login}{/if}</a>]
+	{/if}
+	</li>
+	<li><a href="?action=db&do=get_dump" onclick="if(confirm('{lang key1="admin" key2="db" key3="confirm"}')) return true; else return false;">{lang key1="admin" key2="db" key3="create_db_copy"}</a></li>
+</ul>
+
+<table width="80%">
+	<tr>
+		<td>
+			
+{ if !empty($simpla.get.clearcached) }
+    <blockquote>{lang key1="admin" key2="db" key3="cache_cleared"}</blockquote>
+{ /if }
+
+{ if !empty($simpla.get.clearstat) }
+    <blockquote>{lang key1="admin" key2="db" key3="stat_cleared"}</blockquote>
+{ /if }
+
+{ if !empty($simpla.get.updated) }
+    <blockquote>{lang key1="admin" key2="db" key3="info_updated"}</blockquote>
+{ /if }
+
+{ if !empty($simpla.get.added) AND $simpla.get.added == "dump"}
+    <blockquote>{lang key1="admin" key2="db" key3="db_copy_done"}</blockquote>
+{ /if }
+
+{ if !empty($simpla.get.added) AND $simpla.get.added == "optimize"}
+    <blockquote>{lang key1="admin" key2="db" key3="optimize_db_done"}</blockquote>
+{ /if }
+
+
+{ if !empty($simpla.get.added) AND $simpla.get.added == "updated"}
+    <blockquote>{lang key1="admin" key2="db" key3="db_update_done"}</blockquote>
+{ /if }
+
+
+{ if !empty($dump_files) AND !empty($dump_folder)}
+    <blockquote><h4>{lang key1="admin" key2="db" key3="saved_db_copies"}</h4>
+	<ul>
+	{foreach from=$dump_files value="f"}
+		<li><a href="{$dump_folder}{$f}" target="_blank">{$f}</a> / <small><a href="?action=db&delete={$f}" onclick="if(confirm('{lang key1="admin" key2="really"}')) return true; else return false;">{lang key1="admin" key2="delete"}</a></small></li>
+	{/foreach}
+	</ul>
+	</blockquote>
+{ /if }
+
+{if !empty($db_not_exists)}
+	<h3>{lang key1="admin" key2="db" key3="no_tables"}:</h3>
+	<ul>
+	{foreach key="k" value="v" from=$db_not_exists}
+		<li>{$k}: {$v} <a href="?action=db&do=add_db&type={$k}&name={$v}">{lang key1="admin" key2="add"}</a></li>
+	{/foreach}
+	</ul>
+{/if}
+
+
+		</td>
+	</tr>
+</table>
+
+{if $rows|@count > 0}
+	<table width="80%">
+		<tr>
+			<th>#</th>
+			<th>{lang key1="admin" key2="db" key3="table"}</th>
+			<th>Engine</th>
+			<th>{lang key1="admin" key2="db" key3="size"}</th>
+			<th>{lang key1="admin" key2="db" key3="qty_records"}</th>
+		</tr>
+        
+		{foreach value="v" from=$rows}
+        <tr { cycle values="class=odd, " }>
+			<td>{counter}</td>
+			<td><a href="?action=db&do=view_db&table={$v.table_name}">{$v.table_name}</a>              
+            {if $v.table_name == "counter" AND $v.table_rows > 0}
+              <br><small><a href="?action=db&do=clear_db_counter">{lang key1="admin" key2="db" key3="delete_30_days"}</a></small>
+            {/if}</td>
+			<td>{$v.engine}</td>
+			<td align="right"{if $v.total_size > 1024000} style="color:red; font-weight:bold;"{/if}>{$v.total_size|filesize}</td>
+			<td align="right">
+			{if $v.table_rows > 0}
+			<a href="?action=db&do=view_db&table={$v.table_name}&records=1">{$v.table_rows}</a>
+			{else}{$v.table_rows}{/if}
+			{if $v.table_rows > 0 AND !empty($v.clear_table)} <a href="?action=db&do=clear_db&table={$v.table_name}" onclick="if(confirm('{lang key1="admin" key2="really"}')) return true; else return false;"><i class="fa fa-trash" title="{lang key1="admin" key2="db" key3="clear"}"></i></a>
+			{elseif $v.table_rows == 0 AND $v.table_name == "email_event"} <a href="?action=db&do=add_emails">{lang key1="admin" key2="add" case="lower"}</a>
+			{/if}</td>
+		</tr>
+		{/foreach}
+
+        <tr { cycle values="class=odd, " }>
+			<td align="right" colspan="3">{lang key1="admin" key2="db" key3="total"}:</td>
+			<td align="right"><b>{$summ|filesize}</b></td>
+			<td colspan="2"></td>
+        </tr>
+    </table>    
+{/if}
+
+<table width="80%">
+	<tr>
+		<td>
+			<ul>
+				<li><a href="?action=db&do=optimize">{lang key1="admin" key2="db" key3="optimize_tables"}</a></li>
+				<li><a href="?action=db&do=update" onclick="if(confirm('{lang key1="admin" key2="db" key3="really_update"} {lang key1="admin" key2="db" key3="warning_text"}\n*****************\n {lang key1="admin" key2="db" key3="cant_getback"}')) return true; else return false;">{lang key1="admin" key2="db" key3="update_db"}</a> - <span style="color:red;">{lang key1="admin" key2="db" key3="warning_text"} {lang key1="admin" key2="db" key3="cant_getback"}</span></li>
+			</ul>
+		</td>
+	</tr>
+</table>
+
+{include file="footer.html"}

@@ -1,0 +1,55 @@
+{include file="header.html"}
+
+<h1 class="mt-0">{lang key1="admin" key2="prava" key3="delivery"}</h1>
+
+{if isset($simpla.GET.deleted)}
+	<table width="80%">
+		<tr>
+			<td><blockquote>{lang key1="admin" key2="deleted"}</blockquote></td>
+		</tr>
+	</table>
+{/if}
+
+{if $site_vars.list_sites|@count > 1}
+<form method="get">
+	<input type="hidden" name="action" value="delivery">
+    <select name="" onchange="top.location=this.value">
+		<option value="?action=delivery"> - {lang key1="admin" key2="fb" key3="all_sites"}</option>
+		{foreach from=$site_vars.list_sites value="v"}
+			<option value="?action=delivery&site_id={$v.id}"{if !empty($simpla.GET.site_id) AND $simpla.GET.site_id == $v.id} selected="selected"{/if}>{$v.name_short} {$v.site_url}</option>  
+		{/foreach}
+	</select>
+</form>
+{/if}
+
+
+
+{if $list_delivery|@count > 0}
+	<table width="80%">
+		<tr>
+			<th>ID</th>
+			<th>{lang key1="admin" key2="elements" key3="name"}</th>
+			<th>{lang key1="admin" key2="delivery" key3="price"}</th>
+			<th><i class="fa fa-sort" title="{lang key1="admin" key2="status" key3="sort"}"></i></th>
+			<th>{lang key1="admin" key2="website"}</th>
+			<th>{lang key1="admin" key2="products" key3="desc"}</th>
+		</tr>
+		
+		{ foreach from=$list_delivery value="v" }
+			<tr {cycle values=",class=odd"}>
+				<td><a href="{$v.href}">{ $v.id }</a></td>
+				<td><a href="{$v.href}">{$v.title}</a></td>
+				<td><a href="{$v.href}">{if $v.noprice == "1"}{lang key1="admin" key2="delivery" key3="individual"}{else}{$v.price}{/if}</a></td>
+				<td><a href="{$v.href}">{$v.sort}</a></td>
+				<td><a href="{$v.href}">{if $v.site > 0}{$v.site_url}{else}{lang key1="admin" key2="for_all"}{/if}</a></td>
+				<td>{$v.description|nl2br}</td>
+			</tr>
+		{ /foreach }
+	</table>
+
+{else}
+	<p>{lang key1="admin" key2="user" key3="list_empty"}</p>
+	<p><a href="?action=delivery&id=0"><i class="fa fa-plus"></i> {lang key1="admin" key2="add"}</a></p>
+{/if}          
+
+{ include file="footer.html" }          

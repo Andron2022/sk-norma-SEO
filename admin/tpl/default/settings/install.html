@@ -1,0 +1,175 @@
+<html>
+<head>
+    <title>SIMPLA.es</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta content="SIMPLA.es" name="keywords">
+    <meta content="SIMPLA.es" name="description">
+    <meta content="global" http-equiv="distribution">
+    <link href="css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link REL="SHORTCUT ICON" href="favicon.ico">
+    <link rel="StyleSheet" href="{$tpl}css/style.css" type="text/css">
+    <link type="text/css" href="css/ui-lightness/jquery-ui-1.8.2.custom.css" rel="stylesheet" />
+	
+	{literal}
+	<script>		
+		function ShowHidePassword(id) {
+			element = document.getElementById(id);
+			if (element.type == 'password') {
+				/*element.type = 'text';
+				element.value = element.value;*/
+				var inp = document.createElement("input");
+				inp.id = id;
+				inp.name = element.name;
+				inp.type = "text";
+				inp.value = element.value;
+				//alert(inp.parentNode.tagName);
+				element.parentNode.replaceChild(inp, element);
+			}
+			else {
+				/*element.type = 'password';
+				element.value = element.value;*/
+				var inp = document.createElement("input");
+				inp.id = id;
+				inp.type = "password";
+				inp.name = element.name;
+				inp.value = element.value;
+				element.parentNode.replaceChild(inp, element);
+			}
+		}  
+	</script>
+	{/literal}
+	
+	
+</head>
+<body bgcolor="#ffffff" leftmargin="0" marginheight="0" marginwidth="0" rightmargin="0" topmargin="0">
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0" class="nomargin">
+    <tr>
+      <td background="{$tpl}images/header-bg-top.gif" style="padding:4px;">
+            {include file="../langselector.tpl"}
+		</td>
+	</tr>
+</table>
+<h1 class="center">{lang key1="admin" key2="set" key3="setup_simpla"}</h1>
+
+{if empty($installed)}
+<table style="width: 500px;" class="center">
+	<tr>
+		<td colspan="2"><blockquote>{lang key1="admin" key2="set" key3="fill_to_install"}</blockquote></td>
+	</tr>
+</table>
+{/if}
+
+{if !empty($errors)}
+<table style="width: 500px;" class="center">
+	<tr>
+		<td colspan="2" align="left"><blockquote>
+		<h3 class="red">{lang key1="admin" key2="set" key3="found_errors"}:</h3>
+			{foreach from=$errors value="v"}
+				<br>{counter}. { textformat wrap=40 }{$v}{/textformat}
+			{/foreach}			
+			</blockquote>
+		</td>
+	</tr>
+</table>
+{/if}
+
+{if empty($installed)}
+<form method="post">
+{/if}
+<table style="width: 500px;" class="table center">
+
+	{if !empty($folders)}
+	<tr>
+		<th colspan="2"><h4>{lang key1="admin" key2="set" key3="folders_777"}:</h4></th>
+	</tr>
+	<tr>
+		<td colspan="2">
+				<p class="p-20">
+				{foreach from=$folders value="v"}
+					- {$v}<br>
+				{/foreach}
+				</p>
+		</td>
+	</tr>
+	{/if}
+	
+	{if !empty($file_config)}
+	<tr>
+		<th colspan="2"><h4>{lang key1="admin" key2="set" key3="correct_file"} config.php</h4></th>
+	</tr>
+	<tr>
+		<td colspan="2"><blockquote class="red">{lang key1="admin" key2="set" key3="add_config_file"}</blockquote></td>
+	</tr>
+	<tr>
+		<td colspan="2" align="left"><p class="pt-10">{$file_config|nl2br}</p></td>
+	</tr>
+	{/if}	
+
+
+	{if empty($installed)}<tr>
+		<th colspan="2"><h4>{lang key1="admin" key2="prava" key3="admin"}</h4></th>
+	</tr>
+	<tr>
+		<td width="40%" align="right">{lang key1="admin" key2="user" key3="login"}</td>
+		<td align="left"><input type="text" size="20" name="bo_login" value="{if !empty($simpla.POST.bo_login)}{$simpla.POST.bo_login|escape}{/if}" /></td>
+	</tr>
+	<tr>
+		<td align="right">{lang key1="admin" key2="user" key3="password"}</td>
+		<td align="left"><input type="password" size="20" name="bo_password" id="pasid"  value="{if !empty($simpla.POST.bo_password)}{$simpla.POST.bo_password|escape}{/if}" /> <a name="show" onclick="ShowHidePassword('pasid')"><i class="fa fa-eye"></i></a></td>
+	</tr>
+	<tr>
+		<td align="right">{lang key1="admin" key2="user" key3="repeat_password"}</td>
+		<td align="left"><input type="password" size="20" name="bo_password2"  value="{if !empty($simpla.POST.bo_password2)}{$simpla.POST.bo_password2|escape}{/if}" /></td>
+	</tr>
+	<tr>
+		<td class="right">{lang key1="admin" key2="user" key3="email"}</td>
+		<td align="left"><input type="text" size="20" name="bo_email"  value="{if !empty($simpla.POST.bo_email)}{$simpla.POST.bo_email|escape}{/if}" /></td>
+	</tr>
+	
+	<tr>
+		<td class="right"><input type="checkbox" value="1" name="add_default" checked="checked" /></td>
+		<td align="left">{lang key1="admin" key2="set" key3="set_test_data"}</td>
+	</tr>
+	<tr>
+		<td class="right"><input type="checkbox" value="1" name="send_email" {if !empty($simpla.POST.send_email)}checked="checked"{/if} /></td>
+		<td align="left">{lang key1="admin" key2="set" key3="send_data_by_email"}</td>
+	</tr>
+	
+	<tr>
+		<th colspan="2"><h4>{lang key1="admin" key2="prava" key3="db"}</h4></th>
+	</tr>
+	<tr>
+		<td width="40%" align="right">{lang key1="admin" key2="set" key3="server"} <small>(localhost)</small></td>
+		<td align="left"><input type="text" size="20" name="db_host"  value="{if !empty($simpla.POST.db_host)}{$simpla.POST.db_host|escape}{else}{$db.host}{/if}" /></td>
+	</tr>
+	<tr>
+		<td align="right">{lang key1="admin" key2="prava" key3="db"} <small>(dbname)</small></td>
+		<td align="left"><input type="text" size="20" name="db_database"  value="{if !empty($simpla.POST.db_database)}{$simpla.POST.db_database|escape}{else}{$db.database}{/if}" /></td>
+	</tr>
+	<tr>
+		<td align="right">{lang key1="admin" key2="user" key3="user"} <small>(dbuser)</small></td>
+		<td align="left"><input type="text" size="20" name="db_user"  value="{if !empty($simpla.POST.db_user)}{$simpla.POST.db_user|escape}{else}{$db.user}{/if}" /></td>
+	</tr>
+	<tr>
+		<td align="right">{lang key1="admin" key2="user" key3="password"} <small>(dbpassword)</small></td>
+		<td align="left"><input type="password" size="20" name="db_password" value="{if isset($simpla.POST.db_password)}{$simpla.POST.db_password|escape}{else}{$db.pass}{/if}" id="pid" /> <a name="show" onclick="ShowHidePassword('pid')"><i class="fa fa-eye"></i></a></td>
+	</tr>
+	{/if}
+	
+</table>
+
+{if !empty($installed)}
+<table width="500" class="center">
+	<tr>
+		<td colspan="2"><blockquote>{lang key1="admin" key2="set" key3="setup_done"} <a href="index.php">{lang key1="admin" key2="auth" key3="authorize"}</a></blockquote></td>
+	</tr>
+</table>
+{/if}
+
+	{if empty($installed)}<p class="center"><input type="submit" name="install" value="{lang key1="admin" key2="set" key3="begin"}" class="button" /></p>
+</form>{/if}
+
+		
+
+</body></html>

@@ -1,0 +1,118 @@
+{include file="header.html"}
+
+<h1 class="mt-0">{lang key1="admin" key2="orders" key3="coupon"}{if !empty($row.title)} {$row.title} <a href="?action=coupons&do=edit&id={$row.id}"><i class="fa fa-pencil"></i></a>{/if}</h1>
+<p><a href="?action=coupons&id=0"><i class="fa fa-plus"></i> {lang key1="admin" key2="add"}</a></p>
+ 
+
+  {if isset($simpla.GET.updated)}
+    <table width="80%"><tr><td colspan="2"><blockquote>{lang key1="admin" key2="updated"}</blockquote></td></tr></table>
+  {elseif isset($simpla.GET.added)}
+    <table width="80%"><tr><td colspan="2"><blockquote>{lang key1="admin" key2="added"}</blockquote></td></tr></table>
+  {/if}
+ 
+{if !empty($row.error)} 
+	<table width="80%"><tr><td colspan="2"><blockquote class="red">{$row.error}</blockquote></td></tr></table>
+{/if}
+ 
+
+{if empty($row)}
+	<table width="80%"><tr><td colspan="2"><blockquote class="red">{lang key1="admin" key2="set" key3="coupon_not_found"}</blockquote></td></tr></table>
+{else}
+
+<table width="80%">
+	<tr>
+		<th width="200">ID</th>
+		<th>{$row.id}</th>
+	</tr>
+
+	<tr class="{cycle values=",odd"}">
+		<td>{lang key1="admin" key2="orders" key3="coupon"}</td>
+		<td>{$row.title}</td>
+	</tr>
+
+	<tr class="{cycle values=",odd"}">
+		<td>{lang key1="admin" key2="products" key3="activity"}</td>
+		<td><i class="fa fa-{if !empty($row.active)}check{else}minus{/if}"></i></td>
+	</tr>
+	<tr class="{cycle values=",odd"}">
+		<td>{lang key1="admin" key2="products" key3="use_one_time"}</td>
+		<td><i class="fa fa-{if !empty($row.onetime)}plus{else}minus{/if}"></i></td>
+	</tr>
+
+	<tr class="{cycle values=",odd"}">
+		<td>{lang key1="admin" key2="products" key3="date_start"}</td>
+		<td>{if empty($row.date_start)}-{else}{$row.date_start}{/if}</td>
+	</tr>
+	<tr class="{cycle values=",odd"}">
+		<td>{lang key1="admin" key2="products" key3="date_stop"}</td>
+		<td>{if empty($row.date_stop)}-{else}{$row.date_stop}{/if}</td>
+	</tr>
+	<tr class="{cycle values=",odd"}">
+		<td>{lang key1="admin" key2="products" key3="id_offer"}</td>
+		<td>{if empty($row.id_product)}-{else}<a href="?action=products&do=edit&id={$row.id_product}">{$row.product_title}</a>{/if}</td>
+	</tr>
+	<tr class="{cycle values=",odd"}">
+		<td>{lang key1="admin" key2="products" key3="id_categ"}</td>
+		<td>{if empty($row.id_categ)}-
+		{else}<a href="?action=info&do=edit_categ&id={$row.id_categ}">{$row.categ_title}</a>{/if}</td>
+	</tr>
+	<tr class="{cycle values=",odd"}">
+		<td>{lang key1="admin" key2="user" key3="note"}</td>
+		<td>{$row.content|nl2br}</td>
+	</tr>
+	<tr class="{cycle values=",odd"}">
+		<td>{lang key1="admin" key2="products" key3="discount_size"}</td>
+		<td>{$row.discount_summ}{if !empty($row.discount_procent)} %{/if}</td>
+	</tr>
+	<tr class="{cycle values=",odd"}">
+		<td>{lang key1="admin" key2="products" key3="persent_whom_coupon"}</td>
+		<td>{$row.partner_summ}</td>
+	</tr>
+	<tr class="{cycle values=",odd"}">
+		<td>{lang key1="admin" key2="products" key3="whom_coupon"}</td>
+		<td>{if empty($row.for_userid)}-
+		{else}<a href="?action=settings&do=add_user&id={$row.for_userid}">{$row.user_name}</a>{/if}</td>
+	</tr>	
+	<tr class="{cycle values=",odd"}">
+		<td>{lang key1="admin" key2="website"}</td>
+		<td>{if empty($row.site_id)}- {lang key1="admin" key2="for_all"}{else}{$row.site_url|delhttp}{/if}</td>
+	</tr>
+
+</table>
+
+
+	{if !empty($row.list_discounts) OR !empty($row.all_discounts)}
+		<h3>{lang key1="admin" key2="set" key3="coupon_apply"} ({$row.all_discounts})</h3>
+		
+		{if empty($row.list_discounts)}
+			<p>{lang key1="admin" key2="set" key3="list_empty"}</p>
+		{else}
+		<table width="80%">
+		<tr>
+			<th>#</th>
+			<th align="right">{lang key1="admin" key2="orders" key3="discount"}</th>
+			<th>{lang key1="admin" key2="orders" key3="order"}</th>
+			<th>{lang key1="admin" key2="date"}</th>
+			<th>{lang key1="admin" key2="products" key3="status"}</th>
+		</tr>
+		{foreach from=$row.list_discounts value="v"}
+			<tr class="{cycle value=",odd"}">
+				<td>{counter}</td>
+				<td align="right">{$v.discount_summ} <i class="fa fa-{if $v.currency == "euro"}euro{elseif $v.currency == "usd"}usd{else}rub{/if}"></i></td>
+				<td align="center">{if !empty($v.order_id_full)}<a href="?action=orders&id={$v.order_id}">{$v.site_id}-{$v.order_id_full|chunk:4:"-"}</a>{else}-{/if}</td>
+				<td align="center">{$v.order_date}</td>
+				<td align="center"><i class="fa fa-{if !empty($v.payd_status)}plus{else}minus{/if}"></i></td>
+			</tr>
+		{/foreach}
+		</table>
+		{/if}
+		
+		{$pages}
+
+	{/if}
+
+
+{/if}
+ 
+
+{ include file="footer.html" } 

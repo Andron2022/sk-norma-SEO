@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Связанные с помощью ajax списки</title>
+		<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+    <script type="text/javascript">
+      var option_id = '{$option_id}';
+      var option_value = '{$option_value}';
+    </script>
+		{*<script type="text/javascript" src="js/connected/jquery.js"></script>*}
+		<script type="text/javascript" src="js/connected/selects.js"></script>
+<style>
+    .StyleSelectBox {
+    width:200px;
+    height:24px;
+    font:14px Arial, Tahoma, Helvetica, Verdana;
+    text-align:left;
+    background:#fff;
+    line-height:30px;
+    white-space:nowrap; /* запрещаем перенос */
+    /*padding:0 22px 0 12px; /* отступ справа с учетом стрелочки */
+    border:1;
+    zoom:1; /* для IE6 */}
+    #selectBoxInfo{
+    clear:left;
+    padding:10px;
+    font:16px "Tahoma";
+    color:red;}
+
+</style>
+	</head>
+	<body>
+  {if !empty($option_value)}
+    <p>Указан: <b>{$option_value}</b></p>
+    <input type="hidden" name="option[{$option_id}][old]" value="{$option_value|escape}">
+    {if isset($option_value2)}<input type="hidden" name="option[{$option_id}][old_value2]" value="{$option_value2|escape}">{/if}
+    {if isset($option_value3)}<input type="hidden" name="option[{$option_id}][old_value3]" value="{$option_value3|escape}">{/if}
+  {/if}
+<form action="#" method="get">
+<table align="right" cellpadding="3" cellspacing="1">  
+  <tr>
+    <td align="right">{if isset($option_titles[0])}<b>{$option_titles[0]}</b>{/if}</td>
+    <td><select name="option[{$option_id}][country_id]" id="country_id" class="StyleSelectBox">
+				<option value="0">- выберите -</option>
+        {foreach from=$option_values key="key" value="val"}
+				  <option value="{$val.country_id}"{if $val.name == $option_value} selected="selected"{/if}>{$val.name}</option>
+        {/foreach}
+			</select></td>
+  </tr>
+  <tr>
+    <td align="right">{if isset($option_titles[1])}<b>{$option_titles[1]}</b>{/if}</td>
+    <td><select name="option[{$option_id}][region_id]" id="region_id" disabled="disabled" class="StyleSelectBox">
+				<option value="0">- выберите -</option>
+			</select></td>
+  </tr>  
+  <tr>
+    <td align="right">{if isset($option_titles[2])}<b>{$option_titles[2]}</b>{/if}</td>
+    <td><select name="option[{$option_id}][city_id]" id="city_id" disabled="disabled" class="StyleSelectBox">
+				<option value="0">- выберите -</option>
+			</select></td>
+  </tr>
+</table>
+		</form>
+    
+<div align="center" id="selectBoxInfo"></div>
+
+
+
+	</body>
+</html>

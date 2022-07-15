@@ -1,0 +1,214 @@
+{include file="header.html"}
+
+<h1 class="mt-0">{lang key1="admin" key2="block_types" key3="listPubs"}{if !empty($all_pubs_qty)} ({$all_pubs_qty}){/if}{if !empty($cid)}: {$cid.title} 
+<a href="?action=info&do=edit_categ&id={$cid.id}"><i class="fa fa-pencil"></i></a> 
+{if !empty($cid.url)} <a href="{$cid.url}" target="_blank"><i class="fa fa-external-link"></i></a>{/if}
+{/if}</h1>
+
+{if isset($simpla.GET.updated)}
+  <table width="80%"><tr><td><blockquote>{lang key1="admin" key2="index" key3="rows_updated"}: {$simpla.GET.updated}</blockquote></td></tr></table>
+{/if}
+
+{if isset($simpla.GET.deleted)}
+  <table width="80%"><tr><td><blockquote>{lang key1="admin" key2="index" key3="rows_deleted"}: {$simpla.GET.deleted}</blockquote></td></tr></table>
+{/if}
+
+{if !empty($all_pubs_qty) OR !empty($simpla.GET.q) OR !empty($simpla.GET.cid)}
+{ include file="info/pub_filter.html" }
+{/if}
+
+{if $pubs_list|@count > 3}
+{include file="pages/pages.html"}
+{/if}
+
+{if $pubs_list|@count > 0 AND !empty($simpla.GET.cid) AND !empty($simpla.GET.options)}
+
+	{if empty($th_options)}
+
+<table width="100%"><tr><td><blockquote>	
+<p>{lang key1="admin" key2="opt_not_set"}</p>
+<p>{lang key1="admin" key2="opt_not_set2"}</p>	
+</blockquote></td></tr></table>
+	
+	{else}
+
+<form method="post" name="mainform">
+	<input type="hidden" name="pubs_qty" value="{$pubs_qty}" />
+  <table width="100%" class="bordered">
+    <tr>
+     <th>#</th>
+     <th><i class="fa fa-edit"></i></th>
+     <th>{lang key1="admin" key2="elements" key3="name"}</th>
+	 
+	 {if !empty($th_options)}
+			{foreach from=$th_options value="v"}
+					{if !empty($v.g_value2)}
+						<th><a href="?action=products&do=option_group&id={$v.group_id}">{$v.g_title}</a><br><a href="?action=products&do=options&id={$v.id}" style="color:white; text-decoration: underline;">{$v.title}{if !empty($v.after)} ({$v.after}){/if}</a><br><small>({$v.g_value1})</small><br><small>({$v.type})</small></th>
+						<th>{$v.title}<br><small>({$v.g_value2})</small><br><small>({$v.type})</small></th>
+						<th>{$v.title}<br><small>({$v.g_value3})</small><br><small>({$v.type})</small></th>
+					{else}
+						<th><a href="?action=products&do=option_group&id={$v.group_id}">{$v.g_title}</a><br><a href="?action=products&do=options&id={$v.id}" style="text-decoration: underline;">{$v.title}{if !empty($v.after)} ({$v.after}){/if}</a><br><small>({$v.type})</small></th>
+					{/if}
+			{/foreach}
+		{/if}
+		<th><i class="fa fa-external-link"></i></th>
+    </tr>
+	
+	
+	{foreach from=$pubs_list value="value" key="key"}
+        <tr { cycle values=" ,class=odd"}>
+          <td align=center valign="top"><a href="?action=info&do=edit_publication&id={$value.id}">{$value.id}</a></td>
+          <td align=center valign="top"><a href="?action=info&do=edit_publication&id={$value.id}"><i class="fa fa-pencil"></i></a></td>
+          <td valign="top">{$value.name}</td>
+					
+			{if !empty($th_options)}
+				{foreach from=$th_options value="v"}
+				
+					{assign var="ids" value=$value.id}
+					{assign var="vids" value=$v.id}
+					{assign var="opts" value=$u_options[$ids]}
+					{assign var="opt" value=$opts[$vids]}
+					
+					{if isset($opt.id)}
+						{assign var="value_id" value=$opt.id}
+						{assign var="value1" value=$opt.value}
+						{assign var="value2" value=$opt.value2}
+						{assign var="value3" value=$opt.value3}
+					{else}
+						{assign var="value_id" value=0}
+						{assign var="value1" value=""}
+						{assign var="value2" value=""}
+						{assign var="value3" value=""}
+					{/if}
+					
+				
+					{if !empty($v.g_value2)}
+						<td valign="top">{get_option_field 
+						id=$v.id 
+						value_id=$value_id 
+						type=$v.type 
+						if_select=$v.if_select 
+						value=$value1 
+						product_id=$value.id 
+						inc_product=1
+						title=$v.title 
+						field="value"  
+						value2=$value2  
+						value3=$value3
+						}
+						</td>
+						<td valign="top">{get_option_field 
+						id=$v.id 
+						value_id=$value_id 
+						type=$v.type 
+						if_select=$v.if_select 
+						value=$value2 
+						product_id=$value.id 
+						inc_product=1
+						title=$v.title 
+						field="value2"}
+						</td>
+						<td valign="top">{get_option_field 
+						id=$v.id 
+						value_id=$value_id 
+						type=$v.type 
+						if_select=$v.if_select 
+						value=$value3 
+						product_id=$value.id 
+						inc_product=1
+						title=$v.title 
+						field="value3"}</td>
+					{else}
+						<td valign="top">{get_option_field 
+						id=$v.id 
+						value_id=$value_id 
+						type=$v.type 
+						if_select=$v.if_select 
+						value=$value1  
+						product_id=$value.id 
+						inc_product=1
+						title=$v.title 
+						field="value" 
+						value2="" 
+						value3=""
+						}</td>
+					{/if}
+					
+					
+				{/foreach}
+			{/if}
+
+          <td valign="top" align="center">
+			<small>{if !empty($value.site_url)}
+				<a href="{$value.site_url}/{$value.alias}{$simpla.CONST.URL_END}{if empty($value.active)}?debug={$value.site_id}{/if}" target="_blank"><i class="fa fa-external-link"></i></a>
+			{else}-{/if}</small>
+		  
+          </td>
+        </tr>
+      {/foreach}
+	
+  </table>
+  
+  <p style="text-align:center;"><input type="submit" name="update" value="{lang key1="admin" key2="update"}" onclick="return confirm('{lang key1="admin" key2="are_u_update"}')" /></p>
+  
+  
+  
+</form>
+{/if}
+
+{elseif $pubs_list|@count > 0}
+<form method="post" name="mainform">
+  <table width="100%">
+    <tr>
+     <th>#</th>
+     <th><i class="fa fa-edit"></i></th>
+     <th><i class="fa fa-check" title="{lang key1="admin" key2="index" key3="show_on_website"}"></i> <input type="checkbox" value="1" onclick="CheckAll(this,'active[]')"></th>
+     <th>{lang key1="admin" key2="elements" key3="name"}</th>
+     <th>{lang key1="admin" key2="user" key3="url"}</th>
+     <th><i class="fa fa-external-link"></i></th>
+     <th>{lang key1="admin" key2="categ"}</th>
+     <th><i class="fa fa-camera" title="{lang key1="admin" key2="qty_pics"}"></i></th>
+     <th><i class="fa fa-bullhorn" title="{lang key1="admin" key2="qty_views"}"></i></th>
+     <th><i class="fa fa-comments" title="{lang key1="admin" key2="qty_comments"}"></i></th>
+     <th>{lang key1="admin" key2="date"}</th>
+     <th><i class="fa fa-trash-o" title="{lang key1="admin" key2="del_selected"}"></i><input type="checkbox" value="1" onclick="CheckAll(this,'del[]')"></th>
+    </tr>
+    
+    {foreach from=$pubs_list value="value" key="key" }
+      <tr { cycle values=",class=odd"}>
+        <td><a href="?action=info&do=edit_publication&id={$value.id}" >{$value.id}</a></td>
+        <td align="center" nowrap>
+		<a href="?action=info&do=edit_publication&id={$value.id}" >{if !empty($value.f_spec)}<i class="fa fa-star"></i>{else}<i class="fa fa-pencil"></i>{/if}</a>
+		
+		{if $value.date_insert|strtotime > 
+					$simpla[NOW]}
+					<i class="fa fa-clock-o red" title="{lang key1="admin" key2="not_shown_yet"}"></i>
+				{/if}
+		</td>
+        <td align="center"><input name="active[]" type="checkbox" value="{$value.id}" {if $value.active} checked="checked"{ /if } /></td>
+        <td><input name="name[{$value.id}]" type="text" style="width:100%;" value="{ $value.name|htmlspecialchars}" /></td>
+        <td><input name="alias[{$value.id}]" type="text" style="width:100%;" value="{ $value.alias|htmlspecialchars}" /></td>
+        <td align="center">{if !empty($value.site_url)}<small><a href="{$value.site_url}/{$value.alias}/{if empty($value.active)}?debug={$value.site_id}{/if}" target="_blank"><i class="fa fa-external-link"></i></a></small>{/if}
+		</td>
+        <td>{if !empty($value.categ1_id)}<a href="?action=info&do=list_publications&cid={$value.categ1_id}"><i class="fa fa-chevron-down"></i></a> {/if}
+		{$value.categ1_title}{if $value.categs_qty > 1} ({$value.categs_qty}){/if}</td>
+        <td align="center">{if $value.fotos == 0}<span style="color:red;">0</span>{else}{$value.fotos}{/if}</td>
+        <td align="center">{ $value.views }</td>
+        <td align="center">{ $value.comments_qty }</td>
+        <td align="center"><small>{ $value.date_insert|date:$site_vars.site_date_format }</small></td>
+        <td align="center"><input name="del[]" type="checkbox" value="{$value.id}" /></td>
+      </tr>
+    {/foreach}
+
+    <tr>
+      <td colspan="13" align="right"><input type="submit" name="update" value="{lang key1="admin" key2="update"}" onclick="return confirm('{lang key1="admin" key2="are_u_sure"}')" /></td>
+    </tr>
+  </table>
+  
+</form>
+{else}
+<pre><p>{lang key1="admin" key2="set" key3="list_empty"}</p></pre>  
+{/if}
+
+{include file="pages/pages.html"}
+{include file="footer.html"}

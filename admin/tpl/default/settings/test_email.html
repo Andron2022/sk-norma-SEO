@@ -1,0 +1,55 @@
+{include file="header.html"}
+
+<h1 class="mt-0">{lang key1="admin" key2="emails" key3="test_title"}</h1>
+
+<table width="80%">
+	<tr>
+		<td>
+			<blockquote>{lang key1="admin" key2="emails" key3="test_help"}</blockquote>
+		</td>
+	</tr>
+</table>
+
+<p>{lang key1="admin" key2="emails" key3="method_send"}: <b><a href="?action=settings&do=mass_vars&hint=smtp">{if isset($site_vars.sys_smtp_on) AND $site_vars.sys_smtp_on == 1}SMTP{else}sendmail{/if}</a></b></p>
+
+
+<table width="80%">
+  <tr>
+    <td width="60%">
+    
+      {if isset($simpla.GET.sent)}
+        <p style="color:#3CB526;">{lang key1="admin" key2="emails" key3="message_sent"}</p>
+		{if !empty($simpla.SESSION.email_sent)}<p>{lang key1="admin" key2="emails" key3="howto_sent"}: {$simpla.SESSION.email_sent}</p>{/if}
+      {else}
+      <form method="post">
+        <p>{lang key1="admin" key2="emails" key3="emails_to_send"}<br><small>{lang key1="admin" key2="emails" key3="one_in_row"}</small></p>
+        <p><textarea name="emails_to_send" rows="3" style="width:100%;"></textarea></p>
+        
+        <p>{lang key1="admin" key2="emails" key3="body"}</p>
+        <p><textarea name="text_to_send" rows="6" style="width:100%;"></textarea></p>
+        <input type="submit" name="send" value="{lang key1="admin" key2="emails" key3="send"}">
+      </form>  
+      {/if}
+    </td>
+    <td valign="top">
+
+      <h3>{lang key1="admin" key2="emails" key3="smtp_settings"}</h3>
+      <ul>
+        <li><a href="?action=settings&do=site_vars&site_id=-1&q=sys_smtp_on&redirect=1">{if isset($site_vars.sys_smtp_on) AND $site_vars.sys_smtp_on == 1}<span style="color:green; font-weight:bold;">{lang key1="admin" key2="db" key3="on" case="first"}</span>{else}<span style="color:red;">{lang key1="admin" key2="db" key3="off" case="first"}</span>{/if}</a></li>
+        {if isset($site_vars.sys_smtp_on) AND $site_vars.sys_smtp_on == 1}
+        <li>{lang key1="admin" key2="emails" key3="auth"}: <a href="?action=settings&do=site_vars&site_id=-1&q=sys_smtp_auth&redirect=1">{if isset($site_vars.sys_smtp_auth) AND $site_vars.sys_smtp_auth == 1}{lang key1="admin" key2="db" key3="on" case="first"}{else}{lang key1="admin" key2="db" key3="off" case="first"}{/if}</a></li>
+        <li>{lang key1="admin" key2="emails" key3="crypt"}: <a href="?action=settings&do=site_vars&site_id=-1&q=sys_smtp_secure&redirect=1">{if isset($site_vars.sys_smtp_secure) AND $site_vars.sys_smtp_secure == "-"}{lang key1="admin" key2="no"}{else}{$site_vars.sys_smtp_secure}{/if}</a></li>
+
+        <li>{lang key1="admin" key2="set" key3="server"}: <a href="?action=settings&do=site_vars&site_id=-1&q=sys_smtp_host&redirect=1">{if isset($site_vars.sys_smtp_host)}{$site_vars.sys_smtp_host}{else}?{/if}</a></li>
+        <li>{lang key1="admin" key2="set" key3="port"}: <a href="?action=settings&do=site_vars&site_id=-1&q=sys_smtp_port&redirect=1">{if isset($site_vars.sys_smtp_port)}{$site_vars.sys_smtp_port}{else}?{/if}</a></li>
+        <li>{lang key1="admin" key2="user" key3="user"}: <a href="?action=settings&do=site_vars&site_id=-1&q=sys_smtp_username&redirect=1">{if isset($site_vars.sys_smtp_username)}{$site_vars.sys_smtp_username}{else}?{/if}</a></li>
+        <li>{lang key1="admin" key2="user" key3="password"}: <a href="?action=settings&do=site_vars&site_id=-1&q=sys_smtp_password&redirect=1">*******</a></li>
+        {/if}
+      </ul>
+    </td>
+  </tr>
+</table>
+
+
+
+{ include file="footer.html" }

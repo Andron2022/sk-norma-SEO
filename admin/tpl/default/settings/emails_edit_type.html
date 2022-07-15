@@ -1,0 +1,62 @@
+{include file="header.html"}
+
+<h1 class="mt-0">{lang key1="admin" key2="emails" key3="event_type"}</h1>
+
+<table width="80%">
+	<tr>
+		<td>
+  {if isset($simpla.GET.updated)}
+    <blockquote>{lang key1="admin" key2="updated"}</blockquote>
+  {elseif isset($simpla.GET.added)}
+    <blockquote>{lang key1="admin" key2="added"}</blockquote>
+  {/if}
+
+		</td>
+	</tr>
+</table>
+
+<table width="80%">
+	<form method="post">
+	<tr>
+		<th width=200>{lang key1="admin" key2="user" key3="field"}</th>
+		<th>{lang key1="admin" key2="user" key3="value"}</th>
+	</tr>
+			
+	<tr {cycle values=",class=odd" }>
+		<td width=200>ID</td>
+		<td>{ if $row.id }{$row.id}{ else }{lang key1="admin" key2="user" key3="not_set"}{ /if }</td>
+	</tr>
+			
+	<tr {cycle values=",class=odd" }>
+		<td width=200>{lang key1="admin" key2="emails" key3="event"}</td>
+		<td><input type="text" name="event" value="{$row.event|escape}" style="width:100%;" /></td>
+	</tr>
+	
+	<tr {cycle values=",class=odd" }>
+		<td width=200>{lang key1="admin" key2="elements" key3="name"}</td>
+		<td><input type="text" name="title" value="{$row.title|escape}" style="width:100%;" /></td>
+	</tr>
+
+	<tr {cycle values=",class=odd" }>
+		<td width=200>{lang key1="admin" key2="status" key3="active"}</td>
+		<td><input type="checkbox" name="active" value="1" { if !empty($row.active) } checked="checked"{ /if } /></td>
+	</tr>
+			
+	<tr {cycle values=",class=odd" }>
+		<td width=200>{lang key1="admin" key2="user" key3="note"}</td>
+		<td><textarea name="content" rows="5" style="width:100%;">{$row.content}</textarea></td>
+	</tr>
+
+	<tr {cycle values=",class=odd" }>
+		<td colspan=2 align=center>
+			<input type=submit name=save value="{lang key1="admin" key2="save"}">
+			{ if !empty($row.id) }
+				<input class="small" type=submit name=delete value="{lang key1="admin" key2="delete"}"  onclick="if(confirm('{lang key1="admin" key2="really"}')) return true; else return false;">
+			{ /if }
+		</td>
+	</tr>
+	</form>
+</table>
+
+
+{ include file="footer.html" } 

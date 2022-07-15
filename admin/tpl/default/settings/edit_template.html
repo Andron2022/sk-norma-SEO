@@ -1,0 +1,62 @@
+{include file="header.html"}
+
+{if !empty($simpla.GET.fcopy) AND !empty($simpla.GET.doc)}
+	<h1 class="mt-0">{lang key1="admin" key2="tpl" key3="copy"} {lang key1="admin" key2="tpl" key3="file" case="lower"}: {$simpla.GET.doc}</h1>
+{elseif !empty($simpla.GET.doc)}<h1 class="mt-0">{lang key1="admin" key2="tpl" key3="file"}: {$simpla.GET.doc}</h1>{/if}
+
+<ul>
+	<li><a href="?action=settings&do=tpl">{lang key1="admin" key2="tpl" key3="templates"}</a></li>
+	<li><a href="?action=settings&do=tpl&folder={$folder}">{$folder}</a></li>
+	<li>{lang key1="admin" key2="tpl" key3="templates"}: <a href="?action=settings&do=site_vars&site_id=-1&q=sys_tpl_pages&redirect=1">{lang key1="admin" key2="index" key3="found_categs"}</a>, 
+<a href="?action=settings&do=site_vars&site_id=-1&q=sys_tpl_products&redirect=1">{lang key1="admin" key2="index" key3="found_offers"}</a>, <a href="?action=settings&do=site_vars&site_id=-1&q=sys_tpl_pubs&redirect=1">{lang key1="admin" key2="index" key3="found_pubs"}</a>.</li>
+</ul>
+
+{if !empty($simpla.GET.added)}
+	<blockquote style="width:60%; float:left;">{lang key1="admin" key2="added"}</blockquote>
+{/if}
+
+{ if $messages }
+  { $messages|red }
+{ else }
+  {if $updated}<blockquote style="width:60%; float:left;">{$updated}</blockquote>{/if}
+  {if isset($templates) AND $templates|@count > 0}
+  {foreach from=$templates value=value}
+    <li><a href="{ $value.link }">{ $file }</a></li>
+  {/foreach}
+  {/if}
+
+  <table width="80%">
+  	<form method=post>
+  	<tr>
+      <th width="200">{lang key1="admin" key2="tpl" key3="file"}</th>
+      <th>{$fname}</th>
+    </tr>
+	{if !empty($simpla.GET.fcopy) AND !empty($simpla.GET.doc)}
+	
+		<tr bgcolor="{$admin_vars.bglight}">
+			<input type="hidden" name="folder_filename" value="{$folder}" />
+			<td width="200">{lang key1="admin" key2="tpl" key3="filename"}
+				<br><small>{lang key1="admin" key2="icons" key3="for_example"}, new_filename.html</small>
+			</td>
+			<td><input name="new_filename" style="width:100%;" value="copy_{$simpla.GET.doc}"></td>
+		</tr>	
+	{/if}
+  	<tr bgcolor="{$admin_vars.bglight}">
+      <td width="200">{lang key1="admin" key2="tpl" key3="content"}</td>
+      <td><textarea name="tpl" rows=20 style="width:100%;">{$fcontent}</textarea></td>
+    </tr>
+  	<tr bgcolor="{$admin_vars.bglight}">
+		<td colspan=2>
+			{if !empty($simpla.GET.fcopy) AND !empty($simpla.GET.doc)}
+				<input type=submit name="update_file" value="{lang key1="admin" key2="tpl" key3="copy"}">
+			{else}
+				<input type=submit name="update_file" value="{lang key1="admin" key2="save"}">
+			{/if}
+		</td>
+    </tr>
+  	</form>
+  </table>
+
+{ /if }
+
+{ include file="footer.html" }

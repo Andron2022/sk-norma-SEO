@@ -1,0 +1,81 @@
+<blockquote>
+<p><b>{lang key1="admin" key2="products" key3="size_pixels"}:</b> 
+{ if isset($site_vars.img_size1) } 
+  1 - <a href="?action=settings&do=site_vars&site_id=-1&q=img_size1&redirect=1">{ $site_vars.img_size1.width }*{ $site_vars.img_size1.height }</a>;
+{/if}
+{ if isset($site_vars.img_size2) } 
+   2 - <a href="?action=settings&do=site_vars&site_id=-1&q=img_size2&redirect=1">{ $site_vars.img_size2.width }*{ $site_vars.img_size2.height }</a>;{/if}
+{ if isset($site_vars.img_size3) } 
+   3 - <a href="?action=settings&do=site_vars&site_id=-1&q=img_size3&redirect=1">{ $site_vars.img_size3.width }*{ $site_vars.img_size3.height }</a>;{/if}
+   
+{ if isset($site_vars.img_size4) } 
+   4 - <a href="?action=settings&do=site_vars&site_id=-1&q=img_size4&redirect=1">{ $site_vars.img_size4.width }*{ $site_vars.img_size4.height }</a>;{/if}
+
+{ if isset($site_vars.img_size5) } 
+   5 - <a href="?action=settings&do=site_vars&site_id=-1&q=img_size5&redirect=1">{ $site_vars.img_size5.width }*{ $site_vars.img_size5.height }</a>;{/if}
+
+{ if isset($site_vars.img_size6) } 
+   6 - <a href="?action=settings&do=site_vars&site_id=-1&q=img_size6&redirect=1">{ $site_vars.img_size6.width }*{ $site_vars.img_size6.height }</a>;{/if}   
+
+<br><a href="?action=settings&do=site_vars&site_id=-1&q=save_original_fotos&redirect=1">{if $admin_vars.save_original_fotos == 1}{lang key1="admin" key2="products" key3="orig_saves" case="first"}{else}{lang key1="admin" key2="products" key3="orig_willbe_deleted"}{/if}</a>;   
+
+{ if isset($site_vars.sys_resize_method) } {lang key1="admin" key2="products" key3="priority"} - <a href="?action=settings&do=site_vars&site_id=-1&q=sys_resize_method&redirect=1">{ $site_vars.sys_resize_method }</a>.{/if}
+
+{if !empty($site_vars.img_watermark.img.0.url)}
+<br>{lang key1="admin" key2="products" key3="on_img"} {lang key1="admin" key2="products" key3="more"} {$site_vars.img_watermark.value} {lang key1="admin" key2="products" key3="pixels"} {lang key1="admin" key2="products" key3="willbe_placed"} 
+<a href="{$site_vars.img_watermark.img.0.url}" target="_blank">{lang key1="admin" key2="photo" case="lower"}</a> (<a href="?action=settings&do=site_vars&site_id=-1&q=img_watermark&redirect=1">watermark</a>)
+{else}
+<br>{lang key1="admin" key2="products" key3="for_place_img"} (watermark) {lang key1="admin" key2="products" key3="need_element"} <b><a href="?action=settings&do=site_vars&site_id=-1&q=img_watermark&redirect=1">img_watermark</a></b>
+{/if}
+</p>
+</blockquote>
+
+<p><input type="checkbox" name="clear_pic_title" value="1"> {lang key1="admin" key2="clear_pic_title"}
+</p>
+<input type="hidden" name="record_type" value="{$record_type}" />
+<table width="100%" border=0 id="upload_fields" bgcolor="{ $admin_vars.bglight }">
+  <tr>
+    <th width="60%">{lang key1="admin" key2="elements" key3="name"}</th>
+    <th>{lang key1="admin" key2="tpl" key3="file"} <small style="font-weight:normal;">({lang key1="admin" key2="maximum"}: {php}echo get_cfg_var('post_max_size');{/php})</small></th>
+  </tr>
+  <tr class="odd">
+    <td><input type="text" style="width: 100%;" name="pics_text[0]" /></td>
+    <td><input type="file" name="pics[0]" size="10" /></td>
+  </tr>
+</table>
+
+{if $site_vars.gallery > 0}
+<table border="0" cellpadding="3">
+  <tr>
+    <td><a href="javascript:add_more_photos()">{lang key1="admin" key2="add"}</a></td>
+  </tr>
+</table>
+{/if}
+		  
+<input type="hidden" name="numpics" id="num_pics_field" value="1" />
+<script>
+  {literal}
+    function add_more_photos(){
+      var tbl = document.getElementById('upload_fields');		  
+		  var numpics = document.getElementById('num_pics_field').value;
+		  
+		  var tr = tbl.insertRow(-1);
+		  var td1 = tr.insertCell(-1);
+		  var td2 = tr.insertCell(-1);
+		  
+		  var input = document.getElementById('field_to_add').innerHTML;
+		  
+		  input = input.replace(/__ID__/g, numpics);  
+		  td1.innerHTML = input; 
+		  td2.innerHTML = '<input type="file" name="pics[]" size="10"  onchange="add_more_photos()" />';
+  
+		  numpics++;
+		  
+		  document.getElementById('num_pics_field').value = numpics;
+    }
+  {/literal}
+</script>
+		  
+<div id="field_to_add" style="display: none;">
+  <input type="text" style="width: 100%;" name="pics_text[]" />
+</div>

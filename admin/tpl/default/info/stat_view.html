@@ -1,0 +1,156 @@
+{include file="header.html"}
+
+<h1 class="mt-0">{if !empty($stat.info.referer) AND $stat.info.referer == "search"}{lang key1="admin" key2="site_search"}{else}{lang key1="admin" key2="prava" key3="stat"}{/if}</h1>      
+
+{if !empty($simpla.GET.back)}
+<ul><li><a href="{$simpla.GET.back|urldecode}">{lang key1="admin" key2="come_back"}</a></li></ul>
+{/if}
+
+<table width="100%">
+	<tr>
+		<td width="50%" valign="top">
+			<table cellpadding="4" cellspacing="2" border="0">
+				<tr>
+					<th>ID</th>
+					<th>{$stat.info.id}</th>
+				</tr>
+				<tr class="odd">
+					<td>{lang key1="admin" key2="website"}</td>
+					<td>{$stat.info.site_url_short}</td>
+				</tr>
+				{if empty($stat.info.original.id)}				
+				<tr>
+					<td>{lang key1="admin" key2="session"}</td>
+					<td>{$stat.info.sess}</td>
+				</tr>
+				<tr class="odd">
+					<td>{lang key1="admin" key2="fb" key3="ip_address"}</td>
+					<td>{$stat.info.ip}{if !empty($stat.info.ip_visited) AND $stat.info.ip_visited > 1} <a href="?action=stat&do=list&ip={$stat.info.ip}">{lang key1="admin" key2="fb" key3="qty_sess_from_ip"} - {$stat.info.ip_visited}</a>{/if}</td>
+				</tr>
+				{else}
+				<tr>
+					<td>{lang key1="admin" key2="session"}</td>
+					<td><a href="?action=stat&id={$stat.info.original.id}"><b>{lang key1="admin" key2="sess_details"}</b></a></td>
+				</tr>
+				{/if}
+				<tr>
+					<td>{lang key1="admin" key2="fb" key3="start"}</td>
+					<td>{$stat.info.time|date:"d.m.Y H:i"}</td>
+				</tr>
+				<tr class="odd">
+					{if !empty($stat.info.referer) AND $stat.info.referer == "search"}
+					<td>{lang key1="admin" key2="fb" key3="searched_for"}</td>
+					<td>{if !empty($stat.info.referer_query)}{$stat.info.referer_query}{/if}
+					</td>
+					{else}					
+					<td>{lang key1="admin" key2="fb" key3="from"}</td>
+					<td>{if !empty($stat.info.referer)}{$stat.info.referer}{else}{lang key1="admin" key2="fb" key3="direct_in"}{/if}
+					{if !empty($stat.info.referer_query)}<br>{lang key1="admin" key2="fb" key3="request"}: {$stat.info.referer_query}{/if}
+					</td>
+					{/if}
+				</tr>
+				{if empty($stat.info.original.id)}
+				<tr>
+					<td>{lang key1="admin" key2="fb" key3="page_in"}</td>
+					<td>{if $stat.info.page == "/" OR empty($stat.info.page)}{lang key1="admin" key2="home"}{else}{$stat.info.page}{/if}</td>
+				</tr>
+				<tr class="odd">
+					<td>{lang key1="admin" key2="fb" key3="seen_pages"} ({$stat.info.qty_pages_visited})</td>
+					<td>
+					{if !empty($stat.info.pages_visited)}
+						<p>{foreach from=$stat.info.pages_visited key="k" value="v"}
+							{if $k > 0}, {/if}{if $v == "/" OR empty($v)}{lang key1="admin" key2="home"}{else}{$v}{/if}
+						{/foreach}</p>
+					{/if}
+					</td>
+				</tr>
+				
+				{if !empty($stat.info.list_search)}
+				<tr>
+					<td>{lang key1="admin" key2="site_search"} ({$stat.info.list_search|@count})</td>
+					<td>
+						<ul>
+						{foreach from=$stat.info.list_search key="k" value="v"}
+							<li><a href="?action=stat&id={$v.id}">{$v.referer_query}</a> <small>{$v.time|date:"d.m H:i"}</small></li>
+						{/foreach}
+						</ul>
+					</td>
+				</tr>
+				{/if}
+				
+				{/if}
+			</table>
+			
+		</td>
+		<td valign="top">
+{if empty($stat.info.original.id)}
+		
+		{if !empty($stat.info.partner_key)}
+			<p style="color:red; font-weight:bold;">{lang key1="admin" key2="partner"}: 
+			{$stat.info.partner_key} <a href="?action=stat&do=list&partners={$stat.info.partner_key}"><i class="fa fa-search"></i></a></p>
+		{/if}
+		
+		{if !empty($stat.info.list_orders)}
+			<h4 class="mt-0">{lang key1="admin" key2="products" key3="orders"}</h4>
+			<table border="1" cellpadding="3" cellspacing="0">
+			{foreach from=$stat.info.list_orders value="v"}
+				<tr>
+					<td>{counter}</td>
+					<td><a href="?action=orders&id={$v.o_id}">{$v.o_order_id|chunk:4:"-"}</a></td>
+					<td><small>{$v.o_created|date:"d.m H:i"}</small></td>
+				</tr>
+			{/foreach}
+			</table>
+		{/if}
+
+		{if !empty($stat.info.list_fb)}
+			{counter start=0 print=false}
+			<h4 class="mt-0">{lang key1="admin" key2="prava" key3="feedback"}</h4>
+			<table border="1" cellpadding="3" cellspacing="0">
+			{foreach from=$stat.info.list_fb value="v"}
+				<tr>
+					<td>{counter}</td>
+					<td><a href="?action=feedback&id={$v.f_id}">{$v.f_ticket}</a></td>
+					<td><small>{$v.f_sent|date:"d.m H:i"}</small></td>
+				</tr>
+			{/foreach}
+			</table>
+		{/if}
+
+
+		{if !empty($stat.info.list_products)}
+			{counter start=0 print=false}
+			<h4 class="mt-0">{lang key1="admin" key2="offers"}</h4>
+			<table border="1" cellpadding="3" cellspacing="0">
+			{foreach from=$stat.info.list_products value="v"}
+				<tr>
+					<td>{counter}</td>
+					<td><a href="?action=products&do=edit&id={$v.p_id}">{$v.p_title}</a></td>
+					<td><small>{$v.time|date:"d.m H:i"}</small></td>
+				</tr>
+			{/foreach}
+			</table>
+		{/if}
+
+		{if !empty($stat.info.list_pubs)}
+			{counter start=0 print=false}
+			<h4 class="mt-0">{lang key1="admin" key2="publications"}</h4>
+			<table border="1" cellpadding="3" cellspacing="0">
+			{foreach from=$stat.info.list_pubs value="v"}		
+				<tr>
+					<td>{counter}</td>
+					<td><a href="?action=info&do=edit_publication&id={$v.p_id}">{$v.p_title}</a></td>
+					<td><small>{$v.time|date:"d.m H:i"}</small></td>
+				</tr>
+			{/foreach}
+			</table>
+		{/if}		
+
+{/if}
+		</td>
+	</tr>
+</table>
+
+
+
+{include file="footer.html" }

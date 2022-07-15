@@ -1,0 +1,139 @@
+<table border=0 cellpadding=5 cellspacing=1 width=100%>
+  <tr>
+    <th><a href="?action=info">{lang key1="admin" key2="sidebar" key3="main_menu"}</a></th>
+  </tr>
+  <tr{if $admin_vars.uri.do == "categories" OR $admin_vars.uri.do == "add_category" OR $admin_vars.uri.do == "edit_categ"} class="odd"{/if}>
+    <td><i class="fa fa-folder-open" style="color:{$admin_vars.bgdark}"></i> <a href="?action=info&do=categories">{lang key1="admin" key2="pages"}</a> <a href="?action=info&do=edit_categ&id=0"><i class="fa fa-plus" style="color:{$admin_vars.bgdark}"></a></td>
+  </tr>
+  
+  {if !empty($site_vars.fav.categs)}
+  <tr>
+		<td>
+		{foreach from=$site_vars.fav.categs key="k" value="v"}
+			{if $k > 0}<br>{/if}<small><a href="?action=info&do=edit_categ&id={$v.id}" title="{if !empty($v.title3)}{$v.title3|escape} / {/if}{if !empty($v.title2)}{$v.title2|escape} / {/if}{$v.title|escape}"><i class="fa fa-star"></i> {if !empty($v.u_title)}{$v.u_title}{else}{$v.title}{/if}</a></small> 
+			{if !empty($v.shop)}
+				 <small><a href="?action=products&do=add&cid={$v.id}"><i class="fa fa-plus"></i></a></small>
+			{else}
+				 <small><a href="?action=info&do=edit_publication&id=0&cid={$v.id}"><i class="fa fa-plus"></i></a></small>
+			{/if}
+		{/foreach}		
+		</td>
+  </tr>
+  {/if}
+  
+  
+  <tr{if $admin_vars.uri.do == "list_publications" OR $admin_vars.uri.do == "add_publication" OR $admin_vars.uri.do == "edit_publication"} class="odd"{/if}>
+    <td><i class="fa fa-list" style="color:{$admin_vars.bgdark}"></i> <a href="?action=info&do=list_publications">{lang key1="admin" key2="publications"}</a> <a href="?action=info&do=edit_publication&id=0"><i class="fa fa-plus" style="color:{$admin_vars.bgdark}"></a></td>
+  </tr>
+
+  {if $admin_vars.uri.do == "list_publications" OR !empty($site_vars.fav.pubs)}
+  <tr>
+    <td>
+		{if empty($site_vars.fav.pubs)}
+          {if !isset($simpla.get.active)}
+            <b> - {lang key1="admin" key2="sidebar" key3="all"}</b><br>
+             - <a href="?action=info&do=list_publications&active=1">{lang key1="admin" key2="sidebar" key3="active"}</a><br>
+             - <a href="?action=info&do=list_publications&active=0">{lang key1="admin" key2="sidebar" key3="hidden"}</a>
+          {elseif $simpla.get.active == 1}
+             - <a href="?action=info&do=list_publications">{lang key1="admin" key2="sidebar" key3="all"}</a><br>
+             <b>- {lang key1="admin" key2="sidebar" key3="active"}</b><br>
+             - <a href="?action=info&do=list_publications&active=0">{lang key1="admin" key2="sidebar" key3="hidden"}</a>
+          {else}
+             - <a href="?action=info&do=list_publications">{lang key1="admin" key2="sidebar" key3="all"}</a><br>
+             - <a href="?action=info&do=list_publications&active=1">{lang key1="admin" key2="sidebar" key3="active"}</a><br>
+             <b>- {lang key1="admin" key2="sidebar" key3="hidden"}</b>
+          {/if}    
+			{else}
+				{foreach from=$site_vars.fav.pubs key="k" value="v"}
+					{if $k > 0}<br>{/if}<small><a href="?action=info&do=edit_publication&id={$v.id}"><i class="fa fa-star"></i> {$v.title}</a></small>
+				{/foreach}				
+			{/if}
+    </td>
+  </tr>
+  {/if}
+
+
+  <tr{if $admin_vars.uri.action == "comments"} class="odd"{/if}>
+    <td><i class="fa fa-comments" style="color:{$admin_vars.bgdark}"></i> <a href="?action=comments">{lang key1="admin" key2="comments"}</a> {if !empty($site_vars.moderate_comments)}<i class="fa fa-question-circle red" title="{lang key1="admin" key2="sidebar" key3="to_moderate"}"></i>{/if}</td>  
+  </tr>
+
+  
+{if $admin_vars.shop == 1}  
+  <tr>
+    <th><a href="?action=products">{lang key1="admin" key2="sidebar" key3="catalog"}</a></th>
+  </tr>
+  <tr{if $admin_vars.uri.do == "list_products" || $admin_vars.uri.do == "add"} class="odd"{/if}>
+    <td><a href="?action=products&do=list_products"><i class="fa fa-shopping-cart" style="color:{$admin_vars.bgdark}"></i> {lang key1="admin" key2="sidebar" key3="items"}</a> <a href="?action=products&do=add"><i class="fa fa-plus" style="color:{$admin_vars.bgdark}"></i></a></td>
+  </tr>
+  {if !empty($site_vars.fav.products)}
+  <tr>
+	<td>
+		{foreach from=$site_vars.fav.products key="k" value="v"}
+			{if $k > 0}<br>{/if}<small><a href="?action=products&do=edit&id={$v.id}"><i class="fa fa-star"></i> {$v.title}</a></small>
+		{/foreach}
+	</td>
+  </tr>
+  {/if}
+  
+  <tr{if $admin_vars.uri.do == "options" OR $admin_vars.uri.do == "add_option"
+  OR $admin_vars.uri.do == "option_group" OR $admin_vars.uri.do == "add_option_group"
+  } class="odd"{/if}>
+    <td><a href="?action=products&do=options"><i class="fa fa-filter" style="color:{$admin_vars.bgdark}"></i> {lang key1="admin" key2="sidebar" key3="options"}</a> <small><a href="?action=products&do=option_group"><i class="fa fa-bars" style="color:{$admin_vars.bgdark}" title="{lang key1="admin" key2="sidebar" key3="opt_groups"}"></i></a></small></td>    
+  </tr>
+
+  <tr{if $admin_vars.uri.action == "orders"} class="odd"{/if}>
+    <td><a href="?action=orders"><b><i class="fa fa-phone-square" style="color:{$admin_vars.bgdark}"></i></b> {lang key1="admin" key2="sidebar" key3="orders"}</a> <a href="?action=orders&id=0"><i class="fa fa-plus" style="color:{$admin_vars.bgdark}"></a></td>    
+  </tr>
+  
+  {if !empty($site_vars.fav.orders)}
+  <tr>
+	<td>
+		{foreach from=$site_vars.fav.orders key="k" value="v"}
+			{if $k > 0}<br>{/if}<small><a href="?action=orders&id={$v.id}"><i class="fa fa-star"></i> {$v.site_id}-{$v.order_id|chunk:4:"-"}</a></small>
+		{/foreach}
+	</td>
+  </tr>
+  {/if}
+  
+  
+  <tr{if $admin_vars.uri.action == "feedback"} class="odd"{/if}>
+    <td><i class="fa fa-envelope" style="color:{$admin_vars.bgdark}"></i> <a href="?action=feedback">{lang key1="admin" key2="sidebar" key3="requests"}</a></td>
+  </tr>
+
+  {if !empty($site_vars.fav.fb)}
+  <tr>
+	<td>
+		{foreach from=$site_vars.fav.fb key="k" value="v"}
+			{if $k > 0}<br>{/if}<small><a href="?action=feedback&id={$v.id}"><i class="fa fa-star"></i> {$v.ticket}</a></small>
+		{/foreach}
+	</td>
+  </tr>
+  {/if}
+  
+  <tr{if $admin_vars.uri.action == "stat"} class="odd"{/if}>
+    <td><i class="fa fa-search" style="color:{$admin_vars.bgdark}"></i> <a href="?action=stat">{lang key1="admin" key2="sidebar" key3="attendance"}</a></td>
+  </tr>
+  
+{/if} 
+
+	{if !empty($site_vars.sys_autoload_rate)}
+	<tr>
+		<td style="padding-top:30px;">
+		<table width="100%" class="table"><tr class="bg"><td class="bg center">
+			<p><a href="?action=settings&do=site_vars&site_id=-1&q=sys_autoload_rate&redirect=1">{lang key1="admin" key2="sidebar" key3="currency_rate"}</a><br><small>{lang key1="admin" key2="sidebar" key3="update_auto"}</small></p>
+			
+			<p>{$site_vars.kurs_usd} / <i class="fa fa-usd"></i><br>
+			{$site_vars.kurs_euro} / <i class="fa fa-euro"></i></p>
+			
+			<small>{lang key1="admin" key2="sidebar" key3="last_update"}:<br>{$site_vars.kurs_date|date:"d.m.Y H:i"}<br>
+			<a href="?update_rate=1">{lang key1="admin" key2="sidebar" key3="update"}</a>
+			</small>
+		</td></tr></table>
+		</td>
+	</tr>
+  {/if}
+ 
+  
+</table>
+
+</td><td valign="top">

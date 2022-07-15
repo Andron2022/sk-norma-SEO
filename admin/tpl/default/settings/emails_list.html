@@ -1,0 +1,103 @@
+{include file="header.html"}
+
+<h1 class="mt-0">{lang key1="admin" key2="prava" key3="emails"}</h1>
+
+{if isset($simpla.GET.deleted)}
+<blockquote><p>{lang key1="admin" key2="deleted"}</p></blockquote>
+{/if}
+
+
+
+<table width="100%">
+	<tr>
+		<td width="60%" valign="top">
+				
+			{if !empty($site_vars.list_sites)}
+			<form method="get">
+				<input type="hidden" name="action" value="settings">
+				<input type="hidden" name="do" value="payments">
+				<select name="" onchange="top.location=this.value">
+					<option value="?action=emails"> - {lang key1="admin" key2="fb" key3="all_sites"}</option>
+					{foreach from=$site_vars.list_sites value="v"}
+						<option value="?action=emails&site_id={$v.id}"{if !empty($simpla.GET.site_id) AND $simpla.GET.site_id == $v.id} selected="selected"{/if}>{$v.id}: {$v.site_url|delhttp}</option>  
+					{/foreach}
+				</select>
+			</form>
+			{/if}
+			
+			{if !empty($emails)}
+				<table border=0 cellpadding=3 cellspacing=1 width="90%">
+					<tr>
+						<th><i class="fa fa-eye" title="{lang key1="admin" key2="status" key3="active"}"></i></th>
+						<th>ID</th>
+						<th>{lang key1="admin" key2="fb" key3="mark"}</th>
+						<th>{lang key1="admin" key2="elements" key3="name"}</th>
+						<th><i class="fa fa-user" title="{lang key1="admin" key2="emails" key3="to_user"}"></i></th>
+						<th><i class="fa fa-envelope" title="{lang key1="admin" key2="emails" key3="to_admin"}"></i></th>
+						<th><i class="fa fa-at" title="{lang key1="admin" key2="emails" key3="extra_emails"}"></i></th>
+						<th>{lang key1="admin" key2="emails" key3="subj"}</th>
+						<th>{lang key1="admin" key2="elements" key3="text"}</th>
+					</tr>
+					
+					{ foreach from=$emails value="v" }
+					<tr {cycle values=",class=odd" }>
+						<td>{if !empty($v.active)}<i class="fa fa-check"></i>{else}<i class="fa fa-minus"></i>{/if}</td>
+						<td><a href="?action=emails&id={$v.id}">{$v.id}</a></td>
+						<td><a href="?action=emails&id={$v.id}">{$v.type_event}</a></td>
+						<td><a href="?action=emails&id={$v.id}">{$v.type_title}</a></td>
+						<td>{if !empty($v.to_user)}<i class="fa fa-check"></i>{/if}</td>
+						<td>{if !empty($v.to_admin)}<i class="fa fa-check"></i>{/if}</td>
+						<td>{if !empty($v.to_extra)}<i class="fa fa-check"></i>{/if}</td>
+						<td><a href="?action=emails&id={$v.id}">{$v.subject}</a></td>
+						<td>{if !empty($v.body)}<i class="fa fa-check"></i>{else}<i class="fa fa-minus" style="color:red;"></i>{/if}</td>
+					</tr>
+					
+					{/foreach}
+				</table>
+			{/if}
+		
+			<p><a href="?action=emails&id=0"><i class="fa fa-plus"></i> {lang key1="admin" key2="add"}</a></p>
+		</td>
+		<td valign="top">
+			<h3>{lang key1="admin" key2="emails" key3="event_types"}</h3>
+			{if !empty($email_types)}
+				<table border=0 cellpadding=3 cellspacing=1>
+					<tr>
+						<th><i class="fa fa-eye" title="{lang key1="admin" key2="status" key3="active"}"></i></th>
+						<th>ID</th>
+						<th>{lang key1="admin" key2="elements" key3="name"}</th>
+						<th>{lang key1="admin" key2="fb" key3="mark"}</th>
+						<th><i class="fa fa-filter" title="{lang key1="admin" key2="fb" key3="filter"}"></i></th>
+					</tr>
+					
+					{ foreach from=$email_types value="v" }
+						<tr bgcolor="{cycle values="#ffffff,".$admin_vars.bglight }">
+							<td><a href="?action=emails&do=type&id={$v.id}">{if $v.active == 1}<i class="fa fa-check"></i>{else}<i class="fa fa-minus"></i>{/if}</a></td>
+
+							<td><a href="?action=emails&do=type&id={$v.id}">{$v.id}</a></td>
+							<td>{if isset($simpla.GET.type) AND $simpla.GET.type == $v.id}<b>{/if}<a href="?action=emails&do=type&id={$v.id}">{$v.title}</a>{if isset($simpla.GET.type) AND $simpla.GET.type == $v.id}</b>{/if}</td>
+							<td><a href="?action=emails&do=type&id={$v.id}">{$v.event}</a></td>
+							<td>{if isset($simpla.GET.type) AND $simpla.GET.type == $v.id}<b>{/if}<a href="{$href_no_type}&type={$v.id}">{$v.qty}</a>{if isset($simpla.GET.type) AND $simpla.GET.type == $v.id}</b>{/if}</td>
+						</tr>
+					{ /foreach }
+				</table>
+
+			{else}
+				<p>{lang key1="admin" key2="user" key3="list_empty"}</p>
+				
+				<a href="?action=db&do=add_emails">{lang key1="admin" key2="add_emails"}</a>
+			{/if}          
+
+
+			<p><a href="?action=emails&do=type&id=0"><i class="fa fa-plus"></i> {lang key1="admin" key2="add"}</a></p>
+		
+		</td>
+</table>
+
+
+
+
+
+
+
+{ include file="footer.html" }          

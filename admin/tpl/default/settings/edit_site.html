@@ -1,0 +1,235 @@
+{include file="header.html"}
+
+<h1 class="mt-0 mb-0">{if $site.id > 0}{favorites where="site" id=$site.id} {lang key1="admin" key2="sites" key3="edit"}{else}{lang key1="admin" key2="sites" key3="add"}{/if}</h1>
+
+  
+{ if $admin_vars.uri.updated == 1}
+  { assign var="href" value="?action=settings&do=site&mode=edit&id=".$id }
+	<table width="80%">
+		<tr>
+			<td><blockquote><a href="{$href}">{lang key1="admin" key2="updated"}</a></blockquote></td>
+		</tr>
+	</table>
+{elseif $admin_vars.uri.deleted == 1}
+	<table width="80%">
+		<tr>
+			<td><blockquote>{lang key1="admin" key2="deleted"}</blockquote></td>
+		</tr>
+	</table>
+{elseif $admin_vars.uri.added == 1}
+  { assign var="href" value="?action=settings&do=site&mode=edit&id=".$id }
+	<table width="80%">
+		<tr>
+			<td><blockquote><a href="{$href}">{lang key1="admin" key2="sites" key3="added"}</a></blockquote></td>
+		</tr>
+	</table>
+{else}
+
+	<table width="80%">
+		<tr>
+			<td><blockquote>{lang key1="admin" key2="sites" key3="content"}</blockquote></td>
+		</tr>
+	</table>
+
+  <form method="post">
+  <table width="80%">
+    <tr>
+      <th width="200">{lang key1="admin" key2="sites" key3="key"}</th>
+      <th>{lang key1="admin" key2="sites" key3="value"}</th>
+    </tr>
+    
+    <tr {cycle values=" ,class=odd" }>
+      <td width="200">{lang key1="admin" key2="sites" key3="active"}</td>
+      <td><input type="checkbox" name="site_active" value="1"{if $site.site_active == 1} checked{/if}></td>
+    </tr>
+
+    <tr {cycle values=" ,class=odd" }>
+      <td width="200">{lang key1="admin" key2="set" key3="default_page"}</td>
+      <td><select name="default_id_categ" style="width: 200px; word-break: break-all;">
+      <option value="0">- {lang key1="admin" key2="sites" key3="default"}</option>
+	  
+	  {if !empty($site_vars._pages)}
+	  {foreach from=$site_vars._pages value="v"}
+						{*if !empty($v.subcategs)*}
+						<option value="{$v.id}"{if $site.default_id_categ == $v.id} selected="selected"{/if}>{if $v.level > 1}
+							{ for start=1 stop=$v.level step=1 value=current } - {/for}
+						{/if}{$v.title}</option>
+						{*/if*}
+		{/foreach}
+	  {/if}
+	  
+	  
+      {*foreach from=$list_categs value="categ"}
+        <option value="{$categ.id}"{if $site.default_id_categ == $categ.id} selected{/if}>{if !empty($categ.subname)}{$categ.subname} &raquo; {/if}{$categ.name}</option>
+      {/foreach*}
+      </select></td>
+    </tr>
+
+    <tr {cycle values=" ,class=odd" }>
+      <td width="200">{lang key1="admin" key2="sites" key3="full_name"}</td>
+      <td><input type="text" name="name_full" style="width:100%;" maxlength="255" value="{$site.name_full|stripslashes|htmlspecialchars}" /></td>
+    </tr>
+
+    <tr {cycle values=" ,class=odd" }>
+      <td width="200">{lang key1="admin" key2="sites" key3="short_name"}</td>
+      <td><input type="text" name="name_short" style="width:100%;" maxlength="100" value="{$site.name_short|stripslashes|htmlspecialchars}" /></td>
+    </tr>
+    
+    <tr {cycle values=" ,class=odd" }>
+      <td width="200">{lang key1="admin" key2="sites" key3="description"}</td>
+      <td><input type="text" name="site_description" style="width:100%;" maxlength="255" value="{$site.site_description|stripslashes|htmlspecialchars}" /></td>
+    </tr>
+    
+    <tr {cycle values=" ,class=odd" }>
+      <td width="200">{lang key1="admin" key2="sites" key3="url"}</td>
+      <td><input type="text" name="site_url" style="width:100%;" maxlength="255" value="{$site.site_url|stripslashes|htmlspecialchars}" /></td>
+    </tr>
+    
+    <tr {cycle values=" ,class=odd" }>
+      <td width="200">{lang key1="admin" key2="sites" key3="email"}</td>
+      <td><input type="text" name="email_info" style="width:100%;" maxlength="255" value="{$site.email_info|stripslashes|htmlspecialchars}" /></td>
+    </tr>
+    
+    <tr {cycle values=" ,class=odd" }>
+      <td width="200">{lang key1="admin" key2="sites" key3="phone"}</td>
+      <td><input type="text" name="phone" style="width:100%;" maxlength="255" value="{$site.phone|stripslashes|htmlspecialchars}" /></td>
+    </tr>
+            
+    <tr {cycle values=" ,class=odd" }>
+      <td width="200">{lang key1="admin" key2="sites" key3="meta_title"}</td>
+      <td><textarea name="meta_title" rows="2" style="width:100%;">{$site.meta_title|stripslashes|htmlspecialchars}</textarea></td>
+    </tr>
+    
+    <tr {cycle values=" ,class=odd" }>
+      <td width="200">{lang key1="admin" key2="sites" key3="meta_description"}</td>
+      <td><textarea name="meta_description" rows="4" style="width:100%;">{$site.meta_description|stripslashes|htmlspecialchars}</textarea></td>
+    </tr>
+    
+    <tr {cycle values=" ,class=odd" }>
+      <td width="200">{lang key1="admin" key2="sites" key3="keywords"}</td>
+      <td><textarea name="meta_keywords" rows="4" style="width:100%;">{$site.meta_keywords|stripslashes|htmlspecialchars}</textarea></td>
+    </tr>
+    
+    <tr {cycle values=" ,class=odd" }>
+      <td width="200" valign="top">{lang key1="admin" key2="sites" key3="tpl"}</td>
+      <td>
+          <table width="100%" cellpadding="3">
+            <tr>
+              <td width="50%" valign="top">
+                <select name="template_path">
+                {foreach from=$tpls value="folder"}
+                  <option value="/tpl/{$folder}/"{if $site.template_path|replace:"/tpl/,/" == $folder} selected{/if}>{$folder}</option>
+                {/foreach}
+                </select>
+              </td>
+              <td valign="top">
+              {if $site.id > 0}
+                <ul>
+                  {if $site.site_url|count_characters:true > 7 AND $site.site_url|truncate:7:"":true == "http://"}
+                    {assign var="url" value=$site.site_url}
+                  {else}
+                    {assign var="url" value='..'}
+                  {/if}
+
+                {foreach from=$tpls value="folder"}
+                  <li><a href="{$url}/?set_tpl={$folder}" target="_blank"><i class="fa fa-external-link"></i> {$folder}</a></li>
+                {/foreach}
+                </ul>
+              {/if}
+              </td>
+            </tr>
+          </table>        
+      </td>
+    </tr>
+    
+    <tr {cycle values=" ,class=odd" }>
+      <td width="200">{lang key1="admin" key2="sites" key3="fb_in_db"}</td>
+      <td><input type="checkbox" name="feedback_in_db" value="1"{if $site.feedback_in_db == 1} checked{/if}></td>
+    </tr>
+
+    <tr {cycle values=" ,class=odd" }>
+      <td width="200">{lang key1="admin" key2="sites" key3="gallery"}</td>
+      <td><input type="checkbox" name="gallery" value="1"{if $site.gallery > 0} checked{/if}></td>
+    </tr>
+    
+    <tr {cycle values=" ,class=odd" }>
+      <td width="200">{lang key1="admin" key2="sites" key3="basket"}</td>
+      <td><input type="checkbox" name="mode_basket" value="1"{if $site.mode_basket == 1} checked{/if}></td>
+    </tr>
+    
+    <tr {cycle values=" ,class=odd" }>
+      <td width="200">{lang key1="admin" key2="sites" key3="codepage"}</td>
+      <td><input type="text" name="site_charset" style="width:100%;" maxlength="255" value="{$site.site_charset|stripslashes|htmlspecialchars|default:"utf-8"}" readonly /></td>
+    </tr>
+    
+    <tr {cycle values=" ,class=odd" }>
+      <td width="200">{lang key1="admin" key2="sites" key3="lang"}</td>
+      <td>
+        <select name="lang">
+          {foreach from=$admin_vars.sitelangs key="key" value="value"}
+            <option value="{$key}"{if $site.lang == $key} selected{/if}>{$value}</option>
+          {/foreach}    
+        </select>
+      </td>
+    </tr>
+    
+    <tr {cycle values=" ,class=odd" }>
+      <td width="200">{lang key1="admin" key2="sites" key3="time_zone"}</td>
+      <td>
+        <select name="site_time_zone">
+          {foreach from=$admin_vars.timezone key="key" value="value"}
+            <option value="{$key}"{if $site.site_time_zone == $key} selected{/if}>{$key} {$value}</option>
+          {/foreach}    
+        </select>      
+      </td>
+    </tr>
+        
+    <tr {cycle values=" ,class=odd" }>
+      <td width="200">{lang key1="admin" key2="sites" key3="date_format"}</td>
+      <td>
+        <select name="site_date_format">
+          {foreach from=$admin_vars.dateformat key="key" value="value"}
+            <option value="{$key}"{if $site.site_date_format == $key} selected{/if}>{$value}</option>
+          {/foreach}    
+        </select>      
+      </td>
+    </tr>
+    
+    <tr {cycle values=" ,class=odd" }>
+      <td width="200">{lang key1="admin" key2="sites" key3="time_format"}</td>
+      <td>
+        <select name="site_time_format">
+          {foreach from=$admin_vars.timeformat key="key" value="value"}
+            <option value="{$key}"{if $site.site_time_format == $key} selected{/if}>{$value}</option>
+          {/foreach}
+        </select>
+      </td>
+    </tr>
+	
+	{if !empty($orgs)}
+	<tr {cycle values=" ,class=odd" }>
+      <td width="200">{lang key1="admin" key2="sites" key3="orgs"}</td>
+      <td>
+        {foreach from=$orgs key="k" value="v"}
+			<input type="checkbox" name="orgs[]" value="{$v.id}"{if !empty($v.connected)} checked="checked"{/if}> <a href="?action=org&id={$v.id}">{$v.title}</a>{if !empty($v.inn)} {$v.inn}{/if}<br>
+        {/foreach}
+      </td>
+    </tr>
+	{/if}
+
+    <tr {cycle values=" ,class=odd" }>
+      <td width="200">{lang key1="admin" key2="sites" key3="ip"}<br><small>({lang key1="admin" key2="sites" key3="ip_help"})</small></td>
+      <td><input type="text" name="office_ip" style="width:100%;" maxlength="255" value="{$site.office_ip}" /></td>
+    </tr>
+
+    <tr {cycle values=" ,class=odd" }>
+      <td colspan="2" align="center"><input type="hidden" name="site_id" value="{$id}"> <input type="submit" name="save" value="{lang key1="admin" key2="save"}"> 
+      {if !empty($id)}<input type="submit" name="del" value="{lang key1="admin" key2="delete"}" class="small"  onclick="if(confirm('{lang key1="admin" key2="really"}')) return true; else return false;">{/if}
+      </td>
+    </tr>
+  </table>
+  </form>
+ 
+{/if} 
+ 
+{ include file="footer.html" }

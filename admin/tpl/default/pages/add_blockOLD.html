@@ -1,0 +1,244 @@
+<blockquote>
+<h3>{lang key1="admin" key2="manual"}</h3>
+<p><i class="fa fa-sort"></i> {lang key1="admin" key2="status" key3="sort"}: {lang key1="admin" key2="blocks" key3="sort_help"}</p>
+<p><i class="fa fa-trash"></i> {lang key1="admin" key2="blocks" key3="del_help"}. {lang key1="admin" key2="blocks" key3="block_help"}</p>
+</blockquote>
+
+<input type="hidden" name="block_type" value="{$record_type}" />
+
+
+	{if !empty($blocks)}
+		{foreach from=$blocks value="b"}
+		
+		<h4 align="center">{lang key1="admin" key2="blocks" key3="block"}
+			{if !empty($b.title)}: {$b.title}{/if}
+		</h4>
+		
+		<table width="100%">
+			<tr class="odd">
+				<td width="30"><input type="text" name="block_update[sort][{$b.id}]" value="{$b.sort|escape}" 
+				size="3" style="border: 2px solid #db2020; color:#db2020;  text-align:center;" /></td>
+				<td width="200"><i class="fa fa-sort"></i> <small>{lang key1="admin" key2="status" key3="sort"}</small></td>
+				<td align="center">
+					<small>
+					ID-{$b.id} <a href="javascript: ShowHide('block-{$b.id}')" style="border-bottom: 1px dashed blue;">{lang key1="admin" key2="showhide"}</a></small>
+				</td>
+				<td width="200">
+					<input type="checkbox" name="block_update[active][{$b.id}]" value="1" {if !empty($b.active)}checked="checked" {/if}> <small>{lang key1="admin" key2="blocks" key3="active"}</small>
+				</td>
+				<td width="100" align="right"> 
+					{if !empty($b.title)}<i class="fa fa-text-width" title="{lang key1="admin" key2="fav" key3="title"}"></i> {/if}
+					{if !empty($b.html)}<i class="fa fa-align-left" title="{lang key1="admin" key2="elements" key3="text"}"></i> {/if}
+					{if !empty($b.list_photos)} <i class="fa fa-camera" title="{lang key1="admin" key2="block_foto"}"></i> {$b.list_photos|@count} {/if}
+				</td>
+			</tr>
+		</table>
+				
+    <div style="display: none;" id="block-{$b.id}">
+		
+		<table border=0 width="100%" cellspacing="5" cellpadding="3">
+			<tr class="odd">
+				<td colspan="2" align="right">{lang key1="admin" key2="fav" key3="title"}</td>
+				<td colspan="2">
+					<textarea name="block_update[title][{$b.id}]" rows="2" style="width:100%;">{$b.title}</textarea>
+
+					<script type="text/javascript">
+					var editor = CKEDITOR.replace( 'block_update[title][{$b.id}]');
+					editor.config.toolbar = 'Title';
+					editor.config.autoParagraph = false;
+					editor.config.height = '100px';
+					editor.config.forcePasteAsPlainText = true;
+					editor.config.enterMode = editor.ENTER_DIV; 
+					CKFinder.setupCKEditor( editor, '/{$simpla.CONST.ADMIN_FOLDER}/ckfinder/');
+					</script>
+				
+				</td>
+			</tr>
+			<tr class="odd">
+				<td colspan="2" align="right">{lang key1="admin" key2="elements" key3="text"}</td>
+				<td colspan="2">
+					<textarea name="block_update[text][{$b.id}]" rows="6" style="width:100%;">{$b.html}</textarea>
+					<script type="text/javascript">
+					var editor = CKEDITOR.replace( 'block_update[text][{$b.id}]');
+					editor.config.toolbar = 'Basic2';
+					CKFinder.setupCKEditor( editor, '/{$simpla.CONST.ADMIN_FOLDER}/ckfinder/');
+					</script>				
+				</td>
+			</tr>
+			<tr class="odd">
+				<td colspan="2" align="right"><input type="checkbox" name="delete_block[]" value="{$b.id}"></td>
+				<td colspan="2">{lang key1="admin" key2="block_delete"}</td>
+			</tr>
+			
+			
+			
+			{if !empty($b.list_photos)}
+				<tr class="odd">
+					<td colspan="4">
+					<h4 class="center">{lang key1="admin" key2="block_foto"} ({$b.list_photos|@count})</h4>
+					</td>
+				</tr>
+				
+				<tr class="odd">
+					<th style="width:30px;">
+						<i class="fa fa-sort" title="{lang key1="admin" key2="status" key3="sort"}"> <small><i class="fa fa-camera" title="{lang key1="admin" key2="status" key3="sort"}"></i></small></i>
+					</th>
+					<th style="width:150px;">
+						<i class="fa fa-camera"></i>
+					</th>
+					<th>{lang key1="admin" key2="elements" key3="name"}</th>
+					<th style="width:30px;"><i class="fa fa-trash" title="{lang key1="admin" key2="delete"}"></i></th>
+				</tr>
+					{foreach from=$b.list_photos value="bf"}
+						<tr class="odd">
+							<td align="center"><input type="hidden" name="block_update[pics][{$b.id}][{$bf.1.id_in_record}][id_in_old]" value="{$bf.1.id_in_record|escape}">
+							<input size="2" type="text" name="block_update[pics][{$b.id}][{$bf.1.id_in_record}][id_in_record]" value="{$bf.1.id_in_record|escape}" 
+							style="background: #ebf3ff; text-align:center;"	></td>
+							
+							<td align="center">
+								{if !empty($bf.1.url) AND !empty($bf.3.url)}
+									<a href="{$bf.3.url}" onclick="ImgWin('{$bf.3.url}','{$bf.3.width}x{$bf.3.height}','{$bf.3.width}','{$bf.3.height}'); return false;" target="_blank"><img src="{$bf.1.url}" style="max-width:80px; max-height:80px;" /></a><br>
+								{elseif !empty($bf.1.url)}
+									<img src="{$bf.1.url}" style="max-width:80px; max-height:80px;" /><br>
+								{/if}
+								{foreach from=$bf key="kk" value="pp"}
+									{if $kk != 11}<a href="{$pp.url}" onclick="ImgWin('{$pp.url}','{$pp.width}x{$pp.height}','{$pp.width}','{$pp.height}'); return false;" target="_blank">{$kk}</a> 
+									{/if}
+								{/foreach}
+							</td>
+							
+							<td><input type="text" name="block_update[pics][{$b.id}][{$bf.1.id_in_record}][title]" value="{$bf.1.title|escape}" style="width:100%;">
+								
+							</td>
+							<td align="center"><a href="?{if $b.type == "product"}action=products&do=edit{elseif $b.type == "pub"}action=info&do=edit_publication{else}action=info&do=edit_categ{/if}&id={$b.type_id}&del_block_foto=1&block_id={$b.id}&photo={$bf.1.id_in_record}" onclick="if(confirm('{lang key1="admin" key2="really"}')) return true; else return false;"><i class="fa fa-trash"></i></a></td>
+						</tr>
+					{/foreach}
+				
+			</tr>
+			{/if}
+				
+			<tr class="odd">
+				<td colspan="2" align="right">{lang key1="admin" key2="add_foto"}</td>
+				<td colspan="2">
+					<div id="frm{$b.id}">
+					  <input type="file" name="block[add_file][{$b.id}][]" onclick="newInput({$b.id})"><br>
+					</div>
+				</td>		
+			</tr>
+		</table>			
+	</div>
+		{/foreach}
+	{/if}
+
+
+
+<table border="0" id="upload_blocks"  width="100%" cellspacing="5" cellpadding="3">
+	<tr>
+		<td colspan="3">
+			<h4 align="center">{lang key1="admin" key2="blocks" key3="add"}</h4>
+		</td>
+	</tr>	
+	<tr>
+		<th><i class="fa fa-sort" title="{lang key1="admin" key2="status" key3="sort"}"></i></th>
+		<th>{lang key1="admin" key2="fav" key3="title"}</th>
+		<th>{lang key1="admin" key2="elements" key3="text"}</th>			
+	</tr>
+	<tr class="odd">
+		<td valign="top"><input type="text" name="block[sort][0]" size="3" /></td>
+		<td valign="top"><textarea name="block[title][0]" rows="2" style="width:100%;"></textarea>
+		</td>
+		<td valign="top"><textarea name="block[text][0]" rows="6" style="width:100%;"></textarea>
+		{if !isset($simpla.GET.noeditor)}
+          <script type="text/javascript">
+			var editor = CKEDITOR.replace( 'block[text][0]');
+			editor.config.toolbar = 'Basic2';
+			CKFinder.setupCKEditor( editor, '/{$simpla.CONST.ADMIN_FOLDER}/ckfinder/');
+          </script>
+        {/if}
+		
+		</td>				
+	</tr>
+	<tr class="odd">
+		<td>&nbsp;</td>
+		<td>{lang key1="admin" key2="add_foto"}
+		<br><small><a href="?action=settings&do=mass_vars&hint=images" target="_blank">{lang key1="admin" key2="set" key3="picsizes"} {lang key1="admin" key2="created_auto" case="lower"}</a>:<br>
+		
+		{ if isset($site_vars.img_size1) } 
+			{ $site_vars.img_size1.width }*{ $site_vars.img_size1.height }; 
+		{/if}
+		{ if isset($site_vars.img_size2) } 
+			{ $site_vars.img_size2.width }*{ $site_vars.img_size2.height };
+		{/if}
+		{ if isset($site_vars.img_size3) } 
+			{ $site_vars.img_size3.width }*{ $site_vars.img_size3.height };
+		{/if}
+		{ if isset($site_vars.img_size4) } 
+			{ $site_vars.img_size4.width }*{ $site_vars.img_size4.height };
+		{/if}
+		{ if isset($site_vars.img_size5) } 
+			{ $site_vars.img_size5.width }*{ $site_vars.img_size5.height };
+		{/if}
+		{ if isset($site_vars.img_size6) } 
+			{ $site_vars.img_size6.width }*{ $site_vars.img_size6.height };
+		{/if} 
+	</small>
+		
+		</td>
+		<td><input type="file" name="block[file][0]" /></td>		
+	</tr>
+			
+</table>
+
+
+{*if $site_vars.gallery *}
+<p align="right"><a href="javascript:add_more_blocks();"><i class="fa fa-plus"></i> {lang key1="admin" key2="add"} {lang key1="admin" key2="blocks" key3="block" case="lower"}</a></p>{* /if *}
+<input type="hidden" name="numpics" id="num_pics_field" value="2" />
+
+<script>{literal}
+	function add_more_blocks(){
+		var tbl = document.getElementById('upload_blocks');
+		var numpics = document.getElementById('num_pics_field').value;
+		var tr = tbl.insertRow(-1);
+		tr.className = "odd";
+		var td1 = tr.insertCell(-1);
+		td1.style.verticalAlign = "top";
+		td1.style.textAlign = "center";
+		var td2 = tr.insertCell(-1);
+		td2.style.verticalAlign = "top";
+		var td3 = tr.insertCell(-1);
+		td3.style.verticalAlign = "top";
+  
+		var input = document.getElementById('field_to_add').innerHTML;
+		  
+		  input = input.replace(/__ID__/g, numpics);
+		  
+		  //td1.innerHTML = input; 
+		  td1.innerHTML = '<input type="text" name="block[sort][]" align="center" size="3" />'; 
+
+          td2.innerHTML = '<textarea name="block[title][]" rows="2" style="width:100%;"></textarea><br>{/literal}{lang key1="admin" key2="foto_short"}{literal}<br><input type="file" name="block[file][]"  />';
+
+          td3.innerHTML = '<textarea name="block[text][]" rows="6" style="width:100%;"></textarea>';
+		  
+		  td1.valign = 'top';
+		  td2.valign = 'top';
+		  
+		  numpics++;
+		  
+		  document.getElementById('num_pics_field').value = numpics;
+	}
+
+	function newInput(id) {
+	  var firstform = document.getElementById('frm'+id);
+	  var newinput = document.createElement('input');
+	  var br = document.createElement("br");
+	  newinput.type = "file";
+	  newinput.name = "block[add_file]["+id+"][]";
+	  newinput.onclick = function(){newInput(id)};
+	  firstform.appendChild(newinput); 
+	  firstform.appendChild(br);
+	}
+	
+	
+{/literal}
+</script>
+

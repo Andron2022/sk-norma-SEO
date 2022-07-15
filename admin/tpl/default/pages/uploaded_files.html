@@ -1,0 +1,39 @@
+  <h4>{lang key1="admin" key2="set" key3="uploaded_files"} ({$categ.files_qty})</h4>
+
+<table width="100%" class="">
+  <tbody>
+    <tr>
+      <th width="50"><i class="fa fa-paperclip" title="{lang key1="admin" key2="set" key3="link_to_file"}"></i></th>
+      <th>{lang key1="admin" key2="elements" key3="name"}</th>
+      <th width="80">{lang key1="admin" key2="elements" key3="size"}</th>
+      <th width="80"><small>{lang key1="admin" key2="elements" key3="uploaded_date"}</small></th>
+      <th width="80"><i class="fa fa-download" title="{lang key1="admin" key2="elements" key3="free_download"}"></i></th>
+	  <th width="80"><i class="fa fa-external-link" title="{lang key1="admin" key2="direct_link"}"></i></th>
+      <th width="80"><i class="fa fa-sort" title="{lang key1="admin" key2="status" key3="sort"}"></i></th>
+      <th align="center" width="50"><i class="fa fa-trash-o" title="{lang key1="admin" key2="delete"}"></i> <input type="checkbox" onclick="CheckAll(this,'delete_files[]'); CheckAll(this,'delete_group2[]');"></th>      
+    </tr>
+</table>
+
+    {foreach from=$categ.uploaded_files key="key" value="img"}
+
+        {* start new row *}          
+        <table id="file{$img.id_in_record}" width="100%">
+          <tr class="odd">
+            <td align="center" width="50"><a href="/getfile/?l={$img.id|md5}&ext={$img.ext}&id={$img.record_id}" target="_blank"><i class="fa fa-download"></i></a></td>
+            <td>
+			<textarea name="update_files_title[{$img.id}]" rows="3" style="width: 100%;">{$img.title}</textarea>
+			{*
+			<input type="text" style="width: 100%;" name="update_files_title[{$img.id}]" value="{$img.title|htmlspecialchars}">
+{if !empty($img.downloaded)}<br>{lang key1="admin" key2="set" key3="qty_downloads"}: {lang key1="admin" key2="products" key3="total_views" case="lower"} <b>{$img.downloaded}</b>; {lang key1="admin" key2="products" key3="views_for_month" case="lower"}: <b>{$img.dwnl30}</b>{/if}*}
+</td>
+            <td width="80" align="center">{$img.size|filesize}</td>
+            <td width="80" align="center">{$img.time_added|date:"d.m.Y"}</td>
+            <td width="80" align="center"><input type="checkbox" name="update_allow_download[{$img.id}]" value="1"{if !empty($img.allow_download)} checked="checked"{/if} /></td>
+			<td width="80" align="center"><input type="checkbox" name="update_direct_link[{$img.id}]" value="1"{if !empty($img.direct_link)} checked="checked"{/if} /></td>
+            <td align="center" width="80" nowrap><a href="javascript:" onclick="MoveUp(this);"><i class="fa fa-chevron-up"></i></a>&nbsp;<span id="file{$img.id_in_record}_position_text">{$img.id_in_record}</span>&nbsp;<a href="javascript:" onclick="MoveDown(this);"><i class="fa fa-chevron-down"></i></a></td>
+            <input type="hidden" name="file{$img.id_in_record}_position" id="file{$img.id_in_record}_position" value="{$img.id_in_record}">
+            <td align="center" width="50"><input type="checkbox" name="delete_files[]" value="{$img.id}"></td>
+          </tr>
+        </table>
+          
+    {/foreach}

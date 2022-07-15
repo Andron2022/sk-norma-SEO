@@ -1,0 +1,68 @@
+{include file="header.html"}
+
+<h1 class="mt-0">{if $simpla.GET.do == "files"}{lang key1="admin" key2="prava" key3="files"}{else}{lang key1="admin" key2="elements" key3="pics"}{/if} ({$all}) <small>{if $simpla.GET.do == "files"}<a href="?action=settings&do=fotos">{lang key1="admin" key2="elements" key3="pics" case="lower"}</a>{else}<a href="?action=settings&do=files">{lang key1="admin" key2="prava" key3="files" case="lower"}</a>{/if}</small></h1>
+<p>{lang key1="admin" key2="elements" key3="hdd_size"}: {$size.size|filesize:2:$site_vars.lang_admin}
+<small>{$size.date|date:"d.m.Y H:i"} <a href="?action=settings&update={if $simpla.GET.do == "files"}files{else}records{/if}">{lang key1="admin" key2="update"}</a></small></p>
+
+{if !empty($simpla.GET.deleted)}
+<blockquote>{lang key1="admin" key2="deleted"}</blockquote>
+{/if}
+
+{* list_files list_fotos *}
+{$pages}
+
+{if !empty($list)}
+	<table width="80%">
+		<tr>
+			<th>#</th>
+			<th>{lang key1="admin" key2="products" key3="type"}</th>
+			<th>{lang key1="admin" key2="elements" key3="name"}</th>
+			<th><i class="fa fa-external-link"></i></th>
+			<th>{lang key1="admin" key2="products" key3="qty"}</th>
+		</tr>
+		
+		{ foreach from=$list value="v" }
+			<tr class="{cycle values=" ,odd"}">
+				<td>{counter}</td>
+				<td align="center"><a href="{$v.link}">
+				{if $v.record_type == "product"}
+				<i class="fa fa-shopping-cart"></i>
+				{elseif $v.record_type == "pub"}
+				<i class="fa fa-list"></i>
+				{elseif $v.record_type == "categ"}
+				<i class="fa fa-folder-open"></i>
+				{elseif $v.record_type == "var"}
+				<i class="fa fa-cogs"></i>
+				{elseif $v.record_type == "comment"}
+				<i class="fa fa-comments"></i>
+				{elseif $v.record_type == "block"}
+				<i class="fa fa-th-large"></i>
+				{elseif $v.record_type == "org_stamp" OR $v.record_type == "org_logo" OR $v.record_type == "org_dir" OR $v.record_type == "org_buh"}
+				<i class="fa fa-briefcase"></i>
+				{elseif $v.record_type == "order_comment"}
+				<i class="fa fa-phone-square"></i>
+				{elseif $v.record_type == "fb_comment"}
+				<i class="fa fa-envelope"></i>
+				{else}{$v.record_type}{/if}
+				</a></td>
+				<td><a href="{$v.link}">{if $v.record_type == "order_comment"}{$v.where_record|chunk:4:"-"}{else}{$v.where_record}{/if}</a>
+				
+				{if empty($v.where_record)}
+				{lang key1="admin" key2="products" key3="not_exist" case="lower"} <a href="?action=settings&do={$simpla.GET.do}&record_id={$v.record_id}&type={$v.record_type}&id={$v.id}" onclick="if(confirm('{lang key1="admin" key2="really"}')) return true; else return false;"><i class="fa fa-trash"></i></a>{/if}
+				</td>
+				
+				<td align="center"><small>{if $simpla.GET.do == "fotos"}<a href="../upload/records/{$v.id}.{$v.ext}" target="_blank"><i class="fa fa-external-link"></i></a>
+				{else}<a href="/getfile/?l={$v.id|md5}&ext={$v.ext}&id={$v.record_id}" target="_blank"><i class="fa fa-download"></i></a>{/if}
+				</small></td>
+				<td align="center">{$v.qty}</td>
+			</tr>
+		{ /foreach }
+	</table>
+
+{else}
+	<p>{lang key1="admin" key2="user" key3="list_empty"}</p>
+{/if}          
+
+{$pages}
+
+{ include file="footer.html" }          

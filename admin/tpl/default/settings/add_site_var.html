@@ -1,0 +1,81 @@
+{include file="header.html"}
+
+<h1 class="mt-0">{lang key1="admin" key2="elements" key3="add_title"}</h1>
+{include file="settings/elements_menu.html"}
+
+{if isset($messages) }
+{ $messages }
+{ elseif isset($simpla.GET.added) }
+{ assign var="href" value="?action=settings&do=edit_site_var&id=".$simpla.GET.id }
+<blockquote><a href="{ $href }">{lang key1="admin" key2="elements" key3="added"}</a></blockquote>
+{ else }
+
+<form method="post">
+<table width="80%">
+	<tr>
+		<td colspan="2"><blockquote>{lang key1="admin" key2="elements" key3="help"}<br><br>{lang key1="admin" key2="elements" key3="example"}</blockquote></td>
+	</tr>
+	<tr {cycle values=",class=odd" }>
+		<td width="200">{lang key1="admin" key2="website"}: </td>
+		<td><select name="forsite"{if $sites|@count == 1} disabled="disabled"{/if}>
+        <option value="0"> - {lang key1="admin" key2="for_all"}</option>
+        {foreach from=$sites value="value"}
+        <option value="{$value.id}"{if $sites|@count == 1} selected{/if}>{$value.site_url|delhttp}</option>
+        {/foreach}
+		</select></td>
+	</tr>
+	<tr {cycle values=",class=odd" }>
+		<td><b>{lang key1="admin" key2="elements" key3="name"}:</b> <br><small>({lang key1="admin" key2="elements" key3="name_help"})</small></td>
+		<td><input name="varname" type="text" size="50" value="{if !empty($simpla.GET.hint)}{$simpla.GET.hint}{/if}" /></td>
+	</tr>
+	<tr {cycle values=",class=odd" }>
+		<td><b>{lang key1="admin" key2="elements" key3="value"}:</b> </td>
+		<td><textarea name="value" rows="7" style="width:100%;">{if !empty($hint.value)}{$hint.value}{/if}</textarea></td>
+	</tr>
+	<tr {cycle values=",class=odd" }>
+		<td>{lang key1="admin" key2="elements" key3="description"}: <br><small>({lang key1="admin" key2="elements" key3="desc_help"})</small></td>
+		<td><textarea name="description" rows="4" style="width:100%;">{if !empty($hint.description)}{$hint.description}{/if}</textarea></td>
+	</tr>
+    
+	<tr>
+		<td colspan="2"><a href="javascript: ShowHide('block-meta')" style="border-bottom: 1px dashed blue;">{lang key1="admin" key2="elements" key3="extra"}</a>
+		    <div style="display: none;" id="block-meta">
+				<table width="100%">
+					<tbody>
+						<tr {cycle values=",class=odd" }>
+							<td width="200">{lang key1="admin" key2="elements" key3="type"}: </td>
+							<td><input type="radio" name="type" value="text" {if (!empty($hint.type) AND $hint.type == "text") OR empty($hint.type)}checked="checked"{/if} /> {lang key1="admin" key2="elements" key3="text"}
+							<input type="radio" name="type" value="list" {if !empty($hint.type) AND $hint.type == "list"}checked="checked"{/if} 
+							/> {lang key1="admin" key2="elements" key3="select"}
+							<input type="radio" name="type" value="checkbox" {if !empty($hint.type) AND $hint.type == "checkbox"}checked="checked"{/if}/> {lang key1="admin" key2="elements" key3="flag"}
+							</td>
+						</tr>
+						<tr {cycle values=",class=odd" }>
+							<td width="200">{lang key1="admin" key2="elements" key3="autoload"}</td>
+							<td colspan="3"><input type="checkbox" name="autoload" value="1" checked></td>
+						</tr>
+						<tr {cycle values=",class=odd" }>
+							<td width="200">{lang key1="admin" key2="elements" key3="variants"}:<br><small>({lang key1="admin" key2="elements" key3="variants_comment"})</small></td>
+							<td colspan="3"><textarea name="if_enum" rows="7" style="width:100%;">{if !empty($hint.if_enum)}{$hint.if_enum}{/if}</textarea></td>
+						</tr>
+						<tr {cycle values=",class=odd" }>
+							<td width="200">{lang key1="admin" key2="elements" key3="size1"}</td>
+							<td><input type="text" name="width" size="10" maxlength="25" value="{if !empty($hint.width)}{$hint.width}{else}0{/if}"></td>
+							<td>{lang key1="admin" key2="elements" key3="size2"}</td>
+							<td><input type="text" name="height" size="10" maxlength="25" value="{if !empty($hint.height)}{$hint.height}{else}0{/if}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</td>
+	</tr>    
+    
+	<tr {cycle values=",class=odd" }>
+		<td colspan="2"><input type="submit" name="add" value="{lang key1="admin" key2="add"}" /></td>
+	</tr>
+</table>
+</form>
+
+{ /if }
+
+{ include file="footer.html" }

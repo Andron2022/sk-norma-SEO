@@ -1,0 +1,41 @@
+{include file="header.html"}
+
+<h1 class="mt-0">{lang key1="admin" key2="tpl" key3="templates"}{if !empty($folder)}: {$folder}{/if}</h1>
+
+<i class="fa fa-folder-open"></i> <a href="?action=settings&do=tpl">{lang key1="admin" key2="tpl" key3="templates"}</a> 
+
+{if $newpath|@count > 1}
+  {foreach from=$newpath key="key" value="value"}
+	{if $key != ".." AND !empty($key) AND !empty($value)}
+		/ <a href="?action=settings&do=tpl&folder={$value}">{$key}</a>
+	{/if}
+  {/foreach}
+{/if}
+
+<ul>
+<li>{lang key1="admin" key2="tpl" key3="templates"}: <a href="?action=settings&do=site_vars&site_id=-1&q=sys_tpl_pages&redirect=1">{lang key1="admin" key2="index" key3="found_categs"}</a>, 
+<a href="?action=settings&do=site_vars&site_id=-1&q=sys_tpl_products&redirect=1">{lang key1="admin" key2="index" key3="found_offers"}</a>, <a href="?action=settings&do=site_vars&site_id=-1&q=sys_tpl_pubs&redirect=1">{lang key1="admin" key2="index" key3="found_pubs"}</a>.</li>
+</ul>
+
+
+{if $files|@count > 0}
+
+<p>
+{lang key1="admin" key2="tpl" key3="files_available"}:
+<ul>
+
+{foreach from=$files item=value}
+{if $value.link} 
+<li><a href="{ $value.link }">{ if !empty($value.img) }<i class="fa fa-folder-o"></i> { /if }{ $value.file }</a>{if $value.ext_link} <a href="{$value.ext_link}" target="_blank"><i class="fa fa-external-link"></i></a>{/if}
+{if !empty($value.ext) AND $value.ext == "html"} <small><a href="{ $value.link }&fcopy=1" onclick="if(confirm('{lang key1="admin" key2="tpl" key3="really_copy"}')) return true; else return false;"><i class="fa fa-plus"></i> {lang key1="admin" key2="tpl" key3="copy"}</a></small> {/if}
+</li>
+{else}
+<li>{ if $value.img }<img src='{ $value.img }' border='0' /> { /if }{ $value.file }</a>{if $value.ext_link} <a href="{$value.ext_link}" target="_blank"><i class="fa fa-external-link"></i></a>{/if}</li>
+{/if}
+{/foreach}
+{else}
+
+<p>{lang key1="admin" key2="tpl" key3="in_folder"} <b>{$folder}</b> {lang key1="admin" key2="set" key3="list_empty"}</p>
+{/if}
+
+{ include file="footer.html" }

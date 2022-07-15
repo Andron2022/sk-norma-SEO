@@ -1,0 +1,40 @@
+{if !empty($fav)}
+    <h3><i class="fa fa-star"></i> {lang key1="admin" key2="fav" key3="in"} ({$fav|@count}) <small><a href="?action=fav"><i class="fa fa-edit"></i></a></small></h3>
+	
+	
+    <table class="table" width="100%">
+    {foreach from=$fav value="f"}
+        <tr class="bg{cycle values=" , odd"}">
+            <td width="25"><a href="{$f.link}">
+            {if $f.where == 'categ'}
+                <i class="fa fa-folder-open" title="{lang key1="admin" key2="categ"}"></i>
+            {elseif $f.where == 'pub'}
+                <i class="fa fa-list" title="{lang key1="admin" key2="pub"}"></i>
+            {elseif $f.where == 'product'}
+                <i class="fa fa-shopping-cart" title="{lang key1="admin" key2="product"}"></i>
+            {elseif $f.where == 'fb'}
+                <i class="fa fa-envelope" title="{lang key1="admin" key2="fb" key3="request"}"></i>
+            {elseif $f.where == 'order'}
+                <i class="fa fa-phone-square" title="{lang key1="admin" key2="orders" key3="order"}"></i>
+            {elseif $f.where == 'var'}
+                <i class="fa fa-cogs" title="{lang key1="admin" key2="elements" key3="element"}"></i>
+            {elseif $f.where == 'site'}
+                <i class="fa fa-globe" title="{lang key1="admin" key2="website"}"></i>
+			{elseif $f.where == 'block'}
+                <i class="fa fa-th-large" title="{lang key1="admin" key2="blocks" key3="block"}"></i>
+            {else}
+                <i class="fa fa-external-link"></i>
+            {/if}</a></td>
+            <td>
+			<a href="{$f.link}">{if !empty($f.title)}
+			{$f.title}
+			{else}
+			{if !empty($f.date)}{lang key1="admin" key2="fav" key3="number"} {/if}{$f.row_title}
+			{/if}</a>
+			{if !empty($f.date)} <small>{lang key1="admin" key2="fav" key3="from"} {$f.date|date:"d.m.Y H:i"}</small>{/if}
+			{if !empty($f.comment)}<br>{$f.comment}{/if}</td> 
+			{if !empty($f.site)}<td><small>{$f.site|delhttp}</small></td>{else}<td></td>{/if}
+		</tr>                  
+    {/foreach}
+    </table>
+{/if}

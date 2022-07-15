@@ -1,0 +1,24 @@
+{if !isset($hint)}{assign var="hint" value=""}{/if}
+{assign var="do" value=$admin_vars.uri.do}
+{assign var="mode" value=$admin_vars.uri.mode}
+
+<ul>
+	<li>{if $do == "site_vars" AND empty($mode) AND !isset($simpla.GET.id) AND empty($simpla.GET.q)}{lang key1="admin" key2="elements" key3="site_vars"}{else}<a href="?action=settings&do=site_vars">{lang key1="admin" key2="elements" key3="site_vars"}</a>{/if} | 
+	{if $mode == "sys" AND empty($simpla.GET.q)}{lang key1="admin" key2="elements" key3="sys_vars"}{else}<a href="?action=settings&do=site_vars&mode=sys">{lang key1="admin" key2="elements" key3="sys_vars"}</a>{/if} | 
+	{if $mode == "img"}{lang key1="admin" key2="elements" key3="pics"}{else}<a href="?action=settings&do=site_vars&mode=img">{lang key1="admin" key2="elements" key3="pics"}</a>{/if} | 
+	{if $do == "mass_vars" AND empty($hint)}{lang key1="admin" key2="elements" key3="master"}{else}<a href="?action=settings&do=mass_vars">{lang key1="admin" key2="elements" key3="master"}</a>{/if}
+		{if $do == "mass_vars"}
+			<ul>
+				<li>{if $hint != "smtp"}<a href="?action=settings&do=mass_vars&hint=smtp">{lang key1="admin" key2="elements" key3="smtp"}</a>{else}{lang key1="admin" key2="elements" key3="smtp"}{/if} | 
+				{if $hint != "currencies"}<a href="?action=settings&do=mass_vars&hint=currencies">{lang key1="admin" key2="elements" key3="currencies"}</a>{else}{lang key1="admin" key2="elements" key3="currencies"}{/if} | 
+				{if $hint != "images"}<a href="?action=settings&do=mass_vars&hint=images">{lang key1="admin" key2="elements" key3="pics"}</a>{else}{lang key1="admin" key2="elements" key3="pics"}{/if} | 
+				{if $hint != "extra"}<a href="?action=settings&do=mass_vars&hint=extra">{lang key1="admin" key2="elements" key3="extra_lists"}</a>{else}{lang key1="admin" key2="elements" key3="extra_lists"}{/if} | 
+				{if $hint != 'social'}<a href="?action=settings&do=mass_vars&hint=social">{lang key1="admin" key2="elements" key3="social_nets"}</a>{else}{lang key1="admin" key2="elements" key3="social_nets"}{/if} | 
+				{if $hint != 'yml'}<a href="?action=settings&do=mass_vars&hint=yml">{lang key1="admin" key2="elements" key3="yml"}</a>{else}{lang key1="admin" key2="elements" key3="yml"}{/if} | 
+				{if $hint != 'gmc'}<a href="?action=settings&do=mass_vars&hint=gmc">{lang key1="admin" key2="elements" key3="gmc"}</a>{else}{lang key1="admin" key2="elements" key3="gmc"}{/if} | 
+				{if $hint != 'sms'}<a href="?action=settings&do=mass_vars&hint=sms">SMS</a>{else}SMS{/if}
+				</li>
+			</ul>
+		{/if}
+	</li>
+</ul>

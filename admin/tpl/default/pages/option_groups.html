@@ -1,0 +1,90 @@
+      <table width="100%" cellpadding="3" cellspacing="1">
+
+{if !empty($categ.option_groups_filter)}
+		<tr class="odd">
+		  <td width="200" valign="top">{lang key1="admin" key2="in_filter"}:</td>
+		  <td>
+			<table style="margin:25px; width: 600px;">
+				<tr>
+						<th style="width:200px;">{lang key1="admin" key2="sidebar" key3="option"}</th>
+						<th style="width:120px;">{lang key1="admin" key2="products" key3="synonim"}</th>
+						<th><i class="fa fa-sort"></i></th>
+						<th>{lang key1="admin" key2="products" key3="type"}</th>
+						<th>{lang key1="admin" key2="products" key3="type_in_filter"}</th>
+				</tr>
+					
+			{foreach value="o" from=$categ.option_groups_filter}
+
+					<tr>
+						<td><a href="?action=products&do=options&id={$o.id}">{$o.title}</a></td>
+						<td><a href="?action=products&do=options&id={$o.id}">{$o.alias}</a></td>
+						<td align="center">{$o.sort}</td>
+						<td>{$o.type}</td>
+						<td>{$o.filter_type}</td>
+					</tr>
+			{/foreach}
+			</table>
+		  </td>
+		</tr>
+{/if}
+
+{if !empty($categ.option_groups_list)}
+		<tr class="odd">
+		  <td width="200" valign="top">{lang key1="admin" key2="in_list"}:</td>
+		  <td>
+			<table style="margin:25px; width: 600px;">
+				<tr>
+						<th style="width:200px;">{lang key1="admin" key2="sidebar" key3="option"}</th>
+						<th style="width:120px;">{lang key1="admin" key2="products" key3="synonim"}</th>
+						<th><i class="fa fa-sort"></i></th>
+						<th>{lang key1="admin" key2="products" key3="type"}</th>
+				</tr>
+            {foreach value="o" from=$categ.option_groups_list}
+					<tr>
+						<td><a href="?action=products&do=options&id={$o.id}">{$o.title}</a></td>
+						<td><a href="?action=products&do=options&id={$o.id}">{$o.alias}</a></td>
+						<td align="center">{$o.sort}</td>
+						<td>{$o.type}</td>
+					</tr>
+			{/foreach}
+		  </table>
+		  </td>
+		</tr>
+{/if}
+
+		<tr {cycle values="class=odd, " }>
+		  <td width="200" valign="top">{lang key1="admin" key2="sidebar" key3="opt_groups"}:</td>
+          <td>{if $categ.option_groups|@count > 0}
+            {foreach value="opt" from=$categ.option_groups}
+              <input type="checkbox" name="options[]" value="{$opt.id}"{if $opt.selected == $opt.id} checked="checked"{/if}> <a href="?action=products&do=option_group&id={$opt.id}">{$opt.title}</a><br>{if !empty($opt.description)}<i>{$opt.description|nl2br}</i><br>{/if}
+			  {if !empty($opt.options) AND $opt.selected == $opt.id}
+				<table style="margin:25px; width: 600px;">
+					<tr>
+						<th style="width:200px;">{lang key1="admin" key2="sidebar" key3="option"}</th>
+						<th style="width:120px;">{lang key1="admin" key2="products" key3="synonim"}</th>
+						<th><i class="fa fa-sort"></i></th>
+						<th>{lang key1="admin" key2="products" key3="type"}</th>
+						<th><i class="fa fa-bars" title="{lang key1="admin" key2="in_list"}"></i></th>
+						<th><i class="fa fa-filter" title="{lang key1="admin" key2="in_filter"}"></i></th>
+						<th>{lang key1="admin" key2="products" key3="type_in_filter"}</th>
+					</tr>
+				{foreach from=$opt.options value="o" key="k"}
+					<tr>
+						<td><a href="?action=products&do=options&id={$o.id}">{$o.title}</a></td>
+						<td><a href="?action=products&do=options&id={$o.id}">{$o.alias}</a></td>
+						<td align="center">{$o.sort}</td>
+						<td>{$o.type}</td>
+						<td align="center">{if !empty($o.show_in_list)}<i class="fa fa-check"></i>{else}-{/if}</td>
+						<td align="center">{if !empty($o.show_in_filter)}<i class="fa fa-check"></i>{else}-{/if}</td>
+						<td>{$o.filter_type}</td>
+					</tr>
+				{/foreach}
+				</table>
+			  {/if}
+            {/foreach}
+          {else}
+            {lang key1="admin" key2="no_yet_optgroups"} <a href="?action=products&do=add_option_group"><i class="fa fa-plus-circle"></i> {lang key1="admin" key2="create_now"}</a>
+          {/if}
+          </td>
+        </tr>
+      </table>

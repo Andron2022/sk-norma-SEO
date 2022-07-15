@@ -1,0 +1,232 @@
+{include file="header.html"}
+
+<h1 class="mt-0">{if !empty($row.title)}{$row.title}
+{else}{lang key1="admin" key2="sites" key3="orgs"}: {lang key1="admin" key2="add"}{/if}</h1>
+
+  {if isset($simpla.GET.updated)}
+    <table width="80%"><tr><td><blockquote>{lang key1="admin" key2="updated"}</blockquote></td></tr></table>
+  {elseif isset($simpla.GET.added)}
+    <table width="80%"><tr><td><blockquote>{lang key1="admin" key2="added"}</blockquote></td></tr></table>
+  {/if}
+ 
+{if !empty($row.error)} 
+	<table width="80%"><tr><td><blockquote class="red">{$row.error}</blockquote></td></tr></table>
+{/if}
+ 
+  
+{if !empty($row.qty_orders) OR !empty($row.qty_sites)}
+  <ul>
+  {if !empty($row.qty_orders)}
+	<li>{lang key1="admin" key2="products" key3="orders"}: {$row.qty_orders}</li>
+  {/if}
+  
+  {if !empty($row.qty_sites)}
+	<li>{lang key1="admin" key2="websites"}: {$row.qty_sites}</li>
+  {/if}
+  </ul>
+{/if}  
+
+	<table width="80%">
+		<form method="post" enctype="multipart/form-data">
+			<tr>
+				<th width="20%">{lang key1="admin" key2="user" key3="field"}</th>
+				<th>{lang key1="admin" key2="user" key3="value"}</th>
+			</tr>
+			
+			<tr class="{cycle values=",odd"}">
+				<td>ID</td>
+				<td>{ if $row.id }{$row.id}{ else }{lang key1="admin" key2="user" key3="not_set"}{ /if }</td>
+			</tr>
+			
+			<tr class="{cycle values=",odd"}">
+				<td>{lang key1="admin" key2="products" key3="active"}</td>
+				<td><input type="checkbox" name="active" value="1"{if !empty($row.active)} checked="checked"{/if}>
+				</td>
+			</tr>
+			
+			<tr class="{cycle values=",odd"}">
+				<td>{lang key1="admin" key2="elements" key3="own_f"}</td>
+				<td><input type="checkbox" name="own" value="1"{if !empty($row.own)} checked="checked"{/if}>
+				</td>
+			</tr>
+			
+			<tr class="{cycle values=",odd"}">
+				<td>{lang key1="admin" key2="sites" key3="default" case="first"}</td>
+				<td><input type="checkbox" name="is_default" value="1"{if !empty($row.is_default)} checked="checked"{/if}>
+				</td>
+			</tr>
+			
+			<tr class="{cycle values=",odd"}">
+				<td>{lang key1="admin" key2="elements" key3="name"}</td>
+				<td><input type="text" name="title" value="{$row.title|escape}" style="width:100%;">
+				</td>
+			</tr>
+
+			<tr class="{cycle values=",odd"}">
+				<td>{lang key1="admin" key2="set" key3="phone"}</td>
+				<td><input type="text" name="phone" value="{$row.phone|escape}" style="width:100%;">
+				</td>
+			</tr>
+			<tr class="{cycle values=",odd"}">
+				<td>{lang key1="admin" key2="website"}</td>
+				<td><input type="text" name="website" value="{$row.website|escape}" style="width:100%;">
+				</td>
+			</tr>
+			<tr class="{cycle values=",odd"}">
+				<td>{lang key1="admin" key2="user" key3="email"}</td>
+				<td><input type="text" name="email" value="{$row.email|escape}" style="width:100%;">
+				</td>
+			</tr>
+
+			
+			<tr class="{cycle values=",odd"}">
+				<td>{lang key1="admin" key2="orders" key3="index"}</td>
+				<td><input type="text" name="postal_code" value="{$row.postal_code|escape}" style="width:100%;">
+				</td>
+			</tr>
+
+			<tr class="{cycle values=",odd"}">
+				<td>{lang key1="admin" key2="user" key3="country"}</td>
+				<td><input type="text" name="country" value="{$row.country|escape}" style="width:100%;">
+				</td>
+			</tr>
+			<tr class="{cycle values=",odd"}">
+				<td>{lang key1="admin" key2="user" key3="city"}</td>
+				<td><input type="text" name="city" value="{$row.city|escape}" style="width:100%;">
+				</td>
+			</tr>
+			<tr class="{cycle values=",odd"}">
+				<td>{lang key1="admin" key2="orders" key3="address"}</td>
+				<td><input type="text" name="address" value="{$row.address|escape}" style="width:100%;">
+				</td>
+			</tr>
+
+			<tr class="{cycle values=",odd"}">
+				<td>{lang key1="admin" key2="orders" key3="org_ogrn"}</td>
+				<td><input type="text" name="ogrn" value="{$row.ogrn|escape}" style="width:100%;">
+				</td>
+			</tr>
+
+			<tr class="{cycle values=",odd"}">
+				<td>{lang key1="admin" key2="orders" key3="org_inn"}</td>
+				<td><input type="text" name="inn" value="{$row.inn|escape}" style="width:100%;">
+				</td>
+			</tr>
+			<tr class="{cycle values=",odd"}">
+				<td>{lang key1="admin" key2="elements" key3="kpp"}</td>
+				<td><input type="text" name="kpp" value="{$row.kpp|escape}" style="width:100%;">
+				</td>
+			</tr>
+			<tr class="{cycle values=",odd"}">
+				<td>{lang key1="admin" key2="elements" key3="bik"}</td>
+				<td><input type="text" name="bik" value="{$row.bik|escape}" style="width:100%;">
+				</td>
+			</tr>
+			<tr class="{cycle values=",odd"}">
+				<td>{lang key1="admin" key2="elements" key3="account"}</td>
+				<td><input type="text" name="r_account" value="{$row.r_account|escape}" style="width:100%;">
+				</td>
+			</tr>
+			<tr class="{cycle values=",odd"}">
+				<td>{lang key1="admin" key2="elements" key3="corr_account"}</td>
+				<td><input type="text" name="k_account" value="{$row.k_account|escape}" style="width:100%;">
+				</td>
+			</tr>
+			
+			<tr class="{cycle values=",odd"}">
+				<td>{lang key1="admin" key2="elements" key3="bank"}</td>
+				<td><input type="text" name="bank" value="{$row.bank|escape}" style="width:100%;">
+				</td>
+			</tr>
+			<tr class="{cycle values=",odd"}">
+				<td>{lang key1="admin" key2="elements" key3="post_address"}</td>
+				<td><input type="text" name="post_address" value="{$row.post_address|escape}" style="width:100%;">
+				</td>
+			</tr>
+			
+			<tr class="{cycle values=",odd"}">
+				<td>{lang key1="admin" key2="elements" key3="nds"}</td>
+				<td><input type="text" name="nds" value="{$row.nds|escape}" style="width:100%;">
+				</td>
+			</tr>
+			
+			<tr class="{cycle values=",odd"}">
+				<td>{lang key1="admin" key2="elements" key3="fio_dir"} <small>({lang key1="admin" key2="elements" key3="fio_ex_full"})</small></td>
+				<td><input type="text" name="fio_dir" value="{$row.fio_dir|escape}" style="width:100%;">
+				</td>
+			</tr>
+			<tr class="{cycle values=",odd"}">
+				<td>{lang key1="admin" key2="elements" key3="fio_acc"} <small>({lang key1="admin" key2="elements" key3="fio_ex_full"})</small></td>
+				<td><input type="text" name="fio_buh" value="{$row.fio_buh|escape}" style="width:100%;">
+				</td>
+			</tr>
+					
+			<tr class="{cycle values=",odd"}">
+				<td>{lang key1="admin" key2="elements" key3="fio_dir_short"} <small>({lang key1="admin" key2="elements" key3="fio_ex_short"})</small></td>
+				<td><input type="text" name="fio_dir_kratko" value="{$row.fio_dir_kratko|escape}" style="width:100%;">
+				</td>
+			</tr>
+			<tr class="{cycle values=",odd"}">
+				<td>{lang key1="admin" key2="elements" key3="fio_acc_short"} <small>({lang key1="admin" key2="elements" key3="fio_ex_short"})</small></td>
+				<td><input type="text" name="fio_buh_kratko" value="{$row.fio_buh_kratko|escape}" style="width:100%;">
+				</td>
+			</tr>
+			
+			<tr class="{cycle values=",odd"}">
+				<td>{lang key1="admin" key2="elements" key3="sign_director"} <small>jpg, gif {lang key1="admin" key2="or"} png</small></td>
+				<td>{if !empty($row.dir_id) AND !empty($row.dir_ext)}
+				<a href="{$site.site_url}/getfile/?l={$row.dir_id|md5}&ext={$row.dir_ext}&id={$row.id}" target="_blank">{$row.dir_ext}</a>
+				{/if} <input type="file" name="org[dir]"></td>
+				</td>
+			</tr>
+			<tr class="{cycle values=",odd"}">
+				<td>{lang key1="admin" key2="elements" key3="sign_accountant"} <small>jpg, gif {lang key1="admin" key2="or"} png</small></td>
+				<td>{if !empty($row.buh_id) AND !empty($row.buh_ext)}
+				<a href="{$site.site_url}/getfile/?l={$row.buh_id|md5}&ext={$row.buh_ext}&id={$row.id}" target="_blank">{$row.buh_ext}</a>
+				{/if} <input type="file" name="org[buh]"></td>
+				</td>
+			</tr>
+			<tr class="{cycle values=",odd"}">
+				<td>{lang key1="admin" key2="elements" key3="stamp"} <small>jpg, gif {lang key1="admin" key2="or"} png</small></td>
+				<td>{if !empty($row.stamp_id) AND !empty($row.stamp_ext)}
+				<a href="{$site.site_url}/getfile/?l={$row.stamp_id|md5}&ext={$row.stamp_ext}&id={$row.id}" target="_blank">{$row.stamp_ext}</a>
+				{/if} <input type="file" name="org[stamp]"></td>
+				</td>
+			</tr>
+			<tr class="{cycle values=",odd"}">
+				<td>{lang key1="admin" key2="elements" key3="logo"} <small>jpg, gif {lang key1="admin" key2="or"} png</small></td>
+				<td>{if !empty($row.logo_id) AND !empty($row.logo_ext)}
+				<a href="{$site.site_url}/getfile/?l={$row.logo_id|md5}&ext={$row.logo_ext}&id={$row.id}" target="_blank">{$row.logo_ext}</a>
+				{/if} <input type="file" name="org[logo]"></td>
+			</tr>
+		
+			<tr class="{cycle values=",odd"}">
+				<td>{lang key1="admin" key2="user" key3="reg_date"} {$row.data_reg}</td>
+				<td>{ html_select_date 
+						time=$row.data_reg 
+						start_year="1970" 
+						end_year="+0" 
+						reverse_years="true" 
+						field_order="DMY" 
+						field_separator=" " 
+						lang=$site_vars.lang_admin  
+						day_value_format="%02d" 						
+						month_format="%m" 
+						year_empty="-" month_empty="-" day_empty="-"} 
+				</td>
+			</tr>
+			
+			<tr bgcolor="{cycle values="#ffffff,".$admin_vars.bglight }">
+				<td align="right">
+					<input type="submit" name="save" value="{lang key1="admin" key2="save"}">
+					{ if !empty($row.id) AND empty($row.qty_orders) AND empty($row.qty_sites)}
+						</td><td align="right">
+						<input class="small" type="submit" name="delete" value="{lang key1="admin" key2="delete"}"  onclick="if(confirm('{lang key1="admin" key2="really"}')) return true; else return false;">
+					{else}</td><td>{ /if }
+				</td>
+			</tr>
+		</form>
+	</table>
+	
+
+{ include file="footer.html" } 

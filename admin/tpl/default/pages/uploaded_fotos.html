@@ -1,0 +1,77 @@
+  <h4>{lang key1="admin" key2="elements" key3="uploaded_pics"} ({$categ.fotos_qty})</h4>
+
+<table width="100%">
+  <tbody>
+    <tr>
+      <th width="50"><i class="fa fa-home" title="{lang key1="admin" key2="elements" key3="main_img"}"></i></th>
+      <th width="150">{lang key1="admin" key2="photo"}</th>
+      <th>{lang key1="admin" key2="elements" key3="name"}</th>
+      <th width="80"><i class="fa fa-sort" title="{lang key1="admin" key2="status" key3="sort"}"></i></th>
+      <th align="center" width="50"><i class="fa fa-cut" title="{lang key1="admin" key2="index" key3="do_new_foto"}"></i> <input type="checkbox" onclick="CheckAll(this,'resize_again[]'); CheckAll(this,'resize_again_group[]');"></th>      
+      <th align="center" width="50"><i class="fa fa-trash-o" title="{lang key1="admin" key2="delete"}"></i> <input type="checkbox" onclick="CheckAll(this,'delete_pics[]'); CheckAll(this,'delete_group[]');"></th>
+      
+    </tr>
+</table>
+    {assign var="current" value=0}
+    {foreach from=$categ.uploaded_fotos key="key" value="img"}
+      {if $current != $img.id_in_record}
+        {assign var="current" value=$img.id_in_record}
+        { math equation="( x - 1 )" x=$current assign="previous" }
+        {if $previous == 0}{assign var="previous" value=$categ.fotos_qty}{/if}
+        { math equation="( x + 1 )" x=$current assign="next" }
+        {if $next > $categ.fotos_qty}{assign var="next" value=1}{/if}
+        { math equation="( x + 10 )" x=$key assign="stop_key" }
+
+        {* start new row *}          
+        <table id="img{$img.id_in_record}" width="100%" class="">
+          <tr class="odd">
+          
+          
+          <td align="center" width="50"><input name="default_pic" type="radio" value="{$current}"{if $img.is_default == 1}checked="checked" {/if} /></td>
+          <td width="150" align="center">
+            <a href="../upload/records/{$img.id}.{$img.ext}" onclick="ImgWin('../upload/records/{$img.id}.{$img.ext}','{$img.id_in_record}','{$img.width}','{$img.height}'); return false;" target="_blank"><img src="/upload/records/{$img.id}.{$img.ext}" {if $img.width > 150}width="140" {/if}border="0" /></a>
+          </td>
+          <td>          
+            <input type="text" name="update_pics_title[{$img.id_in_record}]" style="width: 100%;" value="{$img.title|htmlspecialchars}">
+			
+			<a href="javascript: ShowHide('block-{$img.id_in_record}')" style="border-bottom: 1px dashed blue;">{lang key1="admin" key2="elements" key3="extra"}</a>
+					
+						<div style="display: none;" id="block-{$img.id_in_record}">
+							<table cellpadding="0" cellspacing="1" width="100%">
+								<tbody>
+									<tr>
+										<td width="200">{lang key1="admin" key2="fav" key3="title"} (ext_h1): </td>
+										<td><textarea name="img_ext_h1[{$img.id_in_record}]" rows="3" style="width:100%;">{$img.ext_h1}</textarea></td>
+									</tr>
+									<tr>
+										<td width="200">{lang key1="admin" key2="products" key3="desc"} (ext_desc): </td>
+										<td><textarea name="img_ext_desc[{$img.id_in_record}]" rows="3" style="width:100%;">{$img.ext_desc}</textarea></td>
+									</tr>
+									<tr>
+										<td width="200">{lang key1="admin" key2="extra_desc"} (ext_link): </td>
+										<td><textarea name="img_ext_link[{$img.id_in_record}]" rows="3" style="width:100%;">{$img.ext_link}</textarea></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+			
+            <p>
+            {for start=$key stop=$stop_key step=1 value=nextcurrent}
+              {if isset($categ.uploaded_fotos[$nextcurrent].width) AND $current == $categ.uploaded_fotos[$nextcurrent].id_in_record}
+              <a href="../upload/records/{$categ.uploaded_fotos[$nextcurrent].id}.{$categ.uploaded_fotos[$nextcurrent].ext}" onclick="ImgWin('../upload/records/{$categ.uploaded_fotos[$nextcurrent].id}.{$categ.uploaded_fotos[$nextcurrent].ext}','{$categ.uploaded_fotos[$nextcurrent].id_in_record}','{$categ.uploaded_fotos[$nextcurrent].width}','{$categ.uploaded_fotos[$nextcurrent].height}'); return false;" target="_blank" style="margin-right:20px; white-space: nowrap;"><small><i class="fa fa-external-link"></i>  {$categ.uploaded_fotos[$nextcurrent].width}*{$categ.uploaded_fotos[$nextcurrent].height}</small></a> 
+              {/if}
+            {/for}
+            </p>
+          </td>
+          {*<input type="hidden" name="img{$previous}_position" id="img{$previous}_position" value="{$current}">*}
+          <td align="center" width="80" nowrap><a href="javascript:" onclick="MoveUp(this);"><i class="fa fa-chevron-up"></i></a>&nbsp;<span id="img{$img.id_in_record}_position_text">{$img.id_in_record}</span>&nbsp;<a href="javascript:" onclick="MoveDown(this);"><i class="fa fa-chevron-down"></i></a></td>
+          <input type="hidden" name="img{$img.id_in_record}_position" id="img{$img.id_in_record}_position" value="{$img.id_in_record}">
+          <td align="center" width="50"><input type="checkbox" name="resize_again[]" value="{$img.id_in_record}"></td>
+
+          <td align="center" width="50"><input type="checkbox" name="delete_pics[]" value="{$img.id_in_record}"></td>
+          </tr>
+        </table>
+          
+          
+      {/if}
+    {/foreach}

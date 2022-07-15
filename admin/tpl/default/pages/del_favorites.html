@@ -1,0 +1,3 @@
+{* already in favorites. link to delete from favorites *}
+<a href="{$fav_url}&del_fav=1"><i class="fa fa-star" title="{lang key1="admin" key2="del_fav"}"></i></a> {if !empty($fav.title)}{$fav.title}{/if}
+{if !empty($fav.comment)}<p class="mt-5 mb-5"><small>{$fav.comment}</small></p>{/if}

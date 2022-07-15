@@ -1,0 +1,105 @@
+{if !empty($site_vars.lang)}
+<html lang="{$site_vars.lang|truncate:2:""|lower}">
+{else}
+<html>
+{/if}
+  <head>
+    <title>{$metatitle}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta content="SIMPLA.es" name="keywords">
+    <meta content="SIMPLA.es" name="description">
+    <meta content="global" http-equiv="distribution">
+    <link href="css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="icon" href="{$tpl}favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="{$tpl}favicon.ico" type="image/x-icon">	
+    <link rel="StyleSheet" href="{$tpl}css/style.css" type="text/css">
+    <link type="text/css" href="css/ui-lightness/jquery-ui-1.8.2.custom.css" rel="stylesheet" />
+	
+    <script>
+      //Определяется переменная, которая будет доступна для 
+      // всех JavaScript, подключаемых на данной странице
+      var close_window = '{lang key1="admin" key2="close_window"}';
+    </script>
+
+    {*<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>*}
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script type="text/javascript" src="js/admin.js"></script>
+    <script type="text/javascript" src="../module/js/script.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-1.8.2.custom.min.js"></script>
+    
+  	<script type="text/javascript" src="ckfinder/ckeditor/ckeditor.js"></script>
+  	<script type="text/javascript" src="ckfinder/ckfinder.js"></script>
+
+</head>
+
+<body bgcolor="#ffffff" leftmargin=0 marginheight=0 marginwidth=0 rightmargin=0 topmargin=0>
+
+{if !empty($admin_vars)}
+
+  <table border="0" width="100%" cellspacing="0" cellpadding="0" id="table1" class="nomargin">
+    <tr>
+      <td colspan=3 background="{$tpl}images/header-bg-top.gif" height="5">
+            {include file="../langselector.tpl"}
+		</td>
+	</tr>
+	<tr>
+		<td background="{$tpl}images/header-bg-left.gif" width="206" height="57"><p align="center"><a href="./" style="font-size:24px;">{show_var_img qty="1" width="120" height="33" from="img_cmslogo" default=$tpl."images/logo.png" align="bottom"}</a></td>
+		<td background="{$tpl}images/header-bg-center.gif" width="21" height="57">&nbsp;</td>
+		<td background="{$tpl}images/header-bg-right.gif" height="57" valign="top"><table border=0 width="100%" align=left cellpadding=5 cellspacing=0 class="nomargin" style="margin-top:5px;">
+        <tr>
+          <td style="color:#ffffff;text-transform:uppercase;" width="60%">
+          <a href="?action=info" class="white">{lang key1="admin" key2="main_menu"}</a> |
+          <a href="?action=settings" class="white">{lang key1="admin" key2="settings"}</a>
+            <span style="float:right;">
+			<a href="/{$simpla.CONST.ADMIN_FOLDER}/" class="white"><i class="fa fa-home" style="color:white;"></i></a>
+			{if $check_fb > 0}<a href="?action=feedback" class="white" style="padding-left:15px;"><i class="fa fa-envelope" style="color:white;"></i> {$check_fb}</a>{/if}
+            {if $check_orders > 0} <a href="?action=orders" class="white" style="padding-left:15px;"><i class="fa fa-shopping-cart" style="color:white;"></i> {$check_orders}</a>{/if}
+			
+			{if !empty($site_vars.sys_licence_prolong)}
+				<a href="?action=settings&do=licence" class="white"><i class="fa fa-info-circle" style="color:#cc3300;" title="{lang key1="admin" key2="update_support"}"></i></a>
+			{/if}
+			
+			</span></td><td align="right" style="color:#ffffff; padding-right: 10px; ">
+          
+		  {if !empty($user.avatar)}
+		  <img src="{$user.avatar}" style="max-height:20px;" />
+		  {else}
+		  <i class="fa fa-user" ></i>
+		  {/if}
+		  
+          <a href="?action=settings&do=add_user&id={$admin_vars.bo_user.id}" class="white">
+          {$admin_vars.bo_user.name}</a> | <a href="?action=logout" class="white">{lang key1="admin" key2="logout"}</a> |   
+          <i class="fa fa-external-link"></i> <a href="../" class="white" target="_blank">{lang key1="admin" key2="to_website"}</a>
+        </td></tr>
+      </table></td>
+	</tr>
+</table><table cellspacing="0" class="breadAndSeach nomargin">
+	<tr>
+	<td class="breadcrumbs" style="padding-left:10px;">
+	  <a href="/{$simpla.CONST.ADMIN_FOLDER}/">{lang key1="admin" key2="home"}</a>
+	  {foreach from=$path key="key" value="value"}
+     &gt; {if $key != ""}<a href="{$key}">{/if}{$value}{if $key != ""}</a>{/if}	  
+	  {/foreach}
+	</td><!-- /breadcrumbs -->
+	<td class="search" style="padding-right:10px;"><!--<a href="">язык</a>-->
+		<form method="get" action="" onsubmit="location.href='/{$simpla.CONST.ADMIN_FOLDER}/?action=search&q='+encodeURIComponent(this.q.value); return false;">
+		<fieldset>
+			<input type="text" value="{if isset($query)}{$query|strip|inform}{else}{lang key1="admin" key2="search"}{/if}" id="q" class="searchInput" size="15" name="q" onfocus="javascript:ClearSearchInput(this,true);" onblur="ClearSearchInput(this,false);"/>
+			<input type="submit" class="searchButton" value="" />
+		</fieldset>
+		</form>
+	</td><!-- /search -->
+	</tr>
+</table><!-- /breadAndSeach -->
+
+<table width="100%" cellpadding=3 border=0>
+	<tr>
+		<td><!-- Main Content starts -->
+
+<table border=0 width="100%" cellpadding=5 cellspacing=0>
+  <tr>
+    <td valign="top" style="width:200px;">
+      {$sidebar}    
+	  
+{/if}

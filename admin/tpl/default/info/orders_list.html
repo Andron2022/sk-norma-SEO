@@ -1,0 +1,112 @@
+{include file="header.html"}
+{if !empty($admin_vars.default_currency)}
+	{if $admin_vars.default_currency == "euro"}
+		{assign var="t_currency" value="<i class='fa fa-euro'></i>"}
+	{elseif $admin_vars.default_currency == "usd"}
+		{assign var="t_currency" value="<i class='fa fa-usd'></i>"}
+	{else}
+		{assign var="t_currency" value="<i class='fa fa-rub'></i>"}
+	{/if}
+{else}
+	{assign var="t_currency" value=""}
+{/if}
+		
+<h1 class="mt-0">{lang key1="admin" key2="prava" key3="orders"}</h1>
+
+{if !empty($orders_list) OR (!empty($simpla.GET.site_id) AND $all_sites|@count > 1) OR  !empty($simpla.GET.number)}
+
+    <table width="70%">
+    <form method="get">
+		<tr>
+			<td valign="top">
+				{lang key1="admin" key2="fb" key3="filter"}: 
+				<input type="hidden" name="action" value="orders">
+				{if !empty($simpla.GET.site_id)}
+					<input type="hidden" name="site_id" value="{$simpla.GET.site_id}">
+				{/if}
+				<select name="" onchange="top.location=this.value">
+					<option value="?action=orders"> - {lang key1="admin" key2="fb" key3="all_sites"}</option>
+					{foreach from=$all_sites value="s"}
+						<option value="?action=orders&site_id={$s.id}"{if !empty($simpla.GET.site_id) AND $simpla.GET.site_id == $s.id} selected="selected"{/if}>{$s.id}: {$s.url|delhttp}</option>  
+					{/foreach}
+				</select>
+			</td>
+			<td align="right">
+				{lang key1="admin" key2="orders" key3="field_to_search"} 
+			</td>
+			
+			<td valign="top">
+			<input type="text" name="number" size="25" 
+				style="width:100%;"
+				value="{if !empty($simpla.GET.number)}{$simpla.GET.number}{/if}" />
+			</td>
+			<td valign="top">
+				<input class="small" type="submit" value="{lang key1="admin" key2="fb" key3="find"}" />
+			</td>
+    </form>
+	</table>
+	
+{/if}
+
+
+{ if isset($simpla.get.deleted) }
+  <table width="70%"><tr><td><blockquote><a href="?action=orders">{lang key1="admin" key2="deleted"}</a></blockquote></td></tr></table>
+{ /if }
+{ if isset($simpla.get.updated) }
+  <table width="70%"><tr><td><blockquote><p>{lang key1="admin" key2="updated"}</p></blockquote></td></tr></table>
+{ /if }
+
+
+{include file="pages/pages.html"}
+
+{if $orders_list|@count > 0 }
+
+<table border=0 cellpadding=4>
+  <tr>
+  	<th>#</th>
+  	<th>{lang key1="admin" key2="date"}</th>
+  	<th>{lang key1="admin" key2="orders" key3="order_summ"}</th>
+  	<th>{lang key1="admin" key2="prava" key3="delivery"}</th>
+	<th>{lang key1="admin" key2="orders" key3="discount"}</th>
+  	<th>{lang key1="admin" key2="orders" key3="summ"}</th>
+  	<th>{lang key1="admin" key2="orders" key3="delivery_method"}</th>
+	<th>{lang key1="admin" key2="orders" key3="buyer"}</th>
+	<th><i class="fa fa-comments"></i></th>
+  	{*<th><i class="fa fa-phone"></i></th>  	
+  	<th><i class="fa fa-envelope"></i></th>*}
+	<th>{lang key1="admin" key2="orders" key3="coupon"}</th>
+  	<th>{lang key1="admin" key2="products" key3="status"}</th>
+	</tr>
+
+	{foreach from=$orders_list value="value" }
+		
+	<tr {cycle values=" ,class='odd'"}>
+		<td nowrap><a href="?action=orders&id={$value.id}">{if !empty($value.fav)}<small><i class="fa fa-star"></i></small> {/if}{$value.site_id}-{$value.order_id|chunk:4:"-"}</a>
+		{if $value.original_summa != $value.summa}<i class="fa fa-exclamation-triangle" style="color:red;" title="{lang key1="admin" key2="orders" key3="start_price_changed"}"></i>{/if}{if $value.payd_status == "1"} <i class="fa fa-truck" style="color:green;" title="{lang key1="admin" key2="orders" key3="order_payd"}"></i>{/if}</td>		
+		<td><small><a href="?action=orders&id={$value.id}">{$value.created|date:$site.site_date_format} {$value.created|date:$site.site_time_format}</a></small></td>
+		<td align="right"><a href="?action=orders&id={$value.id}">{$value.summa|priceformat:$value.order_currency} 
+		</a></td>
+		<td align="right">{if !empty($value.delivery_price)}<a href="?action=orders&id={$value.id}">{$value.delivery_price|priceformat:$value.order_currency}</a>{/if}</td> 
+		<td align="right">{if !empty($value.discount_summ)}<a href="?action=orders&id={$value.id}">{$value.discount_summ|priceformat::$value.order_currency}</a>{/if}</td> 		
+		<td align="right" nowrap><b>{ $value.total_summ|priceformat:$value.order_currency }</b></td>		
+		<td align="right"><a href="?action=orders&id={$value.id}">{$value.delivery_title}</a></td>
+		<td><a href="?action=orders&id={$value.id}">{$value.fio}</a></td>
+		<td align="center">{if !empty($value.comments)}<a href="?action=orders&id={$value.id}">{$value.comments}</a>{/if}</td>
+		{*td><a href="?action=orders&id={$value.id}">{$value.phone}</a></td>		
+		<td><a href="?action=orders&id={$value.id}">{$value.email}</a></td>*}
+		<td><a href="?action=orders&id={$value.id}">{$value.coupon}</a></td>
+		<td>{if $value.status == 0}<span style="color:red;">{lang key1="admin" key2="orders" key3="new"}</span>		
+		{else}
+			{if !empty($value.status_title)}{$value.status_title}{else}{$value.status}{/if}
+		{/if}</td>
+	</tr>
+	{/foreach}
+
+	</table>
+	
+{else}
+  <blockquote>{lang key1="admin" key2="set" key3="list_empty"}</blockquote>
+{/if}
+
+{include file="pages/pages.html"}
+{include file="footer.html" }

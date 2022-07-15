@@ -1,0 +1,94 @@
+{include file="header.html"}
+
+<h1 class="mt-0">{lang key1="admin" key2="fb" key3="user_requests"}</h1>
+
+<table width="80%"><tr>
+{if ($feedback_list|@count > 0 
+	OR !empty($simpla.GET.site_id) 
+	OR !empty($simpla.GET.q)
+	) AND $all_sites|@count > 1}
+	<td>
+    
+    <form method="get">
+		{lang key1="admin" key2="fb" key3="filter"}: 
+        <input type="hidden" name="action" value="feedback">
+        <select name="" onchange="top.location=this.value">
+            <option value="?action=feedback"> - {lang key1="admin" key2="fb" key3="all_sites"}</option>
+            {foreach from=$all_sites value="s"}
+                <option value="?action=feedback&site_id={$s.id}"{if !empty($simpla.GET.site_id) AND $simpla.GET.site_id == $s.id} selected="selected"{/if}>{$s.title} {$s.url}</option>  
+            {/foreach}
+        </select>
+    </form>
+	</td>
+{/if}
+
+{if ($feedback_list|@count > 0 OR !empty($simpla.GET.q))}	
+	<td>
+    <form method="get">
+		{lang key1="admin" key2="prava" key3="search"} 
+        <input type="hidden" name="action" value="feedback">
+		{if !empty($simpla.GET.site_id)}
+			<input type="hidden" name="site_id" value="{$simpla.GET.site_id}">
+		{/if}		
+        <input type="text" size="20" name="q" value="{if !empty($simpla.GET.q)}{$simpla.GET.q|trim|escape}{/if}">
+        <input type="submit" value="{lang key1="admin" key2="fb" key3="find"}">
+    </form>
+	</td>
+{/if}
+</tr></table>
+
+{ if isset($simpla.get.deleted) }
+  <table width="80%"><tr><td><blockquote>{ $simpla.get.deleted } {lang key1="admin" key2="deleted"}</blockquote></td></tr></table>
+{ /if }
+{ if isset($simpla.get.updated) }
+  <table width="80%"><tr><td><blockquote>{lang key1="admin" key2="updated"}</blockquote></td></tr></table>
+{ /if }
+
+{if $feedback_list|@count > 0 }
+
+{if $feedback_list|@count > 10}
+{include file="pages/pages.html"}
+{/if}
+
+<table width="100%"><form method=post name=form1>
+  <tr>
+  	<th>#</th>
+  	<th>{lang key1="admin" key2="date"}</th>
+  	<th>{lang key1="admin" key2="user" key3="phone"}</th>
+  	<th>{lang key1="admin" key2="author"}</th>
+  	<th><i class="fa fa-envelope"></i></th>
+  	<th><i class="fa fa-comments"></i></th>
+	<th>{lang key1="admin" key2="products" key3="status"}</th>
+  	<th>{lang key1="admin" key2="fb" key3="mark"}</th>
+	<th>{lang key1="admin" key2="website"}</th>
+	<th><i class="fa fa-info-circle" title="{lang key1="admin" key2="fb" key3="sess_record"}"></i></th>
+  	<th><i class="fa fa-trash"></i> <INPUT onclick="CheckAll(this,'id[]')" type=checkbox></th>
+	</tr>
+
+	{foreach from=$feedback_list value="value" }
+	<tr {cycle values=" ,class='odd'"}>
+		<td><a href="?action=feedback&id={$value.id}">{if !empty($value.fav)}<small><i class="fa fa-star"></i></small> {/if}<small>{$value.ticket}</small></a></td>
+		<td><small><a href="?action=feedback&id={$value.id}">{$value.sent|date:$site.site_date_format} {$value.sent|date:$site.site_time_format}</a></small></td>
+		<td><a href="?action=feedback&id={$value.id}">{$value.phone|stripslashes}</a></td>
+		<td><a href="?action=feedback&id={$value.id}">{$value.name|stripslashes}</a></td>
+		<td><a href="?action=feedback&id={$value.id}">{$value.email|stripslashes}</a></td>
+		<td align="center">{if !empty($value.comments)}<a href="?action=feedback&id={$value.id}">{$value.comments}</a>{/if}</td>
+		<td class="center">{if $value.status == 0}<i class="fa fa-question-circle red" title="{lang key1="admin" key2="fb" key3="answer_wait"}"></i>{else}<i class="fa fa-check blue" title="{lang key1="admin" key2="fb" key3="answer_sent"}"></i>{/if}</td>
+		<td>{$value.type}</td>
+		<td>{if empty($value.site_url)}-{else}{$value.site_url|delhttp}{/if}</td>
+		<td align="center">{if !empty($value.visit_log_id)}<a href="?action=stat&id={$value.visit_log_id}"><i class="fa fa-info"></i></a>{/if}</td>
+		<td align="center"><INPUT type=checkbox name=id[] value="{$value.id}"></td>
+	</tr>
+	{/foreach}
+
+		<tr>
+      <td colspan="11" align="right"><input type="submit" name="set_read" value="{lang key1="admin" key2="fb" key3="no_need_answer"}"> <small><input type="submit" name="delete" value="{lang key1="admin" key2="delete"}" onclick="{literal}if(confirm('{lang key1="admin" key2="really"}')){return true;}else{return false;}{/literal}"></small></td>
+    </tr>
+	</form></table>
+  
+{else}
+  <table width="80%"><tr><td><blockquote>{lang key1="admin" key2="set" key3="list_empty"}</blockquote></td></tr></table>
+{/if}
+
+{include file="pages/pages.html"}
+{include file="footer.html" }

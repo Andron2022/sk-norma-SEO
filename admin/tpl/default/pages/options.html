@@ -1,0 +1,48 @@
+
+              {foreach from=$categ.options value="opt_group"}
+                <h4 style="text-align:center;"><a href="?action=products&do=option_group&id={$opt_group.group_id}"><i class="fa fa-info-circle"></i> {$opt_group.title}</a>
+				{if $opt_group.to_show == "hidden"} / {lang key1="admin" key2="fb" key3="hidden" case="lower"}
+				{elseif $opt_group.to_show == "user"} / {lang key1="admin" key2="products" key3="for_users"}
+				{elseif $opt_group.to_show == "manager"} / {lang key1="admin" key2="products" key3="for_managers"}
+				{elseif $opt_group.to_show == "info"} / {lang key1="admin" key2="products" key3="for_content"}
+				{/if}</h4>
+				
+				{if !empty($opt_group.hide_title)}<p style="text-align:center;"><span style="background-color:#cccccc; padding:3px;">{lang key1="admin" key2="products" key3="group_hidden"}</span></p>{/if}
+				
+		{if !empty($opt_group.description)}<p style="text-align:center;">{$opt_group.description|nl2br}</p>{/if}
+                <table cellpadding="3" cellspacing="1" border="0" width="100%">
+			<tr>
+				<th>{if !empty($opt_group.opt_title)}{$opt_group.opt_title}{else}{lang key1="admin" key2="sidebar" key3="option"}{/if}</th>
+				<th>{if !empty($opt_group.value1)}{$opt_group.value1}{else}{lang key1="admin" key2="elements" key3="value"}{/if}</th>
+				{if !empty($opt_group.value2)}<th>{$opt_group.value2}</th>{/if}
+				{if !empty($opt_group.value3)}<th>{$opt_group.value3}</th>{/if}
+				<th width="50">...</th>
+			</tr>
+                {foreach from=$opt_group.options value="opt"}
+                  <tr {cycle values="class=odd, " }>
+                    <td width="200" align="right"><a href="?action=products&do=options&id={$opt.id}">{$opt.title|replace:"|":" &raquo; "}</a></td>
+                    <td>{get_option_field id=$opt.id value_id=$opt.value_id type=$opt.type if_select=$opt.if_select value=$opt.product_value product_id=$categ.id title=$opt.title field="value" value2=$opt.product_value2 value3=$opt.product_value3}
+					</td>
+					
+                    {if !empty($opt_group.value2)}
+					<td>{get_option_field id=$opt.id value_id=$opt.value_id  type=$opt.type if_select=$opt.if_select value=$opt.product_value2 product_id=$categ.id title=$opt.title field="value2"}</td>{/if}
+					
+                    {if !empty($opt_group.value3)}
+					<td>{get_option_field id=$opt.id value_id=$opt.value_id  type=$opt.type if_select=$opt.if_select value=$opt.product_value3 product_id=$categ.id title=$opt.title field="value3"}</td>{/if}
+					
+                    <td width="50" align="center">{if !empty($opt.after)}{$opt.after}<br>{/if}
+					{if empty($simpla.GET.add_option)} 
+						{if !empty($categ.record_type) AND $categ.record_type == "product"}
+						<a href="?action=products&do=edit&id={$categ.id}&add_option={$opt.id}&group_id={$opt.group_id}" title="{lang key1="admin" key2="products" key3="add_value"}">+</a> 						
+						<a href="?action=products&do=edit&id={$categ.id}&del_option={$opt.value_id}" onclick="return confirm('{lang key1="admin" key2="really"}')"><i class="fa fa-trash" title="{lang key1="admin" key2="products" key3="del_value"}"></i></a>
+						{else}					
+						<a href="?action=info&do=edit_publication&id={$categ.id}&add_option={$opt.id}&group_id={$opt.group_id}" title="{lang key1="admin" key2="products" key3="add_value"}">+</a> 
+						<a href="?action=info&do=edit_publication&id={$categ.id}&del_option={$opt.value_id}" onclick="return confirm('{lang key1="admin" key2="really"}')"><i class="fa fa-trash" title="{lang key1="admin" key2="products" key3="del_value"}"></i></a>
+						{/if}
+					{/if}</td>
+                  </tr>
+                {/foreach}                
+				
+				
+                </table>
+              {/foreach}

@@ -1,0 +1,107 @@
+{*
+options for payments, pages, delivery methods
+value - название
+value2 - значение
+value3 - код
+*}
+
+{literal}
+<script>
+	function add_options(){
+		var tbl = document.getElementById('upload_extra');
+		var numextra = document.getElementById('num_extra_field').value;		
+		var tr = tbl.insertRow(-1);		
+		tr.className = "odd";		
+		var td1 = tr.insertCell(-1);
+		var td2 = tr.insertCell(-1);
+		var td3 = tr.insertCell(-1);	
+		var td4 = tr.insertCell(-1);	
+		
+		td1.innerHTML = '<input type="text" style="width:100%;" name="extra_options[value]['+numextra+']" />'; 		
+		td2.innerHTML = '<input type="text" style="width:100%;" name="extra_options[value2]['+numextra+']" />';		
+		td3.innerHTML = '<input type="text" style="width:100%;" name="extra_options[value3]['+numextra+']" />';
+		td4.innerHTML = numextra;
+		td4.style.textAlign = "center";
+		numextra++;
+		document.getElementById('num_extra_field').value = numextra;
+	}
+</script>
+{/literal}
+
+	<a href="javascript: ShowHide('add_extra')" style="border-bottom: 1px dashed blue;">{if !empty($extra_options)}{lang key1="admin" key2="products" key3="options"} ({$extra_options|@count}){else}{lang key1="admin" key2="products" key3="adding_option"}{/if}</a>
+	
+	<div style="{if empty($extra_options)}display: none;{/if}" id="add_extra"> 
+
+		<table border=0 id="upload_extra" width="100%">
+			<tr class="odd">
+				<th width="30%">
+					{lang key1="admin" key2="elements" key3="name"}
+				</th>
+
+				<th width="30%">
+					{lang key1="admin" key2="elements" key3="value"}
+				</th>
+				<th>
+					<small>{lang key1="admin" key2="blocks" key3="title"}</small>
+				</th>	
+				<th>
+					<i class="fa fa-trash"></i>
+				</th>
+			</tr>
+			{if !empty($extra_options)}
+				{foreach from=$extra_options value="v"}
+					<tr class="odd">
+						<td valign="top" width="30%">
+							<input type="text" style="width:100%;" name="update_extra[value][{$v.id}]" value="{$v.value|trim|escape}" />
+						</td>
+
+						<td valign="top" width="30%">
+							<input type="text" style="width:100%;" name="update_extra[value2][{$v.id}]" value="{$v.value2|trim|escape}">
+						</td>
+						<td valign="top">
+							<input type="text" style="width:100%;" name="update_extra[value3][{$v.id}]" value="{$v.value3|trim|escape}">
+						</td>	
+						<td align="center">
+							<input type="checkbox" name="delete_extra_options[]" value="{$v.id}">
+						</td>	
+						
+					</tr>
+				{/foreach}
+				<tr class="odd">
+					<td valign="top" width="30%">
+						<input type="text" style="width:100%;" name="extra_options[value][1]" />
+					</td>
+
+					<td valign="top" width="30%">
+						<input type="text" style="width:100%;" name="extra_options[value2][1]" />
+					</td>
+					<td valign="top">
+						<input type="text" style="width:100%;" name="extra_options[value3][1]" />
+					</td>	
+					<td align="center">1</td>	
+					
+				</tr>
+				<input type="hidden" name="numextra" id="num_extra_field" value="2" />
+			{else}
+				<tr class="odd">
+					<td valign="top" width="30%">
+						<input type="text" style="width:100%;" name="extra_options[value][1]" />
+					</td>
+
+					<td valign="top" width="30%">
+						<input type="text" style="width:100%;" name="extra_options[value2][1]" />
+					</td>
+					<td valign="top">
+						<input type="text" style="width:100%;" name="extra_options[value3][1]" />
+					</td>	
+					<td align="center">1</td>	
+					
+				</tr>
+				<input type="hidden" name="numextra" id="num_extra_field" value="2" />
+			{/if}
+		</table>
+		
+		<a href="javascript:add_options();"><i class="fa fa-plus"></i> {lang key1="admin" key2="add"}</a>
+		
+
+</div>

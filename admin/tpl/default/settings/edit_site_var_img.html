@@ -1,0 +1,319 @@
+{include file="header.html"}
+
+<h1 class="mt-0">{if !empty($site_var.id)}{favorites where="var" id=$site_var.id} {lang key1="admin" key2="elements" key3="edit_title"}{else}{lang key1="admin" key2="elements" key3="add_title"}{/if}</h1>
+
+{include file="settings/elements_menu.html"}
+
+    {uploaded_pics id=$site_var.id where="var" assign="pics"}
+
+
+<table width="80%"><tr><td>
+	
+{if isset($messages) }
+  { $messages }
+{elseif isset($simpla.GET.added)}
+  <blockquote><p><a href="?action=settings&do=site_vars&id={$site_var.id}">{lang key1="admin" key2="elements" key3="added"}</a></p></blockquote>
+{elseif isset($simpla.GET.updated)}
+  <blockquote><p><a href="?action=settings&do=site_vars&id={$site_var.id}">{lang key1="admin" key2="elements" key3="updated"}</a></p></blockquote>
+  
+  {assign var="readonly_test" value=$site_var.name|truncate:4:"":false}
+    <ul>
+    {if $readonly_test == "sys_" OR $readonly_test == "smtp"}
+      {if $site_var.site_id == 0}
+        <li><a href="?action=settings&do=site_vars&mode=sys&site_id=0">{lang key1="admin" key2="elements" key3="common_sys_vars"}</a></li>
+      {else}
+        <li><a href="?action=settings&do=site_vars&mode=sys&site_id={$site_var.site_id}">{lang key1="admin" key2="elements" key3="site_sys_vars"}</a></li>
+      {/if}
+    {else}
+      {if $site_var.site_id == 0}
+        <li><a href="?action=settings&do=site_vars&site_id=0">{lang key1="admin" key2="elements" key3="common_vars"}</a></li>
+      {else}
+        <li><a href="?action=settings&do=site_vars&site_id={$site_var.site_id}">{lang key1="admin" key2="elements" key3="site_vars"}</a></li>
+      {/if}
+    {/if}
+    </ul>
+
+{elseif !$site_var}
+  <p style="color:red;">{lang key1="admin" key2="elements" key3="var_not_found"}</p>
+{else }
+{/if}
+
+
+{if $site_var.name}
+  {assign var="readonly_test" value=$site_var.name|truncate:4:"":false}
+  {if $readonly_test == "sys_" OR $readonly_test == "smtp" OR $readonly_test == "img_"}
+    {assign var="readit" value="no"}
+  {else}
+    {assign var="readit" value="yes"}
+  {/if}
+
+  
+<blockquote>{lang key1="admin" key2="elements" key3="code_to_insert_in_tpl"}:
+	<ul>
+		{if $pics|@count > 1}<li><b>{ldelim}$site.{$site_var.name}.img|@random:1{rdelim}</b> - {lang key1="admin" key2="random"}</li>{/if}
+		{if $pics|@count > 0}<li>{if $pics|@count > 1}{lang key1="admin" key2="or"} {/if}<b>{ ldelim }$site.{$site_var.name}.img.0.url{ rdelim }</b></li>{/if}
+		<li>{lang key1="admin" key2="elements" key3="width"}: <b>{ ldelim }$site.{$site_var.name}.width{ rdelim }</b></li>
+		<li>{lang key1="admin" key2="elements" key3="height"}: <b>{ ldelim }$site.{$site_var.name}.height{ rdelim }</b></li>		
+	</ul>
+</blockquote>
+
+</td></tr></table>
+
+   
+   <form method="post">
+    {if $readit == "no"}
+      <input type="hidden" name="forsite" value="{$site_var.site_id}" />
+      <input type="hidden" name="varname" value="{ $site_var.name }" />
+      <input type="hidden" name="description" value="{ $site_var.description }" />
+      <input type="hidden" name="type" value="{$site_var.type}" />
+      <input type="hidden" name="autoload" value="{ $site_var.autoload }" />
+      <input type="hidden" name="if_enum" value="{ $site_var.if_enum }" />
+      <input type="hidden" name="width" value="{ $site_var.width }" />
+      <input type="hidden" name="height" value="{ $site_var.height }" />
+    {/if}
+
+	<table width="80%">
+	
+{if !empty($site_var.other_vars)}	
+	  <tr {cycle values=",class=odd" }>
+    	<td width="200"><b>{lang key1="admin" key2="elements" key3="same_elements"}</b> <a href="?action=settings&do=site_vars&site_id=-1&q={$site_var.name}"><i class="fa fa-search"></i></a></td>
+    	<td>
+			{foreach from=$site_var.other_vars key="k" value="v"}
+				{if $k > 0}<br>{/if} <i class="fa fa-cogs"></i> <a href="?action=settings&do=site_vars&id={$v.id}">{$v.name}{if !empty($v.site)}<small> / {$v.site_url|delhttp}</small>{/if}</a></li>
+			{/foreach}
+		</td>
+	  </tr>				
+{/if}	
+  	  <tr {cycle values=",class=odd" }>
+    	<td width="200">{lang key1="admin" key2="website"}: </td>
+    	<td>
+          <select name="forsite"{if $readit == "no"} disabled="disabled"{/if}>
+            <option value="0"> - {lang key1="admin" key2="for_all"}</option>
+            {foreach from=$sites value="value"}
+            <option value="{$value.id}"{if $value.id == $site_var.site_id} selected{/if}>{$value.site_url|delhttp}</option>
+            {/foreach}
+          </select>
+        </td>
+	  </tr>
+	  <tr {cycle values=",class=odd" }>
+		<td width="200"><b>{lang key1="admin" key2="elements" key3="name"}</b>: <br>
+		<small>( a-z, 0-9, _ )</small>
+		</td>
+		<td><input name="varname" type="text" style="width:100%;" value="{$site_var.name}"{if $readit == "no"} readonly{/if} /></td>
+	  </tr>
+	  <tr {cycle values=",class=odd" }>
+		<td><b>{if $site_var.type!="checkbox" }{lang key1="admin" key2="elements" key3="value"}: {else}{lang key1="admin" key2="elements" key3="on"}</b>:{/if}</td>
+		    <td>
+                { if $site_var.type=='list' }
+                <select name="value">
+                { foreach from=$site_var.values_ar value="value" }
+                <option value="{ $value }"{ if $value==$site_var.value } selected="selected"{ /if }>{ $value }</option>
+                { /foreach }
+                </select>
+                { elseif $site_var.type=="checkbox" }
+                <input type="hidden" name="value" value="0" />
+                <input type="checkbox" name="value" value="1" { if $site_var.value } checked="checked"{ /if } />                
+                { else }
+                <textarea id="value" name="value" rows="3" style="width:100%;">{ $site_var.value }</textarea>
+                {if $readit == "yes"}
+                  {if isset($simpla.GET.editor)}
+                    <p><a href="?action=settings&do=site_vars&id={$site_var.id}">{lang key1="admin" key2="off_editor"}</a></p>
+                  {else}
+                    <p><a href="?action=settings&do=site_vars&id={$site_var.id}&editor=on">{lang key1="admin" key2="on_editor"}</a></p>
+                  {/if}      
+                {/if}
+                  {if isset($simpla.GET.editor)}
+                    <script type="text/javascript">
+                    	var editor = CKEDITOR.replace( 'value' );
+                    	CKFinder.setupCKEditor( editor, '/ckfinder/' ) ;
+                    </script>
+                  {/if}
+                { /if }
+        </td>
+      </tr>
+		
+      <tr {cycle values=",class=odd" }>
+        <td>{lang key1="admin" key2="elements" key3="description"}: </td>
+        <td><textarea name="description" rows="5" style="width:100%;"{if $readit == "no"} readonly{/if}>{ $site_var.description }</textarea></td>
+	  </tr>
+		
+		
+		
+    
+        {if $readit == "yes"}
+        <tr>
+          <td colspan="2">
+          <a href="javascript: ShowHide('block-meta')" style="border-bottom: 1px dashed blue;">{lang key1="admin" key2="elements" key3="extra"}</a>
+          <div style="display: none;" id="block-meta">
+            <table cellpadding="0" cellspacing="1">
+              <tbody>
+                <tr {cycle values=",class=odd" }>
+                  <td width="200">{lang key1="admin" key2="elements" key3="type"}: </td>
+                  <td><input type="radio" name="type" value="text"{if $site_var.type == "text"} checked{/if} /> {lang key1="admin" key2="elements" key3="text"}
+                      <input type="radio" name="type" value="list"{if $site_var.type == "list"} checked{/if} /> {lang key1="admin" key2="elements" key3="select"}
+                      <input type="radio" name="type" value="checkbox"{if $site_var.type == "checkbox"} checked{/if} /> {lang key1="admin" key2="elements" key3="flag"}
+                  </td>
+                </tr>
+                <tr {cycle values=",class=odd" }>
+                  <td width="200">{lang key1="admin" key2="elements" key3="autoload"}</td>
+                  <td colspan="3"><input type="checkbox" name="autoload" value="1"{if $site_var.autoload == "1"} checked{/if}></td>
+                </tr>
+                <tr {cycle values=",class=odd" }>
+                  <td width="200">{lang key1="admin" key2="elements" key3="variants"}:<br><small>({lang key1="admin" key2="elements" key3="variants_comment"})</small></td>
+                  <td colspan="3"><textarea name="if_enum" rows="4" style="width:100%;">{ $site_var.if_enum }</textarea></td>
+                </tr>
+                <tr {cycle values=",class=odd" }>
+                  <td width="200">{lang key1="admin" key2="elements" key3="size1"}</td>
+                  <td><input type="text" name="width" size="10" maxlength="25" value="{ $site_var.width }"></td>
+                  <td>{lang key1="admin" key2="elements" key3="size2"}</td>
+                  <td><input type="text" name="height" size="10" maxlength="25" value="{ $site_var.height }"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          </td>
+        </tr>
+        {elseif $site_var.name == "img_size1" OR $site_var.name == "img_size2" OR $site_var.name == "img_size3"}
+      		<tr {cycle values=",class=odd" }>
+            <td>{lang key1="admin" key2="elements" key3="sizes"}: <br><small>({lang key1="admin" key2="elements" key3="in_pixels"})</small></td>
+            <td>
+              <table width="100%" cellpadding="3" cellspacing="1">
+               <tr>
+                  <td>{lang key1="admin" key2="elements" key3="width"} (width)</td>
+                  <td><input type="text" name="width" size="10" maxlength="25" value="{ $site_var.width }"></td>
+                  <td>{lang key1="admin" key2="elements" key3="height"} (height)</td>
+                  <td><input type="text" name="height" size="10" maxlength="25" value="{ $site_var.height }"></td>
+                </tr>
+              </table>
+            </td>
+          </tr>  
+      		<tr {cycle values=",class=odd" }>
+            <td>{lang key1="admin" key2="elements" key3="autoload"}</td>
+            <td>{if $site_var.autoload == "1"}<i class="fa fa-check"></i>{else}<i class="fa fa-minus"></i>{/if}</td>
+          </tr>      
+        {elseif $readonly_test == "img_"}
+      		<tr {cycle values=",class=odd" }>
+          <td>{lang key1="admin" key2="elements" key3="sizes"}: <br><small>({lang key1="admin" key2="elements" key3="in_pixels"})</small></td>
+          <td>{lang key1="admin" key2="elements" key3="width"} - { $site_var.width }; {lang key1="admin" key2="elements" key3="height"} - { $site_var.height }</td>
+          </tr>  
+      		<tr {cycle values=",class=odd" }>
+          <td>{lang key1="admin" key2="elements" key3="autoload"}</td>
+          <td>{if $site_var.autoload == "1"}<i class="fa fa-check"></i>{else}<i class="fa fa-minus"></i>{/if}</td>
+          </tr>      
+        {else}
+        {/if}    
+    
+
+		<tr {cycle values=",class=odd" }>
+          <td><input type="submit" name="update" value="{lang key1="admin" key2="save"}" />
+          {if $readit == "yes"}
+            <input type="submit" name="delete" value="{lang key1="admin" key2="delete"}" onclick="if(confirm('{lang key1="admin" key2="really"}')) return true; else return false;" />{/if}
+          </td>
+		  <td align="right"><a href="?action=settings&do=site_vars&id={$site_var.id}&edit=1">{lang key1="admin" key2="edit"}</a></td>
+        </tr>
+
+		</table>
+		</form>
+
+
+    {if $readonly_test == "img_" AND ($site_var.name != "img_size1" AND $site_var.name != "img_size2" AND $site_var.name != "img_size3")}
+      <table width="80%">
+        <tr>
+          <td width="60%" valign="top">
+            <h3>{lang key1="admin" key2="elements" key3="uploaded_pics"}</h3>
+            {if isset($simpla.GET.fotosupdated)}
+              <blockquote>{lang key1="admin" key2="updated"}</blockquote>
+            {/if}
+
+            {if $pics|@count > 0}
+              <form method="post">
+              <table border=0 width="100%">
+                <tr>
+                  <th>{lang key1="admin" key2="photo"}</th>
+                  <th>{lang key1="admin" key2="elements" key3="name"}</th>
+                  <th>{lang key1="admin" key2="elements" key3="width"}</th>
+                  <th>{lang key1="admin" key2="elements" key3="height"}</th>
+                  <th><i class="fa fa-trash"></i></th>
+                  <th><i class="fa fa-sort"></i></th>
+                </tr>
+
+                {foreach value="value" from=$pics}
+                  <tr class="odd">
+                    <td><a href="/upload/records/{$value.id}.{$value.ext}" target="_blank">{$value.id}.{$value.ext}</a></td>
+                    <td><input type="text" name="imgtitle[{$value.id}]" value="{$value.title|escape}"></td>
+                    <td align="center">{$value.width}</td>
+                    <td align="center">{$value.height}</td>
+                    <td><input type="checkbox" name="imgdel[{$value.id}]" value="1"></td>
+                    <td><input type="radio" name="imgdefault" value="{$value.id}"{if $value.is_default == 1} checked{/if}></td>
+                  </tr>
+				  
+				  <tr>
+                    <td colspan="6"><a href="javascript: ShowHide('block-{$value.id}')" style="border-bottom: 1px dashed blue;">{lang key1="admin" key2="elements" key3="extra"}</a>
+					
+						<div style="display: none;" id="block-{$value.id}">
+							<table cellpadding="0" cellspacing="1" width="100%">
+								<tbody>
+									<tr>
+										<td width="200">{lang key1="admin" key2="fav" key3="title"}: 
+										<br><small>(ext_h1)</small></td>
+										<td><textarea name="img_ext_h1[{$value.id}]" rows="3" style="width:100%;">{$value.ext_h1}</textarea></td>
+									</tr>
+									<tr>
+										<td width="200">{lang key1="admin" key2="products" key3="desc"}: 
+										<br><small>(ext_desc)</small></td>
+										<td><textarea name="img_ext_desc[{$value.id}]" rows="3" style="width:100%;">{$value.ext_desc}</textarea></td>
+									</tr>
+									<tr>
+										<td width="200">{lang key1="admin" key2="extra_desc"}: 
+										<br><small>(ext_link)</small></td>
+										<td><textarea name="img_ext_link[{$value.id}]" rows="3" style="width:100%;">{$value.ext_link}</textarea></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					
+					</td>
+                  </tr>
+				  
+				  
+				  
+				  
+                {/foreach}
+              </table>
+              <p><input type="submit" name="update_fotos" value="{lang key1="admin" key2="save"}"></p>
+              </form>
+            {else}<p>{lang key1="admin" key2="elements" key3="no_uploads"}</p>{/if}
+          </td>
+          <td valign="top">
+            <a name="upload"></a>
+            {if isset($simpla.GET.error)}
+              <span style="color:red;font-weight:bold;">{if $simpla.GET.error == "wrong_filetype"}
+              {lang key1="admin" key2="elements" key3="wrong_filetype"}
+              {elseif $simpla.GET.error == "ok"}
+              {lang key1="admin" key2="elements" key3="pic_uploaded"}
+              {elseif $simpla.GET.error == "database_error"}
+              {lang key1="admin" key2="elements" key3="db_error"}
+              {elseif $simpla.GET.error == "not_uploaded"}              
+              {lang key1="admin" key2="elements" key3="folder_not_open"}              
+              {elseif $simpla.GET.error == "too_small_size"}
+              {lang key1="admin" key2="elements" key3="need_bigger_pic"}
+              {else}
+              {$simpla.GET.error}
+              {/if}</span>           
+            {/if}
+            <h3>{lang key1="admin" key2="elements" key3="upload_pic"}</h3>
+            <form enctype="multipart/form-data" method="post">
+              <input type="hidden" name="width" value="{ $site_var.width }" />
+              <input type="hidden" name="height" value="{ $site_var.height }" />
+              <p><input type="file" name="foto">
+              <input type="submit" name="add_file" value="{lang key1="admin" key2="elements" key3="upload"}"></p>
+            </form>
+          </td>
+        </tr>
+      </table>
+    {/if}     
+
+{/if}
+
+
+{ include file="footer.html" }

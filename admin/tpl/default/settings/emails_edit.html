@@ -1,0 +1,154 @@
+{include file="header.html"}
+
+<h1 class="mt-0">{lang key1="admin" key2="emails" key3="event_title"}</h1>
+
+  
+<table width="80%">
+{if isset($simpla.GET.updated)}
+	<tr>
+		<td colspan="2"><blockquote>{lang key1="admin" key2="updated"}</blockquote></td>
+	</tr>
+{elseif isset($simpla.GET.added)}
+	<tr>
+		<td colspan="2"><blockquote>{lang key1="admin" key2="added"}</blockquote></td>
+	</tr>
+{elseif isset($simpla.GET.sent)}
+	<tr>
+		<td colspan="2"><blockquote>{lang key1="admin" key2="emails" key3="test_sent"}</blockquote></td>
+	</tr>
+{/if}
+
+	<form method="post">
+	<tr>
+		<th width="200">{lang key1="admin" key2="user" key3="field"}</th>
+		<th>{lang key1="admin" key2="user" key3="value"}</th>
+	</tr>
+	
+	<tr {cycle values=",class=odd" }>
+		<td width=200>ID</td>
+		<td>{ if $row.id }{$row.id}{ else }{lang key1="admin" key2="user" key3="not_set"}{ /if }</td>
+	</tr>
+			
+	<tr {cycle values=",class=odd" }>
+		<td width=200>{lang key1="admin" key2="emails" key3="event"}</td>
+		<td>
+			<select name="e[event_type_id]" style="width:100%;">
+				<option value="0"{if $row.id == 0} selected="selected"{/if}>- {lang key1="admin" key2="emails" key3="not_choosen"}</option>
+				{if !empty($email_types)}
+					{foreach from=$email_types value="v"}
+						<option value="{$v.id}"{if $v.id == $row.event_type_id} selected="selected"{/if}>{$v.event}</option>
+					{/foreach}
+				{/if}
+			</select>
+		</td>
+	</tr>
+			
+	<tr {cycle values=",class=odd" }>
+		<td width=200>{lang key1="admin" key2="website"}</td>
+		<td>
+			<select name="e[site]" style="width:100%;">
+				<option value="0"{if $row.site == 0} selected="selected"{/if}>- {lang key1="admin" key2="for_all"}</option>
+				{if !empty($site_vars.list_sites)}
+					{foreach from=$site_vars.list_sites value="v"}
+						<option value="{$v.id}"{if $v.id == $row.site} selected="selected"{/if}>{$v.id}: {$v.site_url|delhttp}</option>
+					{/foreach}
+				{/if}
+			</select>
+		</td>
+	</tr>
+			
+	<tr {cycle values=",class=odd" }>
+		<td width=200>{lang key1="admin" key2="elements" key3="name"}</td>
+		<td><input type="text" name="e[title]" value="{$row.title|escape}" style="width:100%;" /></td>
+	</tr>
+
+	<tr {cycle values=",class=odd" }>
+		<td width=200>{lang key1="admin" key2="user" key3="note"}</td>
+		<td><textarea name="e[content]" rows="4" style="width:100%;">{$row.content}</textarea></td>				
+	</tr>
+			
+	<tr {cycle values=",class=odd" }>
+		<td width=200><b>{lang key1="admin" key2="emails" key3="subject"}</b></td>
+		<td><input type="text" name="e[subject]" value="{$row.subject|escape}" style="width:100%;" /></td>
+	</tr>
+			
+	<tr {cycle values=",class=odd" }>
+		<td width=200><b>{lang key1="admin" key2="emails" key3="body"}</b></td>
+		<td>
+			<textarea name="e[body]" rows="8" style="width:100%;">{$row.body}</textarea>
+			{if isset($simpla.GET.editor)}
+				<p><a href="?action=emails&id={$row.id}">{lang key1="admin" key2="off_editor"}</a></p>
+			{else}
+				<p><a href="?action=emails&id={$row.id}&editor=on">{lang key1="admin" key2="on_editor"}</a></p>
+			{/if}  
+		</td>				
+		{if isset($simpla.GET.editor)}
+			<script type="text/javascript">
+				var editor = CKEDITOR.replace( 'e[body]');
+				editor.config.toolbar = 'Basic2';
+				CKFinder.setupCKEditor( editor, '/{$simpla.CONST.ADMIN_FOLDER}/ckfinder/');
+			</script>
+		{/if}
+	</tr>
+
+	<tr {cycle values=",class=odd" }>
+		<td width=200>{lang key1="admin" key2="status" key3="active"}</td>
+		<td><input type="checkbox" name="e[active]" value="1" { if !empty($row.active) } checked="checked"{ /if } /></td>
+	</tr>
+
+	<tr {cycle values=",class=odd" }>
+		<td width=200>{lang key1="admin" key2="emails" key3="format_html"}</td>
+		<td><input type="checkbox" name="e[is_html]" value="1" { if !empty($row.is_html) } checked="checked"{ /if } /></td>
+	</tr>
+
+	<tr {cycle values=",class=odd" }>
+		<td width=200>{lang key1="admin" key2="emails" key3="to_user"}</td>
+		<td><input type="checkbox" name="e[to_user]" value="1" { if !empty($row.to_user) } checked="checked"{ /if } /></td>
+	</tr>
+
+	<tr {cycle values=",class=odd" }>
+		<td width=200>{lang key1="admin" key2="emails" key3="to_admin"}</td>
+		<td><input type="checkbox" name="e[to_admin]" value="1" { if !empty($row.to_admin) } checked="checked"{ /if } /></td>
+	</tr>
+			
+	<tr {cycle values=",class=odd" }>
+		<td width=200>{lang key1="admin" key2="emails" key3="extra_emails"}</td>
+		<td><input type="text" name="e[to_extra]" value="{$row.to_extra|escape}" style="width:100%;" /></td>
+	</tr>
+	
+	
+	<tr {cycle values=",class=odd" }>
+		<td width=200><a href="/{$simpla.CONST.ADMIN_FOLDER}/?action=settings&do=mass_vars&hint=sms">{lang key1="admin" key2="fb" key3="sms"}</a></td>
+		<td><input type="checkbox" name="e[sms]" value="1" { if !empty($row.sms) } checked="checked"{ /if } /></td>
+	</tr>
+			
+	<tr {cycle values=",class=odd" }>
+		<td width=200>{lang key1="admin" key2="user" key3="phone"} <small>({lang key1="admin" key2="icons" key3="for_example"}, +79251234567)</small></td>
+		<td><input type="text" name="e[sms_phone]" value="{$row.sms_phone|escape}" style="width:100%;" /></td>
+	</tr>
+	
+	
+			
+	<tr {cycle values=",class=odd" }>
+		<td width=200>{lang key1="admin" key2="set" key3="tpl"}</td>
+		<td>
+			<select name="e[template]" style="width:100%;">
+				<option value="0"{if $row.template == 0} selected="selected"{/if}>- {lang key1="admin" key2="for_all"}</option>
+			</select>
+		</td>
+	</tr>
+			
+	<tr {cycle values=",class=odd" }>
+		<td colspan=2 align=center>
+			<input type=submit name=save value="{lang key1="admin" key2="save"}">
+			{ if !empty($row.id) }
+				<input class="small" type=submit name=delete value="{lang key1="admin" key2="delete"}"  onclick="if(confirm('{lang key1="admin" key2="really"}')) return true; else return false;">
+			{ /if }
+		</td>
+	</tr>
+
+	</form>
+</table>
+
+
+{ include file="footer.html" } 

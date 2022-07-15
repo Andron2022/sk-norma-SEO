@@ -1,0 +1,22 @@
+<html>
+<head>
+    <title>Test</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+    <script type="text/javascript" src="ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="ckfinder.js"></script>
+</head>
+<body bgcolor="#ffffff" leftmargin=0 marginheight=0 marginwidth=0 rightmargin=0 topmargin=0>
+
+
+<table width="800"><tr><td>
+    <form method="post">
+    <textarea id="test" name="test" rows="10" style="width: 100%;">Текст всякий проверочный <b>с жирным</b> и <i>курсивом</i> для проверки передачи в редактор форматирования <h1>Ура</h1></textarea>
+    </form>
+    <script type="text/javascript">
+            var editor = CKEDITOR.replace('test');
+            CKFinder.setupCKEditor( editor, "/ckfinder/" ) ;
+    </script>
+</td></tr></table>
+
+</body>
+</html>

@@ -1,0 +1,9 @@
+{if $websites|@count > 0}
+  {foreach key="key" value="valuesite" from=$websites}
+      {assign var="site" value=$valuesite.site_url}
+      {assign var="pre_url" value=$site."/".$valuesite.alias}
+      {assign var="url" value=$pre_url,$simpla[CONST][URL_END]}
+      {if $key > 0 AND $websites_view != "simple"}<br>{/if}
+    {if !empty($site)}<small><a href="{$url}{if empty($valuesite.active)}?debug={$valuesite.id}{/if}" target="_blank"><i class="fa fa-external-link"></i>{if $websites_view != "simple"} {$valuesite.id}:{$site|delhttp}{/if}</a> </small>{/if}
+  {/foreach}
+{/if}

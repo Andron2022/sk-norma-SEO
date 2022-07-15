@@ -1,0 +1,151 @@
+{include file="header.html"}
+
+
+<h1 class="mt-0">{lang key1="admin" key2="block_types" key3="options"}{if !empty($list_options)} ({$list_options|@count}){/if}</h1>
+<p><a href="?action=products&do=add_option{if !empty($simpla.GET.group)}&gid={$simpla.GET.group}{/if}"><i class="fa fa-plus"></i> {lang key1="admin" key2="add"}</a></p>
+
+<table width="80%">
+  <tr>
+    <td colspan="9">
+<blockquote>{lang key1="admin" key2="products" key3="option_help"}</blockquote>
+
+
+{ if isset($simpla.get.deleted) }
+  <blockquote>{lang key1="admin" key2="index" key3="rows_deleted"}: { $simpla.get.deleted }</blockquote>
+{ /if }
+{ if isset($simpla.get.updated) }
+  <blockquote>{lang key1="admin" key2="db" key3="info_updated"}</blockquote>
+{ /if }
+
+
+{if !empty($filter.groups) OR !empty($filter.categs)}
+
+      <table width="100%">
+        <tr>
+
+          {if $filter.categs|@count > 0}
+          <form method="get">
+            <td>{lang key1="admin" key2="fb" key3="filter"}:</td>
+            <td>
+            <select style="width: 200px; word-break: break-all;" name="" onchange="top.location=this.value">  
+              <option value="?action=products&do=options">- {lang key1="admin" key2="user" key3="all" case="lower"}</option>
+			  
+			{if !empty($site_vars._pages)}
+				{foreach from=$site_vars._pages value="v"}
+					{assign var="href" value="?action=products&do=options&categ=".$v.id."&where=categ&group=0"}
+                  {if isset($simpla.GET.categ) AND isset($simpla.GET.where)}
+                    {if $simpla.GET.categ == $v.id AND $simpla.GET.where == "categ"}
+                      {assign var="sel" value="selected='selected'"}
+                    {else}
+                      {assign var="sel" value=""}
+                    {/if}
+                  {else}
+                      {assign var="sel" value=""}
+                  {/if}
+				
+				
+					{if !empty($v.options)}
+						<option value="{$href}" {$sel}>{if $v.level > 1}
+							{ for start=1 stop=$v.level step=1 value=current } - {/for}
+						{/if}{$v.title}</option>
+					{elseif !empty($v.subcategs)}
+						<optgroup label="{if $v.level > 1}
+							{ for start=1 stop=$v.level step=1 value=current } - {/for}
+						{/if}{$v.title}"></optgroup>
+					{/if}
+				{/foreach}
+			{/if}			 
+			  
+            </select>
+            </td>
+          </form>
+          {/if}
+
+          <td>{lang key1="admin" key2="group"}:</td>
+          <form method="get">
+          <input type="hidden" name="action" value="products">
+          <input type="hidden" name="do" value="options">
+          {if isset($simpla.GET.categ)}<input type="hidden" name="categ" value="{$simpla.GET.categ}">{/if}
+          {if isset($simpla.GET.where)}<input type="hidden" name="where" value="{$simpla.GET.where}">{/if}
+          <td nowrap>
+            {if $filter.groups|@count > 0 }
+              <select name="group">
+                <option value="0">- {lang key1="admin" key2="user" key3="all" case="lower"}</option>
+              {foreach from=$filter.groups value="gr"}
+                {if isset($simpla.GET.group) AND $simpla.GET.group == $gr.id}
+                    {assign var="sel" value="selected='selected'"}
+                {else}
+                    {assign var="sel" value=""}
+                {/if}
+                <option value="{$gr.id}" {$sel}>{$gr.title} ({$gr.to_show})</option>
+              {/foreach}
+              </select>
+            {/if}
+          </select>   
+
+		  {if !empty($simpla.GET.group)}
+			<a href="?action=products&do=option_group&id={$simpla.GET.group}"><i class="fa fa-info-circle"></i></a>
+		  {/if}
+		  
+
+		  
+          </td>
+          <td><input class="small" type="submit" value="{lang key1="admin" key2="apply"} »"></td>
+          </form>
+        </tr>
+        </table>
+        
+{/if}        
+      </td>
+    </tr>
+
+{if !empty($list_options)}
+    <tr>
+      <th width="30">#</th>
+      <th width="30"><i class="fa fa-edit"></i></th>
+      <th>{lang key1="admin" key2="elements" key3="name"}</th>
+      <th>{lang key1="admin" key2="products" key3="synonim"}</th>
+      <th width="100">{lang key1="admin" key2="products" key3="type"}</th>
+      <th width="80"><i class="fa fa-filter" title="{lang key1="admin" key2="products" key3="used_in_filter"}"></i></th>
+      <th width="80"><i class="fa fa-bars" title="{lang key1="admin" key2="products" key3="used_in_list"}"></i></th>
+      <th width="80"><i class="fa fa-sort" title="{lang key1="admin" key2="status" key3="sort"}"></i></th>
+      <th width="80"><i class="fa fa-trash"></i> <INPUT onclick="CheckAll(this,'delopt[]')" type="checkbox" /></th>
+    </tr>
+
+    <form method="post" name=form1>
+    {foreach from=$list_options value="value"}
+      { assign var="href" value="?action=products&do=options&id=".$value.id}
+      { assign var="href_group" value="?action=products&do=option_group&id=".$value.group}
+      
+      <tr {cycle values=" ,class='odd'" }">
+        <td><a href="{$href}">{ $value.id }</a></td>
+        <td align="center"><a href="{$href}"><i class="fa fa-pencil"></i></a></td>
+        <td><a href="{$href}">{ $value.title }</a>
+		{if empty($simpla.GET.group) AND !empty($value.group_title)}<br><small>{$value.group_title}</small>{/if}
+		</td>
+        <td><a href="{$href}">{ $value.alias }</a></td>
+        <td><a href="{$href}">{ $value.type }</a></td>
+        <td align="center"><a href="{$href}">{$value.show_in_filter|compare:"1":"<i class='fa fa-check'></i>":"-"}</a></td>
+        <td align="center"><a href="{$href}">{$value.show_in_list|compare:"1":"<i class='fa fa-check'></i>":"-"}</a></td>
+        <td align="center"><input type="text" size="4" name="sort[{$value.id}]" value="{ $value.sort }"></td>
+        <td align="center"><input onclick="return CheckCB(this);" type="checkbox" name="delopt[]" value="{$value.id}"></td>
+      </tr>
+    {/foreach}
+    
+    <tr>
+      <td colspan="9" align="right"><input type="submit" name="update" value="{lang key1="admin" key2="update"}"></th>
+    </tr>
+    
+    
+    </form>
+{/if}
+</table>
+
+{$pages}
+
+{if empty($list_options)}
+<p>{lang key1="admin" key2="user" key3="list_empty"}</p>
+{/if}
+
+
+{include file="footer.html"}

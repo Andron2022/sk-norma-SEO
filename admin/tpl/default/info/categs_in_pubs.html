@@ -1,0 +1,6 @@
+{if $categs_in_pubs|@count >0}
+  {foreach key="key" value="valuein" from=$categs_in_pubs} 
+    {if $key > 0}<br>{/if}<small><a href="?action=info&do=edit_categ&id={$valuein.id}">{if $valuein.active == 1}<i class="fa fa-check"></i> {else}<i class="fa fa-minus"></i> {/if}{$valuein.title}</a></small>
+  {/foreach}
+{else}
+{/if}

@@ -1,0 +1,75 @@
+{include file="header.html"}
+
+<h1 class="mt-0">{lang key1="admin" key2="prava" key3="products"}</h1>
+
+<blockquote>{lang key1="admin" key2="index" key3="catalog_help"}</blockquote>
+
+<table border="0" cellpadding="1" cellspacing="3" style="padding-left: 30px; margin-left: 30px;">
+  <tr>
+    <td width="50%" valign="top">
+      {if $allcatalogs}
+        <table border="0" width="100%">
+          <tr>
+            <td>
+              <h3>{lang key1="admin" key2="index" key3="struct_catalog"}</h3>
+              <ul><li><a href="?action=info&do=categories&shop=1">{lang key1="admin" key2="products" key3="total_views"}: {$qty_catalogs}</a></li></ul>
+            </td>
+          </tr>
+        </table>
+        
+        {if $allcatalogs|@count >0 }
+          <table width="100%">
+            <tr>
+              <th width="70%">{lang key1="admin" key2="fav" key3="title"}</th>
+              <th width="30"><i class="fa fa-check" title="{lang key1="admin" key2="index" key3="show_on_website"}"></i></th>
+              <th width="30"><i class="fa fa-edit" title="{lang key1="admin" key2="edit"}"></i></th>
+              <th width="30"><i class="fa fa-external-link" title="{lang key1="admin" key2="index" key3="link_to_website"}"></i></th>
+              <th width="30"><i class="fa fa-shopping-cart" title="{lang key1="admin" key2="index" key3="offers_and_objects"}"></i></th>
+            </tr>
+            
+            {foreach from=$allcatalogs value="row"}
+              <tr { cycle values="class=odd, " }>
+				{ math equation="( x - y )" x=$row.level y=1 assign="level" }
+                <td>{if !empty($row.level)}{for start=0 stop=$row.level step=1 value=current} {if $level == $current}&#8250;{else}&#183;{/if} {/for}{/if}<a href="?action=info&do=edit_categ&id={$row.id}">{$row.title}</a></td>
+                <td align="center"><a href="?action=info&do=edit_categ&id={$row.id}">{if $row.visible == 1}<i class="fa fa-check"></i>{else}<i class="fa fa-minus"></i>{/if}</a></td>
+                <td align="center"><a href="?action=info&do=edit_categ&id={$row.id}"><i class="fa fa-pencil"></i></a></td>
+                <td align="center"><small><a href="{$row.url}" target="_blank"><i class="fa fa-external-link"></i></a></small></td>
+                <td align="center">{if $row.products > 0}<a href="?action=products&do=list_products&cid={$row.id}">{$row.products}</a>{/if} <a href="?action=products&do=add&cid={$row.id}"><i class="fa fa-plus"></i></a></td>
+              </tr>
+            {/foreach}
+          </table>
+        {/if}
+
+      {/if}
+      <p><a href="?action=info&do=edit_categ&id=0"><i class="fa fa-plus-circle" style="color:{$admin_vars.bgdark}"></i> {lang key1="admin" key2="products" key3="add_categ"}</a></p>
+
+    </td>        
+    <td valign="top">
+      {if $last_products|@count > 0}
+        <table border="0" width="100%">
+          <tr>
+            <td>
+              <h3>{lang key1="admin" key2="products" key3="last_products"}</h3>
+              <ul><li><a href="?action=products&do=list_products">{lang key1="admin" key2="products" key3="total_views"}: {$qty_products}</a></li></ul>
+            </td>
+          </tr>
+        </table>
+      
+        <table border="0" cellpadding="3" width="100%">
+          {foreach from=$last_products value="value"}
+            <tr { cycle values="class=odd, " }>
+              <td><a href="?action=products&do=edit&id={$value.id}"><small>{$value.date_insert|date:"d.m.Y"}</small></a></td>
+              <td><a href="?action=products&do=edit&id={$value.id}">{if $value.name_short}{$value.name_short} {/if}{if $value.name}{$value.name}{/if}</a></td>
+              <td align="right" nowrap>{$value.price|numformat}</td>
+              <td>{if $value.active == 1}<i class="fa fa-check" style="color:{$admin_vars.bgdark}"></i>{else}<i class="fa fa-minus" style="color:{$admin_vars.bgdark}"></i>{/if}</td>
+              <td>{if $value.accept_orders == 1}<i class="fa fa-shopping-cart" style="color:{$admin_vars.bgdark}"></i>{else}<i class="fa fa-minus" style="color:{$admin_vars.bgdark}"></i>{/if}</td>
+            </tr>
+          {/foreach}
+        </table>
+      {/if}
+      <p><a href="?action=products&do=add"><i class="fa fa-plus-circle" style="color:{$admin_vars.bgdark}"></i> {lang key1="admin" key2="products" key3="add_product"}</a></p>
+    </td>        
+  </tr>
+</table>
+
+{include file="footer.html"}

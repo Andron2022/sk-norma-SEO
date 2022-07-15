@@ -1,0 +1,86 @@
+{include file="header.html"}
+
+<h1 class="mt-0">{lang key1="admin" key2="adding_comment"}</h1>
+
+<table width="80%">
+<form enctype="multipart/form-data" method="post">
+  <tr>
+    <th width="30%">{lang key1="admin" key2="record_type"}</th>
+    <th>{lang key1="admin" key2="record_id"}</th>
+  </tr>
+  <tr>
+    <td><select name="record_type">
+      <option value="pub"{if isset($simpla.GET.type) AND $simpla.GET.type == "pub"} selected{/if}>{lang key1="admin" key2="pub"}</option>
+      <option value="categ"{if isset($simpla.GET.type) AND $simpla.GET.type == "categ"} selected{/if}>{lang key1="admin" key2="categ"}</option>
+      <option value="product"{if isset($simpla.GET.type) AND $simpla.GET.type == "product"} selected{/if}>{lang key1="admin" key2="product"}</option>
+      <option value="comment"{if isset($simpla.GET.type) AND $simpla.GET.type == "comment"} selected{/if}>{lang key1="admin" key2="comment"}</option>
+    </select></td>
+    <td><input type=text name="record_id" style="width:100%;" value="{if isset($simpla.GET.record_id)}{$simpla.GET.record_id}{/if}"></td>
+  </tr>
+  <tr>
+    <th>{lang key1="admin" key2="author"}</th>
+    <th>{lang key1="admin" key2="fav" key3="title"}</th>
+  </tr>
+  <tr>
+    <td><select name="userid">
+      <option value="0">- {lang key1="admin" key2="user" key3="user"}</option>
+      {foreach value="value" key="key" from=$publishers}
+      <option value="{$value.id}"{if $value.id == $admin_vars.bo_user.id} selected{/if}>{$value.login} ({$value.email})</option>      
+      {/foreach}
+      </select></td>
+    <td><input type=text name="unreg_email" style="width:100%;" value=""></td>
+  </tr>
+
+  <tr>
+    <th colspan=2>{lang key1="admin" key2="comment"}</th>
+  </tr>
+  <tr>
+  <td colspan=2><textarea name="comment_text" id="comment_text_textarea" style="width:100%;" rows=15></textarea></td>
+  </tr>
+  
+  <tr>
+    <td colspan="2">
+		<a href="javascript: ShowHide('block-extra')" style="border-bottom: 1px dashed blue;">{lang key1="admin" key2="elements" key3="extra"}</a>
+		
+		<div style="display: none;" id="block-extra">
+            <table cellpadding="0" cellspacing="1" width="100%">
+              <tbody>
+                <tr class="odd">
+                  <td width="30%">{lang key1="admin" key2="fav" key3="title"}
+				  <br><small>ext_h1</small></td>
+                  <td><textarea name="ext_h1" id="comment_text_textarea" style="width:100%;" rows=3></textarea></td>
+                </tr>
+                <tr class="odd">
+                  <td width="30%">{lang key1="admin" key2="extra_desc"}
+				  <br><small>ext_desc</small></td>
+                  <td><textarea name="ext_desc" id="comment_text_textarea" style="width:100%;" rows=5></textarea></td>
+                </tr>
+		
+{if !empty($site_vars.img_comments.width) AND !empty($site_vars.img_comments.height)}	
+
+                <tr class="odd">
+                  <td width="30%">{lang key1="admin" key2="photo"} (<a href="?action=settings&do=site_vars&site_id=-1&q=img22_comments&redirect=1">{ $site_vars.img_comments.width }*{ $site_vars.img_comments.height }</a>)</td>
+                  <td>					
+              
+              <input type="hidden" name="width" value="{ $site_vars.img_comments.width }" />
+              <input type="hidden" name="height" value="{ $site_vars.img_comments.height }" />
+              <input type="file" name="foto">
+					</td>
+                </tr>
+{else}
+				<tr class="odd">
+                  <td colspan="2">{lang key1="admin" key2="elements" key3="add_foto_sizes"} <b>img_comments</b>. <br><a href="?action=settings&do=site_vars&id=0&hint=img_comments">{lang key1="admin" key2="elements" key3="add_var_now"}</a>.</td>
+                </tr>
+{/if}				
+				
+              </tbody>
+            </table>
+        </div>
+	</td>
+  </tr>
+
+  <tr><td colspan=2><input type=submit name="add" value="{lang key1="admin" key2="add"}"></td></tr>
+  </form>
+  </table>
+
+{include file="footer.html"}

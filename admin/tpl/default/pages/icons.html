@@ -1,0 +1,102 @@
+{if isset($categ.icon)}
+  {assign var="icon" value=$categ.icon}
+{elseif isset($catalog.icon)}
+  {assign var="icon" value=$catalog.icon}
+{elseif isset($pub.icon)}
+  {assign var="icon" value=$pub.icon}
+{else}
+  {assign var="icon" value=""}
+{/if}
+
+        <blockquote>
+            <p>{lang key1="admin" key2="icons" key3="supports"} &lt; I &gt; .<br>
+            {lang key1="admin" key2="icons" key3="for_example"}, &lt;i class="fa fa-cog"&gt;&lt;/i&gt; <br>
+            {lang key1="admin" key2="icons" key3="help"}<br>
+            {lang key1="admin" key2="icons" key3="for_example"}, <b>fa fa-cog fa-2x font-red</b></p>
+        </blockquote>
+
+        <table class="bordered" align="center">
+		<tr class="odd">
+          <td colspan="6" align="center"><b>{lang key1="admin" key2="icons" key3="choose"}</b></td>
+        </tr>
+		<tr class="">
+          <td colspan="6"><input type="text" name="icon_custom" value="{$icon|escape}" style="width:100%;" /></td>
+        </tr>
+        <tr class="odd">
+          <td>{lang key1="admin" key2="no"} <input type="radio" name="icon" value=""{if $icon == ""} checked{/if} /></td>
+          <td><i class="fa fa-home fa-2x"></i> <input type="radio" name="icon" value="fa fa-home"{if $icon == "fa fa-home"} checked{/if} /></td>
+          <td><i class="fa fa-cog fa-2x"></i> <input type="radio" name="icon" value="fa fa-cog"{if $icon == "fa fa-cog"} checked{/if} /></td>
+          <td><i class="fa fa-asterisk fa-2x"></i> <input type="radio" name="icon" value="fa fa-asterisk"{if $icon == "fa fa-asterisk"} checked{/if} /></td>
+          <td><i class="fa fa-comment fa-2x"></i> <input type="radio" name="icon" value="fa fa-comment"{if $icon == "fa fa-comment"} checked{/if} /></td>
+          <td><i class="fa fa-comments fa-2x"></i> <input type="radio" name="icon" value="fa fa-comments"{if $icon == "fa fa-comments"} checked{/if} /></td>
+        </tr>
+        <tr class="odd">
+          <td><i class="fa fa-camera fa-2x"></i> <input type="radio" name="icon" value="fa fa-camera"{if $icon == "fa fa-camera"} checked{/if} /></td>
+          <td><i class="fa fa-bar-chart fa-2x"></i> <input type="radio" name="icon" value="fa fa-bar-chart"{if $icon == "fa fa-bar-chart"} checked{/if} /></td>
+          <td><i class="fa fa-bell fa-2x"></i> <input type="radio" name="icon" value="fa fa-bell"{if $icon == "fa fa-bell"} checked{/if} /></td>
+          <td><i class="fa fa-bullhorn fa-2x"></i> <input type="radio" name="icon" value="fa fa-bullhorn"{if $icon == "fa fa-bullhorn"} checked{/if} /></td>
+          <td><i class="fa fa-calculator fa-2x"></i> <input type="radio" name="icon" value="fa fa-calculator"{if $icon == "fa fa-calculator"} checked{/if} /></td>
+          <td><i class="fa fa-check fa-2x"></i> <input type="radio" name="icon" value="fa fa-check"{if $icon == "fa fa-check"} checked{/if} /></td>
+        </tr>
+        <tr class="odd">
+          <td><i class="fa fa-check-square-o fa-2x"></i> <input type="radio" name="icon" value="fa fa-check-square-o"{if $icon == "fa fa-check-square-o"} checked{/if} /></td>
+          <td><i class="fa fa-book fa-2x"></i> <input type="radio" name="icon" value="fa fa-book"{if $icon == "fa fa-book"} checked{/if} /></td>
+          <td><i class="fa fa-calendar fa-2x"></i> <input type="radio" name="icon" value="fa fa-calendar"{if $icon == "fa fa-calendar"} checked{/if} /></td>
+          <td><i class="fa fa-coffee fa-2x"></i> <input type="radio" name="icon" value="fa fa-coffee"{if $icon == "fa fa-coffee"} checked{/if} /></td>
+          <td><i class="fa fa-filter fa-2x"></i> <input type="radio" name="icon" value="fa fa-filter"{if $icon == "fa fa-filter"} checked{/if} /></td>
+          <td><i class="fa fa-folder fa-2x"></i> <input type="radio" name="icon" value="fa fa-folder"{if $icon == "fa fa-folder"} checked{/if} /></td>
+        </tr>
+        <tr class="odd">
+          <td><i class="fa fa-globe fa-2x"></i> <input type="radio" name="icon" value="fa fa-globe"{if $icon == "fa fa-globe"} checked{/if} /></td>
+          <td><i class="fa fa-heart fa-2x"></i> <input type="radio" name="icon" value="fa fa-heart"{if $icon == "fa fa-heart"} checked{/if} /></td>
+          <td><i class="fa fa-envelope fa-2x"></i> <input type="radio" name="icon" value="fa fa-envelope"{if $icon == "fa fa-envelope"} checked{/if} /></td>
+          <td><i class="fa fa-edit fa-2x"></i> <input type="radio" name="icon" value="fa fa-edit"{if $icon == "fa fa-edit"} checked{/if} /></td>
+          <td><i class="fa fa-gift fa-2x"></i> <input type="radio" name="icon" value="fa fa-gift"{if $icon == "fa fa-gift"} checked{/if} /></td>
+          <td><i class="fa fa-flag fa-2x"></i> <input type="radio" name="icon" value="fa fa-flag"{if $icon == "fa fa-flag"} checked{/if} /></td>
+        </tr>
+        <tr class="odd">
+          <td><i class="fa fa-lock fa-2x"></i> <input type="radio" name="icon" value="fa fa-lock"{if $icon == "fa fa-lock"} checked{/if} /></td>
+          <td><i class="fa fa-rocket fa-2x"></i> <input type="radio" name="icon" value="fa fa-rocket"{if $icon == "fa fa-rocket"} checked{/if} /></td>
+          <td><i class="fa fa-smile-o fa-2x"></i> <input type="radio" name="icon" value="fa fa-smile-o"{if $icon == "fa fa-smile-o"} checked{/if} /></td>
+          <td><i class="fa fa-phone fa-2x"></i> <input type="radio" name="icon" value="fa fa-phone"{if $icon == "fa fa-phone"} checked{/if} /></td>
+          <td><i class="fa fa-map-marker fa-2x"></i> <input type="radio" name="icon" value="fa fa-map-marker"{if $icon == "fa fa-map-marker"} checked{/if} /></td>
+          <td><i class="fa fa-question fa-2x"></i> <input type="radio" name="icon" value="fa fa-question"{if $icon == "fa fa-question"} checked{/if} /></td>
+        </tr>
+        <tr class="odd">
+          <td><i class="fa fa-star fa-2x"></i> <input type="radio" name="icon" value="fa fa-star"{if $icon == "fa fa-star"} checked{/if} /></td>
+          <td><i class="fa fa-warning fa-2x"></i> <input type="radio" name="icon" value="fa fa-warning"{if $icon == "fa fa-warning"} checked{/if} /></td>
+          <td><i class="fa fa-user fa-2x"></i> <input type="radio" name="icon" value="fa fa-user"{if $icon == "fa fa-user"} checked{/if} /></td>
+          <td><i class="fa fa-trophy fa-2x"></i> <input type="radio" name="icon" value="fa fa-trophy"{if $icon == "fa fa-trophy"} checked{/if} /></td>
+          <td><i class="fa fa-support fa-2x"></i> <input type="radio" name="icon" value="fa fa-support"{if $icon == "fa fa-support"} checked{/if} /></td>
+          <td><i class="fa fa-hand-o-right fa-2x"></i> <input type="radio" name="icon" value="fa fa-hand-o-right"{if $icon == "fa fa-hand-o-right"} checked{/if} /></td>
+        </tr>
+
+        <tr class="odd">
+          <td><i class="fa fa-cogs fa-2x"></i> <input type="radio" name="icon" value="fa fa-cogs"{if $icon == "fa fa-cogs"} checked{/if} /></td>
+          <td><i class="fa fa-bars fa-2x"></i> <input type="radio" name="icon" value="fa fa-bars"{if $icon == "fa fa-bars"} checked{/if} /></td>
+          <td><i class="fa fa-desktop fa-2x"></i> <input type="radio" name="icon" value="fa fa-desktop"{if $icon == "fa fa-desktop"} checked{/if} /></td>
+          <td><i class="fa fa-bolt fa-2x"></i> <input type="radio" name="icon" value="fa fa-bolt"{if $icon == "fa fa-bolt"} checked{/if} /></td>
+          <td><i class="fa fa-info-circle fa-2x"></i> <input type="radio" name="icon" value="fa fa-info-circle"{if $icon == "fa fa-info-circle"} checked{/if} /></td>
+          <td><i class="fa fa-info fa-2x"></i> <input type="radio" name="icon" value="fa fa-info"{if $icon == "fa fa-info"} checked{/if} /></td>
+        </tr>
+
+        <tr class="odd">
+          <td><i class="fa fa-lightbulb-o fa-2x"></i> <input type="radio" name="icon" value="fa fa-lightbulb-o"{if $icon == "fa fa-lightbulb-o"} checked{/if} /></td>
+          <td><i class="fa fa-plus fa-2x"></i> <input type="radio" name="icon" value="fa fa-plus"{if $icon == "fa fa-plus"} checked{/if} /></td>
+          <td><i class="fa fa-plus-square fa-2x"></i> <input type="radio" name="icon" value="fa fa-plus-square"{if $icon == "fa fa-plus-square"} checked{/if} /></td>
+          <td><i class="fa fa-plus-circle fa-2x"></i> <input type="radio" name="icon" value="fa fa-plus-circle"{if $icon == "fa fa-plus-circle"} checked{/if} /></td>
+          <td><i class="fa fa-search fa-2x"></i> <input type="radio" name="icon" value="fa fa-search"{if $icon == "fa fa-search"} checked{/if} /></td>
+          <td><i class="fa fa-thumbs-up fa-2x"></i> <input type="radio" name="icon" value="fa fa-thumbs-up"{if $icon == "fa fa-thumbs-up"} checked{/if} /></td>
+        </tr>
+
+        <tr class="odd">
+          <td><i class="fa fa-file-text-o fa-2x"></i> <input type="radio" name="icon" value="fa fa-file-text-o"{if $icon == "fa fa-file-text-o"} checked{/if} /></td>
+          <td><i class="fa fa-list-ul fa-2x"></i> <input type="radio" name="icon" value="fa fa-list-ul"{if $icon == "fa fa-list-ul"} checked{/if} /></td>
+          <td><i class="fa fa-chevron-down fa-2x"></i> <input type="radio" name="icon" value="fa fa-chevron-down"{if $icon == "fa fa-chevron-down"} checked{/if} /></td>
+          <td><i class="fa fa-chevron-left fa-2x"></i> <input type="radio" name="icon" value="fa fa-chevron-left"{if $icon == "fa fa-chevron-left"} checked{/if} /></td>
+          <td><i class="fa fa-chevron-right fa-2x"></i> <input type="radio" name="icon" value="fa fa-chevron-right"{if $icon == "fa fa-chevron-right"} checked{/if} /></td>
+          <td><i class="fa fa-chevron-up fa-2x"></i> <input type="radio" name="icon" value="fa fa-chevron-up"{if $icon == "fa fa-chevron-up"} checked{/if} /></td>
+        </tr>
+
+        </table>
+        

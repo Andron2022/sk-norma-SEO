@@ -1,0 +1,12 @@
+{ include file="header.html" }
+
+<h1 class="mt-0">{lang key1="admin" key2="404" key3="title"}</h1>
+<ul>
+	{if !empty($error)}
+	<li class="red">{$error}</li>
+	{else}
+  <li>{lang key1="admin" key2="404" key3="mod"} <b>{$admin_vars.uri.action}</b> {lang key1="admin" key2="404" key3="not_found"}</li>
+	{/if}
+</ul>
+
+{ include file="footer.html" }
