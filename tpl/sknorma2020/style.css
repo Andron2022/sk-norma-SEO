@@ -1,0 +1,120 @@
+.slide img {
+    display: block;
+    width: 100%;
+}
+.slide {
+    margin: 5px;
+    position: relative;
+}
+.scale-on {
+    transition: 1s; /* Время эффекта */
+}
+.scale-on:hover {
+    transform: scale(1.03); /* Увеличиваем масштаб */
+}
+.gallery-zoom-button {
+
+    color: #fff;
+    position: absolute;
+    z-index: 99999;
+    bottom: 5%;
+    right: 20px;
+    display: block;
+    font-weight: 200;
+
+}
+
+.prev-custom{
+    width: 30px;
+    height: 20px;
+    margin-top: -10px;
+	left: 30px;
+    margin-left: -20px;
+	position: absolute;
+    top: 50%;
+    z-index: 5;
+    display: inline-block;
+    color: rgba(255,255,255,.9);
+    text-align: center;
+    text-shadow: 0 1px 2px rgba(0,0,0,.6);
+}
+
+.next-custom {
+    width: 30px;
+    height: 20px;
+    margin-top: -10px;
+    right: 30px;
+    margin-right: -20px;
+    position: absolute;
+    top: 50%;
+    z-index: 5;
+    display: inline-block;
+    color: rgba(255,255,255,.9);
+    text-align: center;
+    text-shadow: 0 1px 2px rgba(0,0,0,.6);
+}
+
+
+.prev-custom-m{
+    width: 30px;
+    height: 20px;
+    margin-top: -10px;
+	left: 20px;
+    margin-left: -20px;
+	position: absolute;
+    top: 50%;
+    z-index: 5;
+    display: inline-block;
+    color: rgba(255,255,255,.9);
+    text-align: center;
+    text-shadow: 0 1px 2px rgba(0,0,0,.6);
+}
+
+.next-custom-m {
+    width: 30px;
+    height: 20px;
+    margin-top: -10px;
+    right: 15px;
+    margin-right: -20px;
+    position: absolute;
+    top: 50%;
+    z-index: 5;
+    display: inline-block;
+    color: rgba(255,255,255,.9);
+    text-align: center;
+    text-shadow: 0 1px 2px rgba(0,0,0,.6);
+}
+
+
+.head-slider-text{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: #dfdfdf;
+    font-size: 18px;
+    padding: 10px;
+    text-align: right;
+    opacity: 0.7;
+    filter: alpha(Opacity=70);
+    color: #000;
+}
+
+
+
+.head-slider-button {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}	
+.head-slider-button a {
+    display: block;
+    width: 210px;
+    height: 51px;
+    padding: 23px 40px 29px 19px;
+    font-size: 18px;
+    color: #ffffff;
+    text-shadow: 0 -1px 0 #640000;
+    text-decoration: none;
+    background: url(i/button_catalog.png) top no-repeat;
+    background-position: 0 0;
+}

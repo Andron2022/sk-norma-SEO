@@ -1,0 +1,18 @@
+{* путь до страницы *}
+{if !empty($page.breadcrumbs)}
+    <ul class="page-breadcrumb breadcrumb mt-0 pt-0 pb-0 mb-5">
+    {foreach from=$page.breadcrumbs value="v"}
+        {if $v|@count > 0}
+                <li><a href="{$site.site_url}/" class="breadcrumb">Главная</a></li> 
+				  {foreach from=$v key="k" value="v2"}
+					  {*if empty($uri.params) AND $k == $v|@lastkey*}
+					  {if $v2.link == $page.link}
+						<li class="title"><i class="fa fa-angle-right"></i> <span>{$v2.title}</span></li>
+					  {else}
+						  <li><i class="fa fa-angle-right"></i> <a href="{$v2.link}" class="breadcrumb">{$v2.title}</a></li>
+					  {/if}
+				  {/foreach}
+        {/if}
+    {/foreach}
+    </ul>
+{/if}

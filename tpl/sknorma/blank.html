@@ -1,0 +1,6 @@
+{include file="header.html"}
+<h1>{$page.title}</h1>
+{$page.content}
+
+{if !empty($page.error)}<pre>{$page.error}</pre>{/if}
+{include file="footer.html"}

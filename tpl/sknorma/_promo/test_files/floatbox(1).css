@@ -1,0 +1,42 @@
+div#fbPathChecker{background-image:url(/cms/js/floatbox/graphics/blank.gif);}
+div#fbOverlay{position:fixed;top:0;left:0;width:100%;height:100%;border-width:0;margin:0;padding:0;}
+div#fbBox{position:absolute;border-style:solid;border-width:0;margin:0;padding:0;}
+#fbBox div, #fbBox a, #fbBox img, #fbBox iframe{border-width:0;margin:0;padding:0;outline:none;}
+#fbBox a{background-image:url(/cms/js/floatbox/graphics/blank.gif);background-color:transparent;}
+#fbZoomDiv, a.fbPopup img, a.fbPopdown img, #fbBox #fbIndexLinks img{position:absolute;left:0;top:-9999px;border-style:solid;border-color:black;margin:0;padding:0;}
+#fbBox #fbBoxLoader, #fbZoomDiv #fbZoomLoader, #fbMainDiv #fbMainLoader{position:absolute;left:0;top:0;width:100%;height:100%;min-width:100%;min-height:100%;overflow:hidden;background-position:center;background-repeat:no-repeat;}
+#fbZoomDiv #fbZoomLoader, #fbMainDiv #fbMainLoader{background-image:url(/cms/js/floatbox/graphics/loader_black.gif);}
+#fbBox #fbShadows, #fbBox #fbShadowTop, #fbBox #fbShadowRight, #fbBox #fbShadowBottom, #fbBox #fbShadowLeft,
+#fbBox #fbCorners, #fbBox #fbCornerTop, #fbBox #fbCornerRight, #fbBox #fbCornerBottom, #fbBox #fbCornerLeft{position:absolute;left:0;top:0;width:100%;height:100%;background-repeat:no-repeat;}
+#fbBox #fbShadowTop, #fbBox #fbCornerTop{background-position:top left;}
+#fbBox #fbShadowRight, #fbBox #fbCornerRight{background-position:top right;}
+#fbBox #fbShadowBottom, #fbBox #fbCornerBottom{background-position:bottom right;}
+#fbBox #fbShadowLeft, #fbBox #fbCornerLeft{background-position:bottom left;}
+#fbBox #fbCanvas{position:relative;left:0;top:0;width:100%;height:100%;}
+#fbBox #fbMainDiv, #fbBox #fbInfoPanel, #fbBox #fbControlPanel{position:absolute;border-style:solid;overflow:hidden;}
+#fbBox #fbMainDiv, div#fbZoomDiv{background-color:#fff;}
+#fbBox #fbInfoLink, #fbBox #fbPrintLink{font-weight:bold;}
+#fbBox #fbResizer{position:absolute;width:25px;height:25px;left:0;top:0;}
+#fbBox #fbDragger{position:absolute;width:12px;height:12px;cursor:nw-resize;background-position:bottom right;background-repeat:no-repeat;}
+#fbBox #fbLeftNav, #fbBox #fbRightNav{position:absolute;height:100%;}
+#fbBox #fbLeftNav, #fbBox #fbOverlayPrev{left:0;}
+#fbBox #fbRightNav, #fbBox #fbOverlayNext{right:0;}
+#fbBox #fbOverlayPrev, #fbBox #fbOverlayNext{position:absolute;width:49px;height:23px;background-repeat:no-repeat;}
+#fbBox #fbInfoPanel{line-height:1.25em;font-family:Verdana, Helvetica, sans-serif;font-size:12px;}
+#fbBox #fbCaption{cursor:default;}
+#fbBox #fbItemNumber{font-size:10px;white-space:nowrap;cursor:default;}
+#fbBox #fbControls{height:14px;font-size:1px;}
+#fbBox #fbNavControls{width:88px;height:14px;}
+#fbBox #fbPrev{float:left;width:44px;height:14px;background-repeat:no-repeat;}
+#fbBox #fbNext{float:right;width:44px;height:14px;background-repeat:no-repeat;}
+#fbBox #fbPlay, #fbBox #fbPause{position:absolute;background-repeat:no-repeat;}
+#fbBox #fbPlayPause, #fbBox #fbPlay, #fbBox #fbPause{width:46px;height:14px;text-align:justify;}
+#fbBox #fbClose{width:46px;height:14px;background-repeat:no-repeat;}
+#fbBox #fbIndexLinks{clear:both;font-size:11px;cursor:default;}
+#fbBox #fbIndexLinks a:hover{font-weight:bold;}
+#fbInfoPanel.posCenter, #fbInfoDiv.posCenter, #fbIndexLinks.posCenter{margin:0 auto;}
+#fbInfoPanel.posRight, #fbInfoDiv.posRight, #fbIndexLinks.posRight{float:right;}
+#fbInfoPanel.posLeft, #fbInfoDiv.posLeft, #fbIndexLinks.posLeft{float:left;}
+#fbControlPanel.posRight, #fbControls.posRight, #fbClose.posRight, #fbSubControls.posRight, #fbNavControls.posLeft, #fbPlayPause.posLeft{float:right;}
+#fbControlPanel.posLeft, #fbControls.posLeft, #fbClose.posLeft, #fbSubControls.posLeft, #fbNavControls.posRight, #fbPlayPause.posRight{float:left;}
+#fbSubControls, #fbClose, #fbIndexLinks, #fbPlayPause, #fbNavControls{float:left;}

@@ -1,0 +1,101 @@
+
+{if !empty($page.blocks.manual)}
+	{foreach from=$page.blocks.manual value="v"}
+		{if $v.gruppa != "photos" AND $v.gruppa != "categs"}
+			{if $v.gruppa == "slider_auto"}
+				{assign var="autoplay" value="true"}
+			{else}
+				{assign var="autoplay" value="0"}
+			{/if}
+			
+			
+			{if !empty($v.title)}
+				<h2>{$v.title}{* ({$v.list_photos|@count} фото / {$v.qty} в ряд)*}</h2>
+			{/if}
+			
+				{if !empty($v.list_photos) AND !empty($v.html)}
+					{cycle values="left,right" assign="cnt"}
+					<div class="row">
+						{if $cnt == "right"}
+						<div class="col-md-8">{$v.html}</div>
+						{/if}
+						<div class="col-md-4">
+							{if $v.pages|int > 900 AND $v.pages|int < 10001}
+								{assign var="speed" value=$v.pages|int}
+							{else}
+								{assign var="speed" value="1000"}
+							{/if}
+							<div class="slider-solo-3 scroll-wheel" {if !empty($autoplay)}data-slick='{ ldelim }"autoplaySpeed": "{$speed}", "autoplay": true{ rdelim }'{/if}>							
+						{foreach from=$v.list_photos value="pic"}
+							{if $v.qty > 5}
+								{assign var="img" value=$pic.1.url}
+							{elseif $v.qty > 1}
+								{assign var="img" value=$pic.2.url}
+							{else}
+								{assign var="img" value=$pic.3.url}
+							{/if}
+						
+						<div> <!---пустой блок нужен для стилей, которые присвоит слайдер --->
+							<div class="slide">
+								<a href="{$pic.11.url}"  data-fancybox="gallery{$v.id}" data-caption="{$pic.11.title}">
+								{if $v.qty < 7}<div class="{*fas fa-search-plus*}far fa-eye gallery-zoom-button white shadow"></div>{/if} <!---Вставить этот блок где нужна иконка внутри тега <a> --->
+								<img class="scale-on"  src="{$img}" alt="{$pic.11.title|escape}" />
+								</a>
+							</div>
+						</div>
+						{/foreach}
+							</div>
+						</div>
+						{if $cnt == "left"}
+						<div class="col-md-8 pl-5">{$v.html}</div>
+						{/if}
+					</div>
+				{elseif !empty($v.list_photos)}
+					{if $v.pages|int > 900 AND $v.pages|int < 10001}
+						{assign var="speed" value=$v.pages|int}
+					{else}
+						{assign var="speed" value="1000"}
+					{/if}
+					<div class="slider-{if $v.qty == 2}2{elseif $v.qty == 3}3{elseif $v.qty == 4}4-row{elseif $v.qty == 6}4{elseif $v.qty == 12}5{else}solo{/if} scroll-wheel" {if !empty($autoplay)}data-slick='{ ldelim }"autoplaySpeed": "{$speed}", "autoplay": true, "infinite": true{ rdelim }'{/if}>
+						{foreach from=$v.list_photos value="pic"}
+						{if $v.qty > 5}
+							{assign var="img" value=$pic.1.url}
+						{elseif $v.qty > 1}
+							{assign var="img" value=$pic.2.url}
+						{else}
+							{assign var="img" value=$pic.3.url}
+						{/if}
+							
+						<div> <!---пустой блок нужен для стилей, которые присвоит слайдер --->
+							<div class="slide">
+								<a href="{$pic.11.url}"  data-fancybox="gallery{$v.id}" data-caption="{$pic.11.title}">
+								{if $v.qty < 7}<div class="far fa-eye {if $v.qty < 3}fa-2x{/if} gallery-zoom-button white shadow"></div>{/if}<!---Вставить этот блок где нужна иконка внутри тега <a> --->
+								<img class="scale-on"  src="{$img}" />
+								</a>
+							</div>
+						</div>
+						{/foreach}
+					</div>
+				{elseif !empty($v.html)}
+					<div class="row">{$v.html}</div>
+				{else}
+					{* показывать нечего *}
+				{/if}
+		{elseif $v.gruppa == "categs"}	
+			{if !empty($v.title)}
+				<h2>{$v.title}{* ({$v.list_photos|@count} фото / {$v.qty} в ряд)*}</h2>
+			{/if}
+			{foreach from=$v.list_photos value="cat"}
+				<span style="padding-left: {$cat.padding}px;">
+					{if !empty($cat.visible)}
+					<a href="{$cat.link}">{$cat.title}</a>
+					{else}
+					{$cat.title}
+					{/if}
+				</span><br>
+			{/foreach}
+		
+		{/if}
+	{/foreach}
+{/if}
+

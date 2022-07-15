@@ -1,0 +1,39 @@
+{* FILES START *}
+    {if !empty($page.list_files)}
+        <hr class="sidebar-separator">
+        <h4>Файлы ( {$page.list_files|@count} )</h4>
+            {foreach from=$page.list_files value='f'}
+                    <div class="media">
+                        <div class="pull-left">
+                            <a href="{$f.url}" target="_blank">{if $f.ext == "xls" OR $f.ext == "xlsx"}
+                                <i class="fa fa-file-excel-o"></i>
+                            {elseif $f.ext == "doc" OR $f.ext == "docx"}
+                                <i class="fa fa-file-word-o"></i>
+                            {elseif $f.ext == "txt" OR $f.ext == "rtf"}
+                                <i class="fa fa-file-text-o"></i>
+                            {elseif $f.ext == "avi" OR $f.ext == "mov"}
+                                <i class="fa fa-file-video-o"></i>
+                            {elseif $f.ext == "rar" OR $f.ext == "zip"}
+                                <i class="fa fa-file-archive-o"></i>
+                            {elseif $f.ext == "mp3"}
+                                <i class="fa fa-file-audio-o"></i>
+                            {elseif $f.ext == "jpg" OR $f.ext == "gif" OR $f.ext == "png"}
+                                <i class="fa fa-file-image-o"></i>
+                            {elseif $f.ext == "pdf"}
+                                <i class="fa fa-file-pdf-o"></i>
+                            {elseif $f.ext == "js" OR $f.ext == "css" OR $f.ext == "php"}
+                                <i class="fa fa-file-code-o"></i>
+                            {elseif $f.ext == "htm" OR $f.ext == "html"}
+                                <i class="fa fa-file-code-o"></i>
+                            {else}
+                                <i class="fa fa-file-o"></i>
+                            {/if}</a>
+                        </div>
+                        <div class="media-body">
+                            <p><a href="{$f.url}" target="_blank">{$f.title}</a><br><small>{$f.date} | {$f.size|filesize}</small></p>
+                            {*<a href="{$f.url}" class="btn btn-link motive"><i>{$f.size|filesize}</i></a>*}
+                        </div>
+                    </div>
+            {/foreach}
+    {/if}
+{* ---> FILES STOP *}

@@ -1,0 +1,74 @@
+{include file="header.html"}
+
+{include file="pages/breadcrumbs.html"}     
+
+
+{if empty($page.breadcrumbs)}
+{if !empty($page.active)}<h1 class="mt-0 pt-0">{$page.title}</h1>{/if}
+{/if}
+
+
+
+
+                            {if empty($uri.params.page)}
+                            
+                                {if !empty($page.intro) OR !empty($page.list_bottomcategs)}
+                                        {if !empty($page.intro)}<div class="note note-warning">{$page.intro}</div>{/if}
+										
+{if !empty($page.list_bottomcategs)
+	AND !empty($site.right_menu) AND $page.id != $site.right_menu
+}
+	<div class="row mt-10">
+	{foreach from=$page.list_bottomcategs value="v"}
+		{if $v.id_parent == $page.id}
+		<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 pl-5 pr-5 pb-10">
+			<div class="row">
+				<div class="col-md-12 center">
+					<a class="mt-info" href="{$v.link}"><img src="{$v.pic.1.2.url}" class="img-responsive" /></a>
+					<a href="{$v.link}"><h5 class="m-0 p-0">{$v.title}</h5></a>
+				</div>
+				
+			</div>			
+		</div>
+		<div class="{cycle values=" , ,clearfix"}"></div>
+		{/if}
+	{/foreach}
+	</div>
+{/if}
+
+			
+                                {/if}								
+                            {/if}
+							
+
+
+
+{include file="pages/blocks.html"}
+
+{if !empty($page.content)}
+		{if !empty($site.right_menu) AND ($page.id == $site.right_menu OR $page.id_parent == $site.right_menu)}
+		<div class="content-r">
+			<ul class="menu"> 
+				{foreach from=$site.default_menu value="v"}
+					{if $v.id_parent == $site.right_menu}
+					<li><a href="{$v.link}" {if $page.alias == $v.alias}style="background-color:#cccccc; font-weight: bold; display:block; "{/if}>{$v.title}</a></li>
+					{/if}
+				{/foreach}
+				
+			</ul>
+		</div>
+		{/if}
+				
+	{$page.content}
+{/if}
+
+
+{include file="pages/include_pubs.html"}
+
+
+
+{include file="pages/include_comments.html"}
+
+			
+
+{ include file="footer.html" }

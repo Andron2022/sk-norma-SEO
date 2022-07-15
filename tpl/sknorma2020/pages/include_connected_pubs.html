@@ -1,0 +1,51 @@
+{* CONNECTED PUBS for pub START *}
+
+    {if !empty($page.connected_pubs.list)}   
+
+        { assign var="ar" value=$page.connected_pubs.options }           
+        {foreach from=$page.connected_pubs.list key="k" value="v"}
+            { assign var="id" value=$v.id }
+            <div class="col-md-6">
+
+				<div class="post">
+                    <div class="description">
+					{*<img src="assets/images/content/faqtab1.jpg" alt="" class="wrap-image-left">
+						{if !empty($v.pic.mini.url)}<a href="{$v.link}"><img width="{$v.pic.mini.width}" class="pull-left" src="{$v.pic.mini.url}" alt="{$v.title|escape}"></a>{/if*}
+
+						{if !empty($v.pic.mini.url)}<a href="{$v.link}"><img width="100" class="wrap-image-left" src="{$v.pic.mini.url}" alt="{$v.title|escape}"></a>{/if}
+						<h4>{if !empty($v.categ_title)}{$v.categ_title} <i class="fa fa-chevron-right"></i> {/if}{if !empty($v.icon)}<i class="fa fa-{$v.icon}"></i>{/if} <a href="{$v.link}">{$v.title}</a></h4>
+                        {if !empty($ar[$id].list)}
+                            <ul class="list-unstyled">
+                            {foreach from=$ar[$id].list value="o" }
+
+                                {if $o.alias != 'city'}
+									{if $o.type == "int"}{assign var="value" value=$o.value|numformat}
+									{else}{assign var="value" value=$o.value}{/if}
+                                    <li><span data-toggle="tooltip" data-placement="top" title="{if empty($o.value2)}{$o.title}{else}{$o.group_title}{/if}" data-original-title="Tooltip on top">{if !empty($o.icon)}<span data-toggle="tooltip" data-placement="top" title="{$o.title}" data-original-title="Tooltip on top">{$o.icon} {if !empty($value)}{$value}{$o.after}{else}?{/if}</span>{else}
+										{if empty($o.value2)}
+										{$o.title}: {$value}
+										{else}
+										{$value} - {$o.value2}
+										{/if}
+									{/if} {$o.after}</span></li>                                    
+                                {/if}
+                                                                                
+                            {/foreach}
+                            </ul>
+                        {/if}
+                        {*if !empty($v.intro)}<p align="justify">{$v.intro}</p>{/if*}
+                    </div>
+                </div>
+            </div>
+            { cycle advance="2" values="1,2" assign="cycle"}
+            {if $cycle == 2}<div style="clear:left;"></div><hr>{/if}
+        {/foreach}
+        
+        {if $cycle == 1}
+            <div style="clear:left;"></div><hr>
+        {/if}
+
+
+        
+    {/if}
+{* ---> PUBS STOP *}

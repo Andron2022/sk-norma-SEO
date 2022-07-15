@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>{$order.metatitle}</title>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  </head>
+  <body>
+    <h3>{$order.title}</h3>
+    <ul>
+        {if !empty($order.txt_fio)}<li>{$order.txt_fio}: {$order.from}</li>{/if}
+        {if !empty($order.txt_phone)}<li>{$order.txt_phone}: <b>{$order.phone}</b></li>{/if}
+        {if !empty($order.from_email)}<li>{$order.from_email}</li>{/if}
+        <li><small><a href="{$order.url}">{$order.txt_details}</a></small></li>
+    </ul>
+    
+    <table border="1" cellpadding="3" cellspacing="0">
+        <tr>
+            <th>{$order.txt_name}</th>
+            <th>{$order.txt_qty}</th>
+            <th>{$order.txt_price}</th>
+        </tr>
+        
+        {foreach from=$order.cart value="v"}
+        <tr>
+            <td>{$v.title}</td>
+            <td>{$v.qty}</td>
+            <td>{$v.price_formatted}</td>
+        </tr>
+        {/foreach}
+        
+        <tr>
+            <td colspan="2" align="right">{$order.txt_total|upper}:</td>
+            <td><b>{$order.total_summ.summ_formatted}</b></td>
+        </tr>
+    </table>
+    
+    
+    <p>
+        <b>{$site.name_short}</b><br>
+        <a href="{$order.url}">{$order.url}</a><br>
+        {$order.date}
+    </p>
+
+
+  </body>
+</html>

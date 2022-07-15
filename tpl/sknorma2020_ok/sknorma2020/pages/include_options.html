@@ -1,0 +1,41 @@
+{* OPTIONS START *}
+    {if !empty($page.list_options)}
+            {foreach from=$page.list_options key="kg" value="g"}
+            
+                {if $kg != "in_list"}
+                
+                    {if isset($g.0.group_title)}
+                        {if empty($g.0.group_hide)}<h4>{$g.0.group_title}{if $page.page == "city.html"} {$page.title}{/if}</h4>{/if}
+                    {/if}
+
+					<table class="table table-striped">
+                        <tbody>
+						
+						{if !empty($g.0.opt_title) AND !empty($g.0.opt_value1)}
+							<tr>
+								<th>{$g.0.opt_title}</th>
+								<th>{$g.0.opt_value1}</th>
+								{if !empty($g.0.opt_value2)}<th>{$g.0.opt_value2}</th>{/if}
+								{if !empty($g.0.opt_value3)}<th>{$g.0.opt_value3}</th>{/if}
+							</tr>
+						{/if}
+								
+                    
+                    {foreach from=$g key="k" value="v"}
+                        <tr>
+                            <td>{$v.title}</td>
+                            <td>{if !empty($v.value)}{if $v.type == "int"}{$v.value|numformat}{else}{$v.value|nl2br}{/if}{if !empty($v.after)} {$v.after}{/if}{else}?{/if}</td>
+							{if !empty($g.0.opt_value2)}<td>{$v.value2|nl2br}</td>{/if}
+							{if !empty($g.0.opt_value3)}<td>{$v.value3|nl2br}</td>{/if}
+                        </tr>
+                    {/foreach}
+
+						</tbody>
+                    </table>
+                    
+                {/if}
+            
+                  
+            {/foreach}
+    {/if}
+{* ---> OPTIONS STOP *}

@@ -1,0 +1,179 @@
+
+@charset "utf-8";
+@font-face {
+    font-family: "gotham_prolight";
+    font-style: normal;
+    font-weight: normal;
+    src: url("/templates/fonts/gothaprolig-webfont.eot?#iefix") format("embedded-opentype"), url("/templates/fonts/gothaprolig-webfont.woff") format("woff"), url("/templates/fonts/gothaprolig-webfont.ttf") format("truetype");
+}
+@font-face {
+    font-family: "gotham_promedium";
+    font-style: normal;
+    font-weight: normal;
+    src: url("/templates/fonts/gothapromed-webfont.eot?#iefix") format("embedded-opentype"), url("/templates/fonts/gothapromed-webfont.woff") format("woff"), url("/templates/fonts/gothapromed-webfont.ttf") format("truetype");
+}
+@font-face {
+    font-family: "gotham_probold";
+    font-style: normal;
+    font-weight: normal;
+    src: url("/templates/fonts/gothaprobol-webfont.eot?#iefix") format("embedded-opentype"), url("/templates/fonts/gothaprobol-webfont.woff") format("woff"), url("/templates/fonts/gothaprobol-webfont.ttf") format("truetype");
+}
+@font-face {
+    font-family: "gotham_proregular";
+    font-style: normal;
+    font-weight: normal;
+    src: url("/templates/fonts/gothaproreg-webfont.eot?#iefix") format("embedded-opentype"), url("/templates/fonts/gothaproreg-webfont.woff") format("woff"), url("/templates/fonts/gothaproreg-webfont.ttf") format("truetype");
+}
+@font-face {
+    font-family: "gotham_problack";
+    font-style: normal;
+    font-weight: normal;
+    src: url("/templates/fonts/gothaprobla-webfont.eot?#iefix") format("embedded-opentype"), url("/templates/fonts/gothaprobla-webfont.woff") format("woff"), url("/templates/fonts/gothaprobla-webfont.ttf") format("truetype");
+}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    -moz-font-feature-settings: inherit;
+    -moz-font-language-override: inherit;
+    border: 0 none;
+    font-family: gotham_proregular;
+    font-size: inherit;
+    font-size-adjust: inherit;
+    font-stretch: inherit;
+    font-style: inherit;
+    font-variant: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+}
+body, html {
+    height: 100%;
+}
+body {
+    background: none repeat scroll 0 0 transparent;
+    border: 0 none;
+    color: #737373;
+    font-size: 14px;
+    height: 444px;
+    margin: 0;
+    outline: 0 none;
+    padding: 0;
+    position: relative;
+    width: 860px;
+}
+ul {
+    margin: 0;
+    padding: 0;
+}
+.clearfix:before, .clearfix:after {
+    content: "";
+    display: table;
+}
+.clearfix:after {
+    clear: both;
+}
+.clearfix .left {
+    float: left;
+    text-align: right;
+    width: 50%;
+}
+.clearfix .right {
+    float: right;
+    width: 45%;
+}
+.hform {
+    background: url("/templates/white/img/bg_forma.png") no-repeat scroll left top transparent;
+    display: block;
+    font-size: 20px;
+    height: 359px;
+    padding: 15px 15px 70px;
+    width: 830px;
+}
+.clearfix .right > div textarea {
+    margin-left: 0;
+}
+.hform p {
+    font-size: 16px;
+    font-style: italic;
+    margin: 10px 0 20px;
+    text-align: center;
+}
+.hform input[type="text"], .hform textarea {
+    background-color: #ffffff;
+    border: 0 none;
+    border-radius: 2px;
+    box-shadow: 0 1px 2px rgba(71, 71, 71, 0.35);
+    font-family: gotham_prolight;
+    font-size: 16px;
+    margin: 5px 20px 10px;
+    outline: 0 none;
+    width: 260px;
+}
+.hform input[type="text"] {
+    height: 35px;
+    line-height: 35px;
+    padding: 0 10px;
+}
+.hform textarea {
+    height: 94px;
+    padding: 10px;
+    width: 300px;
+}
+.hform h2 {
+    background-color: #ffffff;
+    border-radius: 7px;
+    box-shadow: 0 1px 2px rgba(71, 71, 71, 0.35);
+    color: #ab0607;
+    display: block;
+    font-family: gotham_promedium;
+    font-size: 22px;
+    height: 60px;
+    line-height: 60px;
+    margin: 0 auto 50px;
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+    width: 98%;
+}
+.hform h2 span.angle {
+    background: url("/templates/white/img/angle.png") no-repeat scroll left top transparent;
+    display: block;
+    height: 21px;
+    left: 50%;
+    margin-left: -25px;
+    position: absolute;
+    text-indent: -9999px;
+    width: 51px;
+}
+.btn-red {
+    background-color: #ab0607;
+    border: 0 none;
+    border-radius: 7px;
+    color: #ffffff;
+    cursor: pointer;
+    display: block;
+    font-size: 22px;
+    height: 50px;
+    line-height: 50px;
+    margin: 35px auto 10px;
+    outline: 0 none;
+    padding: 0 80px;
+    text-align: center;
+    text-transform: uppercase;
+}
+.ok {
+    display: table;
+}
+.ok > div {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.center {
+    left: -40px;
+    margin: 0 auto;
+    position: relative;
+    text-align: right;
+    width: 450px;
+}

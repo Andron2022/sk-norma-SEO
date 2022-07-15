@@ -1,0 +1,469 @@
+@charset "utf-8";
+/* CSS Document */
+
+.clear{
+  height: 8px;
+  clear: both;
+  overflow: hidden;
+}
+
+/* form */
+.sub-title{
+  width: 200px;
+  text-align: center;
+  font-size: 15px;
+  line-height: 20px;
+  color: #bb0000;
+  text-transform: uppercase;
+  padding-bottom: 10px;
+}
+.form-leftside{
+  width: 200px;
+  position: relative;
+}
+.form-leftside input, button{
+  outline: 0;
+}
+.form-leftside input[type="text"],
+.form-leftside input[type="tel"]{
+  width: 100%;
+  height: 36px;
+  line-height: 36px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  padding: 0 15px;
+  margin-top: 10px;
+  border: 1px solid #e1e1e1;
+  border-radius: 5px; 
+  -moz-border-radius: 5px; 
+  -webkit-border-radius: 5px;
+  font-size: 14px;
+  color: #25292e;
+}
+.form-leftside input[type="text"]:focus,
+.form-leftside input[type="tel"]:focus{
+  border: 1px solid #a7a9ac;
+}
+.form-leftside input::-webkit-input-placeholder{
+    color:    #a7a9ac; 
+    opacity:  1;
+}
+.form-leftside input:-moz-placeholder{
+    color:    #a7a9ac; 
+    opacity:  1;
+}
+.form-leftside input::-moz-placeholder{
+    color:    #a7a9ac; 
+    opacity:  1;
+}
+.form-leftside input[type="submit"]{
+  width: 100%;
+  height: 43px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  line-height: 30px;
+  text-align: center;
+  margin-top: 20px;
+  background: url(../img/button1.png) top repeat-x;
+  font-size: 14px;
+  color: #fff;
+  text-transform: uppercase;
+  box-shadow: 0px 3px 3px 0px rgba(0,0,0,.25);
+  -moz-box-shadow: 0px 3px 3px 0px rgba(0,0,0,.25);
+  -webkit-box-shadow: 0px 3px 3px 0px rgba(0,0,0,.25);
+  border: 0;
+  border-radius: 3px; 
+  -moz-border-radius: 3px; 
+  -webkit-border-radius: 3px;
+  cursor: pointer;
+  padding-bottom: 2px;
+}
+.form-leftside input[type="submit"]:hover{
+  background: url(../img/button1.png) 0px -43px repeat-x;
+  box-shadow: 0px 3px 3px 0px rgba(0,0,0,.25);
+  -moz-box-shadow: 0px 3px 3px 0px rgba(0,0,0,.25);
+  -webkit-box-shadow: 0px 3px 3px 0px rgba(0,0,0,.25);
+}
+.form-leftside input[type="submit"]:focus{
+  background: url(../img/button1.png) bottom repeat-x;
+  border-top: 2px solid #fff;
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+    border-radius: 5px 5px 3px 3px; 
+  -moz-border-radius: 5px 5px 3px 3px; 
+  -webkit-border-radius: 5px 5px 3px 3px; 
+}
+.form-leftside p{
+  padding: 0;
+}
+/* form END */
+
+/* window types */
+.window-types{
+  position: relative;
+  width: 365px;
+  height: 100px;
+  margin-top: 5px;
+  
+}
+.window-types:after{
+  content: "";
+  display: block;
+  height: 1px;
+  overflow: hidden;
+  clear: both;
+}
+.window-types > div{
+  float: left;
+  position: relative;
+  padding: 0 5px;
+}
+.window-type1,
+.window-type1 .types-list{
+  width: 38px;
+  background: #fff;
+}
+.window-type2,
+.window-type2 .types-list{
+  width: 72px;
+  background: #fff;
+}
+.window-type3,
+.window-type3 .types-list{
+  width: 109px;
+  background: #fff;
+}
+.window-type4,
+.window-type4 .types-list{
+  width: 76px;
+  background: #fff;
+}
+.types-list{
+  display: none;
+  position: absolute;
+  top: -5px;
+  left: 0px;
+  border: 5px solid #fff;
+  z-index: 200;
+}
+.window-types label{
+  display: block;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 7px;
+  box-shadow: 0px 0px 1px 1px #dadada;
+  -moz-box-shadow: 0px 0px 1px 1px #dadada;
+  -webkit-box-shadow: 0px 0px 1px 1px #dadada;
+  cursor: pointer;
+}
+.window-types label:hover,
+.window-types label.active{
+  box-shadow: 0px 0px 1px 1px rgba(207,30,30,.85);
+  -moz-box-shadow: 0px 0px 1px 1px rgba(207,30,30,.85);
+  -webkit-box-shadow: 0px 0px 1px 1px rgba(207,30,30,.85);
+}
+.window-types label input[type="radio"]{
+  position: absolute;
+  left: -10300px;
+}
+.window-types label span{
+  background-image: url(../img/window-types.png);
+  background-repeat: no-repeat;
+  height: 64px;
+  margin: 0 3px 0 1px;
+  display: block;
+  overflow: hidden;
+}
+.window-types .window-type4 label{
+  width: 38px;
+  margin: 0 auto 7px auto;
+}
+.window-types .window-type4 label span{
+  height: 98px;
+}
+.window-type1 label.window-type1-0 span{
+  background-position: 0 0;
+}
+.window-type1 label.window-type1-0:hover span{
+  background-position: 0 -64px;
+}
+.window-type1 label.window-type1-0:hover{
+  box-shadow: 0px 0px 1px 1px #dadada;
+  -moz-box-shadow: 0px 0px 1px 1px #dadada;
+  -webkit-box-shadow: 0px 0px 1px 1px #dadada;
+}
+.window-type1 label.window-type1-1 span{
+  background-position: 0 -64px;
+}
+.window-type1 label.window-type1-2 span{
+  background-position: 0 -128px;
+}
+.window-type1 label.window-type1-3 span{
+  background-position: 0 -192px;
+}
+.window-type1 label.window-type1-4 span{
+  background-position: 0 -256px;
+}
+.window-type1 label.window-type1-5 span{
+  background-position: 0 -320px;
+  height: 19px;
+}
+
+.window-type2 label.window-type2-0 span{
+  background-position: -38px 0;
+}
+.window-type2 label.window-type2-0:hover span{
+  background-position: -38px -64px;
+}
+.window-type2 label.window-type2-0:hover{
+  box-shadow: 0px 0px 1px 1px #dadada;
+  -moz-box-shadow: 0px 0px 1px 1px #dadada;
+  -webkit-box-shadow: 0px 0px 1px 1px #dadada;
+}
+.window-type2 label.window-type2-1 span{
+  background-position: -38px -64px;
+}
+.window-type2 label.window-type2-2 span{
+  background-position: -38px -128px;
+}
+.window-type2 label.window-type2-3 span{
+  background-position: -38px -192px;
+}
+.window-type2 label.window-type2-4 span{
+  background-position: -38px -256px;
+}
+.window-type2 label.window-type2-5 span{
+  background-position: -38px -320px;
+}
+.window-type3 label.window-type3-0 span{
+  background-position: -110px 0;
+}
+.window-type3 label.window-type3-0:hover span{
+  background-position: -110px -64px;
+}
+.window-type3 label.window-type3-0:hover{
+  box-shadow: 0px 0px 1px 1px #dadada;
+  -moz-box-shadow: 0px 0px 1px 1px #dadada;
+  -webkit-box-shadow: 0px 0px 1px 1px #dadada;
+}
+.window-type3 label.window-type3-1 span{
+  background-position: -110px -64px;
+}
+.window-type3 label.window-type3-2 span{
+  background-position: -110px -128px;
+}
+.window-type3 label.window-type3-3 span{
+  background-position: -110px -192px;
+}
+.window-type3 label.window-type3-4 span{
+  background-position: -110px -256px;
+}
+.window-type3 label.window-type3-5 span{
+  background-position: -110px -320px;
+}
+.window-type4 label.window-type4-0 span{
+  background-position: -218px 0;
+}
+.window-type4 label.window-type4-0:hover span{
+  background-position: -218px -98px;
+}
+.window-type4 label.window-type4-0:hover{
+  box-shadow: 0px 0px 1px 1px #dadada;
+  -moz-box-shadow: 0px 0px 1px 1px #dadada;
+  -webkit-box-shadow: 0px 0px 1px 1px #dadada;
+}
+.window-type4 label.window-type4-1 span{
+  background-position: -218px -98px;
+}
+.window-type4 label.window-type4-2 span{
+  background-position: -218px -196px;
+}
+.window-type4 label.window-type4-3 span:first-of-type{
+  background-position: -218px -294px;
+  float: left;
+}
+.window-type4 label.window-type4-3 span{
+  background-position: -218px -196px;
+  float: right;
+  width: 38px;
+}
+.window-type4 label.window-type4-3{
+  width: 100%;
+  position: relative;
+}
+.window-type4 label.window-type4-3:after{
+  content: "";
+  display: block;
+  height: 1px;
+  overflow: hidden;
+  clear: both;
+}
+
+
+/* window types END  */
+
+/* second set of radiobuttons */
+.item-duplicate{
+  padding-top: 35px;
+  clear: both;
+  margin-bottom: -25px;
+}
+.item-duplicate .title-block{
+  font-size: 18px;
+  line-height: 22px;
+  color: ##58595b;
+  display: inline-block;
+  vertical-align: middle;
+  float: none;
+}
+.bottom-line label{
+  padding-bottom: 7px;
+}
+.bottom-line label span{
+  display: block;
+}
+.bottom-line label:nth-child(3){ }
+.item-duplicate .bottom-line{
+  vertical-align: middle;
+  padding-top: 10px;
+  float: none;
+}
+.item-duplicate .bottom-line label{
+  width: 105px;
+  display: inline-block;
+}
+.item-duplicate .bottom-line label:last-of-type{
+  width: auto;
+  display: inline-block;
+}
+/* second set of radiobuttons */
+
+.price-block-place{
+  position: relative;
+  display: inline-block;
+}
+.price-block-place i{
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: -38px;
+  font-size: 12px;
+  color: #58595b;
+}
+.type-blank{
+  display: none;
+}
+.block-win{
+  position: relative;
+}
+.block-win-slide{
+  display: none;
+}
+.block-win-slide.active{
+  display: block;
+}
+.block-prev,
+.block-next{
+  display: block;
+  position: absolute;
+  top: 135px;
+  width: 15px;
+  height: 25px;
+  overflow: hidden;
+  cursor: pointer;
+}
+.block-prev{
+  left: 0;
+  background: url(../img/slide-nav.gif) 0 0 no-repeat;
+}
+.block-next{
+  right: 0;
+  background: url(../img/slide-nav.gif) -15px 0 no-repeat;
+}
+#calc .block-win{
+  min-height: 370px;
+}
+#calc .block-win .img-block{
+  width: 235px;
+}
+
+.small-button{
+  background: url(../img/button2.png) top repeat-x;
+  width: 125px;
+  height: 33px;
+  padding-top: 8px;
+  margin-right: 10px;
+  margin-top: 10px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  float: left;
+  position: relative;
+  color: #fff;
+  font-size: 14px;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
+  box-shadow: 0px 3px 3px 0px rgba(0,0,0,.25);
+  -moz-box-shadow: 0px 3px 3px 0px rgba(0,0,0,.25);
+  -webkit-box-shadow: 0px 3px 3px 0px rgba(0,0,0,.25);
+  border-radius: 3px; 
+  -moz-border-radius: 3px; 
+  -webkit-border-radius: 3px;
+}
+.large-button{
+  background: url(../img/button2.png) top repeat-x;
+  width: 260px;
+  height: 33px;
+  padding-top: 8px;
+  margin-right: 10px;
+  margin-top: 10px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  float: left;
+  position: relative;
+  color: #fff;
+  font-size: 14px;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
+  box-shadow: 0px 3px 3px 0px rgba(0,0,0,.25);
+  -moz-box-shadow: 0px 3px 3px 0px rgba(0,0,0,.25);
+  -webkit-box-shadow: 0px 3px 3px 0px rgba(0,0,0,.25);
+  border-radius: 3px; 
+  -moz-border-radius: 3px; 
+  -webkit-border-radius: 3px;
+}
+.small-button:hover,
+.large-button:hover{
+  background: url(../img/button2.png) 0px -33px repeat-x;
+  box-shadow: 0px 3px 3px 0px rgba(0,0,0,.25);
+  -moz-box-shadow: 0px 3px 3px 0px rgba(0,0,0,.25);
+  -webkit-box-shadow: 0px 3px 3px 0px rgba(0,0,0,.25);
+  color: #fff;
+}
+.small-button:focus,
+.large-button:focus{
+  background: url(../img/button2.png) bottom repeat-x;
+  border-top: 2px solid #fff;
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  color: #fff;
+  padding-top: 6px;
+  border-radius: 5px 5px 3px 3px; 
+  -moz-border-radius: 5px 5px 3px 3px; 
+  -webkit-border-radius: 5px 5px 3px 3px; 
+}
+
+
+
+
+
+
+
+

@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0035)http://sknorma.webtuner.ru/callback -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>callback - 
+</title>
+	
+	<meta http-equiv="Cache-Control" content="max-age=3600, must-revalidate">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<link type="text/css" rel="stylesheet" href="png(1).css">
+	<link type="text/css" rel="stylesheet" href="floatbox(1).css">
+	<script type="text/javascript" src="floatbox(2).js"></script>
+	<script src="raphael.js" type="text/javascript"></script>
+	<script type="text/javascript" src="webgfx(1).js"></script>
+	<script type="text/javascript" src="iepngfix(1).js"></script>
+	<link href="http://sknorma.webtuner.ru/userfiles/favicon.ico" rel="icon" type="image/x-icon">
+<link type="text/css" href="callback.css" rel="stylesheet">
+<script type="text/javascript" src="core(2).js"></script><script type="text/javascript" src="resizeHandler(1).js"></script><script type="text/javascript" src="setSize(1).js"></script><script type="text/javascript" src="setOpacity(1).js"></script><script type="text/javascript" src="getLeftTop(1).js"></script><script type="text/javascript" src="zoomInOut(1).js"></script><script type="text/javascript" src="keydownHandler(1).js"></script></head>
+<body><style type="text/css">
+.bad  input, .bad textarea, .bad select {border: 1px solid #FF0000 !important;}
+.good input, .bad textarea, .bad select {border: 1px solid #009900 !important;}
+		</style>
+<script type="text/javascript">               
+
+function createXMLHttpRequestObject() {
+    var browser = navigator.appName;
+    if (browser == "Microsoft Internet Explorer"){
+        ro = new ActiveXObject("Microsoft.XMLHTTP");
+    } else {
+        ro = new XMLHttpRequest();
+    }
+    return ro;
+}
+var http = createXMLHttpRequestObject();
+
+function check_capcha(str) {        
+    http.open('get', '/cms/request.php?action=check_capcha&keystring='+str);
+    http.onreadystatechange = function() {
+      if(http.readyState == 4){    
+         if (http.responseText == '1') {
+            document.getElementById('mainform').submit();
+         } else {
+                    var kapcha_container = document.getElementById('Kapcha1');
+                    var img = document.createElement("IMG");
+                    img.src = '/kcaptcha';
+                    kapcha_container.innerHTML = '';
+                    kapcha_container.appendChild(img);
+                    kapcha_container.innerHTML += '<input type="text" name="keystring" id="Kapcha"  />';
+
+                    document.getElementById('mess').innerHTML = http.responseText;
+                    document.getElementById('Kapcha1').className= 'bad';
+//                    alert(http.responseText);
+         }
+      }
+    }
+    http.send(null);
+}
+
+
+function refresh_captcha() {
+   var span_captcha = document.getElementById('span_captcha');   
+   span_captcha.removeChild(span_captcha.getElementsByTagName('img')[0]);
+   var captcha_img = document.createElement('img');
+   captcha_img.src = '/kcaptcha?'+Math.random();
+   span_captcha.appendChild(captcha_img);
+}
+
+	function check31() 
+	{
+		var s='0'; 
+		if (document.getElementById('Imya_').value.length < 1) 
+		{
+			document.getElementById('Imya_'+1).className= 'bad';
+			s='1';
+		}
+		else {document.getElementById('Imya_'+1).className= 'good'; }
+		 
+		if (document.getElementById('Telefon_').value.length < 1) 
+		{
+			document.getElementById('Telefon_'+1).className= 'bad';
+			s='1';
+		}
+		else {document.getElementById('Telefon_'+1).className= 'good'; }
+		if (s=='1') { 
+                  return false;
+                }
+		else {  
+                  var kapcha_container = document.getElementById('Kapcha1');
+                  if (kapcha_container != null) {
+    		    check_capcha(document.getElementById('Kapcha').value);
+    		  } else {
+                    document.getElementById('mainform').submit();
+                  }
+
+                  return true;
+                }
+	}	
+                    </script><div class="callback"><a name="callback"></a>
+<div class="inside">
+<h2>Закажите обратный звонок</h2>
+<p>Поля, отмеченные *, обязательны для заполнения</p>
+
+
+
+
+<div class="regform_wrapper">
+<div class="registration">
+<form enctype="multipart/form-data" method="post" action="http://sknorma.webtuner.ru/s/mail_vac" name="main_form" id="mainform">
+ 
+
+ <div class="item" id="Imya_1">Имя *<br><input type="text" name="Imya_" value="" id="Imya_"></div>
+ <div class="item" id="Telefon_1">Телефон *<br><input type="text" name="Telefon_" value="" id="Telefon_"></div>
+
+ 
+ <div class="item" id="E-mail1">E-mail<br><input type="text" name="E-mail" value="" id="E-mail"></div>
+ <div class="item">
+ <div><input type="hidden" name="lang" value="">
+<input type="hidden" name="ask" value="/forms/31">
+<input type="hidden" name="id_form" value="31"> <input type="button" onclick="check31();" value="Отправить" class="btn-red"></div>
+ 
+
+ </div>
+</form>
+</div>
+</div>
+</div>
+</div><script type="text/javascript" src="callback.js"></script>
+
+
+<!-- Время генерации страницы: 0.036581039428711 сек --></body></html>

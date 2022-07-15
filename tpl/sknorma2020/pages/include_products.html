@@ -1,0 +1,116 @@
+{* PRODUCTS START *}
+    {if !empty($uri.params.page) AND !empty($page.list_products)}
+        { math equation="(x + y)" x=1 y=$uri.params.page assign="pp" }
+        <div class="row"><h3 class="text-center">Страница {$pp}</h3></div>
+    {/if}
+
+    {if !empty($uri.params.page) AND empty($page.list_products.list) AND empty($page.list_pubs.list)}
+        { math equation="(x + y)" x=1 y=$uri.params.page assign="pp" }
+        <div class="row"><h3 class="text-center">Страница {$pp}</h3></div>
+        <div class="alert alert-warning"><i class="fa fa-exclamation-circle"></i> Ничего не найдено. Начните с <a href="{$site.site_url}{$uri.path}">первой страницы</a>.</div>        
+    {/if}
+
+    {if !empty($page.list_products.list)}   
+    
+      
+        {foreach from=$page.list_products.list value="v"}
+                { assign var="ar" value=$page.list_products.options }     
+                { assign var="id" value=$v.id }
+                {if !empty($ar[$id].city)}
+                    { assign var="city" value=$ar[$id].city }
+                {/if}
+                <section>
+                        <div class="thumbnail clean list-style">
+                            <div class="listing-image">
+                                <div class="media">
+                                    <div class="pull-left">
+                                        <div class="image">
+                                            <div class="image-content">
+                                                <div class="inner">                                                    
+                                                    {if !empty($v.pic.small.url)}
+                                                        <img src="{$v.pic.small.url}" alt="{$v.title|escape}">
+                                                    {else}
+                                                        <img src="{$tpl}assets/images/content/listing2.jpg" alt="">
+                                                    {/if}
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="image-links">
+                                            <div class="left">
+                                                <a class="inner" href="{$v.pic.big.url}" data-lightbox="related-9">
+                                                    <i class="fa fa-camera"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="media-body">
+                                        <div class="caption">
+                                            <h4 class="uppercase"><a href="{$v.link}">{$v.title}</a><br>
+                                                <small>{if !empty($city)}{$city}{else}Код: {if !empty($v.barcode)}{$v.barcode}{else}{$v.id}{/if}{/if}</small></h4>
+                                            <p>{$v.intro|truncate:250:"..."}</p>
+                                            <div class="links">
+                                                <a href="{$v.link}" class="btn btn-link" role="button">+ Подробнее</a> 
+												<br><input type="checkbox" name="ids[]" value="{$v.id}"> В сравнение
+                                                 {if $v.f_spec == 1}<a name="special" class="btn btn-link motive">Акция</a>{/if}
+                        {if $v.f_new == 1}<a name="new" class="btn btn-link motive">Новинка</a>{/if}
+												{if $v.price > 0 AND $v.accept_orders > 0}
+													<a href="{$site.site_url}/basket{$site.url_end}?add={$v.id}&qty=1" class="btn btn-xs btn-brick large-padding pull-right">{lang key1="order" key2="quick" key3="button_in_list"}</a>
+												{/if}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="property-info">
+                                <div class="table">
+                                    <div class="table-cell">
+                                        <div class="price-tag pull-left">{if $v.price_old > 0}<small><s>{$v.price_old_formatted}</s></small><br>{/if}
+                                        {$v.price_formatted}</div>
+                                    </div>
+                                    <div class="table-cell">
+                                        <ul class="property-tags">
+                                            
+                                            {if !empty($ar[$id].list)}
+                                                {foreach from=$ar[$id].list value="o" }
+
+                                                    {if $o.alias != 'city'}
+                                                        <li><span data-toggle="tooltip" data-placement="top" title="{$o.title}" data-original-title="Tooltip on top">{if !empty($o.icon)}
+                                                            <span data-toggle="tooltip" data-placement="top" title="{$o.title}" data-original-title="Tooltip on top">{$o.icon} {if !empty($o.value)}{$o.value}{$o.after}{else}?{/if}</span>
+                                                        {else}
+                                                            {$o.title}:{$o.value} 
+                                                        {/if}</span></li>
+
+                                                    {/if}
+                                                
+                                                {/foreach}
+                                            {else}
+                                            
+                                              
+                                              
+                                              {if $v.fotos_qty > 0}<li><span data-toggle="tooltip" data-placement="top" title="Кол-во фото" data-original-title="Tooltip on top"><i class="fa fa-camera"></i> {$v.fotos_qty}</span></li>{/if}
+                                              {if $v.files_qty > 0}<li><span data-toggle="tooltip" data-placement="top" title="Кол-во файлов" data-original-title="Tooltip on top"><i class="fa fa-download"></i> {$v.files_qty}</span></li>{/if}
+                                              <li><span data-toggle="tooltip" data-placement="top" title="Просмотры всего/за 30 дней" data-original-title="Tooltip on top"><i class="fa fa-users"></i> {$v.views}/{$v.monthviews}</span></li>
+                                            {/if}
+                                            
+                                                
+                                            {if $v.comments_qty > 0}<li><span data-toggle="tooltip" data-placement="top" title="Комментарии" data-original-title="Tooltip on top"><i class="fa fa-comments"></i> {$v.comments_qty}</span></li>{/if}                                             
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </section>
+        
+        
+            
+        {/foreach}
+
+        {if $page.list_products.all > $page.list_products.list|@count}
+            <p style="text-align:right;"><small>{$page.list_products.list|@count} из {$page.list_products.all}</small></p>
+            {$page.list_products.pages}
+        {/if}
+        
+    {/if}
+{* ---> PRODUCTS STOP *}

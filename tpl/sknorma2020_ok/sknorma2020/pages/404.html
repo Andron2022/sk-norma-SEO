@@ -1,0 +1,7 @@
+{include file="header.html"}
+<h1>Ошибка 404</h1>
+<p>Произошла ошибка 404, запрошенная вами страница не найдена на сервере! 
+Попробуйте начать с <a href="/">главной страницы</a>.</p>
+
+{if !empty($page.error)}<pre>{$page.error}</pre>{/if}
+{include file="footer.html"}

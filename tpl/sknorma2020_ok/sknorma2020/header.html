@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+    <!--<![endif]-->
+    <!-- BEGIN HEAD -->
+
+    <head>
+{$site.google1}
+{$site.metrika}
+{$site.Calltouch}
+        <meta charset="utf-8" />
+        <title>{$page.metatitle}</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <meta content="{$page.description|escape}" name="description" />
+        <meta content="{$site.name_short}" name="author" />
+		<meta name="generator" content="Simpla.es" />
+        <!-- BEGIN GLOBAL MANDATORY STYLES -->
+		
+{*
+		<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/solid.js" integrity="sha384-+Ga2s7YBbhOD6nie0DzrZpJes+b2K1xkpKxTFFcx59QmVPaSA8c7pycsNaFwUK6l" crossorigin="anonymous"></script>
+		<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/fontawesome.js" integrity="sha384-7ox8Q2yzO/uWircfojVuCQOZl+ZZBg2D2J5nkpLqzH1HY0C1dHlTKIbpRz/LG23c" crossorigin="anonymous"></script>
+*}
+<script src="https://kit.fontawesome.com/6bc54e2d7b.js" crossorigin="anonymous"></script>
+  
+		<link rel="stylesheet" href="{$tpl}css/font-awesome-animation.min.css">
+
+        <link href="{$tpl}assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+        <link href="{$tpl}assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="{$tpl}assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
+        <!-- END GLOBAL MANDATORY STYLES -->
+        <!-- BEGIN PAGE LEVEL PLUGINS -->
+		
+        <link href="{$tpl}assets/global/plugins/morris/morris.css" rel="stylesheet" type="text/css" />
+		
+        <!-- END PAGE LEVEL PLUGINS -->
+        <!-- BEGIN THEME GLOBAL STYLES -->
+        <link href="{$tpl}assets/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
+        <link href="{$tpl}assets/global/css/plugins.min.css" rel="stylesheet" type="text/css" />		
+        <!-- END THEME GLOBAL STYLES -->
+        <!-- BEGIN THEME LAYOUT STYLES -->
+        <link href="{$tpl}assets/layouts/layout/css/layout.min.css" rel="stylesheet" type="text/css" />
+        <link href="{$tpl}assets/layouts/layout3/css/layout.min.css" rel="stylesheet" type="text/css" />
+        <link href="{$tpl}assets/layouts/layout3/css/themes/default.min.css" rel="stylesheet" type="text/css" id="style_color" />
+        <link href="{$tpl}css/style.css" rel="stylesheet" type="text/css" />
+		<link href="{$tpl}css/corrections.css" rel="stylesheet" type="text/css" />
+		
+		<link href="{$tpl_url}assets/global/plugins/lightbox/css/lightbox.css" rel="stylesheet">
+		
+		<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+		
+		<!-----Fancybox---->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+
+
+
+    <!--slicks slider--->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script type="text/javascript" src="{$tpl}js/fancy.js"></script>
+
+    <!--Ловим Скролл мышью --->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"></script>
+	
+	<link rel="stylesheet" type="text/css" href="{$tpl}style.css">
+
+        <!-- END THEME LAYOUT STYLES -->
+        <link rel="shortcut icon" href="{$tpl}favicon.ico" /> 
+	</head>
+    <!-- END HEAD -->
+
+    <body class="page-container-bg-solid">
+{$site.google2}
+        <div class="page-wrapper">
+            <div class="page-wrapper-row">
+                <div class="page-wrapper-top">
+                    <!-- BEGIN HEADER -->
+                    <div class="page-header">
+                        <!-- BEGIN HEADER TOP -->
+                        <div class="page-header-top mb-0 pb-0">
+                            <div class="pb-5 pt-5">
+							
+								<div class="row">
+									<div class="col-md-4 col-lg-3 col-xs-6 col-sm-6 left pl-0 pr-0 ml-0 mr-0">
+										<div class="row pl-0 pr-0 ml-0 mr-0">
+											<div class="col-md-12 left hidden-xs hidden-sm pl-0 pr-0 ml-0 mr-0">
+												<a href="{$site.site_url}">
+													<img src="{$tpl}i/logo199.png" width="199" height="34" alt="СК НОРМА" title="СК НОРМА" class="logo-default">
+												</a>
+											</div>
+											<div class="col-md-12 left hidden-lg hidden-md m-0 p-0 pl-15">
+												<a href="{$site.site_url}">
+													<img src="{$tpl}i/logo199.png" alt="СК НОРМА" title="СК НОРМА" class="img-responsive">
+												</a>
+											</div>											
+											
+											<div class="col-md-12 header-text left hidden-xs hidden-sm  pl-0 pr-0 ml-0 mr-0">
+												строительная&nbsp;компания
+											</div>
+											<div class="col-md-12 header-text-mobile left hidden-lg hidden-md m-0 p-0 pl-15">
+												строительная&nbsp;компания
+											</div>
+										</div>		
+									</div>
+									
+									<div class="col-lg-4 hidden-xs hidden-sm hidden-md header-text-center  pl-0 pr-0 ml-0 mr-0">
+										Офисные перегородки от ведущего<br>Российского производителя
+									</div>
+						
+									<div class="col-md-8 col-lg-5 col-xs-6 col-sm-6 right pl-0 pr-0 ml-0 mr-0">
+{if $page.alias == "okna/pvkh-plastikovaia-rama" OR $page.alias == "okna/al-aliuminievaia-rama" OR $page.alias == "okna"}
+	{assign var="top_email" value=$site.email_okna}			
+{else}
+	{assign var="top_email" value="sknorma@irline.su"}
+{/if}
+
+{* Проверка на платный источник
+{if !empty($page.payd_click)}
+	{assign var="phone" value=$site.phone_payd_click}
+{else} 
+*}
+	{assign var="phone" value=$site.phone}
+
+{*
+{/if}
+*}
+
+										{*sm xs*}
+										<div class="row hidden-md hidden-lg">
+											<a href="tel:{$phone|strip_tags|replace:"/,-, ":""}"><i class="fa fa-phone fa-2x mt-10 red"></i></a>
+											<a href="javascript:;" class="menu-toggler mt-5" id="menu-toggler"></a>	
+										</div>
+
+										{* md *}
+										<div class="row hidden-lg hidden-sm hidden-xs header-phone red">
+											<a href="tel:{$phone|strip_tags|replace:"/,-, ":""}"><i class="fa fa-phone"></i> {$phone}</a>
+										</div>
+
+										{* lg *}
+										<div class="row hidden-md hidden-sm hidden-xs pl-0 pr-0 ml-0 mr-0">	
+											<div class="col-md-12 m-0 p-0 right ">
+												<a href="mailto:{$top_email}" class="header-contact">
+													<i class="fa fa-envelope"></i> {$top_email}
+												</a>
+											</div>
+											<div class="col-md-12 header-phone m-0 p-0 right">
+												<div class="header-phone m-0 p-0 ">
+													<a href="tel:{$phone|strip_tags|replace:"/,-, ":""}"><i class="fa fa-phone"></i> {$phone}</a> <span>многоканальный</span> {*<span>звонок бесплатный</span>*}
+												</div>		
+											</div>
+										</div>
+									</div>
+								</div>
+                                <!-- BEGIN TOP NAVIGATION MENU -->                                
+                            </div>
+                        </div>
+                        <!-- END HEADER TOP -->
+						
+                        <!-- BEGIN HEADER MENU -->
+                        <div class="page-header-menu mt-0">
+                            <div class="container center navbar-collapse">
+                                <!-- BEGIN MEGA MENU -->
+								<div class="hor-menu">
+                                    <ul class="nav navbar-nav ">
+                                       
+{foreach from=$site.default_menu value="v"}
+	{if $v.id_parent == $site.default_id_categ}
+		{if !empty($v.child_categs) AND empty($v.shop)}
+			<li class="menu-dropdown classic-menu-dropdown dropdown mr-0 pr-0">
+				<a href="{$v.link}" class="hidden-xs hidden-sm hidden-md">{$v.title}
+					<i class="fa fa-angle-down"></i>
+				</a>
+				<a href="javascript:;" class="hidden-lg menu">{$v.title}
+					<i class="fa fa-angle-down"></i>
+				</a>
+			<ul class="dropdown-menu pull-left mr-0 pr-0">
+				{*if !empty($v.active)}
+				<li class=""><a href="{$v.link}" class="nav-link">{$v.title}</a></li>
+				{/if*}				
+			{foreach from=$site.default_menu value="v2"}
+				{if $v2.id_parent == $v.id}
+					<li><a href="{$v2.link}" class="nav-link" >{$v2.title}</a></li>
+				{/if}
+			{/foreach}
+			</ul>
+			</li>
+		{elseif empty($v.shop)}
+			<li class=""><a href="{$v.link}">{$v.title}</a></li>
+		{/if}
+	{/if}
+{/foreach}
+
+{*
+										<li class="menu-dropdown classic-menu-dropdown dropdown dropdown-extended quick-sidebar-toggler pull-right hidden-xs hidden-sm hidden-md">
+                                            <span class="sr-only">Toggle Quick Sidebar</span>
+                                            <a href="javascript:;"><i class="fa fa-ellipsis-v"></i></a>
+                                        </li>
+*}
+										
+                                    </ul>
+								</div>
+
+                                <!-- END MEGA MENU -->
+                            </div>
+							
+                        </div>
+                        <!-- END HEADER MENU -->
+						
+						
+
+						
+						
+						
+						
+						
+						
+						
+
+
+
+<div class="hidden-lg hidden-md page-header-menu mt-0 p-0">
+                            <div class="center">
+                                <!-- BEGIN MEGA MENU -->
+								<div class="hor-menu">
+                                    <ul class="nav navbar-nav">
+                                       
+{foreach from=$site.default_menu value="v"}
+	{if $v.id_parent == $site.default_id_categ}		
+		{if !empty($v.child_categs)}
+			<li class="menu-dropdown classic-menu-dropdown {if !empty($v.shop)}hidden-lg hidden-md{else}hidden-xs hidden-sm{/if} mr-0 pr-0">
+				<a href="{$v.link}" class="hidden-xs hidden-sm hidden-md">{$v.title}55
+					<i class="fa fa-angle-down"></i>
+				</a>
+				<a href="javascript:;" class="hidden-lg">{$v.title}
+					<i class="fa fa-angle-down"></i>
+				</a>
+			<ul class="dropdown-menu pull-left mr-0 pr-0">
+				{*if !empty($v.active)}
+				<li class="hidden-lg hidden-md"><a href="{$v.link}" class="nav-link">{$v.title}</a></li>
+				{/if*}				
+			{foreach from=$site.default_menu value="v2"}
+				{if $v2.id_parent == $v.id}
+					<li><a href="{$v2.link}" class="nav-link">{$v2.title}</a></li>
+				{/if}
+			{/foreach}
+			</ul>
+		{else}
+			<li class="hidden-xs hidden-sm"><a href="{$v.link}">{$v.title}</a>
+		{/if}
+		</li>
+	{/if}
+{/foreach}
+
+										
+                                    </ul>
+								</div>
+
+                                <!-- END MEGA MENU -->
+                            </div>
+							
+                        </div>
+						
+						
+						
+						
+                    </div>
+                    <!-- END HEADER -->
+                </div>
+            </div>
+            <div class="page-wrapper-row full-height">
+                <div class="page-wrapper-middle">
+                    <!-- BEGIN CONTAINER -->
+                    <div class="page-container">
+                        <!-- BEGIN CONTENT -->
+                        <div class="page-content-wrapper">
+							<div class="co1ntainer">
+<a name="content"></a>							
+								<div class="row m-0 p-0 ">
+									<div class="col-md-3 m-0 p-0 relative-option pt-10">
+
+                                        <div class="sidebar-scrolled-z">
+{foreach from=$site.default_menu value="v"}
+	{if !empty($v.shop) AND $v.level == 1}
+	<ul class="page-sidebar-menu hidden-xs hidden-sm mt-0 pt-0 ml-0 pl-0">
+		<li class="level1">{$v.title}</li>
+		{foreach from=$site.default_menu value="v2"}
+			{if $v2.id_parent == $v.id}
+				<li class="level2 {if !empty($page.alias) AND $page.alias == $v2.alias}active{/if}"><a href="{$v2.link}">{$v2.title}</a></li>
+				
+				{if (!empty($page.alias) AND $page.alias == $v2.alias) 
+					OR
+					(!empty($page.id_parent) AND $page.id_parent == $v2.id)
+					OR
+					(!empty($page.id_parent2) AND $page.id_parent2 == $v2.id)
+				}
+				{foreach from=$site.default_menu value="v3"}
+					{if $v3.id_parent == $v2.id}
+				
+						<li class="level3 {if $page.alias == $v3.alias}{/if}" {if $page.alias == $v3.alias}style="margin-left: 15px; background:#cccccc;"{else}style="margin-left: 15px;"{/if}><a href="{$v3.link}" class="" {if $page.alias == $v3.alias OR !empty($v3.child_categs)}style="font-weight:bold;"{/if}>{$v3.title}</a></li>
+						
+						{if !empty($v3.child_categs) AND
+							(
+							(!empty($page.id_parent) AND $page.id_parent == $v3.id)
+							OR 
+							(!empty($page.id_parent2) AND $page.id_parent2 == $v3.id)
+							OR 
+							(!empty($page.id) AND $page.id == $v3.id)
+							)
+						}
+							{foreach from=$site.default_menu value="v4"}
+								{if $v4.id_parent == $v3.id}
+					<li class="level3 {if $page.alias == $v4.alias}{/if}" {if $page.alias == $v4.alias}style="margin-left: 25px; background:#cccccc;"{else}style="margin-left: 25px;"{/if}><a href="{$v4.link}" class="" {if $page.alias == $v4.alias}{/if}>{$v4.title}</a></li>
+								{/if}
+							{/foreach}
+						{/if}
+					{/if}
+				{/foreach}
+				{/if}
+			{/if}
+		{/foreach}
+	</ul>
+	{/if}
+{/foreach}	{*cycle values=" ,active"*}
+
+	{$site.sidebar}
+
+
+
+                                    </div>
+									</div><!-- END COL-3 -->
+									<div class="col-md-9 m-0 p-0 pt-10">
+
+
+
+
+
+
+
+
+
+{if !empty($page.list_photos) AND !empty($simpla.GET.id)}
+{assign var="gid" value=$simpla.GET.id}
+{else}
+{assign var="gid" value=""}
+{/if}
+
+{if empty($site.img_mainslider_height.value)}
+	{assign var="height" value=410}
+{else}
+	{assign var="height" value=$site.img_mainslider_height.value}
+{/if}
+
+{if !empty($page.list_photos)}				
+<div id="carousel-custom" class="carousel slide {if isset($page.blocks.sys.photos.qty) AND $page.blocks.sys.photos.qty > 1}pl-{$page.blocks.sys.photos.qty}0 pr-{$page.blocks.sys.photos.qty}0{/if}" data-ride="carousel"  {if $page.blocks.sys.photos.extra > 900}data-interval="{$page.blocks.sys.photos.extra}"{else}data-interval="false"{/if}>
+  <div class="carousel-outer"> 
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+	{foreach from=$page.list_photos key="k" value="v"}
+		{if !empty($v.11.url)}
+			{*<pre>
+			{$v.11|print_r}
+			</pre>*}
+			{img url=$v.11.path width=878 height=$height assign="img"}
+			
+			<div class="item {if $k == 1 AND empty($gid)}active{elseif $gid == $k}active{/if}"> <img src="{$img.src}" alt="" /> 
+		
+			{if !empty($page.breadcrumbs)}
+				<div class="head-img-button-catalog">
+				{if empty($gid) OR ($gid == $k	AND empty($v.11.ext_link))}
+				<a href="/upload/catalog_irline/Irline_Catalog_2011[1_2].pdf" target="_blank">СКАЧАТЬ&nbsp;КАТАЛОГ</a>
+				{elseif !empty($gid) AND $gid == $k	AND !empty($v.11.ext_link)}
+				
+				{else}
+				<a href="/upload/catalog_irline/Irline_Catalog_2011[1_2].pdf" target="_blank">СКАЧАТЬ&nbsp;КАТАЛОГ</a>
+				{/if}
+				</div>
+			{else}<div class="head-img-button">{$v.11.title|escape}</div>
+			{/if}
+			
+			{if !empty($gid) AND ($gid == $k AND !empty($v.11.title) AND !empty($v.11.ext_desc))}
+			<div class="note note-dark m-0{if empty($v.11.ext_link)} pb-50{/if}">
+				<h1>{$v.11.title}</h1>
+				{if !empty($v.11.ext_h1)}<div class="text-center p-10">
+				<p class="btn btn-circle red">{$v.11.ext_h1}</p>
+				</div>{/if}
+				{$v.11.ext_desc}
+			</div>
+			<div style="clear:both;"></div>
+			{/if}			
+			
+			</div>
+			
+
+	
+		{/if}
+	{/foreach}
+	</div>
+
+    {if $page.list_photos|@count > 1}
+    <!-- Controls --> 
+    <a class="left carousel-control" href="#carousel-custom" data-slide="prev"> <i class="fa fa-chevron-left fa-2x faa-tada animated"></i> </a> 
+    <a class="right carousel-control" href="#carousel-custom" data-slide="next"> <i class="fa fa-chevron-right fa-2x faa-tada animated"></i> </a> 
+	{/if}
+	</div>
+
+	
+	
+</div>
+{/if}							
+

@@ -1,0 +1,25 @@
+{ include file="header.html" }
+                <section class="post">
+                    <div class="row">
+                        <div class="col-md-12">
+                            {include file="pages/breadcrumbs.html"}                        
+
+                            <h1>{$page.title}</h1>
+                            
+                                {if !empty($page.intro)}
+                                    <div class="caption">
+                                        <p>{$page.intro}</p>
+                                    </div>
+                                {/if}
+                            <p>
+                                {$page.content}
+                            </p>
+                        
+{include file="pages/include_options.html"}
+                
+{include file="pages/include_connected_products.html"}
+{include file="pages/include_connected_pubs.html"}
+
+{include file="pages/include_comments.html"}
+                
+{ include file="footer.html" }

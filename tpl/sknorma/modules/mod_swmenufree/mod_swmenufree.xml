@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="1.6" method="upgrade" client="site">
+	<name>swMenuFree</name>
+	<author>Sean White</author>
+	<creationDate>August 2011</creationDate>
+	<copyright>Copyright (C) 2010-2011 Sean White. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<authorEmail>sean@swmenupro.com</authorEmail>
+	<authorUrl>http://swmenupro.com</authorUrl>
+	<version>6.6</version>
+	<description>swMenuFree dynamic menu module for Joomla</description>
+	<files>
+        <filename module="mod_swmenufree">mod_swmenufree.php</filename>
+        <filename>mod_swmenufree.xml</filename>
+       
+
+            <filename>DropDownMenuX.js</filename>
+            <filename>DropDownMenuX_Packed.js</filename>
+            <filename>functions.php</filename>
+            <filename>ie5.js</filename>
+			<filename>styles.php</filename>
+			<filename>transmenu.js</filename>
+            <filename>transmenu_Packed.js</filename>
+			<filename>menu.js</filename>
+            <filename>menu_Packed.js</filename>
+			<filename>jquery-1.2.6.pack.js</filename>
+			<filename>superfish.js</filename>
+            <filename>supersubs.js</filename>
+			<filename>hoverIntent.js</filename>
+			<folder>images</folder>
+			<folder>cache</folder>
+			<folder>styles</folder>
+  
+			
+    </files>
+  
+</extension>

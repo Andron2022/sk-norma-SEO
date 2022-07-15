@@ -1,0 +1,162 @@
+.wrapGalary {
+  width: 615px; /* ширина основного блока */
+  margin: 20px auto; /* отступы сверху и снизу по 20px, выравнивание по середине */
+  padding: 30px;
+  background: #f1f1f1;
+}
+.main {
+  width: 615px;  /* ширина блока с изображением */
+  height: 410px; /* высота блока с изображением */
+  overflow: hidden;
+}
+.main p {
+  margin: 0;
+  padding: 0;
+  width: 615px; /* ширина параграфа <p> внутри блока div.main */
+  height: 410px;/* высота параграфа <p> внутри блока div.main */
+  text-align: center;
+  display: table-cell;
+  vertical-align: middle;
+}
+.j-loader {
+  width : 597px; /* ширина блока с ajax-loader.gif */
+  height: 19px;  /* высота блока с ajax-loader.gif */
+}
+.active-loader {
+  background: url(../images/ajax-loader.gif) 50% 0 no-repeat;
+}
+.jcarousel-container { position: relative; }
+.jcarousel-clip {
+  z-index: 2;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.jcarousel-list {
+  z-index: 1;
+  overflow: hidden;
+  position: relative;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.jcarousel-list li,
+.jcarousel-item {
+  float: left;
+  list-style: none;
+  width: 100px;
+  height: 75px;
+}
+.jcarousel-item img {
+  border: 2px solid #E75C00;
+}
+.jcarousel-next {
+  z-index: 3;
+  display: none;
+}
+
+.jcarousel-prev {
+  z-index: 3;
+  display: none;
+}
+.jcarousel-skin-tango .jcarousel-container { background:url(../images/gallery_bg.png) 0 0 no-repeat; } /* фон для карусели */
+.jcarousel-skin-tango .jcarousel-container-horizontal {
+  width:530px; /* ширина основного блока карусели */
+  height:70px; /* высота основного блока карусели */
+  padding: 8px 45px;
+  font-size:1px;
+}
+* html .jcarousel-skin-tango .jcarousel-container-horizontal {
+  overflow: hidden;
+}
+
+.jcarousel-skin-tango .jcarousel-clip-horizontal {
+  width:  535px; /* ширина внутреннего блока карусели */
+  height: 76px;  /* ширина внутреннего блока карусели */
+  position:relative;
+  top:-3px;
+  left: -2px;
+  padding:0 !important
+}
+
+.jcarousel-skin-tango .jcarousel-item {
+	padding:0 !important;
+	margin:0 !important;
+  width: 100px; /* ширина каждого пункта с изображеним, <li> */
+  height: 71px; /* высота каждого пункта с изображеним, <li> */
+}
+
+.jcarousel-skin-tango .jcarousel-item img {
+	border:2px solid transparent;
+	cursor:pointer;
+	margin:0 !important;
+	width:100px; /* ширина каждой картинки  */
+	height:67px; /* высота каждой картинки  */
+}
+* html .jcarousel-skin-tango .jcarousel-item img {
+  border:2px solid #d5d5d5;
+}
+
+.jcarousel-skin-tango .jcarousel-item img.active, .jcarousel-skin-tango .jcarousel-item a:hover img {
+	border:2px solid red;
+	opacity:0.7;
+  filter:Alpha(Opacity=70);
+}
+
+.jcarousel-skin-tango .jcarousel-item-horizontal { margin-right: 10px; }
+
+.prew_active {
+  border:2px solid red !important;
+  opacity: 0.7;
+  filter:Alpha(Opacity=70);
+}
+.jcarousel-skin-tango .jcarousel-item-placeholder {
+  background: #fff;
+  color: #000;
+}
+
+.jcarousel-skin-tango .jcarousel-next-horizontal {
+  position: absolute;
+  top: 25px;  /* отступ сверху у правой кнопки */
+  right: 10px;/* отступ справа у правой кнопки */
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  background: transparent url(../images/next-horizontal-bgDark.gif) no-repeat 0 0; /* фон правой кнопки */
+}
+
+.jcarousel-skin-tango .jcarousel-next-horizontal:hover { background-position: -32px 0; }
+.jcarousel-skin-tango .jcarousel-next-horizontal:active {
+  background-position: -64px 0;
+}
+
+.jcarousel-skin-tango .jcarousel-next-disabled-horizontal,
+.jcarousel-skin-tango .jcarousel-next-disabled-horizontal:hover,
+.jcarousel-skin-tango .jcarousel-next-disabled-horizontal:active {
+  cursor: default;
+  background-position: -96px 0;
+}
+
+.jcarousel-skin-tango .jcarousel-prev-horizontal {
+  position: absolute;
+  top: 25px; /* отступ сверху у левой кнопки */
+  left: 8px; /* отступ  слева у левой кнопки */
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  background: transparent url(../images/prev-horizontal-bgDark.gif) no-repeat 0 0; /* фон левой кнопки */
+}
+.jcarousel-skin-tango .jcarousel-prev-horizontal:hover { background-position: -32px 0; }
+
+.jcarousel-skin-tango .jcarousel-prev-horizontal:active { background-position: -64px 0; }
+
+.jcarousel-skin-tango .jcarousel-prev-disabled-horizontal,
+.jcarousel-skin-tango .jcarousel-prev-disabled-horizontal:hover,
+.jcarousel-skin-tango .jcarousel-prev-disabled-horizontal:active {
+  cursor: default;
+  background-position: -96px 0;
+}

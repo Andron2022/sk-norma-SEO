@@ -1,0 +1,14 @@
+﻿
+<div class="sub-title">ЗАКАЖИТЕ КАЧЕСТВЕННЫЕ <br> ОКНА ПРЯМО СЕЙЧАС</div>
+
+<form class="form-leftside" role="form" action="/feedback" method="post" >
+<input type="hidden" name="fb[when]" value="{ $site.formkey }">
+<input type="hidden" name="fb[from_page]" value="{$uri.requested}">
+<input type="hidden" name="fb[type]" value="okna">
+<input type="hidden" name="fb[email]" value="no@email">
+<input type="hidden" name="fb[redirect]" value="{$site.site_url}/okna/thanks_okna">
+{if !empty($site.email_okna)}<input type="hidden" name="fb[to_email]" value="{$site.email_okna}">{/if}
+<p><input type="text" name="fb[name]" placeholder="Имя" required></p>
+<p><input type="tel" name="fb[phone]" placeholder="Телефон" required></p>
+<p><input type="submit" name="add" value="ОФОРМИТЬ ЗАЯВКУ"></p>
+</form>

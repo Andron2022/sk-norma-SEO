@@ -1,0 +1,147 @@
+{include file="header.html"}
+
+                      <h3 class="uppercase">{$page.title}</h3>
+                        {if !empty($uri.params.sent)}
+                            <div class="alert alert-success"><i class="fa fa-check-circle-o"></i> {$page.content}</div>
+                        {else}
+                            {if !empty($page.content)}<p>{$page.content}<br><br></p>{/if}                        
+                        {/if}
+                        
+                        
+                        
+                        
+                        {if empty($uri.params.sent) AND empty($uri.params.done)}
+                            <form role="form" action="{$site.site_url}/feedback{$simpla.CONST.URL_END}" method="post" >
+                            <input type="hidden" name="fb[when]" value="{ $site.formkey }">
+                            <input type="hidden" name="fb[from_page]" value="{$uri.site}{$uri.path}">
+                            <input type="hidden" name="fb[type]" value="feedback">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="info-icons">
+                                        {if !empty($site.address)}<div class="table-row">
+                                            <div class="table-cell">
+                                                <i class="fa fa-map-marker"></i>
+                                            </div>
+                                            <div class="table-cell text-right">
+                                                {$site.address}
+                                            </div>
+                                        </div>
+                                        <br>
+                                        {/if}
+                                        
+                                        {if !empty($site.phone)}
+                                        <div class="table-row">
+                                            <div class="table-cell">
+                                                <i class="fa fa-phone"></i>
+                                            </div>
+                                            <div class="table-cell text-right">
+                                                {lang key1="feedback" key2="phone"}: <a href="tel:{$site.phone2}">{$site.phone}</a><br>
+                                                {if !empty($site.phone2)}<a href="tel:{$site.phone2}">{$site.phone2}</a><br>{/if}
+                                                {if !empty($site.phone3)}<a href="tel:{$site.phone3}">{$site.phone3}</a><br>{/if}
+                                            </div>
+                                        </div>
+                                        {/if}
+                                        <br>
+                                        <div class="table-row">
+                                            <div class="table-cell">
+                                                <i class="fa fa-envelope"></i>
+                                            </div>
+                                            <div class="table-cell text-right">
+                                                <a href="mailto:{$site.email_info}">{$site.email_info}</a><br>
+                                            </div>
+                                        </div>
+                                        <div class="table-row">
+                                            <div class="table-cell">
+                                                <i class="fa fa-globe"></i>
+                                            </div>
+                                            <div class="table-cell text-right">
+                                                <a href="{$site.site_url}">{$site.site_url|replace:"http://"}</a><br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 text-center">
+                                            <br>
+                                            <ul class="socials flat">
+                                                {if !empty($site.facebook)}<li>
+                                                    <a href="{$site.facebook}" target="_blank" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Facebook"><i class="fa fa-facebook"></i></a>
+                                                </li>{/if}
+                                                {if !empty($site.twitter)}<li>
+                                                    <a href="{$site.twitter}" target="_blank" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Twitter"><i class="fa fa-twitter"></i></a>
+                                                </li>{/if}
+                                                {if !empty($site.googleplus)}<li>
+                                                    <a href="{$site.googleplus}" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Google +"><i class="fa fa-google-plus"></i></a>
+                                                </li>{/if}
+                                                {if !empty($site.vk)}<li>
+                                                    <a href="{$site.vk}" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="VK"><i class="fa fa-vk"></i></a>
+                                                </li>{/if}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    {*<div class="row">
+                                        <div class="col-md-12">
+                                            <div class="successMessage alert alert-success" style="display: none">
+                                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                                <p>{lang key1="feedback" key2="sent" key3="content"}</p>
+                                            </div>
+                                            <div class="errorMessage alert alert-danger" style="display: none">
+                                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                                <p>{lang key1="feedback" key2="error"}</p>
+                                            </div>
+                                        </div>
+
+                                    </div>*}
+
+                                    
+                                        <div class="row padding-xs-top">
+                                            <div class="col-md-6 col-sm-6">
+                                                <div class="form-group">
+                                                    <input required="" type="email" name="fb[email]" class="form-control" placeholder="{lang key1="feedback" key2="email"} *">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6">
+                                                <div class="form-group">
+                                                    <input  type="tel" name="fb[phone]" class="form-control" placeholder="{lang key1="feedback" key2="phone"}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                                <div class="form-group">
+                                                     <input  type="text" name="fb[name]" class="form-control" placeholder="{lang key1="feedback" key2="name"} *">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                                <div class="form-group">
+                                                    <textarea required="" class="form-control" rows="4" name="fb[message]"  placeholder="{lang key1="feedback" key2="message_example"}"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <input type="submit" class="btn btn-brick btn-xs large-padding  pull-right" name="go" value="{lang key1="feedback" key2="button"}">
+                                                {*<button type="submit" class="btn btn-brick btn-xs large-padding  pull-right">{lang key1="feedback" key2="button"}</button>*}
+                                            </div>
+                                        </div>                                    
+                                </div>
+                            </div>
+                            </form>
+                        {/if}
+                        
+                        {if !empty($uri.params.done) AND !empty($page.feedback)}
+                            <div class="post-info">
+                                <hr>
+                                <p>{lang key1="feedback" key2="view" key3="ticket"} <a name="sentby">{$page.feedback.ticket}</a> <i class="fa fa-clock-o"></i> <strong>{$page.feedback.date}</strong></span> <span class="pull-right"><span class="motive">{if $page.feedback.status == 1}<a href="#" class="btn btn-success flat btn-lg">{lang key1="feedback" key2="view" key3="answer_sent"}</a>{else}<a href="#" class="btn btn-warning flat btn-lg">{lang key1="feedback" key2="view" key3="wait_answer"}</a>{/if}</span></span></p>
+                                <hr>
+                                <p><span><span>{lang key1="feedback" key2="view" key3="sentby"} <a name="sentby">{$page.feedback.name}</a>  <i class="fa fa-at"></i> {$page.feedback.email} 
+                                {if !empty($page.feedback.phone)}<i class="fa fa-phone"></i> {$page.feedback.phone}{/if}</span> <span class="pull-right"><span class="motive">-</span></span></p>
+                                <hr>
+                            </div>                        
+                        {/if}
+
+
+{include file="footer.html"}

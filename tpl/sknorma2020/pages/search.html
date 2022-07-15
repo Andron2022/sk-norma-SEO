@@ -1,0 +1,77 @@
+{include file="header.html"}
+
+                <section class="post">
+                    <div class="row">
+                        <div class="col-md-12">
+                        
+                            <div class="title">
+                                {$page.title}
+                            </div>
+                            
+                            <form action="{$site.site_url}/search/" method="get">
+                            <div class="input-group" style="padding-top:10px; margin-top:10px;">
+                                <input type="text" class="form-control" placeholder="{lang key1="search" key2="search"}" name="q"{if !empty($uri.params.q)} value="{$uri.params.q|escape}"{/if}>
+                                  <span class="input-group-btn">
+                                    <button class="btn btn-brick" type="submit"><i class="fa fa-search"></i></button>
+                                  </span>
+                            </div>
+                            </form>
+                                
+                            {if !empty($uri.params.q)}
+                                    <div class="caption">
+                                        <p>{lang key1="search" key2="search_for"} <b>{$uri.params.q|escape}</b></p>
+                                    </div>                            
+                            {else}
+                                    <div class="caption">
+                                        <p>{lang key1="search" key2="empty_query_string"}</p>
+                                    </div>                            
+                            {/if}
+                                    
+                        </div>
+                    </div>
+                </section>
+
+                {if !empty($uri.params.q)}
+                <ul class="filter-list">
+                    <li{if !empty($uri.params.where) AND ($uri.params.where == "pubs" OR $uri.params.where == "products" OR $uri.params.where == "categs")}{else} class="active"{/if}>
+                        <a href="{$uri.site}{$uri.path}?q={$uri.params.q}">{lang key1="search" key2="search_results"}</a> 
+                    </li>
+                    {if empty($page.list_pubs) AND empty($page.list_products) AND empty($page.list_categs)}
+                        <li>
+                            {lang key1="search" key2="nothing_found"}
+                        </li>
+                    {else}
+                        {if !empty($page.list_pubs.list)}<li{if !empty($uri.params.where) AND $uri.params.where == "pubs"} class="active"{/if}>
+                            <a href="{$uri.site}{$uri.path}?q={$uri.params.q}&where=pubs"><span data-toggle="tooltip" data-placement="top" title="{lang key1="search" key2="pubs"}"><i class="fa fa-list"></i> {$page.list_pubs.list|@count}</span></a>
+                        </li>{/if}
+                        {if !empty($page.list_products.list)}<li{if !empty($uri.params.where) AND $uri.params.where == "products"} class="active"{/if}>
+                            <a href="{$uri.site}{$uri.path}?q={$uri.params.q}&where=products"><span data-toggle="tooltip" data-placement="top" title="{lang key1="search" key2="products"}"><i class="fa fa-shopping-cart"></i> {$page.list_products.list|@count}</span></a>
+                        </li>{/if}
+                        {if !empty($page.list_categs)}<li{if !empty($uri.params.where) AND $uri.params.where == "categs"} class="active"{/if}>
+                            <a href="{$uri.site}{$uri.path}?q={$uri.params.q}&where=categs"><span data-toggle="tooltip" data-placement="top" title="{lang key1="search" key2="categs"}"><i class="fa fa-files-o"></i> {$page.list_categs|@count}</span></a>
+                        </li>{/if}
+                    {/if}
+                </ul>
+
+{if !empty($uri.params.where) AND $uri.params.where == "products"}
+    {include file="pages/include_products.html"}
+{/if}
+
+{if !empty($uri.params.where) AND $uri.params.where == "pubs"}
+    {include file="pages/include_pubs.html"}
+{/if}
+
+{if !empty($uri.params.where) AND $uri.params.where == "categs"}
+    {if $page.list_categs|@count > 0}
+    <ul class="arrowlist">
+        {foreach value="v" from=$page.list_categs}
+            <li><a href="{$v.link}">{$v.title}</a></li>
+        {/foreach}
+    </ul>
+    {/if}
+{/if}
+
+                {/if}
+
+
+{ include file="footer.html" }

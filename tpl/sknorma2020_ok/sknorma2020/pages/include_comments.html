@@ -1,0 +1,62 @@
+{* COMMENTS START *}                       
+    {if !empty($page.list_comments) AND empty($uri.params.page)}
+        <div style="clear:both;"></div>   
+        <span class="commentsNumber"><span class="number">{$page.list_comments|@count}</span>  <span class="text">{lang word="comment" qty=$page.list_comments|@count}</span></span>
+        <hr>
+        
+        <section class="commentList">
+            <ul class="commentList list-unstyled">
+            
+                {foreach from=$page.list_comments key="k" value="v"}
+                    <a name="comm{$k}"></a>
+                            <li>
+                                <div class="oneComment">
+                                    <div class="media">
+                                        <a class="pull-left" href="#comm{$k}">
+                                            <img class="media-object" src="{$tpl}assets/images/content/agent3.jpg" alt="">                                 
+                                        </a>
+
+                                        <div class="media-body">
+                                            <div class="inner-body">
+                                                <h3 class="media-heading">{$v.title}
+                                                    <small class="date">{$v.date} {$v.time}</small>
+                                                </h3>
+                                                <p>{$v.message}</p>
+                                                <a href="#comm{$k}" class="btn btn-brick reply-button">#</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- / oneComment -->
+                                
+                                {if !empty($v.sub_message)}
+                                <ol class="children">
+                                    <li>
+                                        <div class="oneComment">
+                                            <div class="media ">
+                                                <a class="pull-left" href="#comm{$k}">
+                                                    <img class="media-object" src="{$tpl}assets/images/content/agent7.jpg" alt=" ">
+                                                </a>
+
+                                                <div class="media-body">
+                                                    <div class="inner-body">
+                                                        <h3 class="media-heading">{$v.sub_name}
+                                                            <small class="date">{$v.sub_date} {$v.sub_time}</small>
+                                                        </h3>             
+                                                        <p>{$v.sub_message}</p>
+                                                        <a href="#comm{$k}" class="btn btn-brick reply-button">#</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- / oneComment -->
+                                    </li>
+                                </ol>
+                                {/if}                                
+                            </li>
+                {/foreach}
+            </ul>
+        </section>                           
+        
+    {/if}
+{* ---> PUBS STOP *}

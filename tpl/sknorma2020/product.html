@@ -1,0 +1,158 @@
+{ include file="header.html" }
+
+
+                {include file="pages/breadcrumbs.html"} 
+                
+       
+                <section>
+                    <div class="title">
+                        { $page.title }
+						{if !empty($page.categs.0.id)}
+<div class="pull-right"><a href="{$site.site_url}/compare/?c={$page.categs.0.id}&ids[]={$page.id}" data-toggle="tooltip" data-placement="top" title="Сравнить"><i class="fa fa-exchange"></i></a></div>
+{/if}
+                    </div>
+                        {if empty($uri.params.page)}                                                          
+                                {include file="pages/include_fotos.html"}                               
+                        {/if}
+                </section>
+
+                <section>
+                    {if empty($uri.params.page)}
+                    <div class="caption">
+                        <h3>{$page.intro}</h3>
+                        {$page.content}
+                    </div>
+                    <br>
+                    {/if}
+
+					
+					{if $page.accept_orders == 1}
+						<br><a href="{$site.site_url}/basket/?add={$page.id}&qty=1">Купить</a>
+					
+						<div class="container">
+						  <!-- Trigger the modal with a button -->
+						  {*<form method="post">
+						  <input type="hidden" name="basket[{$page.id}]" value="1">*}
+						  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Купить</button>
+						  {*</form>*}
+
+						  <!-- Modal -->
+						  <div class="modal fade" id="myModal" role="dialog" style="padding: 4em 0; z-index: 99999;">
+							<div class="modal-dialog">
+							
+							  <!-- Modal content-->
+							  <div class="modal-content">
+								<div class="modal-header">
+								  <button type="button" class="close" data-dismiss="modal">&times;</button>
+								  <h4 class="modal-title">Добавлено!</h4>
+								</div>
+								<div class="modal-body">
+								  <p style="text-align:center;">{if !empty($page.list_photos.1.min.url)}<img src="{$page.list_photos.1.min.url}" style="padding:5px;" align="left">{/if}<h5>{$page.title}</h5> x {$page.price_formatted}</p>
+								  <div style="clear:both;"></div>
+								</div>
+								<div class="modal-footer">
+								  <a href="/basket/" class="btn btn-info btn-lg">Оформить заказ</a> 
+								  <button type="button" class="btn btn-default btn-mini" data-dismiss="modal">Продолжить покупки</button>
+								</div>
+							  </div>
+							  
+							</div>
+						  </div>  
+						</div>					
+					{/if}
+
+                    <div class="caption property-info">
+                        <div class="table property-contacts">
+                            <div class="table-cell text-left">
+                                <span class="motive"><i class="fa fa-phone-square icon-big"></i> <a tel:{$site.phone}>{$site.phone}</a></span>
+                            </div>
+                            <div class="table-cell text-center">
+                                <a href="#scroll-here" class="btn-scroll">{if $page.accept_orders == 1}В продаже!{else}Продано :({/if}</a>
+                            </div>
+                            <div class="table-cell text-right">
+                                <span class="">{if !empty($page.barcode)}Код: {$page.barcode}{else}ID: {$page.id}{/if}</span>
+                                <ul class="share pull-right">
+                                    {if !empty($site.facebook)}<li>
+                                        <a href="{$site.facebook}" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Facebook">
+                                            <i class="fa fa-facebook"></i>
+                                        </a>
+                                    </li>{/if}
+                                    {if !empty($site.vkontakte)}<li>
+                                        <a href="{$site.vkontakte}" target="_blank" data-toggle="tooltip" data-placement="bottom" title="VKontakte">
+                                            <i class="fa fa-vk"></i>
+                                        </a>
+                                    </li>{/if}
+                                    {if !empty($site.googleplus)}<li>
+                                        <a href="{$site.googleplus}" data-toggle="tooltip" data-placement="bottom" title="Google +">
+                                            <i class="fa fa-google-plus"></i>
+                                        </a>
+                                    </li>{/if}
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="table">
+                            <div class="table-cell">
+                              <div class="price-tag important pull-left">
+                              {if $page.price_old > 0}
+                                <s>{$page.price_old_formatted}</s><br>
+                              {/if}
+                              {$page.price_formatted}
+                              </div>
+                            </div>
+                            <div class="table-cell">                                
+                                <ul class="property-tags">
+                                  {if !empty($page.list_options.in_list)}
+                                    {foreach from=$page.list_options.in_list value="v"}
+                                        <li>{if $v.type == 'connected'}
+                                                {if !empty($v.value)}{$v.value}{/if}
+                                            {elseif empty($v.icon)}
+                                                {$v.title}: {$v.value}
+                                            {else}{$v.icon} 
+                                                {if !empty($v.value)}{$v.value} {$v.after}{else}?{/if}
+                                            {/if}
+                                        </li>
+                                    {/foreach}
+                                  {else}
+                                    <li><i class="fa fa-clock"></i> {$page.date}</li>                                    
+                                  {/if}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    {include file="pages/include_options.html"}
+                    
+                    <table class="table table-striped">
+                        <tbody>
+                        <tr>
+                            <td>ID</td>
+                            <td>{$page.id}</td>
+                        </tr>
+                        <tr>
+                            <td>Кол-во фото</td>
+                            <td>{$page.qty_photos}</td>
+                        </tr>
+                        <tr>
+                            <td>Просмотров (за 30 дней)</td>
+                            <td>{$page.views} ({$page.monthviews})</td>
+                        </tr>
+                        <tr>
+                            <td>Дата добавления</td>
+                            <td>{$page.date}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    
+                </section>
+                
+{include file="pages/include_quick_order.html"}
+
+{include file="pages/include_comments.html"}
+
+{include file="pages/include_connected_products.html"}
+{include file="pages/include_pubs.html"}
+
+
+
+
+{ include file="footer.html" }

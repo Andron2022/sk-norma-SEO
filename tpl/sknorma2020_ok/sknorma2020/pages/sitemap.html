@@ -1,0 +1,41 @@
+{include file="header.html"}
+
+                <section class="post">
+                    <div class="row">
+                        <div class="col-md-12">
+                        
+                            <div class="title">
+                                {$page.title}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                
+				<ul>
+					{foreach from=$page.list_categs value="v"}
+						<h4 class="motive"{if $v.padding > 0} style="padding-left:{$v.padding}px;"{/if}><a href="{$v.link}">{$v.title}</a></h4>
+						{if !empty($v.list_products.list)}
+							{if $v.padding > 0}<div style="padding-left:{$v.padding}px;">{/if}
+							<ul class="arrowlist columns" style="padding-left:25px;">
+										{foreach from=$v.list_products.list value="p"}
+											<li><a href="{$p.link}">{$p.title}</a></li>
+										{/foreach}
+							</ul>
+							{if $v.padding > 0}</div>{/if}
+						{/if}
+
+						{if !empty($v.list_pubs.list)}
+							{if $v.padding > 0}<div style="padding-left:{$v.padding}px;">{/if}
+							<ul class="arrowlist columns" style="padding-left:25px;">
+							{*<ul class="columns">*}
+										{foreach from=$v.list_pubs.list value="p"}
+											<li><a href="{$p.link}">{$p.title}</a></li>
+										{/foreach}
+							</ul>
+							{if $v.padding > 0}</div>{/if}
+						{/if}
+					{/foreach}
+				</ul>
+
+{ include file="footer.html" }

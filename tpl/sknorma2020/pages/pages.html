@@ -1,0 +1,31 @@
+{if !empty($pages_ar.pages)}
+<div class="row">
+	<ul class="pagination pull-right">
+		{if !empty($pages_ar.prev)}
+			<li><a href="{$pages_ar.prev}">Назад</a></li>
+		{else}
+			<li><a name="prev">Назад</a></li>
+		{/if}
+
+		{foreach from=$pages_ar.pages value="v"}
+			{if !empty($v.start) && !empty($pages_ar.skip_left)}
+				<li{if !empty($v.active)} class="active"{/if}><a href="{$v.link}">{$v.page}</a></li>
+				<li><a name="skip_left">...</a></li>
+			{elseif !empty($v.stop) && !empty($pages_ar.skip_right)}
+				<li><a name="skip_right">...</a></li>
+				<li{if !empty($v.active)} class="active"{/if}><a href="{$v.link}">{$v.page}</a></li>
+			{else}
+				<li{if !empty($v.active)} class="active"{/if}><a href="{$v.link}">{$v.page}</a></li>
+			{/if}
+		{/foreach}
+
+
+		{if !empty($pages_ar.next)}
+			<li><a href="{$pages_ar.next}">Вперед</a></li>
+		{else}
+			<li><a name="next">Вперед</a></li>
+		{/if}		
+		
+	</ul>
+</div>
+{/if}

@@ -1,0 +1,127 @@
+									
+										
+									</div><!-- END COL-9 -->
+								</div><!-- END ROW -->
+								<!-- END PAGE CONTENT INNER -->
+							</div>
+                            <!-- END PAGE CONTENT BODY -->
+                        </div>
+                        <!-- END CONTENT -->
+                    </div>
+                    <!-- END CONTAINER -->
+                </div>
+            </div>
+            <div class="page-wrapper-row">
+                <div class="page-wrapper-bottom">
+                    <!-- BEGIN FOOTER -->
+                    <!-- BEGIN PRE-FOOTER -->
+                    <div class="page-prefooter">
+                        <div class="">
+                            <div class="row m-0 p-0">
+								<div class="col-md-6 col-sm-6 col-xs-12 footer-block left m-0 p-0">
+                                    © 2010-{$simpla[NOW]|date:"Y"} «{$site.name_short}»
+									<br>тел.: {*{if !empty($page.payd_click)}{$site.phone_payd_click}{else}*}{$site.phone} многоканальный{*{/if} (Звонок бесплатный). *}
+									<br>{blocks where="footer" name="bottom_left"}
+									
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12 footer-block right  m-0 p-0">
+                                    <img src="{$tpl}i/logo199.png" width="199" height="34" alt="{$site.name_short|escape}" title="{$site.name_short|escape}" class="logo-default">
+									<div class="col-md-12 m-0 p-0 header-text" style="color: #8f8f8f; text-shadow: 0 -1px 0 #ffffff;">
+											строительная компания
+									</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END PRE-FOOTER -->
+                    <!-- BEGIN INNER FOOTER -->
+                    <div class="page-footer pt-5 center pl-0 pr-0 ml-0 mr-0" style="color: #8f8f8f; font-size:0.9em;">
+                        {blocks where="footer" name="links"}                        
+                    </div>
+                    <div class="scroll-to-top">
+                        <i class="icon-arrow-up"></i>
+                    </div>
+                    <!-- END INNER FOOTER -->
+                    <!-- END FOOTER -->
+                </div>
+            </div>
+        </div>
+
+
+{*		
+		<!-- BEGIN QUICK SIDEBAR -->
+		<a href="javascript:;" class="page-quick-sidebar-toggler">
+			<i class="icon-close"></i>
+        </a>
+		<div class="page-quick-sidebar-wrapper" data-close-on-body-click="false">
+			<div class="page-quick-sidebar">
+				<ul class="nav nav-tabs">
+					<li class="active">
+						<a href="javascript:;" data-target="#quick_sidebar_tab_1" data-toggle="tab"> Вопросы
+						</a>
+					</li>
+					<li>
+						<a href="javascript:;" data-target="#quick_sidebar_tab_2" data-toggle="tab"> Акции
+						</a>
+					</li>
+				</ul>
+				<div class="tab-content">
+					<div class="tab-pane active page-quick-sidebar-chat" id="quick_sidebar_tab_1">
+						<div class="p-10">Частые вопросы и ответы на них</div>
+					</div>
+					<div class="tab-pane page-quick-sidebar-alerts" id="quick_sidebar_tab_2">
+						<div class="page-quick-sidebar-alerts-list">
+							<div class="p-10">Акции</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- END QUICK SIDEBAR -->
+*}		
+		
+		
+		
+		
+        
+        <!--[if lt IE 9]>
+<script src="{$tpl}assets/global/plugins/respond.min.js"></script>
+<script src="{$tpl}assets/global/plugins/excanvas.min.js"></script> 
+<script src="{$tpl}assets/global/plugins/ie8.fix.min.js"></script> 
+<![endif]-->
+        <!-- BEGIN CORE PLUGINS -->
+        {*<script src="{$tpl}assets/global/plugins/jquery.min.js" type="text/javascript"></script>*}
+        <script src="{$tpl}assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+        {*<script src="{$tpl}assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
+        <script src="{$tpl}assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+        <script src="{$tpl}assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+        <script src="{$tpl}assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>*}
+        <!-- END CORE PLUGINS -->
+        <!-- BEGIN PAGE LEVEL PLUGINS -->
+		{*
+        <script src="{$tpl}assets/global/plugins/moment.min.js" type="text/javascript"></script>
+        <script src="{$tpl}assets/global/plugins/morris/morris.min.js" type="text/javascript"></script>
+        <script src="{$tpl}assets/global/plugins/morris/raphael-min.js" type="text/javascript"></script>
+        <script src="{$tpl}assets/global/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
+		<script src="{$tpl}assets/global/plugins/lightbox-2.6.min.js" type="text/javascript"></script>
+*}
+		
+        <!-- END PAGE LEVEL PLUGINS -->
+        <!-- BEGIN THEME GLOBAL SCRIPTS -->
+        <script src="{$tpl}assets/global/scripts/app.min.js" type="text/javascript"></script>
+        <!-- END THEME GLOBAL SCRIPTS -->
+        
+		<!-- BEGIN THEME LAYOUT SCRIPTS -->
+        <script src="{$tpl}assets/layouts/layout3/scripts/layout.js" type="text/javascript"></script>
+		
+		<!--<script type="text/javascript" src="{$tpl}js/main.js"></script>
+		<script type="text/javascript" src="{$tpl}js/menu.js"></script>-->
+		
+        <!-- END THEME LAYOUT SCRIPTS -->
+		<script src="{$tpl}js/custom.js"></script>
+
+{$site.B24}
+{$site.B24_mail_track} 
+    </body>
+
+</html>

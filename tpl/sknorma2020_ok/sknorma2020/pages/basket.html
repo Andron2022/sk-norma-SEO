@@ -1,0 +1,47 @@
+{ include file="header.html" }
+<h1>{$page.title}</h1>
+
+{if !empty($page.basket.list)}
+	<div class="table-responsive">
+		<form method="post">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Наименование</th>
+					<th>Кол-во</th>
+					<th>Цена</th>
+					<th>Сумма</th>
+					<th><i class="fa fa-trash" title="Удалить"></i></th>
+				</tr>
+			</thead>
+			<tbody>
+				{foreach from=$page.basket.list key="k" value="v"}
+					<tr>
+						<td>{counter}</td>
+						<td><a href="{$v.info.link}">{if !empty($v.info.pic.mini.url)}<img class="pull-left" src="{$v.info.pic.mini.url}" height="100" style="padding-right:10px;">{/if}{$v.title}</a></p></td>
+						<td align="center"><input type="number" min="1" max="12" value="{$v.qty}" name="basket[{$k}][qty]"{if !empty($v.gift)} disabled="disabled"{/if}></td>
+						<td align="right">{$v.price_formatted}</td>
+						<td align="right">{$v.summ_formatted}</td>
+						<td>{if empty($v.required)}<button class="btn btn-brick" type="submit" name="delete[]" value="{$k}"><i class="fa fa-remove"></i></button>{/if}</td>
+					</tr>
+				{/foreach}
+					<tr>
+						<td colspan="2" align="right"><h4>ИТОГО:</h4></td>
+						<td align="center"><h4>{$page.basket.qty}</h4></td>
+						<td></td>
+						<td align="right"><h4 class="motive">{$page.basket.summ_formatted}</h4></td>
+						<td></td>
+					</tr>
+			</tbody>
+		</table>
+		<input type="submit" name="update" value="Пересчитать" class="btn btn-default">
+		<div class="pull-right"><input type="submit" name="add" value="Оформить заказ" class="btn btn-brick btn-lg"></div>
+		</form>
+
+	</div>
+{else}
+	<p>{lang key1="basket" key2="empty"}</p>
+{/if}
+
+{ include file="footer.html" }

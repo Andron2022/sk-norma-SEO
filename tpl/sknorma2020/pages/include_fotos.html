@@ -1,0 +1,44 @@
+{* IMAGES START *}
+{if !empty($page.list_photos)}
+
+<!--Слайдер -->
+
+
+<div class="custom"  >
+	<div class="slider_top">
+	
+	
+                            {if $page.list_photos|@count > 1}
+                            
+                            
+                                {foreach from=$page.list_photos key="k" value="pic"}
+								<div class="photoset head-img"{if $k == 1} style="display: block;"{/if}>
+									<img src="{$pic.big.url}" alt="{$pic.big.title|escape}" />
+									{if empty($uri.path) OR $uri.path == "/" AND !empty($pic.big.title)}
+										<div class="head-img-button">{$pic.big.title}</div>
+									{else}
+										<div class="head-img-button-catalog"><a href="/upload/catalog_irline/Irline_Catalog_2011[1_2].pdf" target="_blank">СКАЧАТЬ&nbsp;КАТАЛОГ</a> </div>
+									{/if}
+								</div>                                 
+                                {/foreach}
+
+    <div class="choose_label">Выберите перегородку:</div>
+    <ins class="btn_nav_l" title="Предыдущее фото"></ins> <ins class="btn_nav_r" title="Следующее фото"></ins>
+
+
+                            {elseif $page.list_photos|@count == 1}
+								<div class="photoset head-img" style="display: block;"><img src="{$page.list_photos.1.big.url}" alt="{$page.list_photos.1.big.title|escape}" />
+									<div class="captions">
+										{*<div class="title"><a name="foto">{$page.list_photos.1.big.title|escape}</a>
+											<div class="price">от <span>2 700</span> руб./кв.м.</div>
+										</div>*}
+									</div>
+<div class="head-img-button-catalog"><a href="/upload/catalog_irline/Irline_Catalog_2011[1_2].pdf" target="_blank">СКАЧАТЬ&nbsp;КАТАЛОГ</a></div>
+								</div>
+								
+                            {else}
+                            {/if}
+	</div>	
+</div>							
+{/if}
+{* ---> IMAGES STOP *}

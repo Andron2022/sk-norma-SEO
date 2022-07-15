@@ -1,0 +1,18 @@
+{* путь до страницы *}
+{if !empty($page.breadcrumbs)}
+    <br><div class="breadcrumbs">
+    {foreach from=$page.breadcrumbs value="v"}
+        {if $v|@count > 0}
+                <a href="{$site.site_url}/" class="pathway">Главная</a> 
+                      {foreach from=$v key="k" value="v2"}
+                          {if empty($uri.params) AND $k == $v|@lastkey}
+                              <img src="{$tpl}images/system/arrow.png" alt=""> <span>{$v2.title}</span>
+                          {else}
+							  <img src="{$tpl}images/system/arrow.png" alt=""> <span><a href="{$v2.link}">{$v2.title}</a></span>
+                          {/if}
+                      {/foreach}    
+                </ol>
+        {/if}
+    {/foreach}
+    </div>
+{/if}

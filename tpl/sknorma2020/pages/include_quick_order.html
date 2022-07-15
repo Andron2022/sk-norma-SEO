@@ -1,0 +1,84 @@
+                {if $page.accept_orders == 1}
+                <section>
+                    <div class="title">
+                        {lang key1="order" key2="quick" key3="now"}
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4">
+                            <div class="person-box">
+                                <div class="caption">
+                                    <a href="{$site.site_url}/" class="uppercase name">
+                                        {$site.name_short}
+                                    </a>
+                                </div>
+                                <p>
+                                    <i class="fa fa-phone"></i> <a tel:{$site.phone}>{$site.phone}</a><br>
+                                    <i class="fa fa-envelope"></i> <a href="mailto:{$site.email_info}">{$site.email_info}</a>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-8 col-sm-8">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="successMessage alert alert-success" style="display: none">
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                        <p>{$site.form_sent}</p>
+                                    </div>
+                                    <div class="errorMessage alert alert-danger" style="display: none">
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                        <p>{lang key1="feedback" key2="error"}</p>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <form action="{$site.site_url}/order{$simpla.CONST.URL_END}" method="post" >
+                                <div class="row padding-xs-top">
+                                    <div class="col-md-12">
+                                        <input type="hidden" name="cart[0][id]" value="{ $page.id }">
+                                        <input type="hidden" name="cart[0][item]" value="{ $page.title }">
+                                        <input type="hidden" name="cart[0][qty]" value="1">
+                                        <input type="hidden" name="cart[0][price]" value="{ $page.price}">
+                                        <input type="hidden" name="cart[0][currency]" value="{$page.currency}">
+                                        <input type="hidden" name="order[when]" value="{ $site.formkey }">
+
+                                        
+                                        <div class="form-group">
+                                            <label for="nameInput">{lang key1="order" key2="quick" key3="name"}:</label>
+                                            <input id="nameInput" required type="text" name="order[name]" class="form-control"
+                                                   placeholder="{lang key1="order" key2="quick" key3="name_example"}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <div class="form-group">
+                                            <label for="phoneInput">{lang key1="order" key2="quick" key3="phone"}:</label>
+                                            <input id="phoneInput" type="tel" name="order[phone]" class="form-control" placeholder="{lang key1="order" key2="quick" key3="phone_example"}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <div class="form-group">
+                                            <label for="faxInput">{lang key1="order" key2="quick" key3="email"}:</label>
+                                            <input id="emailInput" required type="email" name="order[email]" class="form-control" placeholder="{lang key1="order" key2="quick" key3="email_example"}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group">
+                                            <label for="messageInput">{lang key1="order" key2="quick" key3="message"}:</label>
+                                            <textarea id="messageInput" class="form-control" rows="5" name="order[comment]" required placeholder="{lang key1="order" key2="quick" key3="message_example"}"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <button type="submit" class="btn btn-xs btn-brick large-padding pull-right">{lang key1="order" key2="quick" key3="button"}</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+                <br>
+                {/if}

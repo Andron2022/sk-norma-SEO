@@ -1,0 +1,29 @@
+{include file="header.html"}
+
+{include file="pages/breadcrumbs.html"}     
+
+{if !empty($page.active)}<h1>{$page.title}</h1>{/if}
+
+{include file="pages/include_pubs.html"}
+
+                            {if empty($uri.params.page)}
+                            
+                                {if !empty($page.intro) OR !empty($page.list_bottomcategs)}
+                                        {if !empty($page.intro)}<p>{$page.intro}</p>{/if}
+
+				{blocks where="main" name="bottom"}										
+                                {/if}								
+								
+                            
+                            {/if}
+                                <p>
+                                    {$page.content}
+                                </p>
+
+
+
+{include file="pages/include_comments.html"}
+
+			
+
+{ include file="footer.html" }

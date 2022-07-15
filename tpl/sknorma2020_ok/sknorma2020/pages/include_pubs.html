@@ -1,0 +1,66 @@
+{* PUBS START *}
+    {if !empty($uri.params.page) AND !empty($page.list_pubs.list)}
+        { math equation="(x + y)" x=1 y=$uri.params.page assign="pp" }
+        <div class="col-md-12"><h3 class="text-center">Страница {$pp}</h3></div>
+    {/if}
+	
+    {if !empty($page.list_pubs.list)}   
+
+        {if $page.list_pubs.spec == 'connected'}
+            {if !empty($site.sys_ptpubs_connected)}
+                {$site.sys_ptpubs_connected}
+            {else}
+                <div class="title">Публикации:</div>
+            {/if}            
+        {/if}    
+
+        { assign var="ar" value=$page.list_pubs.options }           
+        {foreach from=$page.list_pubs.list value="v"}
+            { assign var="id" value=$v.id }
+            <div class="col-md-6">
+                
+                
+                <div class="post">
+                    <div class="description">
+
+						{if !empty($v.pic.small.url)}<a href="{$v.link}"><img width="{$v.pic.small.width}" class="wrap-image-left" src="{$v.pic.small.url}" alt="{$v.title|escape}"></a>{/if}
+						<h4>{if !empty($v.icon)}<i class="fa fa-{$v.icon}"></i>{/if} <a href="{$v.link}">{$v.title}</a></h4>
+                        {if !empty($ar[$id].list)}
+                            <ul class="list-unstyled">
+                            {foreach from=$ar[$id].list value="o" }
+
+                                {if $o.alias != 'city'}
+									{if empty($o.value)}{assign var="value" value="?"}
+									{elseif $o.type == "int"}{assign var="value" value=$o.value|numformat}
+									{else}{assign var="value" value=$o.value}{/if}
+                                    <li><span data-toggle="tooltip" data-placement="top" title="{if empty($o.value2)}{$o.title}{else}{$o.group_title}{/if}" data-original-title="Tooltip on top">{if !empty($o.icon)}<span data-toggle="tooltip" data-placement="top" title="{$o.title}" data-original-title="Tooltip on top">{$o.icon} {if !empty($value)}{$value}{$o.after}{else}?{/if}</span>{else}
+										{if empty($o.value2)}
+										{$o.title}: {$value}
+										{else}
+										{$value} - {$o.value2}
+										{/if}
+									{/if} {$o.after}</span></li>                                    
+                                {/if}
+                                                                                
+                            {/foreach}
+                            </ul>
+                        {/if}
+                        {if !empty($v.intro)}<p align="justify">{$v.intro}</p>{/if}
+                    </div>
+                </div>
+            </div>
+            { cycle advance="2" values="1,2" assign="cycle"}
+            {if $cycle == 2}<div style="clear:left;"></div><hr>{/if}
+        {/foreach}
+        
+        {if $cycle == 1}
+            <div style="clear:left;"></div>
+        {/if}
+
+        {if $page.list_pubs.all > $page.list_pubs.list|@count}
+            <p style="text-align:right;"><small>{$page.list_pubs.list|@count} из {$page.list_pubs.all}</small></p>
+            {$page.list_pubs.pages}
+        {/if}
+        
+    {/if}
+{* ---> PUBS STOP *}

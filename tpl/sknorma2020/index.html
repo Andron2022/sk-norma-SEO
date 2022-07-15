@@ -1,0 +1,10 @@
+{include file="header.html"}
+		
+{if !empty($page.intro)}<div class="note note-warning">{$page.intro}</div>{/if}
+{if !empty($page.content)}
+<div class="row">{$page.content}</div>
+{/if}
+{include file="pages/blocks.html"}										
+										
+	
+{include file="footer.html"}

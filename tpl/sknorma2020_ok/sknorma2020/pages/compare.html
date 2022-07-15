@@ -1,0 +1,150 @@
+{ include file="header.html" }
+
+{if !empty($page.list_products.list)}
+	{assign var="rows" value=$page.list_products}
+{else}
+	{assign var="rows" value=$page.list_pubs}
+{/if}
+
+{if !empty($page.select_products.list)}
+	{assign var="selected" value=$page.select_products.list}
+{else}
+	{assign var="selected" value=$page.select_pubs.list}
+{/if}
+
+
+<div class="row">
+	<div class="col-md-8">
+		<div class="caption">
+			<h3>{$page.title}</h3>
+			<a href="{$uri.requested_no_skip|urldecode}"><i class="fa fa-exchange"></i> Ссылка на страницу сравнения</a>
+		</div></div>
+	<div class="col-md-4">
+{if $selected|@count > $page.ids|@count AND $page.ids|@count < 6}
+        <select name="" onchange="top.location=this.value" class="form-control">
+		<option value="{$uri.requested_full}"> - Добавить к сравнению</option>
+			{foreach from=$selected key="k" value="v"}
+				{ in_array array=$page.ids match=$v.id returnvalue="CHECKED" assign="ch"}
+				{if empty($ch)}
+					<option value="{$uri.requested_full|urldecode}&ids[]={$v.id}">{$v.title}</option>
+				{/if}
+			{/foreach}
+        </select>
+{/if}
+	</div>
+</div>
+
+
+{if !empty($rows.list)}
+	{ math equation="( x + y )" x=$rows.list|@count y=1 assign="qty"}
+	{ math equation="( x / y )" x=100 y=$qty assign="width"}
+
+	<div class="table-responsive">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th style="text-align:right;" width="{$width}%"><a style="color:#ffffff;font-weight:bold;" href="{$uri.requested_no_skip|urldecode}"><i class="fa fa-bars"></i></a></th>
+					{foreach from=$rows.list key="k" value="v"}
+						<th style="text-align:center;" width="{$width}%"><a href="{$v.link}" style="color:#ffffff;font-weight:bold;">{$v.title}</a></th>
+					{/foreach}					
+				</tr>
+			</thead>
+			<tbody>
+			
+				{* если товары, то выведем цены и т.п. *}
+				{if !empty($page.list_products.list)}
+					<tr>
+						<td align="right" width="{$width}%" style="vertical-align: middle;"><b>Цена</b></td>
+						{foreach from=$rows.list key="k" value="v"}
+							<td style="text-align:center;" width="{$width}%"><h3><a href="{$v.link}">{$v.price_formatted}</a></h3></td>
+						{/foreach}					
+					</tr>
+				{/if}
+
+					<tr>
+						<td width="{$width}%"></td>
+						{foreach from=$rows.list key="k" value="v"}
+							<td style="text-align:center;" width="{$width}%"><a href="{$v.link}">{if !empty($v.pic.mini.url)}<img src="{$v.pic.mini.url}" alt="{$v.title|escape}">{/if}</a>
+							<div class="image-links">
+                                {if !empty($v.pic.big.url)}<a class="inner" href="{$v.pic.big.url}" data-lightbox="related-10">
+									<i class="fa fa-search-plus"></i>
+								</a>{/if}
+                            </div>
+							</td>
+						{/foreach}					
+					</tr>
+					
+			
+				{assign var="id" value="0"}
+				{assign var="gr_id" value="0"}
+				{assign var="options" value=$rows.options}
+				{foreach from=$rows.options key="k" value="v"}
+					{if $id == 0}
+						{assign var="id" value=$k}
+				
+						{foreach from=$v key="v1" value="v2"}
+							{if $v1 != $gr_id AND $v2.0.group_hide != 1}
+								{assign var="gr_id" value="{$v2.0.group_id}
+								<tr><td align="center" colspan="{$qty}"><h3>{$v2.0.group_title}</h3>
+								</td></tr>
+							{/if}
+							
+							{foreach from=$v2 key="kk" value="opt"}		
+								{if empty($simpla.GET.skip)}
+									{assign var="ch" value=""}
+								{else}
+									{ in_array array=$simpla.GET.skip match=$opt.id returnvalue="skip" assign="ch"}
+								{/if}
+								{if empty($ch)}
+							<tr>
+								<td align="right">								
+								<b>{$opt.title}</b> <a data-toggle="tooltip" data-placement="top" title="" data-original-title="Скрыть" href="{$uri.requested_full}&skip[]={$opt.id}"><i class="fa fa-minus-circle"></i></a></td>							
+								
+								{foreach from=$rows.list key="key" value="val"}
+									{assign var="pub" value=$val.id}
+									
+									{if isset($options[$pub])}
+										{assign var="opt1" value=$options[$pub]}
+									{else}{assign var="opt1" value=""}{/if}
+									
+									{if isset($opt1[$v1])}
+										{assign var="opt2" value=$opt1[$v1]}
+									{else}{assign var="opt2" value=""}{/if}
+									
+									{if isset($opt2[$kk])}
+										{assign var="opt" value=$opt2[$kk]}
+									{else}{assign var="opt" value=""}{/if}
+									
+									<td align="center">{if !empty($opt.type) AND $opt.type == "int"}
+										{if empty($opt.value)}?{else}{$opt.value|numformat}{/if}
+										{else}
+										{if empty($opt.value)}?{else}{$opt.value}{/if}
+									{/if}{if !empty($opt.after)} {$opt.after}{/if}</td>
+								{/foreach}
+							</tr>
+								{/if}
+							{/foreach}
+
+							
+						{/foreach}
+
+							<tr>
+								<td align="right">Удалить из сравнения</td>
+								{foreach from=$rows.list key="key" value="val"}
+									{assign var="pub" value="&ids[]=".$val.id}
+									{assign var="url1" value=$uri.requested_full|urldecode}
+									{assign var="url" value=$url1|replace:$pub:""}
+									<td align="center"><a href="{$url}">Удалить</a></td>
+								{/foreach}
+							</tr>
+
+						
+					{/if}
+				{/foreach}					
+			</tbody>
+		</table>
+	</div>
+{else}
+	<p>{lang key1="compare" key2="empty"}</p>
+{/if}
+{ include file="footer.html" }
